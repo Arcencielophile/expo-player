@@ -29,6 +29,24 @@
   </head>
 
   <body>
+	<div class="navbar">
+	    <div class="navbar-inner">
+		    <div class="container">
+			   <a class="brand" href="#">HiPy Player</a>
+		    </div>
+	    </div>
+    </div>
+    
+    
+
+    <div class="navbar navbar-fixed-bottom">
+    	<div class="navbar-inner">
+		    <div class="container">
+			   <a class="brand" href="#">Initiateurs du projet</a>
+		    </div>
+	    </div>
+    </div>
+
 
     <article>
 
