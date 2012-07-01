@@ -14,6 +14,11 @@
     <link rel="stylesheet" type="text/css" href="deckjs/extensions/navigation/deck.navigation.css" />
     <link rel="stylesheet" type="text/css" href="deckjs/extensions/scale/deck.scale.css" />
 
+    <link rel="stylesheet" type="text/css" href="deckjs/themes/transition/custom/fade.css" />
+    <link rel="stylesheet" type="text/css" href="deckjs/themes/transition/custom/horizontal.css" />
+    <link rel="stylesheet" type="text/css" href="deckjs/themes/transition/custom/vertical.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
     <script type="text/javascript" src="deckjs/modernizr.custom.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="deckjs/jquery-1.7.min.js"></script>
@@ -29,18 +34,35 @@
   </head>
 
   <body>
+    <?php
+      $project_feed = file_get_contents('./data.xml/sample.xml');
+      $project = new SimpleXMLElement($project_feed);
+    ?>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+         <a class="brand" href="#"><?php echo $project->name; ?></a>
+        </div>
+      </div>
+    </div>
 
-    <article>
+    <article class="deck-container row-fluid">
 
-      <section class="slide" id="Mapremiereslide">
-        toto
-      </section>
-
-      <section class="slide" id="Madeuxiemeslide">
-        titi
-      </section>
+      <?php foreach($project->slides->slide as $slide): ?>
+        <section class="slide span12 <?php echo $slide->attributes()->effect ?>">
+          <?php echo $slide->content ?>
+        </section>
+      <?php endforeach; ?>
 
     </article>
+
+    <div class="navbar navbar-fixed-bottom">
+      <div class="navbar-inner">
+        <div class="container">
+         <a class="brand" href="#">Initiateurs du projet</a>
+        </div>
+      </div>
+    </div>
 
     <script>
       $(function() {

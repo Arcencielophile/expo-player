@@ -1,0 +1,15 @@
+.deck-container
+{
+  height: 600px;
+  padding: 0;
+}
+
+.deck-container .slide
+{
+  height: 100%;
+}
+
+.csstransitions.csstransforms .deck-container:not(.deck-menu) > .slide
+{
+  padding: 0 !important;
+}

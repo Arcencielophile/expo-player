@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="1.0">
+  <name>HiPy - Player v2</name>
+  <description>TODO</description>
+
+  <categories>
+    <category>HTML5</category>
+    <category>CSS3</category>
+  </categories>
+
+  <authors>
+    <author>
+      <firstname>Alexandre</firstname>
+      <lastname>LOUYS</lastname>
+      <email>alexandre.louys@gmail.com</email>
+    </author>
+    <author>
+      <firstname>Gabriel</firstname>
+      <lastname>BONDAZ</lastname>
+      <email>gabriel.bondaz@gmail.com</email>
+    </author>
+  </authors>
+
+  <slides>
+    <slide effect="fx-vertical">
+      <content>
+        <![CDATA[
+          <h1>Slide 1</h1>
+          <h2>sous titre</h2>
+        ]]>
+      </content>
+    </slide>
+    <slide effect="fx-vertical">
+      <content>
+        <![CDATA[
+          <h1>Slide 2</h1>
+          <h2>Truc</h2>
+        ]]>
+      </content>
+    </slide>
+    <slide effect="fx-horizontal">
+      <content>
+        <![CDATA[
+          <h1>Slide 3</h1>
+          <p>essai</p>
+        ]]>
+      </content>
+    </slide>
+  </slides>
+
+</project>
