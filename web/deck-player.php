@@ -33,6 +33,42 @@
     <script type="text/javascript" src="deckjs/extensions/scale/deck.scale.js"></script>
   </head>
 
+  <?php
+
+    /**
+     * Display the classes for a given slide node
+     *
+     * @param SimpleXMLElement slideAttributes
+     * @return string
+     */
+    function displayClasses($slideAttributes)
+    {
+      $classes = array();
+      foreach($slideAttributes as $key => $attribute) {
+        if($key == 'effect') {
+          $classes[] = $attribute;
+        } elseif($key == 'visible-on') {
+          $attributes = explode(' ', $attribute);
+          $items = array();
+          foreach($attributes as $item) {
+            $items[] = 'visible-'.$item;
+          }
+          $classes = array_merge($classes, $items);
+        } elseif($key == 'hidden-on') {
+          $attributes = explode(' ', $attribute);
+          $items = array();
+          foreach($attributes as $item) {
+            $items[] = 'hidden-'.$item;
+          }
+          $classes = array_merge($classes, $items);
+        }
+      }
+
+      return implode(' ', $classes);
+    }
+
+  ?>
+
   <body>
     <?php
       $project_feed = file_get_contents('./data.xml/sample.xml');
@@ -48,9 +84,9 @@
 
     <article class="deck-container row-fluid">
 
-      <?php foreach($project->slides->slide as $slide): ?>
-        <section class="slide span12 <?php echo $slide->attributes()->effect ?>">
-          <?php echo $slide->content ?>
+      <?php foreach($project->page as $page): ?>
+        <section class="slide span12 <?php echo displayClasses($page->attributes()) ?>">
+          <?php echo $page->content ?>
         </section>
       <?php endforeach; ?>
 

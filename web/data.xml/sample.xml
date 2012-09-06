@@ -1,51 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="1.0">
-  <name>HiPy - Player v2</name>
-  <description>TODO</description>
+  <name>HiPo</name>
+  <summary>Le portfolio rigolo</summary>
+  <date>2012</date>
+  <logo>http://www.google.com/logo.png</logo>
 
-  <categories>
-    <category>HTML5</category>
-    <category>CSS3</category>
-  </categories>
+  <tag>Photoshop</tag>
+  <tag>Press</tag>
+  <tag>RGB</tag>
 
-  <authors>
-    <author>
-      <firstname>Alexandre</firstname>
-      <lastname>LOUYS</lastname>
-      <email>alexandre.louys@gmail.com</email>
-    </author>
-    <author>
-      <firstname>Gabriel</firstname>
-      <lastname>BONDAZ</lastname>
-      <email>gabriel.bondaz@gmail.com</email>
-    </author>
-  </authors>
+  <author>
+    <name>Team</name>
+    <email>team@hipo.com</email>
+    <website>http://www.idci-consulting.fr</website>
+    <social-link uri="https://www.facebook.com/123456" />
+    <social-link uri="https://www.twitter.com/123456" />
+    <social-link uri="https://www.viadeo.com/123456" />
+  </author>
 
-  <slides>
-    <slide effect="fx-vertical">
-      <content>
-        <![CDATA[
-          <h1>Slide 1</h1>
-          <h2>sous titre</h2>
-        ]]>
-      </content>
-    </slide>
-    <slide effect="fx-vertical">
-      <content>
-        <![CDATA[
-          <h1>Slide 2</h1>
-          <h2>Truc</h2>
-        ]]>
-      </content>
-    </slide>
-    <slide effect="fx-horizontal">
-      <content>
-        <![CDATA[
-          <h1>Slide 3</h1>
-          <p>essai</p>
-        ]]>
-      </content>
-    </slide>
-  </slides>
+  <target>
+    <name>Team</name>
+    <website>http://www.idci-consulting.fr</website>
+  </target>
+
+  <page effect="fx-horizontal" hidden-on="phone">
+    <title>Slide 1</title>
+    <description>desc 1</description>
+    <content>
+      <![CDATA[
+        <h1>Intro</h1>
+        <h2>Campagne de pub sur 4*3 ....</h2>
+      ]]>
+    </content>
+  </page>
+
+  <page effect="fx-fade" visible-on="desktop">
+    <title>Slide 2</title>
+    <description>desc 2</description>
+    <content>
+      <![CDATA[
+        <h1>Les visuels</h1>
+        <ul>
+          <li>V1</li>
+          <li>V2</li>
+          <li>V3</li>
+        </ul>>
+      ]]>
+    </content>
+  </page>
+
+  <page effect="fx-vertical" hidden-on="desktop">
+    <title>Slide 3</title>
+    <description>desc 3</description>
+    <content>
+      <![CDATA[
+        <h1>Truc</h1>
+        <h2>De ouf malade aussi</h2>
+      ]]>
+    </content>
+  </page>
+
+  <page effect="fx-fade" hidden-on="tablet">
+    <title>Slide 4</title>
+    <description>desc 4</description>
+    <content>
+      <![CDATA[
+        <h1>Contactez moi</h1>
+        <p>test</p>
+      ]]>
+    </content>
+  </page>
 
 </project>
