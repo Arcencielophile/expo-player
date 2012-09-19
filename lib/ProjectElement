@@ -1,0 +1,10 @@
+<?php
+
+class ProjectElement
+{
+  protected $title;
+
+  protected $description;
+
+  protected $content;
+}
