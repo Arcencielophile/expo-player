@@ -11,7 +11,7 @@ artistic works, cultural projects, educational contents ...
 FR:
 Application web utilisant les standards du W3C
 pour partager, exposer, présenter
-des oeuvres artistiques, des projects culturelles, des contenus pédagogiques ..
+des oeuvres artistiques, des projects culturels, des contenus pédagogiques ..
 
 
 
