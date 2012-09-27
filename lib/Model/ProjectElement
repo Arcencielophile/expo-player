@@ -1,5 +1,7 @@
 <?php
 
+namespace Hipy\Player\Model;
+
 /**
  * ProjectElement
  *
@@ -13,6 +15,8 @@ class ProjectElement
   protected $description;
 
   protected $content;
+
+  protected $effects = array();
 
   /**
    * Constructor
@@ -55,6 +59,16 @@ class ProjectElement
     return $this->content;
   }
 
+  /**
+   * Get Effects
+   *
+   * @return mixed
+   */
+  public function getEffects()
+  {
+    return $this->effects;
+  }
+
   /**********
    * Setters
    **********/
@@ -94,6 +108,32 @@ class ProjectElement
   public function setContent($content)
   {
     $this->content = $content;
+
+    return $this;
+  }
+
+  /**
+   * Set Effects
+   *
+   * @param mixed $effects
+   * @return ProjectElement
+   */
+  public function setEffects($effects)
+  {
+    $this->effects = $effects;
+
+    return $this;
+  }
+
+  /**
+   * Add Effect
+   *
+   * @param ProjectElementFx $effect
+   * @return ProjectElement
+   */
+  public function addEffect($effect)
+  {
+    $this->effects[] = $effect;
 
     return $this;
   }

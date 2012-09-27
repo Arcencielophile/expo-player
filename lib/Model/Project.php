@@ -1,5 +1,7 @@
 <?php
 
+namespace Hipy\Player\Model;
+
 /**
  * Project
  *
@@ -17,6 +19,12 @@ class Project
   protected $logo;
 
   protected $tags = array();
+
+  protected $targets = array();
+
+  protected $authors = array();
+
+  protected $pages = array();
 
   /**
    * Constructor
@@ -79,6 +87,36 @@ class Project
     return $this->tags;
   }
 
+  /**
+   * Get Targets
+   *
+   * @return mixed
+   */
+  public function getTargets()
+  {
+    return $this->targets;
+  }
+
+  /**
+   * Get Authors
+   *
+   * @return mixed
+   */
+  public function getAuthors()
+  {
+    return $this->authors;
+  }
+
+  /**
+   * Get Pages
+   *
+   * @return mixed
+   */
+  public function getPages()
+  {
+    return $this->pages;
+  }
+
   /**********
    * Setters
    **********/
@@ -138,7 +176,7 @@ class Project
   /**
    * Set Tags
    *
-   * @param mixes $tags
+   * @param mixed $tags
    * @return Project
    */
   public function setTags($tags)
@@ -157,6 +195,84 @@ class Project
   public function addTag($tag)
   {
     $this->tags[] = $tag;
+
+    return $this;
+  }
+
+  /**
+   * Set Targets
+   *
+   * @param mixed $targets
+   * @return Project
+   */
+  public function setTargets($targets)
+  {
+    $this->targets = $targets;
+
+    return $this;
+  }
+
+  /**
+   * Add Target
+   *
+   * @param Target $target
+   * @return Project
+   */
+  public function addTarget($target)
+  {
+    $this->targets[] = $target;
+
+    return $this;
+  }
+
+  /**
+   * Set Authors
+   *
+   * @param mixed $authors
+   * @return Project
+   */
+  public function setAuthors($authors)
+  {
+    $this->authors = $authors;
+
+    return $this;
+  }
+
+  /**
+   * Add Author
+   *
+   * @param Author $author
+   * @return Project
+   */
+  public function addAuthor($author)
+  {
+    $this->authors[] = $author;
+
+    return $this;
+  }
+
+  /**
+   * Set Pages
+   *
+   * @param mixed $pages
+   * @return Project
+   */
+  public function setPages($pages)
+  {
+    $this->pages = $pages;
+
+    return $this;
+  }
+
+  /**
+   * Add Page
+   *
+   * @param Page $page
+   * @return Project
+   */
+  public function addPage($page)
+  {
+    $this->pages[] = $page;
 
     return $this;
   }

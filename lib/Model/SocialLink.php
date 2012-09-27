@@ -1,5 +1,7 @@
 <?php
 
+namespace Hipy\Player\Model;
+
 /**
  * SocialLink
  *

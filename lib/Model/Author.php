@@ -1,5 +1,7 @@
 <?php
 
+namespace Hipy\Player\Model;
+
 /**
  * Author
  *
@@ -13,6 +15,8 @@ class Author
   protected $email;
 
   protected $website;
+
+  protected $social_links = array();
 
   /**
    * Constructor
@@ -43,6 +47,16 @@ class Author
   public function getEmail()
   {
     return $this->email;
+  }
+
+  /**
+   * Get SocialLinks
+   *
+   * @return mixed
+   */
+  public function getSocialLinks()
+  {
+    return $this->social_links;
   }
 
   /**
@@ -94,6 +108,33 @@ class Author
   public function setWebsite($website)
   {
     $this->website = $website;
+
+    return $this;
+  }
+
+  /**
+   * Set SocialLinks
+   *
+   * @param mixed $social_links
+   * @return Author
+   */
+  public function setSocialLinks($social_links)
+  {
+    $this->social_links = $social_links;
+
+    return $this;
+  }
+
+
+  /**
+   * Add SocialLink
+   *
+   * @param SocialLink $social_link
+   * @return Author
+   */
+  public function addSocialLink($social_link)
+  {
+    $this->social_links[] = $social_link;
 
     return $this;
   }
