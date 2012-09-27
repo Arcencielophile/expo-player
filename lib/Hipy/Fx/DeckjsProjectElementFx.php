@@ -1,6 +1,6 @@
 <?php
 
-namespace Hipy\Player\Fx;
+namespace Hipy\Fx;
 
 /**
  * DeckjsProjectElementFx

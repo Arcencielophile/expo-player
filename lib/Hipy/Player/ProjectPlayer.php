@@ -1,5 +1,7 @@
 <?php
 
+namespace Hipy\Player;
+
 /**
  * ProjectPlayer
  *
@@ -8,5 +10,8 @@
  */
 abstract class ProjectPlayer
 {
-
+  public function render()
+  {
+  
+  }
 }

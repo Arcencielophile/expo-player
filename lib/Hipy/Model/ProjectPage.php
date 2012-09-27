@@ -1,6 +1,9 @@
 <?php
 
-namespace Hipy\Player\Model;
+namespace Hipy\Model;
+
+require_once __DIR__.'/ProjectElement.php';
+use Hipy\Model\ProjectElement;
 
 /**
  * ProjectPage

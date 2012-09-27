@@ -1,6 +1,6 @@
 <?php
 
-namespace Hipy\Player\Model;
+namespace Hipy\Model;
 
 /**
  * Author

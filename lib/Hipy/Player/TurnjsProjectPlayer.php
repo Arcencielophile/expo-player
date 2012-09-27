@@ -1,14 +1,14 @@
 <?php
 
-namespace Hipy\Player\Fx;
+namespace Hipy\Player;
 
 /**
- * ProjectElementFx
+ * TurnjsProjectPlayer
  *
  * @author Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
  * @copyright GNU GPLv3
  */
-abstract class ProjectElementFx
+class TurnjsProjectPlayer extends ProjectPlayer
 {
 
 }
