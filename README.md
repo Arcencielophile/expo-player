@@ -1,4 +1,4 @@
-HiPy-player
+expo-player
 ===========
 
 HTML5 eportfolio player
@@ -23,19 +23,6 @@ Technology
  * Javascript
 
 
-
-Name /Keywords
-==============
-
-The name of the application isn't yet defined. 
-Some propositions:
-
- Monographe, Display, Expo, Exhibit, Chunk, Slice, Work, Project
-
- Allure, Gorgeous, Eye catcher, Wula
-
-
-
 Punch line
 ==========
 
@@ -48,5 +35,7 @@ Punch line
 Dependencies
 ============
 
-* https://github.com/symfony/ClassLoader.git
+ * http://imakewebthings.com/deck.js/docs/
+ * http://bartaz.github.com/impress.js/
+ * http://www.turnjs.com/
 
