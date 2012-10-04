@@ -19,9 +19,10 @@
     <link rel="stylesheet" type="text/css" href="deckjs/themes/transition/custom/vertical.css" />
     <link rel="stylesheet" type="text/css" href="style.css" />
 
-    <script type="text/javascript" src="deckjs/modernizr.custom.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
     <script type="text/javascript" src="deckjs/jquery-1.7.min.js"></script>
+
+    <script type="text/javascript" src="deckjs/modernizr.custom.js"></script>
 
     <!-- include source files here... -->
     <script type="text/javascript" src="deckjs/core/deck.core.js"></script>

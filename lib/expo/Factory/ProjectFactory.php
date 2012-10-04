@@ -1,17 +1,17 @@
 <?php
 
-namespace Hipy\Factory;
+namespace expo\Factory;
 
 require_once __DIR__.'/../Model/Project.php';
-use Hipy\Model\Project;
+use expo\Model\Project;
 require_once __DIR__.'/../Model/Author.php';
-use Hipy\Model\Author;
+use expo\Model\Author;
 require_once __DIR__.'/../Model/SocialLink.php';
-use Hipy\Model\SocialLink;
+use expo\Model\SocialLink;
 require_once __DIR__.'/../Model/Target.php';
-use Hipy\Model\Target;
+use expo\Model\Target;
 require_once __DIR__.'/../Model/ProjectPage.php';
-use Hipy\Model\ProjectPage;
+use expo\Model\ProjectPage;
 
 /**
  * Project

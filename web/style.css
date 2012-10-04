@@ -1,15 +1,127 @@
-.deck-container
-{
-  height: 600px;
+html, body, article {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  height: 100%;
+  background: #FFF;
+}
+
+.button {
+  display: block;
+  width: 42px;
+  height: 42px;
+  text-align: center;
+  line-height: 42px;
+  overflow: hidden;
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+}
+
+.button:hover {
+  text-decoration: none;
+}
+
+a:focus {
+  outline: none;
+}
+
+/* Project Information */
+#project-information {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  z-index: 9999;
+}
+
+#project-information > a {
+  border: 1px solid #000;
+}
+
+#project-information > .content {
+  position: absolute;
+  bottom: 44px;
+  visibility: hidden;
+}
+
+#project-information:hover > .content {
+  visibility: visible;
+}
+
+#project-information > .content > div {
+  background: #DDD;
+  border: 1px solid #888;
+  padding: 8px;
+  margin: 0 0 4px 0;
+  min-width: 200px;
+}
+
+#project-information > .content > .title {
+}
+
+#project-information > .content > .description {
+}
+
+#project-information > .content > .context {
+}
+
+#project-information > .content > .social_network {
+}
+
+
+/* Project Navigation */
+body > nav {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  z-index: 9999;
+}
+
+body > nav ul {
+  position: relative;
+  margin: 0;
   padding: 0;
 }
 
-.deck-container .slide
-{
-  height: 100%;
+body > nav > ul li {
+  float: left;
+  list-style-type: none;
+  margin: 10px 0 0 10px;
+  position: relative;
 }
 
-.csstransitions.csstransforms .deck-container:not(.deck-menu) > .slide
-{
-  padding: 0 !important;
+body > nav > ul > li a {
+  border: 1px solid #000;
+  -moz-border-radius: 42px;
+  -webkit-border-radius: 42px;
+  border-radius: 42px;
+}
+
+body > nav > ul > li > .content {
+  position: absolute;
+  bottom: 44px;
+  right: -64px;
+  width: 226px;
+  height: 172px;
+  display: block;
+  visibility: hidden;
+}
+
+body > nav > ul > li > .content > ul {
+  overflow: auto;
+  background: #555;
+  -moz-border-radius: 16px;
+  -webkit-border-radius: 16px;
+  border-radius: 16px;
+}
+
+body > nav > ul > li:hover > .content {
+  visibility: visible;
 }

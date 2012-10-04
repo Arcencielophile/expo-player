@@ -1,11 +1,11 @@
-.csstransitions.csstransforms .deck-container .slide.fx-fade {
+.csstransitions.csstransforms #container .slide.fx-fade {
   -webkit-transition: opacity 500ms ease-in-out 0ms;
   -moz-transition: opacity 500ms ease-in-out 0ms;
   -ms-transition: opacity 500ms ease-in-out 0ms;
   -o-transition: opacity 500ms ease-in-out 0ms;
   transition: opacity 500ms ease-in-out 0ms;
 }
-.csstransitions.csstransforms .deck-container:not(.deck-menu) > .slide.fx-fade {
+.csstransitions.csstransforms #container:not(.deck-menu) > .slide.fx-fade {
   position: absolute;
   top: 0;
   left: 0;
@@ -14,35 +14,35 @@
   box-sizing: border-box;
   width: 100%;
 }
-.csstransitions.csstransforms .deck-container:not(.deck-menu) > .slide .slide.fx-fade {
+.csstransitions.csstransforms #container:not(.deck-menu) > .slide .slide.fx-fade {
   position: relative;
   left: 0;
   top: 0;
 }
-.csstransitions.csstransforms .deck-container:not(.deck-menu) > .slide .fx-fade.deck-next,
-.csstransitions.csstransforms .deck-container:not(.deck-menu) > .slide .fx-fade.deck-after {
+.csstransitions.csstransforms #container:not(.deck-menu) > .slide .fx-fade.deck-next,
+.csstransitions.csstransforms #container:not(.deck-menu) > .slide .fx-fade.deck-after {
   opacity: 0;
 }
-.csstransitions.csstransforms .deck-container:not(.deck-menu) > .slide .fx-fade.deck-current {
+.csstransitions.csstransforms #container:not(.deck-menu) > .slide .fx-fade.deck-current {
   opacity: 1;
 }
-.csstransitions.csstransforms .deck-container:not(.deck-menu) > .fx-fade.deck-previous,
-.csstransitions.csstransforms .deck-container:not(.deck-menu) > .fx-fade.deck-before,
-.csstransitions.csstransforms .deck-container:not(.deck-menu) > .fx-fade.deck-next,
-.csstransitions.csstransforms .deck-container:not(.deck-menu) > .fx-fade.deck-after {
+.csstransitions.csstransforms #container:not(.deck-menu) > .fx-fade.deck-previous,
+.csstransitions.csstransforms #container:not(.deck-menu) > .fx-fade.deck-before,
+.csstransitions.csstransforms #container:not(.deck-menu) > .fx-fade.deck-next,
+.csstransitions.csstransforms #container:not(.deck-menu) > .fx-fade.deck-after {
   opacity: 0;
   pointer-events: none;
 }
-.csstransitions.csstransforms .deck-container:not(.deck-menu) > .deck-before .slide.fx-fade,
-.csstransitions.csstransforms .deck-container:not(.deck-menu) > .fx-fade.deck-previous .slide.fx-fade {
+.csstransitions.csstransforms #container:not(.deck-menu) > .deck-before .slide.fx-fade,
+.csstransitions.csstransforms #container:not(.deck-menu) > .fx-fade.deck-previous .slide.fx-fade {
   visibility: visible;
 }
-.csstransitions.csstransforms .deck-container:not(.deck-menu) > .fx-fade.deck-child-current {
+.csstransitions.csstransforms #container:not(.deck-menu) > .fx-fade.deck-child-current {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
-.csstransitions.csstransforms .deck-container:not(.deck-menu) > .deck-child-current .fx-fade.deck-next,
-.csstransitions.csstransforms .deck-container:not(.deck-menu) > .deck-child-current .fx-fade.deck-after {
+.csstransitions.csstransforms #container:not(.deck-menu) > .deck-child-current .fx-fade.deck-next,
+.csstransitions.csstransforms #container:not(.deck-menu) > .deck-child-current .fx-fade.deck-after {
   visibility: hidden;
 }

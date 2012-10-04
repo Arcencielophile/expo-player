@@ -47,7 +47,7 @@
 
     <script>
       $('document').ready(function() {
-        $('#container').turn({gradients: true, acceleration: true});
+        $('.container').turn({gradients: true, acceleration: true});
       });
     </script>
   </body>

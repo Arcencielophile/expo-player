@@ -1,6 +1,6 @@
 <?php
 
-namespace Hipy\Fx;
+namespace expo\Fx;
 
 /**
  * DeckjsProjectElementFx
