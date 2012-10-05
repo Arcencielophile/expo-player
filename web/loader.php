@@ -22,6 +22,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
 
     <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'></script>
+    <script type='text/javascript' src='js/expo.js'></script>
 
     <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
     <?php $projectPlayer->loadJs('header') ?>
@@ -29,6 +30,10 @@
   </head>
 
   <body>
+
+    <div id="player-information">
+      
+    </div>
 
     <div id="project-information">
       <a href="#project-information" class="button" title="Project Information">+</a>
@@ -54,7 +59,7 @@
         <li>
           <a class="button" href="#" title="Home">Home</a>
         </li>
-        <li>
+        <li class="hidden-phone">
           <a class="button" href="#" title="Previous" id="previous-page">&lt;</a>
         </li>
         <li>
@@ -100,7 +105,7 @@
             </ul>
           </div>
         </li>
-        <li>
+        <li class="visible-desktop">
           <a class="button" href="#" title="Next" id="next-page">&gt;</a>
         </li>
       </ul>
@@ -116,9 +121,7 @@
 
     </article>
 
-    <script type="text/javascript">
-      <?php echo $projectPlayer->getJsLoader() ?>
-    </script>
+    <?php $projectPlayer->initJs() ?>
 
   </body>
 </html>

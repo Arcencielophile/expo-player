@@ -86,6 +86,23 @@ abstract class ProjectPlayer
     }
 
     /**
+     * Init js
+     *
+     * @return string
+     */
+    public function initJs()
+    {
+        printf("
+            <script type=\"text/javascript\">
+                $('document').ready(function(){
+                    %s
+                });
+            </script>",
+            $this->getJsLoader()
+        );
+    }
+
+    /**
      * Get the player needed css
      *
      * @return mixed

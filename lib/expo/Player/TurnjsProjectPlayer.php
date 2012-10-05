@@ -22,7 +22,7 @@ class TurnjsProjectPlayer extends ProjectPlayer
 
     public function getJsLoader()
     {
-        return "$('document').ready(function() { 
+        return ("
             $('#container').turn({
               autoCenter: true,
               gradients: true,
@@ -54,6 +54,6 @@ class TurnjsProjectPlayer extends ProjectPlayer
                 $('#container').turn('next');
               }
             });
-        });";
+        ");
     }
 }

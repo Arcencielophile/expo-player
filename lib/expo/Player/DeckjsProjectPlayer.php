@@ -46,7 +46,7 @@ class DeckjsProjectPlayer extends ProjectPlayer
 
     public function getJsLoader()
     {
-        return "$('document').ready(function() {
+        return ("
             $.deck.defaults = {
                classes: {
                   after: 'deck-after',
@@ -84,6 +84,6 @@ class DeckjsProjectPlayer extends ProjectPlayer
             $('#next-page').click(function(){
               $.deck('next');
             });
-        });";
+        ");
     }
 }
