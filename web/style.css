@@ -63,7 +63,7 @@ a:focus {
   height: 100%;
   visibility: visible;
   display: block;
-  opacity: 0.9;
+  opacity: 0.99;
   background: #222;
   transition: 0.6s;
   -moz-transition: 0.6s;
@@ -87,15 +87,81 @@ a:focus {
 
 #player-information > div > div > * {
   display: block;
-  width: 140px;
-  height: 140px;
-  padding: 30px;
+  width: 200px;
+  height: 200px;
+  padding: 42px;
   margin: 30% auto 0;
   background: #FFF;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
   text-align: center;
+}
+
+#player-information > div > div > div > p {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0 30px 0;
+  color: #000;
+  text-decoration: none;
+}
+
+#player-information > div > .start > div > a {
+  font-size: 200px;
+  line-height: 52px;
+  color: #000;
+  text-shadow: 0px 1px 1px #ddd,
+               0px 2px 1px #d6d6d6,
+               0px 3px 1px #ccc,
+               0px 4px 1px #c5c5c5,
+               0px 5px 1px #c1c1c1,
+               0px 6px 1px #bbb,
+               0px 7px 1px #777,
+               0px 8px 3px rgba(100, 100, 100, 0.4),
+               0px 9px 5px rgba(100, 100, 100, 0.1),
+               0px 10px 7px rgba(100, 100, 100, 0.15),
+               0px 11px 9px rgba(100, 100, 100, 0.2),
+               0px 12px 11px rgba(100, 100, 100, 0.25),
+               0px 13px 15px rgba(100, 100, 100, 0.3);
+  text-decoration: none;
+}
+
+#player-information > div > .controls > div > ul {
+  margin: 0;
+  list-style-type: none;
+}
+
+#player-information > div > .controls > div > ul > li {
+  margin: 8px 0 0 0;
+  clear: both;
+  overflow: auto;
+}
+
+#player-information > div > .controls > div > ul > li > label {
+  float: left;
+  font-size: 14px;
+  line-height: 16px;
+  margin: 0 8px 0 0;
+  width: 95px;
+  text-align: right;
+}
+#player-information > div > .controls > div > ul > li > label:after {
+  content: ':';
+}
+
+#player-information > div > .controls > div > ul > li > span {
+  display: block;
+  width: 22px;
+  height: 16px;
+  border: 1px solid #555;
+  float: left;
+  margin: 0 4px 0 0;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
 }
 
 /* Project Information */
@@ -112,10 +178,15 @@ a:focus {
 #project-information > .content {
   position: absolute;
   bottom: 44px;
+  opacity: 0;
   visibility: hidden;
+  transition: 0.6s;
+  -moz-transition: 0.6s;
+  -webkit-transition: 0.6s;
 }
 
 #project-information:hover > .content {
+  opacity: 1;
   visibility: visible;
 }
 
@@ -138,7 +209,6 @@ a:focus {
 
 #project-information > .content > .social_network {
 }
-
 
 /* Project Navigation */
 body > nav {
@@ -174,7 +244,16 @@ body > nav > ul > li > .content {
   width: 226px;
   height: 214px;
   display: block;
+  opacity: 0;
   visibility: hidden;
+  transition: 0.6s;
+  -moz-transition: 0.6s;
+  -webkit-transition: 0.6s;
+}
+
+body > nav > ul > li:hover > .content {
+  opacity: 1;
+  visibility: visible;
 }
 
 body > nav > ul > li > .content > ul {
@@ -184,15 +263,8 @@ body > nav > ul > li > .content > ul {
   -webkit-border-radius: 16px;
   border-radius: 16px;
   padding-bottom: 10px;
-  transition: 0.6s;
-  -moz-transition: 0.6s;
-  -webkit-transition: 0.6s;
 }
 
 body.pending > nav > ul > li > .content > ul {
   background: #DDD;
-}
-
-body > nav > ul > li:hover > .content {
-  visibility: visible;
 }

@@ -34,16 +34,19 @@
     <div id="player-information">
       <div class="row-fluid">
         <div class="span6 start">
-          <a href="#" title="play">Play</a>
+          <div>
+            <p>Play</p>
+            <a href="#" title="Play">&gt;</a>
+          </div>
         </div>
         <div class="span6 controls">
           <div>
             <p>Use your keyboard</p>
             <ul>
-              <li><label>Previous</label><p>UP, LEFT</p></li>
-              <li><label>Next</label><p>BOTTOM, Right</p></li>
-              <li><label>Thumbs</label><p>'M'</p></li>
-              <li><label>Full screen</label><p>'F11'</p></li>
+              <li><label>Previous</label><span title="Up">&uarr;</span><span title="Left">&larr;</span></li>
+              <li><label>Next</label><span title="Down">&darr;</span><span title="Right">&rarr;</span></li>
+              <li><label>Thumbs</label><span title="M">M</span></li>
+              <li><label>Full screen</label><span title="F11">F11<span></li>
             </ul>
           </div>
         </div>

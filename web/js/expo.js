@@ -31,7 +31,7 @@ $('document').ready(function(){
     updatePlayerState('init');
 
     if (playerState == 'init') {
-      listen = [8, 13, 32, 33, 34, 37, 38, 39, 40];
+      listen = [8, 13, 27, 32, 33, 34, 37, 38, 39, 40];
       $(document).keypress(function(event) {
         if(jQuery.inArray(event.keyCode, listen) != -1) {
           event.preventDefault();
