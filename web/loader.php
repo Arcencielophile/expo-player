@@ -6,7 +6,7 @@
   use expo\Factory\ProjectPlayerFactory;
 
   $projectPlayer = ProjectPlayerFactory::createPlayer(
-      ProjectFactory::initProject('http://local.expo-player/data.xml/sample.xml'),
+      ProjectFactory::initProject('http://player.expo/data.xml/sample.xml'),
       'deckjs'
   );
 ?>
@@ -32,7 +32,22 @@
   <body>
 
     <div id="player-information">
-      
+      <div class="row-fluid">
+        <div class="span6 start">
+          <a href="#" title="play">Play</a>
+        </div>
+        <div class="span6 controls">
+          <div>
+            <p>Use your keyboard</p>
+            <ul>
+              <li><label>Previous</label><p>UP, LEFT</p></li>
+              <li><label>Next</label><p>BOTTOM, Right</p></li>
+              <li><label>Thumbs</label><p>'M'</p></li>
+              <li><label>Full screen</label><p>'F11'</p></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="project-information">
@@ -105,7 +120,7 @@
             </ul>
           </div>
         </li>
-        <li class="visible-desktop">
+        <li class="hidden-phone">
           <a class="button" href="#" title="Next" id="next-page">&gt;</a>
         </li>
       </ul>
