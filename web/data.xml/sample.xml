@@ -24,7 +24,9 @@
     <website>http://www.idci-consulting.fr</website>
   </target>
 
-  <page effect="fx-horizontal" hidden-on="phone">
+  <page hidden-on="phone">
+    <effect type="deckjs" name="fade" />
+
     <title>Intro</title>
     <description>Oxy combustion</description>
     <content>

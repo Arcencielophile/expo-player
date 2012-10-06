@@ -24,9 +24,15 @@ body {
   font-size: 20px;
   font-weight: bold;
   color: #000;
+  border: 1px solid #000;
   transition: 0.6s;
   -moz-transition: 0.6s;
   -webkit-transition: 0.6s;
+}
+
+.init .button {
+  color: #FFF;
+  border-color: #FFF;
 }
 
 .button:hover {
@@ -35,6 +41,14 @@ body {
 
 *:hover > .button {
   background: #FFF;
+  color: #000;
+  border-color: #000;
+}
+
+.pending *:hover > .button {
+  background: #000;
+  color: #FFF;
+  border-color: #FFF;
 }
 
 a:focus {
@@ -60,6 +74,30 @@ a:focus {
   opacity: 0;
 }
 
+#player-information > div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#player-information > div > div {
+  overflow: hidden;
+  height: 100%;
+}
+
+#player-information > div > div > * {
+  display: block;
+  width: 140px;
+  height: 140px;
+  padding: 30px;
+  margin: 30% auto 0;
+  background: #FFF;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  text-align: center;
+}
+
 /* Project Information */
 #project-information {
   position: absolute;
@@ -69,7 +107,6 @@ a:focus {
 }
 
 #project-information > a {
-  border: 1px solid #000;
 }
 
 #project-information > .content {
@@ -125,7 +162,6 @@ body > nav > ul li {
 }
 
 body > nav > ul > li a {
-  border: 1px solid #000;
   -moz-border-radius: 42px;
   -webkit-border-radius: 42px;
   border-radius: 42px;
@@ -143,11 +179,18 @@ body > nav > ul > li > .content {
 
 body > nav > ul > li > .content > ul {
   overflow: auto;
-  background: #EEE;
+  background: #000;
   -moz-border-radius: 16px;
   -webkit-border-radius: 16px;
   border-radius: 16px;
   padding-bottom: 10px;
+  transition: 0.6s;
+  -moz-transition: 0.6s;
+  -webkit-transition: 0.6s;
+}
+
+body.pending > nav > ul > li > .content > ul {
+  background: #DDD;
 }
 
 body > nav > ul > li:hover > .content {

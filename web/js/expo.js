@@ -23,10 +23,12 @@ var playerState = 'init';
 
 function updatePlayerState(state) {
     playerState = state;
+    $('body').removeAttr('class');
     $('body').addClass(state);
 }
 
 $('document').ready(function(){
+    updatePlayerState('init');
 
     if (playerState == 'init') {
       listen = [8, 13, 32, 33, 34, 37, 38, 39, 40];
