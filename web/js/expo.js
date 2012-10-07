@@ -27,26 +27,52 @@ function updatePlayerState(state) {
     $('body').addClass(state);
 }
 
-$('document').ready(function(){
+$('document').ready(function() {
     updatePlayerState('init');
 
-    if (playerState == 'init') {
-      listen = [8, 13, 27, 32, 33, 34, 37, 38, 39, 40];
-      $(document).keypress(function(event) {
-        if(jQuery.inArray(event.keyCode, listen) != -1) {
-          event.preventDefault();
-          updatePlayerState('pending');
+    listen = [8, 13, 27, 32, 33, 34, 37, 38, 39, 40];
+    $(document).keypress(function(event) {
+        if (playerState != 'pending') {
+            if(jQuery.inArray(event.keyCode, listen) != -1) {
+              event.preventDefault();
+              updatePlayerState('pending');
+            }
         }
-      });
+    });
 
-      $('#previous-page').click(function(event){
-          event.preventDefault();
-          updatePlayerState('pending');
-      });
+    $('#previous-page').click(function(event) {
+        if (playerState != 'pending') {
+            event.preventDefault();
+            updatePlayerState('pending');
+        }
+    });
 
-      $('#next-page').click(function(event){
-          event.preventDefault();
-          updatePlayerState('pending');
-      });
-    }
+    $('#next-page').click(function(event) {
+        if (playerState != 'pending') {
+            event.preventDefault();
+            updatePlayerState('pending');
+        }
+    });
+
+    $('#play').click(function(event) {
+        if (playerState != 'pending') {
+            event.preventDefault();
+            updatePlayerState('pending');
+        }
+    });
+
+    $('#qrcode').click(function(event) {
+        $(this).siblings('.content').qrcode({
+            width: 256,
+            height: 256,
+            text : "http://remote.exp-o.fr"
+        });
+    });
+
+    $('#help').click(function(event) {
+        if (playerState != 'init') {
+            event.preventDefault();
+            updatePlayerState('init');
+        }
+    });
 });

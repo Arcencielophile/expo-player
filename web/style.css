@@ -173,11 +173,13 @@ a:focus {
 }
 
 #project-information > a {
+  float: left;
+  margin: 0 10px 0 0;
 }
 
 #project-information > .content {
   position: absolute;
-  bottom: 44px;
+  bottom: 0;
   opacity: 0;
   visibility: hidden;
   transition: 0.6s;
@@ -208,6 +210,22 @@ a:focus {
 }
 
 #project-information > .content > .social_network {
+}
+
+#project-information > .content > .actions {
+  background: none;
+  border: none;
+  padding: 0 0 0 54px;
+}
+
+#project-information > .content > .actions > ul {
+  margin: 0;
+  list-style-type: none;
+}
+
+#project-information > .content > .actions > ul > li {
+  float: left;
+  margin: 0 10px 0 0;
 }
 
 /* Project Navigation */

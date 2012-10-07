@@ -21,8 +21,10 @@
     <?php $projectPlayer->loadCss() ?>
     <link rel="stylesheet" type="text/css" href="style.css" />
 
-    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'></script>
-    <script type='text/javascript' src='js/expo.js'></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="/jquery-qrcode/jquery.qrcode.min.js"></script>
+    <script type="text/javascript" src="/jquery-qrcode/src/qrcode.js"></script>
+    <script type="text/javascript" src="/js/expo.js"></script>
 
     <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
     <?php $projectPlayer->loadJs('header') ?>
@@ -36,7 +38,7 @@
         <div class="span6 start">
           <div>
             <p>Play</p>
-            <a href="#" title="Play">&gt;</a>
+            <a href="#" id="play" title="Play">&gt;</a>
           </div>
         </div>
         <div class="span6 controls">
@@ -54,7 +56,7 @@
     </div>
 
     <div id="project-information">
-      <a href="#project-information" class="button" title="Project Information">+</a>
+      <a href="#project-information" class="button more" title="Project Information">+</a>
       <div class="content">
         <div class="title">
           <h1><?php echo $projectPlayer->getProject()->getName(); ?></h1>
@@ -68,6 +70,24 @@
         </div>
         <div class="social_network">
           <p>Social Links</p>
+        </div>
+        <div class="actions">
+          <ul>
+            <li>
+              <a href="#" class="button" id="qrcode" title="Use remote"></a>
+              <div class="content"></div>
+              <script type="text/javascript">
+                $('#qrcode').qrcode({
+                    width: 42,
+                    height: 42,
+                    text : "http://remote.exp-o.fr"
+                });
+              </script>
+            </li>
+            <li>
+              <a href="#" class="button" id="help" title="Show help">i</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
