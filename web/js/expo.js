@@ -61,12 +61,15 @@ $('document').ready(function() {
         }
     });
 
-    $('#qrcode').click(function(event) {
-        $(this).siblings('.content').qrcode({
-            width: 256,
-            height: 256,
-            text : "http://remote.exp-o.fr"
-        });
+    $('#qrcode').qrcode({
+        width: 42,
+        height: 42,
+        text : "http://remote.exp-o.fr"
+    });
+    $('#qrcode+.content').qrcode({
+        width: 256,
+        height: 256,
+        text : "http://remote.exp-o.fr"
     });
 
     $('#help').click(function(event) {

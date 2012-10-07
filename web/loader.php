@@ -6,7 +6,7 @@
   use expo\Factory\ProjectPlayerFactory;
 
   $projectPlayer = ProjectPlayerFactory::createPlayer(
-      ProjectFactory::initProject('http://player.expo/data.xml/sample.xml'),
+      ProjectFactory::initProject('http://player.expo/data.xml/web-intro.xml'),
       'deckjs'
   );
 ?>
@@ -14,7 +14,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>expo - <?php echo $projectPlayer->getProject()->getName(); ?></title>
+    <title><?php echo $projectPlayer->getProject()->getName(); ?> - expo</title>
 
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-responsive.css" />
@@ -60,29 +60,39 @@
       <div class="content">
         <div class="title">
           <h1><?php echo $projectPlayer->getProject()->getName(); ?></h1>
+          <p class="date"><?php echo $projectPlayer->getProject()->getDate() ?></p>
         </div>
         <div class="summary">
           <p><?php echo $projectPlayer->getProject()->getSummary(); ?></p>
         </div>
-        <div class="context">
-          <p class="author">Author</p>
-          <p class="date">Date</p>
+        <div class="authors">
+          <?php foreach($projectPlayer->getProject()->getAuthors() as $author): ?>
+          <p>
+            <a href="mailto:<?php echo $author->getEmail(); ?>" title="<?php echo $author; ?>">
+              <?php echo $author; ?>
+            </a>
+            <ul class="social_networks">
+              <?php foreach($author->getSocialLinks() as $sl): ?>
+              <li>
+                <a href="<?php echo $sl ?>" target="_blank"><?php echo $sl ?></a>
+              </li>
+              <?php endforeach; ?>
+            </ul>
+          </p>
+          <?php endforeach; ?>
         </div>
-        <div class="social_network">
-          <p>Social Links</p>
+        <div class="targets">
+          <?php foreach($projectPlayer->getProject()->getTargets() as $target): ?>
+          <a href="<?php echo $target->getWebsite(); ?>" title="<?php echo $target; ?>" target="_blank">
+            <?php echo $target; ?>
+          </a>
+          <?php endforeach; ?>
         </div>
         <div class="actions">
           <ul>
             <li>
               <a href="#" class="button" id="qrcode" title="Use remote"></a>
               <div class="content"></div>
-              <script type="text/javascript">
-                $('#qrcode').qrcode({
-                    width: 42,
-                    height: 42,
-                    text : "http://remote.exp-o.fr"
-                });
-              </script>
             </li>
             <li>
               <a href="#" class="button" id="help" title="Show help">i</a>
@@ -95,7 +105,7 @@
     <nav>
       <ul>
         <li>
-          <a class="button" href="#" title="Home">Home</a>
+          <a class="button" href="#" title="Home">H</a>
         </li>
         <li class="hidden-phone">
           <a class="button" href="#" title="Previous" id="previous-page">&lt;</a>
