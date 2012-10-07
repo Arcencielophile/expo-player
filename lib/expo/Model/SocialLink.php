@@ -19,6 +19,11 @@ class SocialLink
     {
     }
 
+    public function __toString()
+    {
+        return $this->getUri();
+    }
+
     /***********
      * Getters
      ***********/

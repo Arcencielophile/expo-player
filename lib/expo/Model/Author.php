@@ -25,6 +25,14 @@ class Author
     {
     }
 
+    /**
+     * toString
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
     /***********
      * Getters
      ***********/
