@@ -1,0 +1,6 @@
+[submodule "web/jquery-qrcode"]
+	path = web/jquery-qrcode
+	url = https://github.com/jeromeetienne/jquery-qrcode.git
+[submodule "web/turn.js"]
+	path = web/turn.js
+	url = https://github.com/blasten/turn.js
