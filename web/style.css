@@ -61,8 +61,8 @@ a:focus {
   z-index: 1000;
   width: 100%;
   height: 100%;
-  visibility: visible;
   display: block;
+  visibility: visible;
   opacity: 0.99;
   background: #222;
   transition: 0.6s;
@@ -71,6 +71,7 @@ a:focus {
 }
 
 .pending #player-information {
+  visibility: hidden;
   opacity: 0;
 }
 
@@ -304,4 +305,44 @@ body > nav > ul > li > .content > ul {
 
 body.pending > nav > ul > li > .content > ul {
   background: #DDD;
+}
+
+/* Container */
+
+#container {}
+
+#container section {
+}
+
+#container section h2 {
+  font-size: 4em;
+  line-height: 1em;
+}
+
+#container section .description {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  background: #F0F0F0;
+  padding: 20px;
+  font-size: 1.5em;
+  -moz-border-radius: 16px;
+  -webkit-border-radius: 16px;
+  border-radius: 16px;
+  box-shadow: 2px 2px 10px #222;
+  -moz-box-shadow: 2px 2px 10px #222;
+  -webkit-box-shadow: 2px 2px 10px #222;
+}
+
+#container section .description > ul {
+  margin-top: 20px;
+}
+
+#container section .content {
+  padding: 1% 2% 2% 10%;
+  font-size: 2em;
+}
+
+#container section .content ul > li {
+  margin-top: 0.8em;
 }
