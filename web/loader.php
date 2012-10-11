@@ -6,7 +6,7 @@
   use expo\Factory\ProjectPlayerFactory;
 
   $projectPlayer = ProjectPlayerFactory::createPlayer(
-      ProjectFactory::initProject('http://player.expo/data.xml/web-intro.xml'),
+      ProjectFactory::initProject('http://player.expo/data.xml/sample.xml'),
       'deckjs'
   );
 ?>
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="/jquery-qrcode/src/qrcode.js"></script>
     <script type="text/javascript" src="/js/expo.js"></script>
 
-    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
     <?php $projectPlayer->loadJs('header') ?>
 
   </head>
@@ -37,8 +37,7 @@
       <div class="row-fluid">
         <div class="span6 start">
           <div>
-            <p>Play</p>
-            <a href="#" id="play" title="Play">&gt;</a>
+            <a href="#" id="play" title="Play">Play</a>
           </div>
         </div>
         <div class="span6 controls">
@@ -91,11 +90,13 @@
         <div class="actions">
           <ul>
             <li>
-              <a href="#" class="button" id="qrcode" title="Use remote"></a>
-              <div class="content"></div>
+              <a href="#" class="button" id="help" title="Show help">i</a>
             </li>
             <li>
-              <a href="#" class="button" id="help" title="Show help">i</a>
+              <a href="#" class="button" id="home" title="Go back home">H</a>
+            </li>
+            <li>
+              <a href="#" class="button" id="share" title="Share">*S*</a>
             </li>
           </ul>
         </div>
@@ -105,14 +106,14 @@
     <nav>
       <ul>
         <li>
-          <a class="button" href="#" title="Home">H</a>
+          <a href="#" class="button" id="sync" title="Synchronize the presentation">Sync</a>
         </li>
         <li class="hidden-phone">
           <a class="button" href="#" title="Previous" id="previous-page">&lt;</a>
         </li>
         <li>
           <a class="button" href="#" title="Current" id="current-page"></a>
-          <div class="content">
+          <div class="content visible-desktop">
             <ul>
               <li>
                 <a class="button" href="#" title="">i</a>

@@ -27,10 +27,52 @@ function updatePlayerState(state) {
     $('body').addClass(state);
 }
 
+function getElementPath(element)
+{
+    return "//" + $(element).parents().andSelf().map(function() {
+        var $this = $(this);
+        var tagName = this.nodeName;
+        if ($this.siblings(tagName).length > 0) {
+            tagName += "[" + $this.prevAll(tagName).length + "]";
+        }
+        return tagName;
+    }).get().join("/").toUpperCase();
+}
+
+$.fn.toggleContent = function(options) {
+
+    options = $.extend({}, {
+        'on-visible': false
+    }, options);
+
+    var contents = new Array();
+    $(this).click(function(event) {
+        event.preventDefault();
+        elemId = getElementPath(this);
+        content = $(this).siblings('.content');
+        if (contents[elemId] != "undefined" &&
+            (contents[elemId] || contents[elemId] == $(this).html())) {
+            content.removeClass('visible');
+            if (options['on-visible']) {
+                $(this).empty().append(contents[elemId]);
+            }
+            contents[elemId] = false;
+        } else {
+            content.addClass('visible');
+            contents[elemId] = true;
+            if (options['on-visible']) {
+                contents[elemId] = $(this).html();
+                $(this).empty().append(options['on-visible']);
+            }
+        }
+    });
+}
+
 $('document').ready(function() {
     updatePlayerState('init');
 
     listen = [8, 13, 27, 32, 33, 34, 37, 38, 39, 40];
+
     $(document).keypress(function(event) {
         if (playerState != 'pending') {
             if(jQuery.inArray(event.keyCode, listen) != -1) {
@@ -66,6 +108,7 @@ $('document').ready(function() {
         height: 42,
         text : "http://remote.exp-o.fr"
     });
+
     $('#qrcode+.content').qrcode({
         width: 256,
         height: 256,
@@ -78,4 +121,7 @@ $('document').ready(function() {
             updatePlayerState('init');
         }
     });
+
+    $('#project-information > a').toggleContent({'on-visible': '-'});
+    $('#current-page').toggleContent({'on-visible': '?'});
 });
