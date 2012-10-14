@@ -6,7 +6,7 @@
   use expo\Factory\ProjectPlayerFactory;
 
   $projectPlayer = ProjectPlayerFactory::createPlayer(
-      ProjectFactory::initProject('http://player.expo/data.xml/sample.xml'),
+      ProjectFactory::initProject('http://player.expo/data.xml/web-intro.xml'),
       'deckjs'
   );
 ?>
@@ -21,7 +21,7 @@
     <?php $projectPlayer->loadCss() ?>
     <link rel="stylesheet" type="text/css" href="style.css" />
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript" src="/deckjs/jquery-1.7.min.js"></script>
     <script type="text/javascript" src="/jquery-qrcode/jquery.qrcode.min.js"></script>
     <script type="text/javascript" src="/jquery-qrcode/src/qrcode.js"></script>
     <script type="text/javascript" src="/js/expo.js"></script>
@@ -107,6 +107,21 @@
       <ul>
         <li>
           <a href="#" class="button" id="sync" title="Synchronize the presentation">Sync</a>
+          <div class="content visible-desktop">
+            <div class="create-remote">
+              <label>Create a remote</label>
+              <p>click or scan the following QRCode</p>
+              <a href="http://remote.exp-o.fr" target="_blank" id="qrcode"></a>
+            </div>
+            <div class="join-live">
+              <label>Join a live presentation</label>
+              <ul>
+                <li>
+                  <a href="#" title="Join ???">Join ???</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </li>
         <li class="hidden-phone">
           <a class="button" href="#" title="Previous" id="previous-page">&lt;</a>
@@ -115,42 +130,13 @@
           <a class="button" href="#" title="Current" id="current-page"></a>
           <div class="content visible-desktop">
             <ul>
+              <?php foreach($projectPlayer->getPages() as $k => $page): ?>
               <li>
-                <a class="button" href="#" title="">i</a>
+                <a class="button" href="#<?php echo $k+1 ?>" title="<?php echo $page->getTitle() ?>">
+                  <?php echo $k+1 ?>
+                </a>
               </li>
-              <li>
-                <a class="button" href="#" title="">i</a>
-              </li>
-              <li>
-                <a class="button" href="#" title="">i</a>
-              </li>
-              <li>
-                <a class="button" href="#" title="">i</a>
-              </li>
-              <li>
-                <a class="button" href="#" title="">i</a>
-              </li>
-              <li>
-                <a class="button" href="#" title="">i</a>
-              </li>
-              <li>
-                <a class="button" href="#" title="">i</a>
-              </li>
-              <li>
-                <a class="button" href="#" title="">i</a>
-              </li>
-              <li>
-                <a class="button" href="#" title="">i</a>
-              </li>
-              <li>
-                <a class="button" href="#" title="">i</a>
-              </li>
-              <li>
-                <a class="button" href="#" title="">i</a>
-              </li>
-              <li>
-                <a class="button" href="#" title="">i</a>
-              </li>
+              <?php endforeach; ?>
             </ul>
           </div>
         </li>
@@ -164,6 +150,10 @@
 
       <?php foreach($projectPlayer->getPages() as $page): ?>
         <section class="slide span12 fx-vertical">
+          <h2><?php echo $page->getTitle() ?></h2>
+          <?php if($page->getDescription()): ?>
+          <p class="description"><?php echo $page->getDescription() ?></p>
+          <?php endif; ?>
           <?php echo $page->getContent() ?>
         </section>
       <?php endforeach; ?>

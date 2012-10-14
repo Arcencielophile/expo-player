@@ -103,18 +103,6 @@ $('document').ready(function() {
         }
     });
 
-    $('#qrcode').qrcode({
-        width: 42,
-        height: 42,
-        text : "http://remote.exp-o.fr"
-    });
-
-    $('#qrcode+.content').qrcode({
-        width: 256,
-        height: 256,
-        text : "http://remote.exp-o.fr"
-    });
-
     $('#help').click(function(event) {
         if (playerState != 'init') {
             event.preventDefault();
@@ -122,6 +110,13 @@ $('document').ready(function() {
         }
     });
 
+    $('#qrcode').qrcode({
+        width: 160,
+        height: 160,
+        text : $('#qrcode').html()
+    });
+
     $('#project-information > a').toggleContent({'on-visible': '-'});
     $('#current-page').toggleContent({'on-visible': '?'});
+    $('#sync').toggleContent();
 });
