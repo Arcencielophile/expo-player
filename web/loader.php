@@ -62,11 +62,11 @@
           <p class="date"><?php echo $projectPlayer->getProject()->getDate() ?></p>
         </div>
         <div class="summary">
-          <p><?php echo $projectPlayer->getProject()->getSummary(); ?></p>
+          <?php echo $projectPlayer->getProject()->getSummary(); ?>
         </div>
         <div class="authors">
           <?php foreach($projectPlayer->getProject()->getAuthors() as $author): ?>
-          <p>
+          <div>
             <a href="mailto:<?php echo $author->getEmail(); ?>" title="<?php echo $author; ?>">
               <?php echo $author; ?>
             </a>
@@ -77,7 +77,7 @@
               </li>
               <?php endforeach; ?>
             </ul>
-          </p>
+          </div>
           <?php endforeach; ?>
         </div>
         <div class="targets">
@@ -108,18 +108,20 @@
         <li>
           <a href="#" class="button" id="sync" title="Synchronize the presentation">Sync</a>
           <div class="content visible-desktop">
-            <div class="create-remote">
-              <label>Create a remote</label>
-              <p>click or scan the following QRCode</p>
-              <a href="http://remote.exp-o.fr" target="_blank" id="qrcode"></a>
-            </div>
-            <div class="join-live">
-              <label>Join a live presentation</label>
-              <ul>
-                <li>
-                  <a href="#" title="Join ???">Join ???</a>
-                </li>
-              </ul>
+            <div>
+              <div class="create-remote">
+                <label>Create a remote</label>
+                <p>click or scan the following QRCode</p>
+                <a href="http://remote.exp-o.fr" target="_blank" id="qrcode"></a>
+              </div>
+              <div class="join-live">
+                <label>Join a live presentation</label>
+                <ul>
+                  <li>
+                    <a href="#" title="Join ???">Join ???</a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </li>
@@ -132,7 +134,7 @@
             <ul>
               <?php foreach($projectPlayer->getPages() as $k => $page): ?>
               <li>
-                <a class="button" href="#<?php echo $k+1 ?>" title="<?php echo $page->getTitle() ?>">
+                <a class="button" href="#<?php echo $page->getId() ?>" title="<?php echo $page->getTitle() ?>">
                   <?php echo $k+1 ?>
                 </a>
               </li>
@@ -149,10 +151,10 @@
     <article id="container" class="row-fluid">
 
       <?php foreach($projectPlayer->getPages() as $page): ?>
-        <section class="slide span12 fx-vertical">
+        <section class="slide span12 fx-vertical" id="<?php echo $page->getId() ?>">
           <h2><?php echo $page->getTitle() ?></h2>
           <?php if($page->getDescription()): ?>
-          <p class="description"><?php echo $page->getDescription() ?></p>
+          <div class="description"><?php echo $page->getDescription() ?></div>
           <?php endif; ?>
           <?php echo $page->getContent() ?>
         </section>

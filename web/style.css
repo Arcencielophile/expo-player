@@ -229,7 +229,7 @@ a:focus {
 #project-information > .content > .authors {
 }
 
-#project-information > .content > .authors > .social_networks {
+#project-information > .content > .authors .social_networks {
   font-size: 10px;
 }
 

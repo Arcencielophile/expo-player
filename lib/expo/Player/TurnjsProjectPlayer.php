@@ -54,6 +54,11 @@ class TurnjsProjectPlayer extends ProjectPlayer
                 $('#container').turn('next');
               }
             });
+
+            $('#current-page + .content > ul > li > a').click(function(event) {
+              event.preventDefault();
+              $('#container').turn('page', $(this).html());
+            });
         ");
     }
 }
