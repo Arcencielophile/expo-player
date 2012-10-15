@@ -43,6 +43,7 @@ body {
   text-decoration: none;
 }
 
+.visible > .button,
 li:hover > .button,
 .button:hover {
   background: #FFF;
@@ -50,6 +51,7 @@ li:hover > .button,
   border-color: #000;
 }
 
+.pending .visible > .button,
 .pending *:hover > .button {
   background: #000;
   color: #FFF;
@@ -68,7 +70,7 @@ a:focus {
   -webkit-transition: 0.6s;
 }
 
-.content.visible {
+.visible .content {
   opacity: 1;
   visibility: visible;
 }
@@ -282,59 +284,69 @@ body > nav > ul > li a {
   border-radius: 42px;
 }
 
-/* Current page content */
-
-#current-page+.content {
+#current-page+.content,
+#sync+.content {
   position: absolute;
   z-index: 300;
   bottom: 21px;
-  right: -64px;
-  width: 226px;
-  height: 206px;
+  padding-bottom: 30px;
   display: block;
-  background: url('/images/thumb_bg.svg') 94px bottom no-repeat;
+  background: url('/images/content_bg.svg') no-repeat;
 }
 
-#current-page+.content > ul {
+#current-page+.content > ul,
+#sync+.content > div {
   overflow: auto;
   background: #000;
+  color: #FFF;
   -moz-border-radius: 16px;
   -webkit-border-radius: 16px;
   border-radius: 16px;
   padding-bottom: 10px;
 }
 
-body.pending #current-page+.content > ul {
-  background: #DDD;
+/* Current page content */
+
+#current-page+.content {
+  right: -64px;
+  width: 226px;
+  background-position: 94px bottom;
 }
 
 /* Sync content */
 
 #sync+.content {
-  position: absolute;
-  z-index: 300;
-  bottom: 46px;
   right: -80px;
   width: 220px;
-  display: block;
-  background: #DDD;
+  background-position: 73px bottom;
+}
+
+#sync+.content > div {
+}
+
+#sync+.content > div > div {
   padding: 10px;
 }
 
-#sync+.content p {
+#sync+.content > div > div p {
   font-size: 11px;
 }
 
-#sync+.content > .create-remote > a {
+#sync+.content > div > .create-remote > a {
   display: block;
   margin: 10px auto;
   width: 160px;
   height: 160px;
+  padding: 20px;
+  background: #FFF;
 }
 
-#sync+.content > .join-live {
+#sync+.content > div > .join-live {
   border-top: 1px solid #000;
-  padding: 5px 0;
+}
+
+#sync+.content > div > .join-live > ul {
+  overflow: auto;
 }
 
 /* Container */

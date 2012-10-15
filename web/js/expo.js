@@ -50,15 +50,16 @@ $.fn.toggleContent = function(options) {
         event.preventDefault();
         elemId = getElementPath(this);
         content = $(this).siblings('.content');
+        parent = $(this).parent();
         if (contents[elemId] != "undefined" &&
             (contents[elemId] || contents[elemId] == $(this).html())) {
-            content.removeClass('visible');
+            parent.removeClass('visible');
             if (options['on-visible']) {
                 $(this).empty().append(contents[elemId]);
             }
             contents[elemId] = false;
         } else {
-            content.addClass('visible');
+            parent.addClass('visible');
             contents[elemId] = true;
             if (options['on-visible']) {
                 contents[elemId] = $(this).html();
@@ -117,6 +118,6 @@ $('document').ready(function() {
     });
 
     $('#project-information > a').toggleContent({'on-visible': '-'});
-    $('#current-page').toggleContent({'on-visible': '?'});
-    $('#sync').toggleContent();
+    $('#current-page').toggleContent({'on-visible': '°°°'});
+    $('#sync').toggleContent({'on-visible': '°°°'});
 });
