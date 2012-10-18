@@ -117,6 +117,20 @@ class Project
         return $this->pages;
     }
 
+    /**
+     * Get unique Identifier base on the name, date and author
+     *
+     * @return string
+     */
+     public function getIdentifier()
+     {
+        return md5(sprintf('%s-%s-%s',
+            $this->getName(),
+            $this->getDate(),
+            serialize($this->getAuthors())
+        ));
+     }
+
     /**********
      * Setters
      **********/

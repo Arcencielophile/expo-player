@@ -6,7 +6,7 @@
   use expo\Factory\ProjectPlayerFactory;
 
   $projectPlayer = ProjectPlayerFactory::createPlayer(
-      ProjectFactory::initProject('http://player.expo/data.xml/web-intro.xml'),
+      ProjectFactory::initProject('http://player.expo/data.xml/sample.xml'),
       'deckjs'
   );
 ?>
@@ -28,6 +28,17 @@
 
     <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
     <?php $projectPlayer->loadJs('header') ?>
+
+    <script src="http://192.168.0.11:2890/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io.connect('http://192.168.0.11:2890');
+      socket.on('project_<?php echo $projectPlayer->getProject()->getIdentifier() ?>', function (data) {
+          console.log(data);
+          if (data.action == 'updateRemotes') {
+              alert('ok');
+          }
+      });
+    </script>
 
   </head>
 
@@ -112,7 +123,7 @@
               <div class="create-remote">
                 <label>Create a remote</label>
                 <p>click or scan the following QRCode</p>
-                <a href="http://remote.exp-o.fr" target="_blank" id="qrcode"></a>
+                <a href="remote.html?project_id=<?php echo $projectPlayer->getProject()->getIdentifier() ?>" target="_blank" id="qrcode"></a>
               </div>
               <div class="join-live">
                 <label>Join a live presentation</label>
