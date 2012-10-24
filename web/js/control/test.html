@@ -1,0 +1,20 @@
+<html>
+<head>
+	<script src="/socket.io/socket.io.js"></script>
+	
+	<script src="expo.Owner.js"></script>
+	<script src="expo.Follower.js"></script>
+	<script src="expo.ControledPresentation.js"></script>
+	<script src="expo.ControlRemote.js"></script>
+	<script src="expo.ControlManager.js"></script>
+	<script>
+		var owner = new Owner(window.prompt("Please enter your email or pseudo :", null));
+		var manager = new ControlManager("presention_id", "remote_id", 0, owner);
+		console.log(manager.remote);
+	</script>
+</head>
+<body>
+	<a href="#" onClick="manager.previous();">&lt;</a>
+	<a href="#" onClick="manager.next();">&gt;</a>
+</body>
+</html>
