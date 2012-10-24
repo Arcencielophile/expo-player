@@ -1,72 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="1.0">
-  <name>ENRgy</name>
-  <summary>vidéo pédagogiques</summary>
+  <name>Busy Food</name>
+  <summary>Vente de bagels dans un bus</summary>
   <date>2012</date>
   <logo>http://www.google.com/logo.png</logo>
 
   <tag>Photoshop</tag>
-  <tag>Press</tag>
+  <tag>Prestashop</tag>
   <tag>RGB</tag>
   <tag>Toto</tag>
 
   <author>
-    <name>Sébastien</name>
-    <email>seb@seb.fr</email>
-    <website>http://www.sebw.fr</website>
-    <social_link uri="https://www.facebook.com/123456" />
-    <social_link uri="https://www.twitter.com/123456" />
-    <social_link uri="https://www.viadeo.com/123456" />
+    <name>Minas DERMARDIROSSIAN</name>
+    <email>mdm@gmail.com</email>
+    <website>http://www.letourdumondepour9990euro.com</website>
+    <social_link uri="https://www.facebook.com/mdm" />
+    <social_link uri="https://www.twitter.com/minasdelyon" />
   </author>
 
   <target>
-    <name>ENRgy (Jean Marc)</name>
-    <website>http://www.idci-consulting.fr</website>
+    <name>Fun people</name>
+    <website>http://www.funpeople.com</website>
   </target>
 
   <page hidden-on="phone">
     <effect type="deckjs" name="fade" />
 
-    <title>Intro</title>
-    <description>Oxy combustion</description>
+    <title>Présentation du concept</title>
+    <description>Bus intinérant reste à savoir ou</description>
     <content>
       <![CDATA[
-        <h1>Intro</h1>
-        <h2>Oxy combustion</h2>
-        <p>Transformation de bio mass en energie</p>
+        <ul>
+          <li>Point 1</li>
+          <li>Point 2</li>
+          <li>Point 3</li>
+        </ul>
       ]]>
     </content>
   </page>
 
   <page effect="fx-fade" visible-on="desktop">
-    <title>Conception pédagogique</title>
-    <description>desc 2</description>
+    <title>Présent quand vous le souhaitez</title>
+    <description>On se déplace dans toutes la france et même au delà</description>
     <content>
       <![CDATA[
-        <h1>Conception pédagogique</h1>
-        <p>Passer d'ujn principe chimique breveté à quelquechose de compréhensible</p>
+        <h1>On a la bougeote</h1>
+        <p>Voyager est notre seconde nature</p>
+      ]]>
+    </content>
+  </page>
+
+  <page effect="fx-vertical">
+    <title>Tarif</title>
+    <description>Nos prix sont aussi cool que nous</description>
+    <content>
+      <![CDATA[
+        <table>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td>4€</td>
+            <td>7,5€</td>
+            <td>30€</td>
+          </tr>
+        </table>
       ]]>
     </content>
   </page>
 
   <page effect="fx-vertical">
     <title>Conclusion</title>
-    <description>desc 3</description>
+    <description>C'est bien</description>
     <content>
       <![CDATA[
-        <h1>Conclusion</h1>
-        <h2>De ouf malade aussi</h2>
-      ]]>
-    </content>
-  </page>
-
-  <page effect="fx-fade" hidden-on="tablet">
-    <title>Slide 4</title>
-    <description>desc 4</description>
-    <content>
-      <![CDATA[
-        <h1>Contactez moi</h1>
-        <p>test</p>
+        <p>Même Johnny en commande</p>
       ]]>
     </content>
   </page>
