@@ -19,14 +19,29 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ========================================================== */
 
-var Owner = function(email) {
-  if(!email) {
-    this.email = 'nobody';
+var DisplayManager = function(socket, projectId, follower) {
+  this.socket = socket;
+  this.presentation = new DisplayPresentation(this.socket, projectId);
+  this.activeRemote = null;
+
+  if(!follower) {
+    this.presentation.setFollower(new Follower());
   } else {
-    this.email = email;
+    this.presentation.setFollower(follower);
   }
+};
+
+DisplayManager.prototype.setActiveRemote = function(remote) {
+  //TODO Ask Server to retrieve remote info (position, state)
+  position = 0;
+  status = {'showInfo': 0};
+  console.log('DisplayManager:setActiveRemote('+remote+')');
+
+  this.activeRemote = new ActiveDisplayRemote(this.socket, this.presentation, remote, position, status);
 }
 
-Owner.prototype.getEmail = function() {
-  return this.email;
+DisplayManager.prototype.stopActiveRemote = function() {
+  console.log('DisplayManager:stopActiveRemote()');
+
+  this.activeRemote = null;
 }

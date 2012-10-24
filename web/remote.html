@@ -3,15 +3,16 @@
   <head>
     <title>Expo REMOTE</title>
 
-    <script src="http://192.168.0.11:2890/socket.io/socket.io.js"></script>
+    <script src="http://127.0.0.1:2890/socket.io/socket.io.js"></script>
     <script>
       function qs(key) {
+          return 'id1337';
           key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
           var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
           return match && decodeURIComponent(match[1].replace(/\+/g, " "));
       }
 
-      var socket = io.connect('http://192.168.0.11:2890');
+      var socket = io.connect('http://127.0.0.1:2890');
       socket.emit('new_remote', {project_id: qs('project_id')});
     </script>
 

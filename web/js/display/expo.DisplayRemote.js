@@ -19,14 +19,18 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ========================================================== */
 
-var Owner = function(email) {
-  if(!email) {
-    this.email = 'nobody';
-  } else {
-    this.email = email;
-  }
+var DisplayRemote = function(id) {
+  this.id = id;
+  this.owner = null;
+  console.log('DisplayRemote:('+id+')');
+};
+
+/* Getters */
+
+DisplayRemote.prototype.getId = function() {
+  return this.id;
 }
 
-Owner.prototype.getEmail = function() {
-  return this.email;
+DisplayRemote.prototype.getOwner = function() {
+  return this.owner;
 }

@@ -26,9 +26,12 @@ io.sockets.on('connection', function (socket) {
 
         //Add remote to project
         console.log(projects);
-        socket.broadcast.emit('project_'+data.project_id, {
-            action: "updateRemotes",
-            remotes: projects[data.project_id]
-        });
-    })
+        socket.broadcast.emit('remote_list['+data.project_id+']', projects[data.project_id]);
+
+    });
+
+    socket.on('list_remote', function (data) {
+        console.log('list_remote for project: '+data.project_id);
+        socket.emit('remote_list['+data.project_id+']', projects[data.project_id]);
+    });
 });
