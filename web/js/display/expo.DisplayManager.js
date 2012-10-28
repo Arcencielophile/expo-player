@@ -19,9 +19,9 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ========================================================== */
 
-var DisplayManager = function(socket, projectId, follower) {
+var DisplayManager = function(socket, projectId, player, follower) {
   this.socket = socket;
-  this.presentation = new DisplayPresentation(this.socket, projectId);
+  this.presentation = new DisplayPresentation(this.socket, projectId, player);
   this.activeRemote = null;
 
   if(!follower) {
@@ -29,6 +29,8 @@ var DisplayManager = function(socket, projectId, follower) {
   } else {
     this.presentation.setFollower(follower);
   }
+
+  this.presentation.init();
 };
 
 DisplayManager.prototype.setActiveRemote = function(remote) {
