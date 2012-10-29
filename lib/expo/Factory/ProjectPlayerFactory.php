@@ -2,11 +2,11 @@
 
 namespace expo\Factory;
 
-require_once __DIR__.'/../Player/DeckjsProjectPlayer.php';
+require_once __DIR__.'/../Player/DeckjsPlayer.php';
 use expo\Player\DeckjsProjectPlayer;
-require_once __DIR__.'/../Player/ImpressjsProjectPlayer.php';
+require_once __DIR__.'/../Player/ImpressjsPlayer.php';
 use expo\Player\ImpressjsProjectPlayer;
-require_once __DIR__.'/../Player/TurnjsProjectPlayer.php';
+require_once __DIR__.'/../Player/TurnjsPlayer.php';
 use expo\Player\TurnjsProjectPlayer;
 
 /**
@@ -28,7 +28,7 @@ abstract class ProjectPlayerFactory
     static public function createPlayer($project, $playerName)
     {
         $className = sprintf(
-            '%s%sProjectPlayer',
+            '%s%sPlayer',
             'expo\Player\\',
             ucfirst(strtolower($playerName))
         );

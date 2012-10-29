@@ -12,7 +12,7 @@ use expo\Player\ProjectPlayer;
  * @author Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
  * @copyright GNU GPLv3
  */
-class DeckjsProjectPlayer extends ProjectPlayer
+class DeckjsPlayer extends ProjectPlayer
 {
     public function getCss()
     {

@@ -3,12 +3,13 @@
 namespace expo\Player;
 
 /**
- * TurnjsProjectPlayer
+ * ImpressjsProjectPlayer
  *
+ * @see http://bartaz.github.com/impress.js/
  * @author Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
  * @copyright GNU GPLv3
  */
-class TurnjsProjectPlayer extends ProjectPlayer
+class ImpressjsPlayer extends ProjectPlayer
 {
     public function getCss()
     {
@@ -17,6 +18,6 @@ class TurnjsProjectPlayer extends ProjectPlayer
 
     public function getJs($position = null)
     {
-        return array("turn.js/turn.min.js");
+        return array();
     }
 }

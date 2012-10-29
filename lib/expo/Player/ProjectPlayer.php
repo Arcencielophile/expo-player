@@ -83,6 +83,16 @@ abstract class ProjectPlayer
     }
 
     /**
+     * Get the js player
+     *
+     * @return string
+     */
+    public function getJsPlayer()
+    {
+        return sprintf('new %s()', join('', array_slice(explode('\\', get_class($this)), -1)));
+    }
+
+    /**
      * Get the player needed css
      *
      * @return mixed
