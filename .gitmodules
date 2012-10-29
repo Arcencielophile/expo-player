@@ -7,3 +7,6 @@
 [submodule "web/turnjs"]
 	path = web/turnjs
 	url = https://github.com/blasten/turn.js.git
+[submodule "web/bootstrap"]
+	path = web/bootstrap
+	url = https://github.com/twitter/bootstrap.git

@@ -16,8 +16,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><?php echo $projectPlayer->getProject()->getName(); ?> - expo</title>
 
-    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/docs/assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/docs/assets/css/bootstrap-responsive.css" />
     <?php $projectPlayer->loadCss() ?>
     <link rel="stylesheet" type="text/css" href="/expojs/themes/default/style.css" />
 
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="/jquery-qrcode/jquery.qrcode.min.js"></script>
     <script type="text/javascript" src="/jquery-qrcode/src/qrcode.js"></script>
 
-    <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/bootstrap/docs/assets/js/bootstrap.js"></script>
     <?php $projectPlayer->loadJs() ?>
 
     <script type="text/javascript" src="/expojs/display/expo.ActiveDisplayRemote.js"></script>
