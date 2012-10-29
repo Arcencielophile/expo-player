@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <script type="text/javascript" src="./expo.DisplayRemote.js"></script>
+    <script type="text/javascript" src="./expo.ActiveDisplayRemote.js"></script>
+    <script>
+      var remote = new DisplayRemote(5);
+      var activeRemote = new ActiveDisplayRemote(remote, 1, null);
+      activeRemote.next();
+      activeRemote.previous();
+      activeRemote.goto(8);
+      activeRemote.updateStatus({'showInfo': 1});
+    </script>
+  </head>
+
+  <body>
+    <h1>TEST expo.DisplayPresentation.js</h1>
+  </body>
+</html>
