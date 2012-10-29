@@ -37,13 +37,16 @@ TurnjsPlayer.prototype.init = function() {
 };
 
 TurnjsPlayer.prototype.next = function() {
+  console.log('TurnjsPlayer:next()');
   jQuery('#container').turn('next');
 };
 
 TurnjsPlayer.prototype.previous = function() {
+  console.log('TurnjsPlayer:previous()');
   jQuery('#container').turn('previous');
 };
 
 TurnjsPlayer.prototype.goto = function(position) {
-  jQuery('#container').turn('page', position);
+  console.log('TurnjsPlayer:goto('+position+')');
+  jQuery('#container').turn('page', position+1);
 };
