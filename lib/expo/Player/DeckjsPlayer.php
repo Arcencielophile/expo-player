@@ -24,9 +24,9 @@ class DeckjsPlayer extends ProjectPlayer
             "deckjs/extensions/status/deck.status.css",
             "deckjs/extensions/navigation/deck.navigation.css",
             "deckjs/extensions/scale/deck.scale.css",
-            "deckjs/themes/transition/custom/fade.css",
-            "deckjs/themes/transition/custom/horizontal.css",
-            "deckjs/themes/transition/custom/vertical.css"
+            "expojs/deckjs/transition/fade.css",
+            "expojs/deckjs/transition/horizontal.css",
+            "expojs/deckjs/transition/vertical.css"
         );
     }
 

@@ -1,0 +1,77 @@
+.csstransitions.csstransforms {
+  overflow-x: hidden;
+}
+.csstransitions.csstransforms #container > .slide.fx-horizontal {
+  -webkit-transition: -webkit-transform 500ms ease-in-out;
+  -moz-transition: -moz-transform 500ms ease-in-out;
+  -ms-transition: -ms-transform 500ms ease-in-out;
+  -o-transition: -o-transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+}
+.csstransitions.csstransforms #container:not(.deck-menu) > .slide.fx-horizontal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+}
+.csstransitions.csstransforms #container:not(.deck-menu) > .slide .slide.fx-horizontal {
+  position: relative;
+  left: 0;
+  top: 0;
+  -webkit-transition: -webkit-transform 500ms ease-in-out, opacity 500ms ease-in-out;
+  -moz-transition: -moz-transform 500ms ease-in-out, opacity 500ms ease-in-out;
+  -ms-transition: -ms-transform 500ms ease-in-out, opacity 500ms ease-in-out;
+  -o-transition: -o-transform 500ms ease-in-out, opacity 500ms ease-in-out;
+  transition: -webkit-transform 500ms ease-in-out, opacity 500ms ease-in-out;
+}
+.csstransitions.csstransforms #container:not(.deck-menu) > .slide .fx-horizontal.deck-next,
+.csstransitions.csstransforms #container:not(.deck-menu) > .slide .fx-horizontal.deck-after {
+  visibility: visible;
+  -webkit-transform: translate3d(200%, 0, 0);
+  -moz-transform: translate(200%, 0);
+  -ms-transform: translate(200%, 0);
+  -o-transform: translate(200%, 0);
+  transform: translate3d(200%, 0, 0);
+}
+.csstransitions.csstransforms #container:not(.deck-menu) > .fx-horizontal.deck-previous {
+  -webkit-transform: translate3d(-200%, 0, 0);
+  -moz-transform: translate(-200%, 0);
+  -ms-transform: translate(-200%, 0);
+  -o-transform: translate(-200%, 0);
+  transform: translate3d(-200%, 0, 0);
+}
+.csstransitions.csstransforms #container:not(.deck-menu) > .fx-horizontal.deck-before {
+  -webkit-transform: translate3d(-400%, 0, 0);
+  -moz-transform: translate(-400%, 0);
+  -ms-transform: translate(-400%, 0);
+  -o-transform: translate(-400%, 0);
+  transform: translate3d(-400%, 0, 0);
+}
+.csstransitions.csstransforms #container:not(.deck-menu) > .fx-horizontal.deck-next {
+  -webkit-transform: translate3d(200%, 0, 0);
+  -moz-transform: translate(200%, 0);
+  -ms-transform: translate(200%, 0);
+  -o-transform: translate(200%, 0);
+  transform: translate3d(200%, 0, 0);
+}
+.csstransitions.csstransforms #container:not(.deck-menu) > .fx-horizontal.deck-after {
+  -webkit-transform: translate3d(400%, 0, 0);
+  -moz-transform: translate(400%, 0);
+  -ms-transform: translate(400%, 0);
+  -o-transform: translate(400%, 0);
+  transform: translate3d(400%, 0, 0);
+}
+.csstransitions.csstransforms #container:not(.deck-menu) > .deck-before .slide.fx-horizontal,
+.csstransitions.csstransforms #container:not(.deck-menu) > .deck-previous .slide.fx-horizontal {
+  visibility: visible;
+}
+.csstransitions.csstransforms #container:not(.deck-menu) > .fx-horizontal.deck-child-current {
+  -webkit-transform: none;
+  -moz-transform: none;
+  -ms-transform: none;
+  -o-transform: none;
+  transform: none;
+}
