@@ -16,27 +16,32 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><?php echo $projectPlayer->getProject()->getName(); ?> - expo</title>
 
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap-responsive.css" />
     <?php $projectPlayer->loadCss() ?>
     <link rel="stylesheet" type="text/css" href="style.css" />
 
     <script type="text/javascript" src="/deckjs/jquery-1.7.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.js"></script>
     <script type="text/javascript" src="/jquery-qrcode/jquery.qrcode.min.js"></script>
     <script type="text/javascript" src="/jquery-qrcode/src/qrcode.js"></script>
-    <script type="text/javascript" src="/js/expo.js"></script>
 
     <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
-    <?php $projectPlayer->loadJs('header') ?>
+    <?php $projectPlayer->loadJs() ?>
 
-    <script src="http://192.168.0.11:2890/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/expojs/display/expo.ActiveDisplayRemote.js"></script>
+    <script type="text/javascript" src="/expojs/display/expo.DisplayManager.js"></script>
+    <script type="text/javascript" src="/expojs/display/expo.DisplayPresentation.js"></script>
+    <script type="text/javascript" src="/expojs/display/expo.DisplayRemote.js"></script>
+    <script type="text/javascript" src="/expojs/display/expo.Follower.js"></script>
+    <script type="text/javascript" src="/expojs/display/expo.Owner.js"></script>
+    <script src="http://127.0.0.1:2890/socket.io/socket.io.js"></script>
     <script>
-      var socket = io.connect('http://192.168.0.11:2890');
-      socket.on('project_<?php echo $projectPlayer->getProject()->getIdentifier() ?>', function (data) {
-          console.log(data);
-          if (data.action == 'updateRemotes') {
-              alert('ok');
-          }
+      var socket = io.connect('http://127.0.0.1:2890');
+      $(document).ready(function() {
+        player = new DeckjsPlayer();
+        var displayManager = new DisplayManager(socket, 'id1337', player, null);
+//      displayManager.setActiveRemote(new DisplayRemote(1));
       });
     </script>
 
@@ -172,8 +177,6 @@
       <?php endforeach; ?>
 
     </article>
-
-    <?php $projectPlayer->initJs() ?>
 
   </body>
 </html>

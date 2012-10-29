@@ -40,50 +40,8 @@ class DeckjsProjectPlayer extends ProjectPlayer
             "deckjs/extensions/goto/deck.goto.js",
             "deckjs/extensions/status/deck.status.js",
             "deckjs/extensions/navigation/deck.navigation.js",
-            "deckjs/extensions/scale/deck.scale.js"
+            "deckjs/extensions/scale/deck.scale.js",
+            "expojs/display/player/expo.DeckjsPlayer.js"
         );
-    }
-
-    public function getJsLoader()
-    {
-        return ("
-            $.deck.defaults = {
-               classes: {
-                  after: 'deck-after',
-                  before: 'deck-before',
-                  childCurrent: 'deck-child-current',
-                  current: 'deck-current',
-                  loading: 'deck-loading',
-                  next: 'deck-next',
-                  onPrefix: 'on-slide-',
-                  previous: 'deck-previous'
-               },
-
-               selectors: {
-                  container: '#container',
-                  statusCurrent: '#current-page'
-               },
-
-               keys: {
-                  // enter, space, page down, right arrow, down arrow
-                  next: [13, 32, 34, 39, 40],
-                  // backspace, page up, left arrow, up arrow
-                  previous: [8, 33, 37, 38]
-               },
-
-               touch: {
-                  swipeTolerance: 60
-               }
-            }
-
-            $.deck('.slide');
-
-            $('#previous-page').click(function(){
-              $.deck('prev');
-            });
-            $('#next-page').click(function(){
-              $.deck('next');
-            });
-        ");
     }
 }

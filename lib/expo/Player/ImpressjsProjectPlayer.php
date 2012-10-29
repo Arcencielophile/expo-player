@@ -20,9 +20,4 @@ class ImpressjsProjectPlayer extends ProjectPlayer
     {
         return array();
     }
-
-    public function getJsLoader()
-    {
-        return ("");
-    }
 }

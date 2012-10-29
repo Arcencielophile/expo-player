@@ -25,10 +25,7 @@ abstract class ProjectPlayer
     {
         $this->setProject($project);
         $this->css = array();
-        $this->js = array(
-            'header' => array(),
-            'footer' => array()
-        );
+        $this->js = array();
     }
 
     /**
@@ -86,23 +83,6 @@ abstract class ProjectPlayer
     }
 
     /**
-     * Init js
-     *
-     * @return string
-     */
-    public function initJs()
-    {
-        printf("
-            <script type=\"text/javascript\">
-                $('document').ready(function(){
-                    %s
-                });
-            </script>",
-            $this->getJsLoader()
-        );
-    }
-
-    /**
      * Get the player needed css
      *
      * @return mixed
@@ -115,11 +95,4 @@ abstract class ProjectPlayer
      * @return mixed
      */
     abstract public function getJs();
-
-    /**
-     * Get the player needed loader js
-     *
-     * @return string
-     */
-    abstract public function getJsLoader();
 }
