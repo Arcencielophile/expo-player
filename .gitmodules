@@ -1,6 +1,9 @@
+[submodule "web/deckjs"]
+	path = web/deckjs
+	url = https://github.com/imakewebthings/deck.js.git
+[submodule "web/turnjs"]
+	path = web/turnjs
+	url = https://github.com/blasten/turn.js
 [submodule "web/jquery-qrcode"]
 	path = web/jquery-qrcode
 	url = https://github.com/jeromeetienne/jquery-qrcode.git
-[submodule "web/turn.js"]
-	path = web/turnjs
-	url = https://github.com/blasten/turn.js
