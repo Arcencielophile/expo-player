@@ -25,8 +25,8 @@ var Follower = function(ip) {
   } else {
     this.ip = ip;
   }
+
+  /* Getters */
+  this.getIp = function() { return this.ip; };
 };
 
-Follower.prototype.getIp = function() {
-  return this.ip;
-};

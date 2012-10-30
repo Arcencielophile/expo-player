@@ -29,20 +29,23 @@ var DisplayManager = function(socket, projectId, player, follower) {
     this.presentation.setFollower(follower);
   }
 
+  this.setActiveRemote = function(remote) {
+    console.log('DisplayManager:setActiveRemote('+remote+')');
+    //TODO Ask Server to retrieve remote info (position, state)
+    var position = 0;
+    var status = {'showInfo': 0};
+
+    this.activeRemote = new ActiveDisplayRemote(this.socket, this.presentation, remote, position, status);
+    this.activeRemote.init();
+  };
+
+  this.stopActiveRemote = function() {
+    console.log('DisplayManager:stopActiveRemote()');
+    this.activeRemote = null;
+  };
+
   this.presentation.init();
 };
 
-DisplayManager.prototype.setActiveRemote = function(remote) {
-  //TODO Ask Server to retrieve remote info (position, state)
-  position = 0;
-  status = {'showInfo': 0};
-  console.log('DisplayManager:setActiveRemote('+remote+')');
 
-  this.activeRemote = new ActiveDisplayRemote(this.socket, this.presentation, remote, position, status);
-};
 
-DisplayManager.prototype.stopActiveRemote = function() {
-  console.log('DisplayManager:stopActiveRemote()');
-
-  this.activeRemote = null;
-};

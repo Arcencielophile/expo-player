@@ -19,34 +19,36 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ========================================================== */
 
-var TurnjsPlayer = function() {};
+var TurnjsPlayer = function() {
 
-TurnjsPlayer.prototype.init = function() {
-  jQuery('#container').turn({
-    autoCenter: true,
-    gradients: true,
-    acceleration: true
-  });
+  this.init = function() {
+    jQuery('#container').turn({
+      autoCenter: true,
+      gradients: true,
+      acceleration: true
+    });
 
-  jQuery('#current-page').append(1);
+    jQuery('#current-page').append(1);
 
-  jQuery('#container').bind('turning', function(event, page, view) {
-    jQuery('#current-page').empty();
-    jQuery('#current-page').append(page);
-  });
-};
+    jQuery('#container').bind('turning', function(event, page, view) {
+      jQuery('#current-page').empty();
+      jQuery('#current-page').append(page);
+    });
+  };
 
-TurnjsPlayer.prototype.next = function() {
-  console.log('TurnjsPlayer:next()');
-  jQuery('#container').turn('next');
-};
+  this.next = function() {
+    console.log('TurnjsPlayer:next()');
+    jQuery('#container').turn('next');
+  };
 
-TurnjsPlayer.prototype.previous = function() {
-  console.log('TurnjsPlayer:previous()');
-  jQuery('#container').turn('previous');
-};
+  this.previous = function() {
+    console.log('TurnjsPlayer:previous()');
+    jQuery('#container').turn('previous');
+  };
 
-TurnjsPlayer.prototype.goto = function(position) {
-  console.log('TurnjsPlayer:goto('+position+')');
-  jQuery('#container').turn('page', position+1);
+  this.goto = function(position) {
+    console.log('TurnjsPlayer:goto('+position+')');
+    jQuery('#container').turn('page', position+1);
+  };
+
 };

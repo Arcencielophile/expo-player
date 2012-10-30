@@ -25,87 +25,52 @@ var ActiveDisplayRemote = function(socket, presentation, remote, position, statu
   this.remote = remote;
   this.position = position;
   this.status = status;
-  console.log('ActiveDisplayRemote:('+socket+','+presentation+','+remote+','+position+','+status+')');
 
-  this.listenRemoteActions();
-};
+  this.init = function() {
+    console.log('ActiveDisplayRemote:init()');
+    this.listenRemoteActions();
+  };
 
-ActiveDisplayRemote.prototype.getIdentifier = function() {
-  return this.getProjectId()+'#'+this.getRemoteId();
-};
+  /* Getters */
+  this.getIdentifier    = function() { return this.getProjectId()+'#'+this.getRemoteId(); };
+  this.getRemote        = function() { return this.remote; };
+  this.getPosition      = function() { return this.position; };
+  this.getStatus        = function() { return this.status; };
+  this.getPresentation  = function() { return this.presentation; };
 
-/* Listener */
+  /* Proxy */
+  this.getProjectId = function() { return this.presentation.getProjectId(); };
+  this.getRemoteId  = function() { return this.remote.getId(); };
+  this.getOwner     = function() { return this.remote.getOwner(); };
 
-ActiveDisplayRemote.prototype.listenRemoteActions = function() {
-  activeRemote = this;
-  console.log('ActiveDisplayRemote:listenRemoteAction('+activeRemote+')');
-  id = activeRemote.getIdentifier();
+  /* Listener */
+  this.listenRemoteActions = function() {
+    console.log('ActiveDisplayRemote:listenRemoteAction()');
+    var activeRemote = this;
+    var id = activeRemote.getIdentifier();
 
-  this.socket.on('next['+id+']', function(data) {
-    activeRemote.next();
-  });
+    this.socket.on('next['+id+']',          function(data) { activeRemote.next(); });
+    this.socket.on('previous['+id+']',      function(data) { activeRemote.previous(); });
+    this.socket.on('goto['+id+']',          function(data) { activeRemote.goto(data.position); });
+    this.socket.on('updateStatus['+id+']',  function(data) { activeRemote.updateStatus(data); });
+  };
 
-  this.socket.on('previous['+id+']', function(data) {
-    activeRemote.previous();
-  });
+  /* Actions */
+  this.next = function() {
+    console.log('ActiveDisplayRemote:next()');
+  };
 
-  this.socket.on('goto['+id+']', function(data) {
-    activeRemote.goto(data.position);
-  });
+  this.previous = function() {
+    console.log('ActiveDisplayRemote:previous()');
+  };
 
-  this.socket.on('updateStatus['+id+']', function(data) {
-    activeRemote.updateStatus(data);
-  });
-};
+  this.goto = function(position) {
+    console.log('ActiveDisplayRemote:goto('+position+')');
+    this.position = position;
+  };
 
-/* Getters */
-
-ActiveDisplayRemote.prototype.getRemote = function() {
-  return this.remote;
-};
-
-ActiveDisplayRemote.prototype.getPosition = function() {
-  return this.position;
-};
-
-ActiveDisplayRemote.prototype.getStatus = function() {
-  return this.status;
-};
-
-ActiveDisplayRemote.prototype.getPresentation = function() {
-  return this.presentation;
-};
-
-/* Proxy */
-
-ActiveDisplayRemote.prototype.getProjectId = function() {
-  return this.presentation.getProjectId();
-};
-
-ActiveDisplayRemote.prototype.getRemoteId = function() {
-  return this.remote.getId();
-};
-
-ActiveDisplayRemote.prototype.getOwner = function() {
-  return this.remote.getOwner();
-};
-
-/* Actions */
-
-ActiveDisplayRemote.prototype.next = function() {
-  console.log('ActiveDisplayRemote:next()');
-};
-
-ActiveDisplayRemote.prototype.previous = function() {
-  console.log('ActiveDisplayRemote:previous()');
-};
-
-ActiveDisplayRemote.prototype.goto = function(position) {
-  this.position = position;
-  console.log('ActiveDisplayRemote:goto('+position+')');
-};
-
-ActiveDisplayRemote.prototype.updateStatus = function(status) {
-  this.status = status;
-  console.log('ActiveDisplayRemote:updateStatus('+status+')');
+  this.updateStatus = function(status) {
+    console.log('ActiveDisplayRemote:updateStatus('+status+')');
+    this.status = status;
+  };
 };

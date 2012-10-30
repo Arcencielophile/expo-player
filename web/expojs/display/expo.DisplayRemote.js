@@ -20,17 +20,11 @@
  * ========================================================== */
 
 var DisplayRemote = function(id) {
+  console.log('DisplayRemote:('+id+')');
   this.id = id;
   this.owner = null;
-  console.log('DisplayRemote:('+id+')');
-};
 
-/* Getters */
-
-DisplayRemote.prototype.getId = function() {
-  return this.id;
-};
-
-DisplayRemote.prototype.getOwner = function() {
-  return this.owner;
+  /* Getters */
+  this.getId = function() { return this.id; };
+  this.getOwner = function() { return this.owner; };
 };

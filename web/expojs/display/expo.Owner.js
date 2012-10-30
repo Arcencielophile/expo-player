@@ -25,8 +25,8 @@ var Owner = function(email) {
   } else {
     this.email = email;
   }
+
+  /* Getters */
+  this.getEmail = function() { return this.email; };
 };
 
-Owner.prototype.getEmail = function() {
-  return this.email;
-};

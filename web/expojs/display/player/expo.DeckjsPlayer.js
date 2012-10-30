@@ -19,50 +19,52 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ========================================================== */
 
-var DeckjsPlayer = function() {};
+var DeckjsPlayer = function() {
 
-DeckjsPlayer.prototype.init = function() {
-  jQuery.deck.defaults = {
-    classes: {
-      after: 'deck-after',
-      before: 'deck-before',
-      childCurrent: 'deck-child-current',
-      current: 'deck-current',
-      loading: 'deck-loading',
-      next: 'deck-next',
-      onPrefix: 'on-slide-',
-      previous: 'deck-previous'
-    },
+  this.init = function() {
+    jQuery.deck.defaults = {
+      classes: {
+        after: 'deck-after',
+        before: 'deck-before',
+        childCurrent: 'deck-child-current',
+        current: 'deck-current',
+        loading: 'deck-loading',
+        next: 'deck-next',
+        onPrefix: 'on-slide-',
+        previous: 'deck-previous'
+      },
 
-    selectors: {
-      container: '#container',
-      statusCurrent: '#current-page'
-    },
+      selectors: {
+        container: '#container',
+        statusCurrent: '#current-page'
+      },
 
-    keys: {
-      next: [],
-      previous: []
-    },
+      keys: {
+        next: null,
+        previous: null
+      },
 
-    touch: {
-      swipeTolerance: 60
+      touch: {
+        swipeTolerance: 60
+      }
     }
-  }
 
-  jQuery.deck('.slide');
-};
+    jQuery.deck('.slide');
+  };
 
-DeckjsPlayer.prototype.next = function() {
-  console.log('DeckjsPlayer:next()');
-  jQuery.deck('next');
-};
+  this.next = function() {
+    console.log('DeckjsPlayer:next()');
+    jQuery.deck('next');
+  };
 
-DeckjsPlayer.prototype.previous = function() {
-  console.log('DeckjsPlayer:previous()');
-  jQuery.deck('prev');
-};
+  this.previous = function() {
+    console.log('DeckjsPlayer:previous()');
+    jQuery.deck('prev');
+  };
 
-DeckjsPlayer.prototype.goto = function(position) {
-  console.log('DeckjsPlayer:goto('+position+')');
-  jQuery.deck('go', position);
+  this.goto = function(position) {
+    console.log('DeckjsPlayer:goto('+position+')');
+    jQuery.deck('go', position);
+  };
+
 };
