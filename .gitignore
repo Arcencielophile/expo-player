@@ -1,2 +1,5 @@
 # Gedit temp files
 *~
+
+# NodeJS
+nodejs/node_modules/*
