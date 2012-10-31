@@ -20,6 +20,7 @@
  * ========================================================== */
 
 var DisplayManager = function(socket, projectId, player, follower) {
+  this.socket = socket;
   this.presentation = new DisplayPresentation(socket, projectId, player);
   this.activeRemote = null;
 

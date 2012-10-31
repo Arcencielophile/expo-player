@@ -64,7 +64,7 @@ var DeckjsPlayer = function() {
 
   this.goto = function(position) {
     console.log('DeckjsPlayer:goto('+position+')');
-    jQuery.deck('go', position);
+    jQuery.deck('go', position-1);
   };
 
 };

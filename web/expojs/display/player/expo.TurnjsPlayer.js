@@ -48,7 +48,7 @@ var TurnjsPlayer = function() {
 
   this.goto = function(position) {
     console.log('TurnjsPlayer:goto('+position+')');
-    jQuery('#container').turn('page', position+1);
+    jQuery('#container').turn('page', position);
   };
 
 };

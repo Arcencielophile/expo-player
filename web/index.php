@@ -36,12 +36,17 @@
     <script type="text/javascript" src="/expojs/display/expo.Owner.js"></script>
     <script src="http://127.0.0.1:2890/socket.io/socket.io.js"></script>
     <script>
-      var socket = io.connect('http://127.0.0.1:2890');
+      //var socket = io.connect('http://127.0.0.1:2890');
+      var socket = io.connect('http://192.168.0.47:2890');
       $(document).ready(function() {
-        projectId = '<?php echo $projectPlayer->getProject()->getIdentifier(); ?>';
-        player = <?php echo $projectPlayer->getJsPlayer(); ?>;
+        var projectId = 'id1337'; //'<?php echo $projectPlayer->getProject()->getIdentifier(); ?>';
+        var player = <?php echo $projectPlayer->getJsPlayer(); ?>;
         var displayManager = new DisplayManager(socket, projectId, player, null);
-        //displayManager.setActiveRemote(new DisplayRemote(1));
+
+        $('.join-live ul li a').click(function(event) {
+            event.preventDefault();
+            displayManager.setActiveRemote(new DisplayRemote($(this).attr('href')));
+        });
       });
     </script>
 
@@ -134,7 +139,7 @@
                 <label>Join a live presentation</label>
                 <ul>
                   <li>
-                    <a href="#" title="Join ???">Join ???</a>
+                    <a href="1" title="Join #1">Join #1</a>
                   </li>
                 </ul>
               </div>

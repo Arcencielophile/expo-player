@@ -92,8 +92,21 @@ var DisplayPresentation = function(socket, projectId, player) {
       presentation.showInfo(!presentation.isShowInfo());
     });
 
-    jQuery('#current-page').toggleContent({'on-visible': '°°°'});
-    jQuery('#sync').toggleContent({'on-visible': '°°°'});
+    jQuery('#current-page').toggleContent({'text-visible': '°°°'});
+
+    jQuery('#sync').toggleContent({
+        'text-visible': '°°°',
+        'on-visible': function() {
+            jQuery('#qrcode').qrcode({
+                width: 160,
+                height: 160,
+                text : jQuery('#qrcode').attr('href')
+            });
+        },
+        'on-hide': function() {
+            jQuery('#qrcode').empty();
+        }
+    });
   };
 
   /* Remote Listeners */
@@ -130,6 +143,7 @@ var DisplayPresentation = function(socket, projectId, player) {
   this.updateRemotes = function(remotes) {
     this.remotes = remotes;
     console.log('DisplayPresentation:updateRemotes('+remotes+')');
+    
   };
 
   this.play = function() {
@@ -194,7 +208,9 @@ function getElementPath(element)
 $.fn.toggleContent = function(options) {
 
     options = $.extend({}, {
-        'on-visible': false
+        'text-visible': false,
+        'on-visible': function(){},
+        'on-hide': function(){},
     }, options);
 
     var contents = new Array();
@@ -205,17 +221,19 @@ $.fn.toggleContent = function(options) {
         if (contents[elemId] != "undefined" &&
             (contents[elemId] || contents[elemId] == jQuery(this).html())) {
             parent.removeClass('visible');
-            if (options['on-visible']) {
+            if (options['text-visible']) {
                 jQuery(this).empty().append(contents[elemId]);
             }
+            options['on-hide'].call();
             contents[elemId] = false;
         } else {
             parent.addClass('visible');
             contents[elemId] = true;
-            if (options['on-visible']) {
+            if (options['text-visible']) {
                 contents[elemId] = jQuery(this).html();
-                jQuery(this).empty().append(options['on-visible']);
+                jQuery(this).empty().append(options['text-visible']);
             }
+            options['on-visible'].call();
         }
     });
 };
