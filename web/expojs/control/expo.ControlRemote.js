@@ -103,3 +103,27 @@ ControlRemote.prototype.updateStatus = function(status){
 ControlRemote.prototype.initStatus = function(){
 	this.status = {"showInfo": 0};
 }
+
+ControlRemote.prototype.init = function(){
+	socket.emit("newRemote["this.presentation.getId()"]", { name: 'Bob'});
+	
+	this.socket.on("setId["+this.presentation.getId()+"]", function (data) {
+    	this.id = data.id;
+		
+		this.socket.on("updateFollowers["+this.presentation.getId()+"_"+this.getId()+"]", function (data) {
+	    	this.updateFollowers(data);
+		});
+		this.socket.on("updateStatus["+this.presentation.getId()+"_"+this.getId()+"]", function (data) {
+	    	this.updateStatus(data);
+		});
+		this.socket.on("goto["+this.presentation.getId()+"_"+this.getId()+"]", function (data) {
+	    	this.goto(data);
+		});
+		this.socket.on("next["+this.presentation.getId()+"_"+this.getId()+"]", function (data) {
+	    	this.next();
+		});
+		this.socket.on("previous["+this.presentation.getId()+"_"+this.getId()+"]", function (data) {
+	    	this.previous();
+		});
+	});
+}
