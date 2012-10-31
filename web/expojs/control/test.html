@@ -9,6 +9,8 @@
 	<script src="expo.ControlManager.js"></script>
 	<script>
 		var owner = new Owner(window.prompt("Please enter your email or pseudo :", null));
+		
+		var socket = io.connect("localhost:1234");
 		var manager = new ControlManager("presention_id", "remote_id", 0, owner);
 		console.log(manager.remote);
 	</script>

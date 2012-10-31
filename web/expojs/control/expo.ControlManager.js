@@ -19,9 +19,7 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ========================================================== */
 
-var ControlManager = function (url, presentationId, remoteId, position, owner) {
-	var socket = io.connect(url);
-	
+var ControlManager = function (socket, presentationId, remoteId, position, owner) {	
 	var presentation = new ControledPresentation(presentationId);
 	var remote = new ControlRemote(socket, remoteId, position, null);
 	

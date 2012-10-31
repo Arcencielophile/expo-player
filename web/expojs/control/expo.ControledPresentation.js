@@ -22,3 +22,8 @@
 var ControledPresentation = function (id) {
 	this.id = id;
 }
+
+// Getters
+ControlRemote.prototype.getId = function(){
+	return this.id;
+}
