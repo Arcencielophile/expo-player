@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Expo REMOTE</title>
+	<head>
+    	<title>Expo REMOTE</title>
+		<script src="expojs/control/expo.Owner.js"></script>
+		<script src="expojs/control/expo.Follower.js"></script>
+		<script src="expojs/control/expo.ControledPresentation.js"></script>
+		<script src="expojs/control/expo.ControlRemote.js"></script>
+		<script src="expojs/control/expo.ControlManager.js"></script>
+		
+    	<script src="http://127.0.0.1:2890/socket.io/socket.io.js"></script>
+    	<script>
+      		function qs(key) {
+          		//return 'id1337';
+          		key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
+          		var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
+          		return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+      		}
 
-    <script src="http://127.0.0.1:2890/socket.io/socket.io.js"></script>
-    <script>
-      function qs(key) {
-          return 'id1337';
-          key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
-          var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
-          return match && decodeURIComponent(match[1].replace(/\+/g, " "));
-      }
+      		var socket = io.connect('http://127.0.0.1:2890');
+			var owner = new Owner(null);
+			var manager = new ControlManager(socket, qs(), 1, 4, owner);
+    	</script>
+  	</head>
 
-      var socket = io.connect('http://127.0.0.1:2890');
-      socket.emit('new_remote', {project_id: qs('project_id')});
-    </script>
-
-  </head>
-
-  <body>
-    
-  </body>
+  	<body>
+    	<a href="#" onClick="manager.previous();">&lt;</a>
+		<a href="#" onClick="manager.next();">&gt;</a>
+  	</body>
 </html>
 

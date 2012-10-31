@@ -19,11 +19,14 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ========================================================== */
 
-var ControledPresentation = function (id) {
+var ControledPresentation = function (id, pagesNumber) {
 	this.id = id;
-}
-
-// Getters
-ControlRemote.prototype.getId = function(){
-	return this.id;
+	this.pagesNumber = pagesNumber;
+	
+	/* Getters */
+	this.getId = function() { return this.id; }
+	this.getPagesNumber = function() { return this.pagesNumber; }
+	
+	/* Setters */
+	this.setPagesNumber = function(pagesNumber) { this.pagesNumber = pagesNumber; }
 }
