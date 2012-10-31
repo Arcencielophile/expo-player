@@ -19,33 +19,30 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ========================================================== */
 
-var ControlManager = function (socket, presentationId, remoteId, position, owner) {	
-	var presentation = new ControledPresentation(presentationId);
-	var remote = new ControlRemote(socket, remoteId, position, null);
+var ControlManager = function (socket, presentationId, position, pagesNumber, owner) {	
+	this.presentation = new ControledPresentation(presentationId, pagesNumber);
+	this.remote = new ControlRemote(socket, position, null);
 	
-	if(!owner) {
-		remote.setOwner(new Owner());
-	} else {
-		remote.setOwner(owner);
+	if(!owner) { this.remote.setOwner(new Owner()); } 
+	else { this.remote.setOwner(owner); }
+	
+	this.remote.setPresentation(this.presentation);
+	this.remote.init();
+	
+	/* Actions */
+	this.next = function () {
+		if(!this.remote) {
+			console.log('No remote initialize');
+			return false;
+		}
+		this.remote.next();
 	}
-	
-	remote.setPresentation(presentation);
-	
-	this.remote = remote;
-}
 
-ControlManager.prototype.next = function () {
-	if(!this.remote) {
-		console.log("No remote initialize");
-		return false;
+	this.previous = function () {
+		if(!this.remote) {
+			console.log('No remote initialize');
+			return false;
+		}
+		this.remote.previous();
 	}
-	this.remote.next();
-}
-
-ControlManager.prototype.previous = function () {
-	if(!this.remote) {
-		console.log("No remote initialize");
-		return false;
-	}
-	this.remote.previous();
 }

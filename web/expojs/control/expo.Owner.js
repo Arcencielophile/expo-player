@@ -20,13 +20,10 @@
  * ========================================================== */
 
 var Owner = function(email) {
-  if(!email) {
-    this.email = 'nobody';
-  } else {
-    this.email = email;
-  }
+  	if(!email) { this.email = 'nobody'; }
+ 	else { this.email = email; }
+
+	/* Getters */
+	this.getEmail = function() { return this.email; }
 }
 
-Owner.prototype.getEmail = function() {
-  return this.email;
-}
