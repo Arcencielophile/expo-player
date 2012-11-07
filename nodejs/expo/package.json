@@ -1,0 +1,12 @@
+{
+  "author": "Expo Team <team@exp-o.fr>",
+  "name": "expo",
+  "description": "A remote controller for web based presentation",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
