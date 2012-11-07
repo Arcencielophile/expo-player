@@ -45,4 +45,19 @@ var ControlManager = function (socket, presentationId, position, pagesNumber, ow
 		}
 		this.remote.previous();
 	}
+	
+	this.toggleInfo = function () {
+		if(!this.remote) {
+			console.log('No remote initialize');
+			return false;
+		}
+		//{'showInfo': 0}
+		var showInfo = this.remote.getStatusWithKey("showInfo");
+		if(showInfo == 0) {
+			showInfo = 1;
+		}else {
+			showInfo = 0;
+		}
+		this.remote.updateStatusWithKey("showInfo", showInfo);
+	}
 }

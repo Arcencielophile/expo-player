@@ -40,12 +40,19 @@ var ControlRemote = function (socket, position, status) {
 		remote = this;
 
 		this.socket.on('set_remote_id', function (data) {
-			console.log('set_remote_id for remote_id: '+data.remote_id);
-	    	remote.id = data.remote_id;
+			console.log('set_remote_id ('+data+')');
+			console.log(data);
+	    	remote.id = data.roomName;
 			//When we received a remote_id we finish initialize
-			this.socket.on('update_followers['+remote.presentation.getId()+'_'+remote.getId()+']', function (data) {
+			this.socket.on('update_followers', function (data) {
 		    	remote.updateFollowers(data);
 			});
+		});
+		this.socket.on('update_followers', function (data) {
+			console.log('update_followers ('+data+')');
+			console.log(data);
+	    
+			
 		});
 		
 		this.socket.emit('new_remote', {project_id: remote.presentation.getId()});
@@ -55,6 +62,7 @@ var ControlRemote = function (socket, position, status) {
 	this.getId 				= function() { return this.id; }
 	this.getPosition 		= function() { return this.position; }
 	this.getStatus 			= function() { return this.status; }
+	this.getStatusWithKey 	= function(key) { return this.status[key]; }
 	this.getOwner 			= function() { return this.owner; }
 	this.getPresentation 	= function() { return this.presentation; }
 
@@ -65,35 +73,43 @@ var ControlRemote = function (socket, position, status) {
 	this.setPresentation 	= function(presentation) { this.presentation = presentation; }
 
 	// Methodes
-	this.next = function(){
+	this.next = function() {
 		this.goto(this.position + 1);
 	}
 
-	this.previous = function(){
+	this.previous = function() {
 		this.goto(this.position - 1);
 	}
 
-	this.goto = function(position){
-		if(this.getId() > -1) {
+	this.goto = function(position) {
+		if(this.getId() != -1) {
 			if(position < 1) position = 1;
 			if(position > this.presentation.getPagesNumber()) position = this.presentation.getPagesNumber();
 			
 			this.position = position;
-			console.log('ControlRemote:goto position: '+this.position+' for project: '+this.presentation.getId())+' for remote: '+this.getId();
-			this.socket.emit('goto', {project_id: this.presentation.getId(), remote_id: this.getId(), position: this.position});
+			console.log('ControlRemote:goto position: '+this.position+' for roomName: '+this.getId());
+			this.socket.emit('goto', {roomName:this.getId(), position: this.position});
 		}else {
 			console.log('Missing id');
 		}
 	}
 
-	this.updateFollowers = function(followers){
+	this.updateFollowers = function(followers) {
 		console.log('ControlRemote:updateFollowers('+followers+')');
+		console.log(followers);
 	}
 
-	this.updateStatus = function(status){
+	this.updateStatus = function(status) {	
 		console.log('ControlRemote:updateStatus('+status+')');
-		if(this.getId() > -1) {
-			this.socket.emit('updateStatus['+this.presentation.getId()+'_'+this.getId()+']', status);
+		console.log(status);
+		this.status = status;
+		if(this.getId() != -1) {
+			this.socket.emit('update_status', {project_id: this.presentation.getId(), remote_id: this.getId(), status: this.status});
 		}
+	}
+	
+	this.updateStatusWithKey = function(key, value) {
+		this.status[key] = value;
+		this.updateStatus(this.status);
 	}
 }
