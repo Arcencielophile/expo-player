@@ -13,7 +13,17 @@ Application web utilisant les standards du W3C
 pour partager, exposer, présenter
 des oeuvres artistiques, des projects culturels, des contenus pédagogiques ..
 
+Installation
+============
 
+clone the repository:
+
+    https://github.com/IDCI-Consulting/expo-player.git
+
+Then install git submodules
+
+    git submodule init
+    git submodule update
 
 Technology
 ==========
@@ -22,7 +32,6 @@ Technology
  * CSS3
  * Javascript
 
-
 Punch line
 ==========
 
@@ -30,12 +39,9 @@ Punch line
  * Catchering The Eye !
  * What Are You Looking At ?
 
-
-
 Dependencies
 ============
 
  * http://imakewebthings.com/deck.js/docs/
  * http://bartaz.github.com/impress.js/
  * http://www.turnjs.com/
-
