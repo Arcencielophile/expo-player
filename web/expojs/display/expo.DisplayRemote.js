@@ -19,12 +19,12 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ========================================================== */
 
-var DisplayRemote = function(id) {
-  console.log('DisplayRemote:('+id+')');
-  this.id = id;
+var DisplayRemote = function(roomName) {
+  console.log('DisplayRemote:('+roomName+')');
+  this.roomName = roomName;
   this.owner = null;
 
   /* Getters */
-  this.getId = function() { return this.id; };
+  this.getRoomName = function() { return this.roomName; };
   this.getOwner = function() { return this.owner; };
 };

@@ -114,7 +114,7 @@ var DisplayPresentation = function(socket, projectId, player) {
     console.log('DisplayPresentation:remoteListeners()');
     var presentation = this;
 
-    this.socket.on('remote_list['+this.getProjectId()+']', function(remotes) {
+    this.socket.on('remote_list', function(remotes) {
       presentation.updateRemotes(remotes);
     });
 
@@ -143,7 +143,15 @@ var DisplayPresentation = function(socket, projectId, player) {
   this.updateRemotes = function(remotes) {
     this.remotes = remotes;
     console.log('DisplayPresentation:updateRemotes('+remotes+')');
-    
+    console.log(remotes);
+
+    if(remotes != undefined) {
+      var remoteList = jQuery('.join-live ul');
+      remoteList.empty();
+      for(i=0; i < remotes.length; i++) {
+        remoteList.append('<li><a href="'+remotes[i].roomName+'" title="Join '+remotes[i].roomName+'">Join #'+remotes[i].id+'</a></li>');
+      }
+    }
   };
 
   this.play = function() {

@@ -29,6 +29,7 @@ var ActiveDisplayRemote = function(socket, presentation, remote, position, statu
   this.init = function() {
     console.log('ActiveDisplayRemote:init()');
     this.remoteListeners();
+    socket.emit('new_follower', remote);
   };
 
   /* Getters */
@@ -40,7 +41,7 @@ var ActiveDisplayRemote = function(socket, presentation, remote, position, statu
 
   /* Proxy */
   this.getProjectId = function() { return this.presentation.getProjectId(); };
-  this.getRemoteId  = function() { return this.remote.getId(); };
+  this.getRemoteId  = function() { return this.remote.getRoomName(); };
   this.getOwner     = function() { return this.remote.getOwner(); };
 
   /* Listener */
@@ -49,10 +50,10 @@ var ActiveDisplayRemote = function(socket, presentation, remote, position, statu
     var activeRemote = this;
     var id = activeRemote.getIdentifier();
 
-    socket.on('next['+id+']',          function(data) { activeRemote.next(); });
-    socket.on('previous['+id+']',      function(data) { activeRemote.previous(); });
-    socket.on('goto['+id+']',          function(data) { activeRemote.goto(data.position); });
-    socket.on('updateStatus['+id+']',  function(data) { activeRemote.updateStatus(data); });
+    socket.on('next',          function(data) { activeRemote.next(); });
+    socket.on('previous',      function(data) { activeRemote.previous(); });
+    socket.on('goto',          function(data) { activeRemote.goto(data.position); });
+    socket.on('updateStatus',  function(data) { activeRemote.updateStatus(data); });
   };
 
   /* Actions */

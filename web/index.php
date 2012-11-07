@@ -34,16 +34,16 @@
     <script type="text/javascript" src="/expojs/display/expo.DisplayRemote.js"></script>
     <script type="text/javascript" src="/expojs/display/expo.Follower.js"></script>
     <script type="text/javascript" src="/expojs/display/expo.Owner.js"></script>
-    <script src="http://127.0.0.1:2890/socket.io/socket.io.js"></script>
+    <script src="http://192.168.0.14:2890/socket.io/socket.io.js"></script>
     <script>
       //var socket = io.connect('http://127.0.0.1:2890');
-      var socket = io.connect('http://192.168.0.47:2890');
+      var socket = io.connect('http://192.168.0.14:2890/expo');
       $(document).ready(function() {
         var projectId = 'id1337'; //'<?php echo $projectPlayer->getProject()->getIdentifier(); ?>';
         var player = <?php echo $projectPlayer->getJsPlayer(); ?>;
         var displayManager = new DisplayManager(socket, projectId, player, null);
 
-        $('.join-live ul li a').click(function(event) {
+        $('.join-live ul li a').live('click', function(event) {
             event.preventDefault();
             displayManager.setActiveRemote(new DisplayRemote($(this).attr('href')));
         });
