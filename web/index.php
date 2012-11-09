@@ -1,6 +1,7 @@
 <?php
   require_once '../lib/expo/Factory/ProjectFactory.php';
   require_once '../lib/expo/Factory/ProjectPlayerFactory.php';
+  $srv = '127.0.0.1';
 
   use expo\Factory\ProjectFactory;
   use expo\Factory\ProjectPlayerFactory;
@@ -14,6 +15,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $projectPlayer->getProject()->getName(); ?> - expo</title>
 
     <link rel="stylesheet" type="text/css" href="/bootstrap/docs/assets/css/bootstrap.css" />
@@ -34,10 +36,9 @@
     <script type="text/javascript" src="/expojs/display/expo.DisplayRemote.js"></script>
     <script type="text/javascript" src="/expojs/display/expo.Follower.js"></script>
     <script type="text/javascript" src="/expojs/display/expo.Owner.js"></script>
-    <script src="http://192.168.0.14:2890/socket.io/socket.io.js"></script>
+    <script src="http://<?php echo $srv ?>:2890/socket.io/socket.io.js"></script>
     <script>
-      //var socket = io.connect('http://127.0.0.1:2890');
-      var socket = io.connect('http://192.168.0.14:2890/expo');
+      var socket = io.connect('http://<?php echo $srv ?>:2890/expo');
       $(document).ready(function() {
         var projectId = 'id1337'; //'<?php echo $projectPlayer->getProject()->getIdentifier(); ?>';
         var player = <?php echo $projectPlayer->getJsPlayer(); ?>;
@@ -133,14 +134,11 @@
               <div class="create-remote">
                 <label>Create a remote</label>
                 <p>click or scan the following QRCode</p>
-                <a href="remote.html?project_id=<?php echo $projectPlayer->getProject()->getIdentifier() ?>" target="_blank" id="qrcode"></a>
+                <a href="http://<?php echo $srv ?>/remote.html?project_id=<?php echo $projectPlayer->getProject()->getIdentifier() ?>" target="_blank" id="qrcode"></a>
               </div>
               <div class="join-live">
                 <label>Join a live presentation</label>
                 <ul>
-                  <li>
-                    <a href="1" title="Join #1">Join #1</a>
-                  </li>
                 </ul>
               </div>
             </div>

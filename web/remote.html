@@ -1,32 +1,46 @@
 <!DOCTYPE html>
 <html>
-	<head>
-    	<title>Expo REMOTE</title>
-		<script src="expojs/control/expo.Owner.js"></script>
-		<script src="expojs/control/expo.Follower.js"></script>
-		<script src="expojs/control/expo.ControledPresentation.js"></script>
-		<script src="expojs/control/expo.ControlRemote.js"></script>
-		<script src="expojs/control/expo.ControlManager.js"></script>
-		
-    	<script src="http://127.0.0.1:2890/socket.io/socket.io.js"></script>
-    	<script>
-      		function qs(key) {
-          		return 'id1337';
-          		key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
-          		var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
-          		return match && decodeURIComponent(match[1].replace(/\+/g, " "));
-      		}
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expo REMOTE</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap/docs/assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/docs/assets/css/bootstrap-responsive.css" />
 
-      		var socket = io.connect('http://127.0.0.1:2890/expo');
-			var owner = new Owner(null);
-			var manager = new ControlManager(socket, qs(), 1, 4, owner);
-    	</script>
-  	</head>
+    <script type="text/javascript" src="/deckjs/jquery-1.7.2.min.js"></script>
 
-  	<body>
-    	<a href="#" onClick="manager.previous();">&lt;</a>
-		<a href="#" onClick="manager.toggleInfo();">i</a>
-		<a href="#" onClick="manager.next();">&gt;</a>
-  	</body>
+    <script src="expojs/control/expo.Owner.js"></script>
+    <script src="expojs/control/expo.Follower.js"></script>
+    <script src="expojs/control/expo.ControledPresentation.js"></script>
+    <script src="expojs/control/expo.ControlRemote.js"></script>
+    <script src="expojs/control/expo.ControlManager.js"></script>
+    <script src="http://127.0.0.1:2890/socket.io/socket.io.js"></script>
+    <script>
+      function qs(key) {
+          return 'id1337';
+          key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
+          var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
+          return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+      }
+
+      var socket = io.connect('http://127.0.0.1:2890/expo');
+      var owner = new Owner(null);
+      var manager = new ControlManager(socket, qs(), 1, 4, owner);
+      </script>
+    </head>
+
+    <body>
+      <div class="row-fluid">
+        <button class="btn span4" type="button" id="previous"><i class="icon-chevron-left"></i>Previous</button>
+        <button class="btn span4" type="button" id="info"><i class="icon-info-sign"></i></button>
+        <button class="btn span4" type="button" id="next">Next <i class="icon-chevron-right"></i></button>
+      </div>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          $('#previous').click(function(event) { manager.previous(); });
+          $('#info').click(function(event) { manager.toggleInfo(); });
+          $('#next').click(function(event) { manager.next(); });
+        });
+      </script>
+    </body>
 </html>
-
