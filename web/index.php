@@ -1,7 +1,7 @@
 <?php
   require_once '../lib/expo/Factory/ProjectFactory.php';
   require_once '../lib/expo/Factory/ProjectPlayerFactory.php';
-  $srv = '127.0.0.1';
+  $srv = '192.168.0.14';
 
   use expo\Factory\ProjectFactory;
   use expo\Factory\ProjectPlayerFactory;
@@ -40,7 +40,7 @@
     <script>
       var socket = io.connect('http://<?php echo $srv ?>:2890/expo');
       $(document).ready(function() {
-        var projectId = 'id1337'; //'<?php echo $projectPlayer->getProject()->getIdentifier(); ?>';
+        var projectId = '<?php echo $projectPlayer->getProject()->getIdentifier(); ?>';
         var player = <?php echo $projectPlayer->getJsPlayer(); ?>;
         var displayManager = new DisplayManager(socket, projectId, player, null);
 
@@ -134,7 +134,7 @@
               <div class="create-remote">
                 <label>Create a remote</label>
                 <p>click or scan the following QRCode</p>
-                <a href="http://<?php echo $srv ?>/remote.html?project_id=<?php echo $projectPlayer->getProject()->getIdentifier() ?>" target="_blank" id="qrcode"></a>
+                <a href="http://<?php echo $srv ?>/remote.php?project_id=<?php echo $projectPlayer->getProject()->getIdentifier() ?>" target="_blank" id="qrcode"></a>
               </div>
               <div class="join-live">
                 <label>Join a live presentation</label>

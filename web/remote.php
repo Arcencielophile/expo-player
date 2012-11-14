@@ -1,3 +1,4 @@
+<?php $srv = '192.168.0.14'; ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,18 +15,11 @@
     <script src="expojs/control/expo.ControledPresentation.js"></script>
     <script src="expojs/control/expo.ControlRemote.js"></script>
     <script src="expojs/control/expo.ControlManager.js"></script>
-    <script src="http://127.0.0.1:2890/socket.io/socket.io.js"></script>
+    <script src="http://<?php echo $srv ?>:2890/socket.io/socket.io.js"></script>
     <script>
-      function qs(key) {
-          return 'id1337';
-          key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
-          var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
-          return match && decodeURIComponent(match[1].replace(/\+/g, " "));
-      }
-
-      var socket = io.connect('http://127.0.0.1:2890/expo');
+      var socket = io.connect('http://<?php echo $srv ?>:2890/expo');
       var owner = new Owner(null);
-      var manager = new ControlManager(socket, qs(), 1, 4, owner);
+      var manager = new ControlManager(socket, '<?php echo $_GET['project_id'] ?>', 1, 10, owner);
       </script>
     </head>
 
