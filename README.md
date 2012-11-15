@@ -16,21 +16,39 @@ des oeuvres artistiques, des projects culturels, des contenus pédagogiques ..
 Installation
 ============
 
-clone the repository:
+Go in the folder where you would like to install the application and then clone
+the git repository :
 
-    https://github.com/IDCI-Consulting/expo-player.git
+    git clone https://github.com/IDCI-Consulting/expo-player.git
 
 Then install git submodules
 
     git submodule init
     git submodule update
 
+[Install nodejs / npm](http://nodejs.org/)
+
+Go in the `expo-player/nodejs` folder and install the needed nodejs modules:
+
+    npm install nodejs log4js express socket.io
+
+/!\ Copy the expo folder into the created `node_modules` folder
+
+    cp -R expo node_modules/
+
+=> TODO: add expo in [node packet manager](https://npmjs.org/)
+
+now run the node server
+
+    nodejs remote-srv.js
+
 Technology
 ==========
 
  * HTML5
  * CSS3
- * Javascript
+ * Javascript (jquery, jquery mobile)
+ * nodejs (express, socket.io)
 
 Punch line
 ==========
@@ -45,3 +63,7 @@ Dependencies
  * http://imakewebthings.com/deck.js/docs/
  * http://bartaz.github.com/impress.js/
  * http://www.turnjs.com/
+ * http://nodejs.org/
+ * http://expressjs.com
+ * http://socket.io/
+
