@@ -20,9 +20,9 @@
  * ========================================================== */
 
 var Follower = function(ip) {
-	if(!ip) { this.ip = '0.0.0.0'; } 
-	else { this.ip = ip; }
+    if(!ip) { this.ip = '0.0.0.0'; } 
+    else { this.ip = ip; }
 
-	/* Getters */
-	this.getIp = function() { return this.ip; }
+    /* Getters */
+    this.getIp = function() { return this.ip; }
 }

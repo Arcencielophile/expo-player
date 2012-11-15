@@ -1,7 +1,11 @@
 var app = require('express')()
   , server = require('http').createServer(app)
   , io = require('socket.io').listen(server)
-  , expoServer = require('expo').createInstance();
+  , expoServer = require('expo').createInstance()
+  , log4js = require('log4js');
+
+// set up logger
+log4js.replaceConsole();
 
 server.listen(2890);
 
@@ -16,12 +20,14 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
     });
 
     socket.on('new_remote', function (data) {
+        console.log('remote-srv:new_remote('+data+')');
         //Add remote to project
         var remote = expoServer.createRemote(data.project_id);
-        socket.emit('set_remote_id', remote);
-        //TODO create a room by presentation socket.join()
-        socket.join(remote.getRoomName());
-        expoSockets.in(remote.getProjectId()).emit('remote_list', expoServer.getRemotesForProject(remote.getProjectId()));
+        socket.set('remote', remote, function () {
+            socket.emit('set_remote_id', remote);
+            socket.join(remote.getRoomName());
+            expoSockets.in(remote.getProjectId()).emit('remote_list', expoServer.getRemotesForProject(remote.getProjectId()));
+        });
     });
 
     socket.on('goto', function (data) {
@@ -34,8 +40,22 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
         console.log('remote-srv:new_follower('+data+')');
         console.log(data);
         socket.join(data.roomName);
-        //expo.Sockets.in(data.roomName).emit('update_followers', {});
+        var follower = expoServer.createFollower(data.roomName, socket.id);
+        expoSockets.in(data.roomName).emit('update_followers', expoServer.getFollowersForRoomName(data.roomName));
     });
+
+    socket.on('disconnect', function () {
+        console.log('remote-srv:disconnect()');
+        socket.get('remote', function(err, remote) {
+            console.log('remote-srv:disconnect() get remote('+remote+')');
+            console.log(remote);
+            if(remote != undefined) {
+                expoServer.removeRemote(remote);
+                expoSockets.in(remote.getProjectId()).emit('remote_list', expoServer.getRemotesForProject(remote.getProjectId()));
+            }
+        })
+    });
+
 /*
   // Ajouter fonction update_status
   socket.on('update_status', function (data) {

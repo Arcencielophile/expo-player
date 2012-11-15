@@ -19,11 +19,9 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ========================================================== */
 
-var Owner = function(email) {
-    if(!email) { this.email = 'nobody'; }
-    else { this.email = email; }
-
-    /* Getters */
-    this.getEmail = function() { return this.email; }
-}
-
+var ServerFollower = module.exports = function (id) {
+	this.id = id;
+	
+	/* Getters */
+	this.getId = function() { return this.id; };
+};
