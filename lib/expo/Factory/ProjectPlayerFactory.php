@@ -25,7 +25,7 @@ abstract class ProjectPlayerFactory
      * @param string $playerName
      * @return ProjectPlayer
      */
-    static public function createPlayer($project, $playerName)
+    static public function createPlayer($project, $playerName, $theme)
     {
         $className = sprintf(
             '%s%sPlayer',
@@ -33,7 +33,7 @@ abstract class ProjectPlayerFactory
             ucfirst(strtolower($playerName))
         );
 
-        $player = new $className($project);
+        $player = new $className($project, $theme);
 
         return $player;
     }

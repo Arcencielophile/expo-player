@@ -290,4 +290,9 @@ class Project
 
         return $this;
     }
+
+    public function countSlides()
+    {
+        return count($this->getPages());
+    }
 }

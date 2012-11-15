@@ -12,6 +12,8 @@ abstract class ProjectPlayer
 {
     protected $project;
 
+    protected $theme;
+
     protected $css;
 
     protected $js;
@@ -21,9 +23,10 @@ abstract class ProjectPlayer
      *
      * @param Project $project
      */
-    public function __construct($project)
+    public function __construct($project, $theme)
     {
         $this->setProject($project);
+        $this->setTheme($theme);
         $this->css = array();
         $this->js = array();
     }
@@ -49,6 +52,26 @@ abstract class ProjectPlayer
     }
 
     /**
+     * Set Theme
+     *
+     * @param string $theme
+     */
+    public function setTheme($theme)
+    {
+        $this->theme = $theme;
+    }
+
+    /**
+     * Get project theme
+     *
+     * @return string
+     */
+    public function getTheme()
+    {
+        return $this->theme;
+    }
+
+    /**
      * Get all the project pages
      *
      * @return mixed
@@ -56,6 +79,23 @@ abstract class ProjectPlayer
     public function getPages()
     {
         return $this->getProject()->getPages();
+    }
+
+    /**
+     * Remote Parameters
+     *
+     * @return string Query string
+     */
+    public function getRemoteParameters()
+    {
+        $params = array(
+            'project_id' => $this->getProject()->getIdentifier(),
+            'project_name' => $this->getProject()->getName(),
+            'project_count_slides' => $this->getProject()->countSlides(),
+            'theme' => $this->getTheme()
+        );
+
+        return http_build_query($params);
     }
 
     /**

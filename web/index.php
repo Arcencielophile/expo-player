@@ -1,14 +1,15 @@
 <?php
   require_once '../lib/expo/Factory/ProjectFactory.php';
   require_once '../lib/expo/Factory/ProjectPlayerFactory.php';
-  $srv = '192.168.0.14';
+  $srv = '192.168.0.12';
 
   use expo\Factory\ProjectFactory;
   use expo\Factory\ProjectPlayerFactory;
 
   $projectPlayer = ProjectPlayerFactory::createPlayer(
       ProjectFactory::initProject('http://player.expo/data.xml/sample.xml'),
-      'deckjs'
+      'deckjs',
+      'default'
   );
 ?>
 <!DOCTYPE html>
@@ -21,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="/bootstrap/docs/assets/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/bootstrap/docs/assets/css/bootstrap-responsive.css" />
     <?php $projectPlayer->loadCss() ?>
-    <link rel="stylesheet" type="text/css" href="/expojs/themes/default/style.css" />
+    <link rel="stylesheet" type="text/css" href="/expojs/themes/<?php echo $projectPlayer->getTheme() ?>/display/style.css" />
 
     <?php //<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script> ?>
     <script type="text/javascript" src="/deckjs/jquery-1.7.2.min.js"></script>
@@ -135,7 +136,7 @@
               <div class="create-remote">
                 <label>Create a remote</label>
                 <p>Scan or click on the following QRCode</p>
-                <a href="http://<?php echo $srv ?>/remote.php?project_id=<?php echo $projectPlayer->getProject()->getIdentifier() ?>" target="_blank" id="qrcode"></a>
+                <a href="http://<?php echo $srv ?>/remote.php?<?php echo $projectPlayer->getRemoteParameters(); ?>" target="_blank" id="qrcode"></a>
               </div>
               <div class="join-live">
                 <label>Join a live presentation</label>
