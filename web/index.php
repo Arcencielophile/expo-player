@@ -15,7 +15,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title><?php echo $projectPlayer->getProject()->getName(); ?> - expo</title>
 
     <link rel="stylesheet" type="text/css" href="/bootstrap/docs/assets/css/bootstrap.css" />
@@ -23,6 +23,7 @@
     <?php $projectPlayer->loadCss() ?>
     <link rel="stylesheet" type="text/css" href="/expojs/themes/default/style.css" />
 
+    <?php //<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script> ?>
     <script type="text/javascript" src="/deckjs/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="/jquery-qrcode/jquery.qrcode.min.js"></script>
     <script type="text/javascript" src="/jquery-qrcode/src/qrcode.js"></script>
@@ -133,7 +134,7 @@
             <div>
               <div class="create-remote">
                 <label>Create a remote</label>
-                <p>click or scan the following QRCode</p>
+                <p>Scan or click on the following QRCode</p>
                 <a href="http://<?php echo $srv ?>/remote.php?project_id=<?php echo $projectPlayer->getProject()->getIdentifier() ?>" target="_blank" id="qrcode"></a>
               </div>
               <div class="join-live">
