@@ -37,7 +37,7 @@
         <div data-role="page">
 
             <div data-role="header" data-position="fixed">
-                <h1>Expo Remote - <?php echo $_GET['project_name'] ?></h1>
+                <h1><?php echo $_GET['project_name'] ?></h1>
                 <a href="#options" data-icon="gear" class="ui-btn-right">Options</a>
             </div>
 
