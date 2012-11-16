@@ -136,6 +136,6 @@ var ControlRemote = function (socket, position, status) {
         this.followers = followers;
         console.log('ControlRemote:updateFollowers('+this.followers+')');
         console.log(this.followers);
-        $('a[href="#followers"]').empty().append(this.followers.length);
+        $('a[href="#followers"] .ui-btn-text').empty().append(this.followers.length);
     }
 }
