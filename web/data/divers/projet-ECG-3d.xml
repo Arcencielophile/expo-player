@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="1.0">
+  <name>Chahira YAHIAOUI</name>
+  <description>Déchargé de communication</description>
+
+  <categories>
+    <category>HTML5</category>
+    <category>CSS3</category>
+    <category>Gfx</category>
+  </categories>
+
+  <authors>
+    <author>
+      <firstname>Philippe CHEVALIER</firstname>
+      <lastname>Service de Rythmologie</lastname>
+      <email>philippe.chevalier@univ-lyon1.fr</email>
+    </author>
+	<author>
+      <firstname>Nicolas GIRERD</firstname>
+    </author>
+  </authors>
+
+  <slides>
+    <slide effect="fx-vertical">
+      <content>
+        <![CDATA[
+          <h1>ECG 3D</h1>
+        ]]>
+      </content>
+    </slide>
+    <slide effect="fx-vertical">
+      <content>
+        <![CDATA[
+          <h1>Mes compétences</h1>
+          <h2>Ouf malade de gfx</h2>
+        ]]>
+      </content>
+    </slide>
+    <slide effect="fx-vertical">
+      <content>
+        <![CDATA[
+          <h1>Réalisation iCAP</h1>
+          <h2>
+		  Tom RIVIERE
+		  Frédéric URIEN
+		  </h2>
+        ]]>
+      </content>
+    </slide>
+    <slide effect="fx-vertical">
+      <content>
+        <![CDATA[
+          <h1>XXXX</h1>
+          <p>
+		  </p>
+        ]]>
+      </content>
+    </slide>
+	
+	 <slide effect="fx-vertical">
+      <content>
+        <![CDATA[
+          <h1>XXX</h1>
+          <p>
+		  </p>
+        ]]>
+      </content>
+    </slide>
+  </slides>
+
+</project>

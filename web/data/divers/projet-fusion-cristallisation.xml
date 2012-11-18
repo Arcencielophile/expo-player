@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="1.0">
+  <name>Chahira YAHIAOUI</name>
+  <description>Déchargé de communication</description>
+
+  <categories>
+    <category>HTML5</category>
+    <category>CSS3</category>
+    <category>Gfx</category>
+  </categories>
+
+  <authors>
+    <author>
+      <firstname>Isabelle DANIEL</firstname>
+      <email>isabelle.daniel@univ-lyon1.fr</email>
+    </author>
+    <author>
+      <firstname>Jean-Philippe PERRILLAT</firstname>
+      <email>jean-philippe.perrillat@univ-lyon1.fr</email>
+    </author>
+	    <author>
+      <firstname>Lucile BEZACIER</firstname>
+      <email>lucile.bezacier@univ-nantes.fr</email>
+    </author>
+	    <author>
+      <firstname>Cécile FEUILLIE</firstname>
+      <email>cecile.feuillie@ens-lyon.fr</email>
+    </author>
+	    <author>
+      <firstname>Baptiste JOURNAUX</firstname>
+      <email>baptiste.journaux@ens-lyon.fr</email>
+    </author>
+  </authors>
+
+  <slides>
+    <slide effect="fx-vertical">
+      <content>
+        <![CDATA[
+          <h1>Fusion et cristallisation dans la terre </h1>
+          <h2>Une expérience de fusion et cristallisation avec applications aux planètes, menée par une équipe pédagogique de Lyon 1, a permis, la réalisation de plusieurs ressources : des films d’expériences avec H2O - un protocole complet et illustré des expériences - et une simulation permettant de créer un point de mesure sur le diagramme de phase pour définir les courbes solidus et liquidus. </h2>
+        ]]>
+      </content>
+    </slide>
+    <slide effect="fx-vertical">
+      <content>
+        <![CDATA[
+          <h1>Mes compétences</h1>
+          <h2>Ouf malade de gfx</h2>
+        ]]>
+      </content>
+    </slide>
+    <slide effect="fx-vertical">
+      <content>
+        <![CDATA[
+          <h1>Réalisation iCAP</h1>
+          <h2>
+	      Infographie / développement FLASH
+          Aurélien CHANTIOUX aurelien.chantioux@univ-lyon1.fr
+          Alexandre LOUYS alexandre.louys@univ-lyon1.fr
+          Gestion de projet
+          Nora VAN REETH nora.vanreeth@univ-lyon1.fr
+		  </h2>
+        ]]>
+      </content>
+    </slide>
+    <slide effect="fx-vertical">
+      <content>
+        <![CDATA[
+          <h1>Co-financements</h1>
+          <p>
+		  Projet co-financé par l'Université Lyon 1, service iCAP http://icap.univ-lyon1.fr et UNISCIEL (UNIversité des SCIences En Ligne) www.unisciel.fr
+		  </p>
+        ]]>
+      </content>
+    </slide>
+	
+	 <slide effect="fx-vertical">
+      <content>
+        <![CDATA[
+          <h1>Droits d’auteur de copyright</h1>
+          <p>
+		  L’ensemble de ce site relève de la législation française et internationale sur le droit d’auteur et la propriété intellectuelle. Tous les droits d'utilisation et de reproduction et de diffusion  du campus numérique :          la TRANSPLANTATION de A à Z - Université Lyon 1 - UMVF - UNF3S sont réservés.
+
+          L'ensemble de ce support relève des législations française et internationale sur le droit d'auteur et la propriété intellectuelle. L’utilisation de ce site et de son contenu est gratuite et strictement réservée à un           usage universitaire et pédagogique. Il est formellement interdit d’utiliser ce site et son contenu (textes, documents iconographiques, photographiques, infographiques) à des fins commerciales. La reproduction,                 diffusion, duplication, mise à la disposition du public, mise en réseau, partielles ou totales sous quelque forme ou support que ce soit, sont formellement interdites sauf autorisation expresse du Directeur de                 publication à l’adresse suivante : xavier.martin@univ-lyon1.fr
+		  </p>
+        ]]>
+      </content>
+    </slide>
+  </slides>
+
+</project>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="1.0">
+  <name>Internet / WEB</name>
+  <summary>
+  <![CDATA[
+    <ul>
+      <li>Initiation à Internet et au WEB</li>
+      <li>Présentation des languages HTML et CSS</li>
+      <li>Introduction au concept client / serveur</li>
+    </ul>
+  ]]>
+  </summary>
+  <date>2012</date>
+  <logo>http://player.expo/images/HTML5.png</logo>
+
+  <tag>Internet</tag>
+  <tag>WEB</tag>
+  <tag>W3C</tag>
+  <tag>HTTP</tag>
+  <tag>HTML</tag>
+  <tag>CSS</tag>
+
+  <author>
+    <name>Gabriel BONDAZ</name>
+    <email>gabriel.bondaz@idci-consulting.fr</email>
+    <website>http://www.idci-consulting.fr</website>
+    <social_link uri="https://www.facebook.com/gabriel.bondaz" />
+    <social_link uri="http://twitter.com/idciconsulting" />
+  </author>
+
+  <target>
+    <name>IUT A GEA - 2ème Année</name>
+    <website>http://iut.univ-lyon1.fr/geadoua</website>
+  </target>
+
+  <page>
+    <title>Plan</title>
+    <description>
+      <![CDATA[
+        <strong>A retenir:</strong>
+        <ul>
+          <li>La différence entre Internet et WEB</li>
+          <li>Le concept Client / Serveur</li>
+          <li>A quoi sert un CMS</li>
+        </ul>
+      ]]>
+    </description>
+    <content>
+      <![CDATA[
+          <ul>
+            <li>Un peu d'histoire</li>
+            <li>Le WEB (HTTP / HTML)</li>
+            <li>Le Web statique vs dynamique</li>
+            <li>Les CMS (Wordpress)</li>
+          </ul>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Historique</title>
+    <description></description>
+    <content>
+      <![CDATA[
+          <ul>
+            <li class="slide fx-fade">A partir de 1946: Les premiers ordinateurs</li>
+            <li class="slide fx-fade">En 1957: spoutnik -> ARPA (Advanced Research Project Agency)</li>
+            <li class="slide fx-fade">En 1965: Première communication longue distance par paquet</li>
+            <li class="slide fx-fade">En 1967: ARPANet</li>
+            <li class="slide fx-fade">En 1972: Le Mail (Ray Tomlinson)</li>
+            <li class="slide fx-fade">En 1974: TCP/IP (Transmission Control Protocol et Internet Protocol)</li>
+            <li class="slide fx-fade">En 1980: ARPANet / 2
+              <ul>
+                <li>MILNet (Military Network)</li>
+                <li>NSFNet (National Science Foundation Network)</li>
+              </ul>
+            </li>
+            <li class="slide fx-fade">En 1984: Lien entre le CERN et un laboratoire Américan</li>
+            <li class="slide fx-fade">En 1991: Le WEB (Tim Berners Lee)</li>
+          </ul>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Le Web</title>
+    <description>Un protocol + un language</description>
+    <content>
+      <![CDATA[
+          <div class="slide fx-fade">
+            <h3>HTTP</h3>
+            <p class="slide fx-vertical">Hyper Text Transfert Protocol</p>
+          </div>
+          <div class="slide fx-fade">
+            <h3>HTML</h3>
+            <p class="slide fx-vertical">Hyper Text Markup Language</p>
+          </div>
+          <div class="slide fx-fade">
+            <h3>Le Jargon</h3>
+            <p class="slide fx-vertical">URL: Unified Ressource Locator</p>
+            <p class="slide fx-vertical">Serveur WEB</p>
+            <p class="slide fx-vertical">Client WEB (Navigateur) ex:</p>
+            <p class="slide fx-vertical">Firefox, Chrome, Opera, Safari, Internet Explorer, ...</p>
+          </div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Le HTML - Syntaxe</title>
+    <content>
+      <![CDATA[
+          <div class="slide fx-fade">Ouverture: &lt; nom_balise &gt;</div><br/>
+          <div class="slide fx-fade">Fermeture: &lt; / nom_balise &gt;</div><br/>
+          <div class="slide fx-fade">Sans donnée enfant: &lt; nom_balise / &gt;</div><br/>
+          <div class="slide fx-fade">Avec un attribut: &lt; nom_balise attr="valeur" &gt;</div><br/>
+          <div class="slide fx-fade">Avec des attributs: &lt; nom_balise attr1="v1" attr2="v2" ... &gt;</div><br/>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Le HTML</title>
+    <description>Un language à balise pour structurer l'information de manière arborescente</description>
+    <content>
+      <![CDATA[
+          <h3 class="slide fx-horizontal">Structure simple</h3>
+          <div class="slide fx-fade">&lt; balise &gt;</div><br/>
+          <div class="slide fx-fade">&nbsp;&nbsp;&nbsp;&nbsp;data</div><br/>
+          <div class="slide fx-fade">&lt; / balise &gt;</div><br/>
+
+          <h3 class="slide fx-horizontal">Structure sur plusieurs niveaux</h3>
+          <div class="slide fx-fade">&lt; bA &gt;</div><br/>
+          <div class="slide fx-fade">&nbsp;&nbsp;&nbsp;&nbsp;&lt; bB &gt;</div><br/>
+          <div class="slide fx-fade">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dataB</div><br/>
+          <div class="slide fx-fade">&nbsp;&nbsp;&nbsp;&nbsp;&lt; / bB &gt;</div><br/>
+          <div class="slide fx-fade">&nbsp;&nbsp;&nbsp;&nbsp;&lt; bC &gt;</div><br/>
+          <div class="slide fx-fade">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; bD &gt;</div><br/>
+          <div class="slide fx-fade">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dataD</div><br/>
+          <div class="slide fx-fade">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt; / bD &gt;</div><br/>
+          <div class="slide fx-fade">&nbsp;&nbsp;&nbsp;&nbsp;&lt; / bC &gt;</div><br/>
+          <div class="slide fx-fade">&lt; / bA &gt;</div><br/>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Le HTML - Démo</title>
+    <content>
+      <![CDATA[
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Le CSS</title>
+    <description>Quelques grammes de finesse dans un monde "brute"</description>
+    <content>
+      <![CDATA[
+        <h3>Cascading Style Sheet</h3>
+        <h3 class="slide fx-horizontal">Syntaxe</h3>
+        <p class="slide fx-fade">selecteur {</p>
+        <p class="slide fx-fade">&nbsp;&nbsp;propriété_x: valeur_x;</p>
+        <p class="slide fx-fade">&nbsp;&nbsp;propriété_y: valeur_y;</p>
+        <p class="slide fx-fade">&nbsp;&nbsp;...</p>
+        <p class="slide fx-fade">}</p>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Le CSS - Démo</title>
+    <content>
+      <![CDATA[
+      ]]>
+    </content>
+  </page>
+
+<!--
+  <page>
+    <title>Le WEB Statique vs Dynamique</title>
+    <content>
+      <![CDATA[
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Les CMS: Wordpress</title>
+    <content>
+      <![CDATA[
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Questions</title>
+    <content>
+      <![CDATA[
+        <h3>Avez vous des questions ? (lmgtfy)</h3>
+      ]]>
+    </content>
+  </page>
+//-->
+</project>

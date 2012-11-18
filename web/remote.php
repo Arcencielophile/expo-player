@@ -1,4 +1,4 @@
-<?php $srv = '192.168.0.12'; ?>
+<?php include_once 'config.inc.php'; ?>
 <!DOCTYPE html>
 <html>
     <head>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="1.0">
+  <name>Hikarinoki</name>
+  <summary>Structures lumineuses pour la fête des lumière à LYON</summary>
+  <date>2009</date>
+  <logo></logo>
+
+  <tag>8 Décembre</tag>
+  <tag>Lumière</tag>
+
+  <author>
+    <name>Phillippe MORVAN</name>
+    <email>philippemorvan@orange.com</email>
+    <website>www.philippemorvan.com</website>
+    <social_link uri="http://www.facebook.com/media/set/?set=a.531464910215421.130111.531455693549676" />
+  </author>
+
+  <target>
+    <name>Ville de LYON</name>
+    <website>http://www.fetedeslumieres.lyon.fr/</website>
+  </target>
+
+  <page>
+    <title>Hikarinoki</title>
+    <description>L'arbre, respiration du monde, lien entre terre et ciel, lieu de rencontres et de paroles nous est apparu comme un symbole universel intéressant à développer.</description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/hikarinoki-01.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Édition</title>
+    <description>Proposé dans le cadre de la fête des lumières de Lyon, édition 2009, l’arbre lumineux, Hikarinoki, s’intégrait dans un dispositif lumière conçu pour l’animation de la façade de la gare St Paul de Lyon. </description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/hikarinoki-02.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Structure</title>
+    <description>Constitué d’acier et d’objets de récupération en plastique vert, Hikarinoki, objet ubain décoratif le jour, se magnifie la nuit grâce à son dispositif lumineux interne. Entièrement démontable et transportable cette installation ludique, contemplative et fédératrice trouve sa place dans tout type de paysage ou d’événement.</description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/hikarinoki-03.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>En Bref...</title>
+    <description>Entièrement démontable et transportable cette installation ludique, contemplative et fédératrice trouve sa place dans tout type de paysage ou d’événement.</description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/hikarinoki-04.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/hikarinoki-05.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+    <page>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/hikarinoki-06.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+</project>
