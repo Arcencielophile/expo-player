@@ -33,7 +33,9 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
     socket.on('goto', function (data) {
         console.log('remote-srv:goto('+data+')');
         console.log(data);
-        expoSockets.in(data.roomName).emit('goto', {position: data.position});
+        var remote = expoServer.getRemoteByRoomName(data.roomName);
+        remote.setPosition(data.position);
+        expoSockets.in(remote.getRoomName()).emit('goto', {position: remote.getPosition()});
     });
 
     socket.on('new_follower', function (data) {
@@ -41,6 +43,19 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
         console.log(data);
         socket.join(data.roomName);
         var follower = expoServer.createFollower(data.roomName, socket.id);
+        expoSockets.in(data.roomName).emit('update_followers', expoServer.getFollowersForRoomName(data.roomName));
+        
+        var remote = expoServer.getRemoteByRoomName(data.roomName);
+		if(remote != null) {
+			socket.emit('goto', {position: remote.getPosition()});
+		}
+    });
+
+    socket.on('remove_follower', function (data) {
+        console.log('remote-srv:remove_follower('+data+')');
+        console.log(data);
+        socket.leave(data.roomName);
+        var follower = expoServer.removeFollower(data.roomName, socket.id);
         expoSockets.in(data.roomName).emit('update_followers', expoServer.getFollowersForRoomName(data.roomName));
     });
 

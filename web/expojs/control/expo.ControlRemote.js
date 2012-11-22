@@ -20,7 +20,8 @@
  * ========================================================== */
 
 var ControlRemote = function (socket, position, status) {
-    this.id = -1;
+    this.id = 0;
+    this.roomName = null;
     this.position = position;
     
     if(!status) { this.status = {'showInfo': 0} } 
@@ -68,7 +69,9 @@ var ControlRemote = function (socket, position, status) {
         this.socket.on('set_remote_id', function (data) {
             console.log('set_remote_id ('+data+')');
             console.log(data);
-            remote.id = data.roomName;
+            remote.setId(data.id);
+            remote.setRoomName(data.roomName);
+            $('a[href="#name"] .ui-btn-text').empty().append('#'+remote.getId());
         });
         
         this.socket.on('update_followers', function (data) {
@@ -80,6 +83,7 @@ var ControlRemote = function (socket, position, status) {
     
       /* Getters */
     this.getId              = function() { return this.id; }
+    this.getRoomName        = function() { return this.roomName; }
     this.getPosition        = function() { return this.position; }
     this.getStatus          = function() { return this.status; }
     this.getStatusWithKey   = function(key) { return this.status[key]; }
@@ -88,6 +92,8 @@ var ControlRemote = function (socket, position, status) {
     this.getFollowers   = function() { return this.followers; }
 
     /* Setters */
+    this.setId              = function(id) { this.id = id; }
+    this.setRoomName        = function(roomName) { this.roomName = roomName; }
     this.setPosition        = function(position) { this.position = position; }
     this.setStatus          = function(status) { this.status = status; }
     this.setOwner           = function(owner) { this.owner = owner; }
@@ -104,20 +110,21 @@ var ControlRemote = function (socket, position, status) {
     }
 
     this.goto = function(position) {
-        if(this.getId() != -1) {
+        if(this.getRoomName() != null) {
             if(position < 1) position = 1;
             if(position > this.presentation.getPagesNumber()) position = this.presentation.getPagesNumber();
             
             this.position = position;
-            console.log('ControlRemote:goto position: '+this.position+' for roomName: '+this.getId());
-            this.socket.emit('goto', {roomName:this.getId(), position: this.position});
+            console.log('ControlRemote:goto position: '+this.position+' for roomName: '+this.getRoomName());
+            this.socket.emit('goto', {roomName:this.getRoomName(), position: this.position});
             
             $('#current_page').html(this.position);
         }else {
             console.log('Missing id');
         }
     }
-
+    
+    /*
     this.updateStatus = function(status) {  
         console.log('ControlRemote:updateStatus('+status+')');
         console.log(status);
@@ -126,6 +133,7 @@ var ControlRemote = function (socket, position, status) {
             this.socket.emit('update_status', {project_id: this.presentation.getId(), remote_id: this.getId(), status: this.status});
         }
     }
+    */
     
     this.updateStatusWithKey = function(key, value) {
         this.status[key] = value;

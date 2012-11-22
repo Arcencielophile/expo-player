@@ -86,6 +86,7 @@
             <div data-role="footer" data-position="fixed">
                 <a href="#info" data-role="button" data-icon="info">info</a>
                 <a href="#followers" data-role="button" data-icon="star">0</a>
+                <a href="#name" data-role="button">#0</a>
             </div>
 
         </div>
