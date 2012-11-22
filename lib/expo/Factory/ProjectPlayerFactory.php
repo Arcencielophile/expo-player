@@ -22,15 +22,15 @@ abstract class ProjectPlayerFactory
      * Return a created project player based on a project object
      *
      * @param Project $project
-     * @param string $playerName
+     * @param Theme $them
      * @return ProjectPlayer
      */
-    static public function createPlayer($project, $playerName, $theme)
+    static public function createPlayer($project, $theme)
     {
         $className = sprintf(
             '%s%sPlayer',
             'expo\Player\\',
-            ucfirst(strtolower($playerName))
+            ucfirst(strtolower($theme->getDisplayPlayerName()))
         );
 
         $player = new $className($project, $theme);

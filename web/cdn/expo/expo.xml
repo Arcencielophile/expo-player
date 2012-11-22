@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<expo>
+  <theme>
+    <name>Expo Default Theme</name>
+    <author>Expo Team</author>
+    <url></url>
+    <display player="deckjs">
+      <css path="css/expo_display.css" />
+      <js path="js/expo_display.js" />
+    </display>
+    <remote>
+      <css path="css/expo_remote.css" />
+      <js path="js/expo_remote.js" />
+    </remote>
+  </theme>
+
+  <menu name="Expo">
+    <item name="About" src="data/whatisexpo.xml"></item>
+  </menu>
+</expo>
+

@@ -1,18 +1,4 @@
-<?php
-  include_once 'config.inc.php';
-
-  require_once '../lib/expo/Factory/ProjectFactory.php';
-  require_once '../lib/expo/Factory/ProjectPlayerFactory.php';
-
-  use expo\Factory\ProjectFactory;
-  use expo\Factory\ProjectPlayerFactory;
-
-  $projectPlayer = ProjectPlayerFactory::createPlayer(
-      ProjectFactory::initProject('http://player.expo/data.xml/hikarinoki.xml'),
-      'deckjs',
-      'lumiere'
-  );
-?>
+<?php require_once '../lib/expo/loader.php'; ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -23,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="/bootstrap/docs/assets/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/bootstrap/docs/assets/css/bootstrap-responsive.css" />
     <?php $projectPlayer->loadCss() ?>
-    <link rel="stylesheet" type="text/css" href="/expojs/themes/<?php echo $projectPlayer->getTheme() ?>/display/style.css" />
 
     <?php //<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script> ?>
     <script type="text/javascript" src="/deckjs/jquery-1.7.2.min.js"></script>
@@ -39,9 +24,9 @@
     <script type="text/javascript" src="/expojs/display/expo.DisplayRemote.js"></script>
     <script type="text/javascript" src="/expojs/display/expo.Follower.js"></script>
     <script type="text/javascript" src="/expojs/display/expo.Owner.js"></script>
-    <script src="http://<?php echo $srv ?>:2890/socket.io/socket.io.js"></script>
+    <script src="http://<?php echo $expo_srv ?>:2890/socket.io/socket.io.js"></script>
     <script>
-      var socket = io.connect('http://<?php echo $srv ?>:2890/expo');
+      var socket = io.connect('http://<?php echo $expo_srv ?>:2890/expo');
       $(document).ready(function() {
         var projectId = '<?php echo $projectPlayer->getProject()->getIdentifier(); ?>';
         var player = <?php echo $projectPlayer->getJsPlayer(); ?>;
@@ -57,6 +42,32 @@
   </head>
 
   <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <!-- Be sure to leave the brand out there if you want it shown -->
+          <a class="brand" href="#"><span class="logo"></span><?php echo $projectPlayer->getTheme()->getMenuName() ?></a>
+          <!-- Everything you want hidden at 940px or less, place within here -->
+          <div class="nav-collapse collapse">
+            <ul class="nav nav-pills">
+              <?php foreach($projectPlayer->getTheme()->getMenuItems() as $name => $data): ?>
+              <li class="active">
+                <a href="?data=<?php echo urlencode($data) ?>" title="<?php echo $name ?>"><?php echo $name ?></a>
+              </li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
 
     <div id="player-information">
       <div class="row-fluid">
@@ -137,7 +148,7 @@
               <div class="create-remote">
                 <label>Create a remote</label>
                 <p>Scan or click on the following QRCode</p>
-                <a href="http://<?php echo $srv ?>/remote.php?<?php echo $projectPlayer->getRemoteParameters(); ?>" target="_blank" id="qrcode"></a>
+                <a href="http://<?php echo $expo_srv ?>/remote.php?<?php echo $projectPlayer->getRemoteParameters(); ?>" target="_blank" id="qrcode"></a>
               </div>
               <div class="join-live">
                 <label>Join a live presentation</label>
@@ -173,7 +184,7 @@
     <article id="container" class="row-fluid">
 
       <?php foreach($projectPlayer->getPages() as $page): ?>
-        <section class="slide span12 fx-horizontal" id="<?php echo $page->getId() ?>">
+        <section class="slide span12 fx-vertical" id="<?php echo $page->getId() ?>">
           <h2><?php echo $page->getTitle() ?></h2>
           <?php if($page->getDescription()): ?>
           <div class="description"><?php echo $page->getDescription() ?></div>

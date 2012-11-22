@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="1.0">
+  <name>8m3</name>
+  <summary>Structures lumineuses pour la fête des Lumières 2010 à LYON</summary>
+  <date>2010</date>
+  <logo></logo>
+
+  <tag>8 Décembre</tag>
+  <tag>Lumière</tag>
+
+  <author>
+    <name>Phillippe MORVAN</name>
+    <email>philippe.morvan3@orange.com</email>
+    <website>www.philippemorvan.com</website>
+    <social_link uri="http://www.facebook.com/media/set/?set=a.531464910215421.130111.531455693549676" />
+  </author>
+
+  <target>
+    <name>Ville de LYON</name>
+    <website>http://www.fetedeslumieres.lyon.fr/</website>
+  </target>
+
+  <page>
+    <title>8m3</title>
+    <description>8m3 est né au cours d’une résidence artistique dans le cadre de la fête des Lumières 2010. Philippe Morvan intervient à cette occasion dans une classe de 3ème du collège Lonchambeau, situé dans le 8e arrondissement de Lyon.
+A l’origine, il souhaite faire travailler les élèves sur les messages et les slogans lisibles dans les rues de nos villes. L’idée est d’explorer ce que ces messages, dans leur diversité, disent de nous et de nos sociétés. Que dit-on dans la rue ? Que lit-on dans la rue ? Et si on y lisait autre chose ? Le plasticien invite les collégiens à écrire ce qu’ils souhaitent.
+Les ateliers d’écriture deviennent fertiles quand Philippe Morvan propose aux élèves de construire leurs propres messages, à partir de mots ou morceaux de phrases qu’il a découpés dans les journaux. 
+Les élèves s’emparent de cette technique de cut-up, les slogans fusent :  
+« derniers coups d’essais pour obtenir ce que l’on veut », 
+« traitez la question humaine dans la tourmente », 
+« Quelqu’un avec du style peut sauver le dollar des regards fous », 
+« Intelligence virtuelle réalité haute définition », 
+« organiser une réunion pour l’ensemble des français », 
+« vous n’avez jamais senti l’amour protéger la nation », 
+« sous le volcan, le monde », 
+« prêt à tout pour l’amour », 
+« le bonheur est démoli par la République Française », 
+« si j’étais banquier je serais un imbécile mondial du genre parfait », 
+« j’ai mes choix pour goûter à la vie », 
+« un homme est jamais drôle quand il manque d’effervescence » 
+« envie de plus d’espace ? demandez jack » 
+« la plus belle musique de notre langue de Paris est une légende formidable un peu bizarre » 
+« chhhhhut ! écoutez la nouvelle génération vous allez vous sentir bien »  
+« plutôt qu’espérer les bonheur de la vie, il y a la cuisine française » 
+« le temps de couper un œil et écouter l’hiver » 
+« encore merci mais toujours pas de bonjour », 
+
+Chacun travaillera ensuite la calligraphie qui portera son message. L’œuvre finale est imaginée comme un phare, visible de loin, repère dont les lumières changeantes rythment la nuit. De près, 8m3 propose la lecture de ces citations, messages surréalistes et finalement très politiques d’une jeunesse à la société dont elle fait partie.
+
+En pratique
+8m3 mesure 4 mètres de haut sur une base carrée de 2 m de large, son envergure est de 3 mètres. Cubique, il est composé de 21 cases par face. Chaque case est équipée de sources lumineuses pilotées indépendamment. Les variations d’intensité, de mouvements lumineux, de rythme sont presque illimitées.
+Au final, 84 citations sont lisibles sur l’œuvre, une pour chaque case lumineuse. Chacune est inscrite dans une calligraphie qui lui est propre. Clin d’œil aux monuments de la culture française, hommage au travail de ses élèves : aux mots des jeunes gens, Philippe Morvan a mélangé des citations de Verlaine, Picasso, Sartre ou encore les shadoks. 
+
+Ailleurs, autrement
+8m3 étant entièrement démontable et transportable, Philippe Morvan a pu en proposer une nouvelle interprétation à l’occasion du salon de livre de Leipzig, en 2011. Les mots des élèves ont fait place à quatre citations du chef d’œuvre de la littérature classique allemande, le Faust de Goethe.
+La mort, la vanité, l’examen de soi : ces thèmes qui traversent l’œuvre inspirent à Philippe Morvan l’insertion d’un gimmick qui aura beaucoup de succès auprès du public allemand. Entre les cases lumineuses, il installe un « miroir magique » : en s’approchant, celui qui s’y mire voit son visage laisser la place à une tête de mort.</description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/images/8m3-01.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title></title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/images/8m3-02.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title></title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/images/8m3-03.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title></title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/images/8m3-04.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title></title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/images/8m3-05.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title></title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/images/8m3-06.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title></title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/images/8m3-07.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+</project>
+

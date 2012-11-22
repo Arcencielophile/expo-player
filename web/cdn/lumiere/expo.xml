@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<expo>
+  <theme>
+    <name>Lumière</name>
+    <author>Expo Team</author>
+    <url></url>
+    <display player="deckjs">
+      <css path="css/expo_display.css" />
+      <js path="js/expo_display.js" />
+    </display>
+    <remote>
+      <css path="css/expo_remote.css" />
+      <js path="js/expo_remote.js" />
+    </remote>
+  </theme>
+
+  <menu name="Expo">
+    <item name="Lumière" src="data/lumiere/huitmetrecube.xml"></item>
+    <item name="Cinéma" src="data/lumiere/cosmogole.xml"></item>
+    <item name="Scénographie" src="data/lumiere/hikarinoki.xml"></item>
+    <item name="Jardin" src=""></item>
+  </menu>
+</expo>
+

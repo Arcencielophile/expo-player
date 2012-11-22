@@ -2,6 +2,8 @@
 
 namespace expo\Factory;
 
+require_once __DIR__.'/../Tools/Tools.php';
+use expo\Tools\Tools;
 require_once __DIR__.'/../Model/Project.php';
 use expo\Model\Project;
 require_once __DIR__.'/../Model/Author.php';
@@ -31,10 +33,10 @@ abstract class ProjectFactory
     static public function initProject($src)
     {
         $xml = null;
-        if(self::isValidURL($src))
+        if(Tools::isValidURL($src))
             $xml = file_get_contents($src);
 
-        if(empty($xml) || !self::isValidXML($xml))
+        if(empty($xml) || !Tools::isValidXML($xml))
             return null;
 
         $xmlProject = new \SimpleXMLElement($xml);
@@ -81,15 +83,5 @@ abstract class ProjectFactory
         }
 
         return $project;
-    }
-
-    static function isValidURL($url)
-    {
-        return preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url);
-    }
-
-    static function isValidXML($xml)
-    {
-        return true;
     }
 }

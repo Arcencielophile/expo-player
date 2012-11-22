@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="1.0">
+  <name>Cosmogole</name>
+  <summary>Structures lumineuses pour la fête des lumière à LYON</summary>
+  <date>2009</date>
+  <logo></logo>
+
+  <tag>8 Décembre</tag>
+  <tag>Lumière</tag>
+
+  <author>
+    <name>Phillippe MORVAN</name>
+    <email>philippe.morvan3@orange.com</email>
+    <website>www.philippemorvan.com</website>
+    <social_link uri="http://www.facebook.com/media/set/?set=a.531464910215421.130111.531455693549676" />
+  </author>
+
+  <target>
+    <name>Ville de LYON</name>
+    <website>http://www.fetedeslumieres.lyon.fr/</website>
+  </target>
+
+  <page>
+    <title>Cosmogole</title>
+    <description>Installation sonore et lumineuse Cosmogole se compose d’une sphère centrale de 3 mètres de haut équipée de plus de 80 mètres de leds et recouverte de mille deux cents écailles d’un matériau pouvant alterner diffusion et réflexion de la lumière. Cette structure est entourée d’une soixantaine de globes lumineux de différents diamètres et hauteurs installés sur cinq cercles concentriques. La base de l’installation est entièrement tapissée de guirlandes lumineuses. Trois projecteurs de type Frenel viennent renforcer le dispositif d’éclairage. Cette installation de 14 mètres de diamètre, équipée au total de plus d’une centaine de sources d’éclairage pilotées chacune individuellement, agit comme un véritable orchestre lumineux jouant sur l’interactivité entre la lumière et la musique. Créé pour l’édition 2011 de la fête des lumières à Lyon le scénario lumière s’appuie sur une musique originale du musicien Shenyan Hou. Les différentes sources lumineuses (ampoules filament, leds, guirlandes, projecteurs) ainsi que les jeux de réflexion et de diffusion, d’apparition et de disparition de la structure centrale offre d’infinies possibilités de scénarisations. Cosmogole se revendique comme une machine à rêver laissant libre cours à l’imagination du public.</description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/images/cosmogole-01.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title></title>
+    <description>.</description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/images/cosmogole-02.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title></title>
+    <description>.</description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/images/cosmogole-03.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title></title>
+    <description>.</description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/images/cosmogole-04.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title></title>
+    <description>.</description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/images/cosmogole-05.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title></title>
+    <description>.</description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/images/cosmogole-06.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title></title>
+    <description>.</description>
+    <content>
+      <![CDATA[
+        <div class="background" style="background-image: url('cdn/lumiere/images/cosmogole-07.png');"></div>
+      ]]>
+    </content>
+  </page>
+
+</project>
+

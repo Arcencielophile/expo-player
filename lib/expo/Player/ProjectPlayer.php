@@ -54,7 +54,7 @@ abstract class ProjectPlayer
     /**
      * Set Theme
      *
-     * @param string $theme
+     * @param Theme $theme
      */
     public function setTheme($theme)
     {
@@ -64,7 +64,7 @@ abstract class ProjectPlayer
     /**
      * Get project theme
      *
-     * @return string
+     * @return Theme
      */
     public function getTheme()
     {
@@ -108,6 +108,10 @@ abstract class ProjectPlayer
         foreach($this->getCss() as $src) {
             printf('<link rel="stylesheet" type="text/css" href="%s" />%s', $src, PHP_EOL);
         }
+
+        foreach($this->getTheme()->getDisplayCss() as $src) {
+            printf('<link rel="stylesheet" type="text/css" href="%s" />%s', $src, PHP_EOL);
+        }
     }
 
     /**
@@ -118,6 +122,10 @@ abstract class ProjectPlayer
     public function loadJs()
     {
         foreach($this->getJs() as $src) {
+            printf('<script type="text/javascript" src="%s"></script>%s', $src, PHP_EOL);
+        }
+
+        foreach($this->getTheme()->getDisplayJs() as $src) {
             printf('<script type="text/javascript" src="%s"></script>%s', $src, PHP_EOL);
         }
     }

@@ -1,4 +1,5 @@
-<?php include_once 'config.inc.php'; ?>
+<?php require_once '../lib/expo/loader.php'; ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,9 +17,9 @@
         <script src="expojs/control/expo.ControledPresentation.js"></script>
         <script src="expojs/control/expo.ControlRemote.js"></script>
         <script src="expojs/control/expo.ControlManager.js"></script>
-        <script src="http://<?php echo $srv ?>:2890/socket.io/socket.io.js"></script>
+        <script src="http://<?php echo $expo_srv ?>:2890/socket.io/socket.io.js"></script>
         <script>
-            var socket = io.connect('http://<?php echo $srv ?>:2890/expo');
+            var socket = io.connect('http://<?php echo $expo_srv ?>:2890/expo');
             var owner = new Owner(null);
             var manager = new ControlManager(
                 socket,
