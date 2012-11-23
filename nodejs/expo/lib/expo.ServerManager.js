@@ -32,6 +32,26 @@ var ServerManager = module.exports = function() {
         return this.remotes[projectId];
     };
 
+    this.getRemoteByRoomName = function (roomName) {
+        console.log('ServerManager:getRemoteByRoomName('+roomName+')');
+        var projectId = roomName.split('#')[0];
+        console.log(projectId);
+        var goodRemote = null;
+        var i = 0;
+        while(i < this.remotes[projectId].length && goodRemote == null) {
+            var currentRemote = this.remotes[projectId][i];
+            console.log('currentRemote:');
+            console.log(currentRemote);
+            if(currentRemote.getRoomName() == roomName) {
+                goodRemote = currentRemote;
+            }
+            i++;
+        }
+        console.log('goodRemote:');
+        console.log(goodRemote);
+        return goodRemote;
+    };
+
     this.createRemote = function(projectId) {
         console.log('ServerManager:createRemote('+projectId+')');
         var remote = new Remote(this.generateRemoteId(projectId), projectId);
@@ -79,18 +99,15 @@ var ServerManager = module.exports = function() {
 
     this.addFollower = function(roomName, follower) {
         console.log('ServerManager:addFollower('+roomName+', '+follower+')');
-        console.log(roomName);
-        console.log(follower);
         if(this.followers[roomName] == undefined) {
             this.followers[roomName] = new Array();
         }
        this.followers[roomName].push(follower);
     };
 
-    this.removeFollower = function(roomName, follower) {
-        console.log('ServerManager:removeFollower('+roomName+', '+follower+')');
-        console.log(roomName);
-        console.log(follower);
+    this.removeFollower = function(roomName, followerId) {
+        console.log('ServerManager:removeFollower('+roomName+', '+followerId+')');
+        var follower = new Follower(followerId);
         if(this.followers[roomName] != undefined) {
             this.followers[roomName].splice(this.followers[roomName].indexOf(follower), 1);
         }

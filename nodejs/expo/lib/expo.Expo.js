@@ -22,6 +22,6 @@
 var ServerManager = require('./expo.ServerManager');
 
 exports.createInstance = function () {
-	console.log('create server instance');
-	return new ServerManager();
+    console.log('create server instance');
+    return new ServerManager();
 };

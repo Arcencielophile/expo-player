@@ -20,8 +20,8 @@
  * ========================================================== */
 
 var ServerFollower = module.exports = function (id) {
-	this.id = id;
-	
-	/* Getters */
-	this.getId = function() { return this.id; };
+    this.id = id;
+    
+    /* Getters */
+    this.getId = function() { return this.id; };
 };

@@ -20,12 +20,17 @@
  * ========================================================== */
 
 var ServerRemote = module.exports = function (id, projectId) {
-	this.id = id;
-	this.projectId = projectId;
-	this.roomName = this.projectId + '#' + this.id;
-	
-	/* Getters */
-	this.getId 			= function() { return this.id; };
-	this.getProjectId	= function() { return this.projectId; };
-	this.getRoomName 	= function() { return this.roomName; };
+    this.id = id;
+    this.projectId = projectId;
+    this.roomName = this.projectId + '#' + this.id;
+    this.position = 1;
+    
+    /* Getters */
+    this.getId          = function() { return this.id; };
+    this.getProjectId   = function() { return this.projectId; };
+    this.getRoomName    = function() { return this.roomName; };
+    this.getPosition    = function() { return this.position; };
+    
+    /* Setters */
+    this.setPosition    = function(position) { this.position = position; };
 };
