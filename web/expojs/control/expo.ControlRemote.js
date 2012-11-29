@@ -78,7 +78,7 @@ var ControlRemote = function (socket, position, status) {
             remote.updateFollowers(data);
         });
         
-        this.socket.emit('new_remote', {project_id: remote.presentation.getId()});
+        this.socket.emit('new_remote', {projectId: this.getPresentation().getId(), owner: this.getOwner()});
     }
     
       /* Getters */
@@ -89,7 +89,8 @@ var ControlRemote = function (socket, position, status) {
     this.getStatusWithKey   = function(key) { return this.status[key]; }
     this.getOwner           = function() { return this.owner; }
     this.getPresentation    = function() { return this.presentation; }
-    this.getFollowers   = function() { return this.followers; }
+    this.getFollowers       = function() { return this.followers; }
+    this.getUserName        = function() { return this.userName; }
 
     /* Setters */
     this.setId              = function(id) { this.id = id; }
@@ -98,7 +99,8 @@ var ControlRemote = function (socket, position, status) {
     this.setStatus          = function(status) { this.status = status; }
     this.setOwner           = function(owner) { this.owner = owner; }
     this.setPresentation    = function(presentation) { this.presentation = presentation; }
-    this.setFollowers   = function(followers) { this.followers = followers; }
+    this.setFollowers       = function(followers) { this.followers = followers; }
+    this.setUserName        = function(userName) { this.userName = userName; }
 
     // Methodes
     this.next = function() {
@@ -121,6 +123,13 @@ var ControlRemote = function (socket, position, status) {
             $('#current_page').html(this.position);
         }else {
             console.log('Missing id');
+        }
+    }
+
+    this.changeUserName = function(userName) {
+        if(this.getRoomName() != null) {
+            this.setUserName(userName);
+            this.socket.emit('change_user_name', {roomName:this.getRoomName(), userName: this.getUserName()});
         }
     }
     

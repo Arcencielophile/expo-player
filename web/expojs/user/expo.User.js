@@ -19,9 +19,14 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ========================================================== */
 
-var ServerFollower = module.exports = function (id) {
-    this.id = id;
-    
+var User = function(ip, email, name) {
+    this.ip = ip ? ip : '0.0.0.0';
+    this.email = email ? email : 'nobody';
+    this.name = name ? name : '';
+
     /* Getters */
-    this.getId = function() { return this.id; };
+    this.getEmail = function() { return this.email; };
+    this.getIp = function() { return this.ip; };
+    this.getName = function() { return this.name; };
 };
+

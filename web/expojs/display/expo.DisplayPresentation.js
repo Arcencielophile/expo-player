@@ -19,184 +19,256 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ========================================================== */
 
-var DisplayPresentation = function(socket, projectId, player) {
+var DisplayPresentation = function(socket, projectId, player, follower) {
 
-  this.socket = socket;
-  this.projectId = projectId;
-  this.player = player;
-  this.remotes = new Array();
-  this.follower = null;
-  this.state = null;
-  this.show = false;
+    this.socket = socket;
+    this.projectId = projectId;
+    this.player = player;
+    this.follower = follower;
+    this.remotes = new Array();
+    this.state = null;
+    this.show = false;
 
-  this.init = function() {
-    console.log('DisplayPresentation:init()');
-    this.player.init();
-    this.eventListeners();
-    this.remoteListeners();
-    this.setState('init');
-  };
-
-  /* Event Listeners */
-  this.eventListeners = function() {
-    console.log('DisplayPresentation:eventListeners()');
-    var presentation = this;
-
-    // space, enter, page down, right arrow, down arrow
-    var next = [13,32,34,39,40];
-    // backspace, page up, left arrow, up arrow
-    var previous = [8,33,37,38];
-    // escape
-    var listen = [27];
-
-    jQuery(document).keydown(function(event) {
-      if(jQuery.inArray(event.which, listen) >= 0) {
-        event.preventDefault();
-        presentation.setState('pending');
-      } else if(jQuery.inArray(event.which, next) >= 0) {
-        event.preventDefault();
-        presentation.next();
-      } else if(jQuery.inArray(event.which, previous) >= 0) {
-        event.preventDefault();
-        presentation.previous();
-      }
-    });
-
-    jQuery('#play').click(function(event) {
-      event.preventDefault();
-      presentation.play();
-    });
-
-    jQuery('#help').click(function(event) {
-      event.preventDefault();
-      presentation.help();
-    });
-
-    jQuery('#previous-page').click(function(event) {
-      event.preventDefault();
-      presentation.previous();
-    });
-
-    jQuery('#next-page').click(function(event) {
-      event.preventDefault();
-      presentation.next();
-    });
-
-    jQuery('#current-page + .content > ul > li > a').click(function(event) {
-      event.preventDefault();
-      presentation.goto(jQuery(this).html() - 1);
-    });
-
-    jQuery('#project-information > a').click(function(event) {
-      event.preventDefault();
-      presentation.showInfo(!presentation.isShowInfo());
-    });
-
-    jQuery('#current-page').toggleContent({'text-visible': '°°°'});
-
-    jQuery('#sync').toggleContent({
-        'text-visible': '°°°',
-        'on-visible': function() {
-            jQuery('#qrcode').qrcode({
-                width: 160,
-                height: 160,
-                text : jQuery('#qrcode').attr('href')
-            });
-        },
-        'on-hide': function() {
-            jQuery('#qrcode').empty();
+    this.init = function() {
+        console.log('DisplayPresentation:init()');
+        if(!this.follower) {
+            this.follower = new User();
         }
-    });
-  };
+        this.player.init();
+        this.eventListeners();
+        this.remoteListeners();
+        this.setState('init');
+    };
 
-  /* Remote Listeners */
-  this.remoteListeners = function() {
-    console.log('DisplayPresentation:remoteListeners()');
-    var presentation = this;
+    /* Event Listeners */
+    this.eventListeners = function() {
+        console.log('DisplayPresentation:eventListeners()');
+        var presentation = this;
 
-    this.socket.on('remote_list', function(remotes) {
-      presentation.updateRemotes(remotes);
-    });
+        // space, enter, page down, right arrow, down arrow
+        var next = [13,32,34,39,40];
+        // backspace, page up, left arrow, up arrow
+        var previous = [8,33,37,38];
+        // escape
+        var listen = [27];
 
-    this.socket.emit('list_remote', { project_id: this.getProjectId() });
-  };
+        jQuery(document).keydown(function(event) {
+            if(jQuery.inArray(event.which, listen) >= 0) {
+                event.preventDefault();
+                presentation.setState('pending');
+            } else if(jQuery.inArray(event.which, next) >= 0) {
+                event.preventDefault();
+                presentation.next();
+            } else if(jQuery.inArray(event.which, previous) >= 0) {
+                event.preventDefault();
+                presentation.previous();
+            }
+        });
 
-  /* Getters */
-  this.getProjectId = function() { return this.projectId; };
-  this.getRemotes   = function() { return this.remotes; };
-  this.getState     = function() { return this.state; };
-  this.isShowInfo   = function() { return this.show; };
+        jQuery('#play').click(function(event) {
+            event.preventDefault();
+            presentation.play();
+        });
 
-  /* Setters */
-  this.setShowInfo  = function(show) { this.show = show; };
-  this.setFollower  = function(follower) { this.follower = follower; };
+        jQuery('#help').click(function(event) {
+            event.preventDefault();
+            presentation.help();
+        });
 
-  this.setState     = function(state) {
-    if(this.state != state) {
-      jQuery('body').removeClass(this.state);
-      this.state = state;
-      jQuery('body').addClass(this.state);
+        jQuery('#previous-page').click(function(event) {
+            event.preventDefault();
+            presentation.previous();
+        });
+
+        jQuery('#next-page').click(function(event) {
+            event.preventDefault();
+            presentation.next();
+        });
+
+        jQuery('#current-page + .content > ul > li > a').click(function(event) {
+            event.preventDefault();
+            presentation.goto(jQuery(this).html() - 1);
+        });
+
+        jQuery('#project-information > a').click(function(event) {
+            event.preventDefault();
+            presentation.showInfo(!presentation.isShowInfo());
+        });
+
+        jQuery('#current-page').toggleContent({'text-visible': '°°°'});
+
+        jQuery('#sync').toggleContent({
+            'text-visible': '°°°',
+            'on-visible': function() {
+                jQuery('#qrcode').qrcode({
+                    width: 160,
+                    height: 160,
+                    text : jQuery('#qrcode').attr('href')
+                });
+            },
+            'on-hide': function() {
+                jQuery('#qrcode').empty();
+            }
+        });
+
+        jQuery('.join-live ul li a').live('click', function(event) {
+            event.preventDefault();
+            presentation.toggleRemote($(this).attr('href'));
+        });
+    };
+
+    /* Remote Listeners */
+    this.remoteListeners = function() {
+        console.log('DisplayPresentation:remoteListeners()');
+        var presentation = this;
+
+        this.socket.on('remote_list', function(remotes) {
+            presentation.updateRemotes(remotes);
+        });
+
+        this.socket.emit('list_remote', { project_id: this.getProjectId() });
+    };
+
+    /* Getters */
+    this.getProjectId        = function() { return this.projectId; };
+    this.getRemotes          = function() { return this.remotes; };
+    this.getFollower         = function() { return this.follower; };
+    this.getState            = function() { return this.state; };
+    this.isShowInfo          = function() { return this.show; };
+    this.getRemoteByRoomName = function(roomName) {
+        console.log('Display')
+        var i = 0;
+        while(i < this.remotes.length) {
+            var currentRemote = this.remotes[i];
+            console.log(currentRemote);
+            if(currentRemote.getRoomName() == roomName) {
+                return currentRemote;
+            }
+            i++;
+        }
+        return null;
+    };
+    
+    /* Setters */
+    this.setShowInfo  = function(show) { this.show = show; };
+    this.setFollower  = function(follower) { this.follower = follower; };
+    
+    this.setState     = function(state) {
+        if (this.state != state) {
+            jQuery('body').removeClass(this.state);
+            this.state = state;
+            jQuery('body').addClass(this.state);
+        }
+    };
+
+    /* Actions */
+    this.toggleRemote = function(roomName) {
+        console.log('DisplayManager:toggleRemote('+roomName+')');
+        remote = this.getRemoteByRoomName(roomName);
+        if (remote.isActive()) {
+            remote.disabled();
+        } else {
+            remote.enabled(this.socket);
+        } 
+    };
+
+    this.updateRemote = function(remoteData) {
+        var remote = this.getRemoteByRoomName(remoteData.roomName)
+        if(remote) {
+            remote.update(remoteData);
+        }else {
+            remote = new DisplayRemote(this, remoteData);
+            this.addRemote(remote);
+        }
+        remote.toKeep(true);
     }
-  };
 
-  /* Actions */
-  this.updateRemotes = function(remotes) {
-    this.remotes = remotes;
-    console.log('DisplayPresentation:updateRemotes('+remotes+')');
-    console.log(remotes);
-
-    if(remotes != undefined) {
-      var remoteList = jQuery('.join-live ul');
-      remoteList.empty();
-      for(i=0; i < remotes.length; i++) {
-        remoteList.append('<li><a href="'+remotes[i].roomName+'" title="Join '+remotes[i].roomName+'">Join #'+remotes[i].id+'</a></li>');
-      }
+    this.addRemote = function(remote) {
+        this.remotes.push(remote);
     }
-  };
 
-  this.play = function() {
-    console.log('DisplayPresentation:play()');
-    this.setState('pending');
-    //this.player.play();
-  };
+    this.removeRemote = function(remote) {
+        console.log('DisplayPresentation:removeRemote('+remote+')');
+        if(this.remotes != undefined) {
+            this.remotes.splice(this.remotes.indexOf(remote), 1);
+        }
+    };
 
-  this.help = function() {
-    console.log('DisplayPresentation:help()');
-    this.setState('init');
-    //this.player.help();
-  };
+    this.updateRemotes = function(remotesData) {  
+        if(remotesData != null) {
+            var toKeep = new Array();
+            for(i = 0; i < this.remotes.length; i++) {
+                var current = this.remotes[i];
+                current.toKeep(false);
+            }
 
-  this.next = function() {
-    console.log('DisplayPresentation:next()');
-    this.setState('pending');
-    this.player.next();
-  };
+            for(i = 0; i < remotesData.length; i++) {
+                this.updateRemote(remotesData[i]);
+            }
+    
+            for(i = 0; i < this.remotes.length; i++) {
+                var current = this.remotes[i];
+                if(!current.toKeep()) {
+                    this.removeRemote(current);
+                }
+            }
+        }else{
+            this.remotes = new Array();
+        } 
 
-  this.previous = function() {
-    console.log('DisplayPresentation:previous()');
-    this.setState('pending');
-    this.player.previous();
-  };
+        console.log('DisplayPresentation:updateRemotes('+this.remotes+')');
+        console.log(this.remotes);
 
-  this.goto = function(position) {
-    console.log('DisplayPresentation:goto('+position+')');
-    this.setState('pending');
-    this.player.goto(position);
-  };
+        var remoteList = jQuery('.join-live ul');
+        remoteList.empty();
+        for(i=0; i < this.remotes.length; i++) {
+            var remote = this.remotes[i];
+            remoteList.append('<li id="'+remote.getRoomName()+'"><a href="'+remote.getRoomName()+'" title="Join '+remote.getRoomName()+'">Join #'+remote.getId()+'</a></li>');
+        }
+    };
 
-  this.showInfo = function(show) {
-    console.log('DisplayPresentation:showInfo('+show+')');
-    var info = jQuery('#project-information');
+    this.play = function() {
+        console.log('DisplayPresentation:play()');
+        this.setState('pending');
+        //this.player.play();
+    };
 
-    if(show) {
-      this.setShowInfo(true);
-      info.addClass('visible');
-    } else {
-      this.setShowInfo(false);
-      info.removeClass('visible');
-    }
-  };
+    this.help = function() {
+        console.log('DisplayPresentation:help()');
+        this.setState('init');
+        //this.player.help();
+    };
 
+    this.next = function() {
+        console.log('DisplayPresentation:next()');
+        this.setState('pending');
+        this.player.next();
+    };
+
+    this.previous = function() {
+        console.log('DisplayPresentation:previous()');
+        this.setState('pending');
+        this.player.previous();
+    };
+
+    this.goto = function(position) {
+        console.log('DisplayPresentation:goto('+position+')');
+        this.setState('pending');
+        this.player.goto(position);
+    };
+
+    this.showInfo = function(show) {
+        console.log('DisplayPresentation:showInfo('+show+')');
+        var info = jQuery('#project-information');
+        
+        if(show) {
+            this.setShowInfo(true);
+            info.addClass('visible');
+        } else {
+            this.setShowInfo(false);
+            info.removeClass('visible');
+        }
+    };
 };
 
 /* Others */

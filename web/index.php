@@ -18,24 +18,17 @@
     <script type="text/javascript" src="/bootstrap/docs/assets/js/bootstrap.js"></script>
     <?php $projectPlayer->loadJs() ?>
 
-    <script type="text/javascript" src="/expojs/display/expo.ActiveDisplayRemote.js"></script>
-    <script type="text/javascript" src="/expojs/display/expo.DisplayManager.js"></script>
-    <script type="text/javascript" src="/expojs/display/expo.DisplayPresentation.js"></script>
     <script type="text/javascript" src="/expojs/display/expo.DisplayRemote.js"></script>
-    <script type="text/javascript" src="/expojs/display/expo.Follower.js"></script>
-    <script type="text/javascript" src="/expojs/display/expo.Owner.js"></script>
+    <script type="text/javascript" src="/expojs/display/expo.DisplayPresentation.js"></script>
+    <script type="text/javascript" src="/expojs/user/expo.User.js"></script>
     <script src="http://<?php echo $expo_srv ?>:2890/socket.io/socket.io.js"></script>
     <script>
       var socket = io.connect('http://<?php echo $expo_srv ?>:2890/expo');
       $(document).ready(function() {
         var projectId = '<?php echo $projectPlayer->getProject()->getIdentifier(); ?>';
         var player = <?php echo $projectPlayer->getJsPlayer(); ?>;
-        var displayManager = new DisplayManager(socket, projectId, player, null);
-
-        $('.join-live ul li a').live('click', function(event) {
-            event.preventDefault();
-            displayManager.setActiveRemote(new DisplayRemote($(this).attr('href')));
-        });
+        var displayPresentation = new DisplayPresentation(socket, projectId, player, null);
+        displayPresentation.init();
       });
     </script>
 

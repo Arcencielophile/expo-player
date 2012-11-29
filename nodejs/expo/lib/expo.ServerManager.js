@@ -20,7 +20,7 @@
  * ========================================================== */
 
 var Remote = require('./expo.ServerRemote');
-var Follower = require('./expo.ServerFollower');
+var User = require('./expo.ServerUser');
 
 var ServerManager = module.exports = function() {
     this.remotes = new Array();
@@ -35,26 +35,22 @@ var ServerManager = module.exports = function() {
     this.getRemoteByRoomName = function (roomName) {
         console.log('ServerManager:getRemoteByRoomName('+roomName+')');
         var projectId = roomName.split('#')[0];
-        console.log(projectId);
         var goodRemote = null;
         var i = 0;
         while(i < this.remotes[projectId].length && goodRemote == null) {
             var currentRemote = this.remotes[projectId][i];
-            console.log('currentRemote:');
-            console.log(currentRemote);
             if(currentRemote.getRoomName() == roomName) {
                 goodRemote = currentRemote;
             }
             i++;
         }
-        console.log('goodRemote:');
-        console.log(goodRemote);
         return goodRemote;
     };
 
-    this.createRemote = function(projectId) {
-        console.log('ServerManager:createRemote('+projectId+')');
-        var remote = new Remote(this.generateRemoteId(projectId), projectId);
+    this.createRemote = function(socketId, remoteData) {
+        console.log('ServerManager:createRemote('+socketId+', '+remoteData+')');
+        var user = new User(socketId, remoteData.owner.ip, remoteData.owner.email, remoteData.owner.name);
+        var remote = new Remote(this.generateRemoteId(remoteData.projectId), remoteData.projectId, user);
         this.addRemote(remote);
     
         return remote;
@@ -91,7 +87,7 @@ var ServerManager = module.exports = function() {
 
     this.createFollower = function(roomName, followerId) {
         console.log('ServerManager:createFollower('+roomName+', '+followerId+')');
-        var follower = new Follower(followerId);
+        var follower = new User(followerId);
         this.addFollower(roomName, follower);
     
         return follower;
@@ -107,7 +103,7 @@ var ServerManager = module.exports = function() {
 
     this.removeFollower = function(roomName, followerId) {
         console.log('ServerManager:removeFollower('+roomName+', '+followerId+')');
-        var follower = new Follower(followerId);
+        var follower = new User(followerId);
         if(this.followers[roomName] != undefined) {
             this.followers[roomName].splice(this.followers[roomName].indexOf(follower), 1);
         }

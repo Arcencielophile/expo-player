@@ -23,8 +23,7 @@ var ControlManager = function (socket, presentationId, position, pagesNumber, ow
     this.presentation = new ControledPresentation(presentationId, pagesNumber);
     this.remote = new ControlRemote(socket, position, null);
     
-    if(!owner) { this.remote.setOwner(new Owner()); } 
-    else { this.remote.setOwner(owner); }
+    this.remote.owner = owner ? owner : new User();
     
     this.remote.setPresentation(this.presentation);
     

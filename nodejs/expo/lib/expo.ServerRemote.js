@@ -19,18 +19,21 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ========================================================== */
 
-var ServerRemote = module.exports = function (id, projectId) {
+var ServerRemote = module.exports = function (id, projectId, user) {
     this.id = id;
     this.projectId = projectId;
     this.roomName = this.projectId + '#' + this.id;
     this.position = 1;
+    this.owner = user;
     
     /* Getters */
     this.getId          = function() { return this.id; };
     this.getProjectId   = function() { return this.projectId; };
     this.getRoomName    = function() { return this.roomName; };
     this.getPosition    = function() { return this.position; };
+    this.getUserName    = function() { return this.userName; };
     
     /* Setters */
     this.setPosition    = function(position) { this.position = position; };
+    this.setUserName    = function(userName) { this.userName = userName; };
 };

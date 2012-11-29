@@ -22,8 +22,10 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
     socket.on('new_remote', function (data) {
         console.log('remote-srv:new_remote('+data+')');
         //Add remote to project
-        var remote = expoServer.createRemote(data.project_id);
-        socket.set('remote', remote, function () {
+        var remote = expoServer.createRemote(socket.id, data);
+        console.log("DEBUG");
+        console.log(remote);
+        socket.set('roomName', remote.getRoomName(), function () {
             socket.emit('set_remote_id', remote);
             socket.join(remote.getRoomName());
             expoSockets.in(remote.getProjectId()).emit('remote_list', expoServer.getRemotesForProject(remote.getProjectId()));
@@ -38,6 +40,14 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
         expoSockets.in(remote.getRoomName()).emit('goto', {position: remote.getPosition()});
     });
 
+    socket.on('change_user_name', function (data) {
+        console.log('remote-srv:change_user_name('+data+')');
+        console.log(data);
+        var remote = expoServer.getRemoteByRoomName(data.roomName);
+        remote.setUserName(data.userName);
+        expoSockets.in(remote.getProjectId()).emit('remote_list', expoServer.getRemotesForProject(remote.getProjectId()));
+    });
+
     socket.on('new_follower', function (data) {
         console.log('remote-srv:new_follower('+data+')');
         console.log(data);
@@ -46,9 +56,9 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
         expoSockets.in(data.roomName).emit('update_followers', expoServer.getFollowersForRoomName(data.roomName));
         
         var remote = expoServer.getRemoteByRoomName(data.roomName);
-		if(remote != null) {
-			socket.emit('goto', {position: remote.getPosition()});
-		}
+        if(remote != null) {
+            socket.emit('goto', {position: remote.getPosition()});
+        }
     });
 
     socket.on('remove_follower', function (data) {
@@ -61,12 +71,14 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
 
     socket.on('disconnect', function () {
         console.log('remote-srv:disconnect()');
-        socket.get('remote', function(err, remote) {
-            console.log('remote-srv:disconnect() get remote('+remote+')');
-            console.log(remote);
-            if(remote != undefined) {
-                expoServer.removeRemote(remote);
-                expoSockets.in(remote.getProjectId()).emit('remote_list', expoServer.getRemotesForProject(remote.getProjectId()));
+        socket.get('roomName', function(err, roomName) {
+            console.log('remote-srv:disconnect() get roomName('+roomName+')');
+            if(roomName != null) {
+                var remote = expoServer.getRemoteByRoomName(roomName);
+                if(remote != undefined) {
+                    expoServer.removeRemote(remote);
+                    expoSockets.in(remote.getProjectId()).emit('remote_list', expoServer.getRemotesForProject(remote.getProjectId()));
+                }
             }
         })
     });

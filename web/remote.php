@@ -12,15 +12,14 @@
         <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 
-        <script src="expojs/control/expo.Owner.js"></script>
-        <script src="expojs/control/expo.Follower.js"></script>
+        <script src="expojs/user/expo.User.js"></script>
         <script src="expojs/control/expo.ControledPresentation.js"></script>
         <script src="expojs/control/expo.ControlRemote.js"></script>
         <script src="expojs/control/expo.ControlManager.js"></script>
         <script src="http://<?php echo $expo_srv ?>:2890/socket.io/socket.io.js"></script>
         <script>
             var socket = io.connect('http://<?php echo $expo_srv ?>:2890/expo');
-            var owner = new Owner(null);
+            var owner = new User();
             var manager = new ControlManager(
                 socket,
                 '<?php echo $_GET['project_id']; ?>',
@@ -29,17 +28,36 @@
                 owner
             );
 
-            $(document).ready(function(){ manager.init(); });
+            $(document).ready(function(){ 
+                
+                
+                manager.init();
+                
+                $('a[href="#name"] .ui-btn-text').click(function(){
+                    
+                });
+                
+                $('#saveName').bind('click', function(event, data) {
+                    alert('save');
+                });
+            });
+            
+            var test = 0;
+            $(document).bind('pagechange', function(event, data) {
+                if(data.toPage[0].id == 'name') {
+                    console.log('name');
+                    $('#inputUserName').attr('value', manager.remote.userName);
+                }
+            });
         </script>
     </head>
 
     <body>
 
-        <div data-role="page">
+        <div data-role="page" id="home">
 
             <div data-role="header" data-position="fixed">
                 <h1><?php echo $_GET['project_name'] ?></h1>
-                <a href="#options" data-icon="gear" class="ui-btn-right">Options</a>
             </div>
 
             <div data-role="content">
@@ -87,11 +105,31 @@
             <div data-role="footer" data-position="fixed">
                 <a href="#info" data-role="button" data-icon="info">info</a>
                 <a href="#followers" data-role="button" data-icon="star">0</a>
-                <a href="#name" data-role="button">#0</a>
+                <a href="#name" data-role="button" data-icon="gear" data-transition="slideup">#0</a>
             </div>
 
         </div>
-
+        <div data-role="page" id="name">
+            <div data-role="header" data-position="fixed">
+                <h1>Enter your name</h1>
+            </div>
+            <div data-role="content">
+                <form>
+                    <div data-role="fieldcontain" class="ui-hide-label">
+                        <label for="username">Username:</label>
+                        <input type="text" name="username" id="username" value="" placeholder="#0"/>
+                    </div>
+                </form>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a href="#home" data-role="button" data-transition="slidedown">Cancel</a>
+                    </div>
+                    <div class="ui-block-b">
+                        <a href="#home" data-role="button" data-transition="slidedown" id="saveName">Save</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
 
