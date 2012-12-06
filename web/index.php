@@ -116,6 +116,17 @@
           </a>
           <?php endforeach; ?>
         </div>
+        <div class="tags">
+          <ul>
+            <?php foreach($projectPlayer->getProject()->getTags() as $tag): ?>
+            <li>
+              <a href="#<?php echo $tag; ?>" title="<?php echo $tag; ?>" target="_blank">
+                <?php echo $tag; ?>
+              </a>
+            </li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
         <div class="actions">
           <ul>
             <li>
