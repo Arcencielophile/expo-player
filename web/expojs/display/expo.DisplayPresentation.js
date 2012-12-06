@@ -146,13 +146,14 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             }
             i++;
         }
+
         return null;
     };
-    
+
     /* Setters */
     this.setShowInfo  = function(show) { this.show = show; };
     this.setFollower  = function(follower) { this.follower = follower; };
-    
+
     this.setState     = function(state) {
         if (this.state != state) {
             jQuery('body').removeClass(this.state);
@@ -169,14 +170,14 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             remote.disabled();
         } else {
             remote.enabled(this.socket);
-        } 
+        }
     };
 
     this.updateRemote = function(remoteData) {
         var remote = this.getRemoteByRoomName(remoteData.roomName)
         if(remote) {
             remote.update(remoteData);
-        }else {
+        } else {
             remote = new DisplayRemote(this, remoteData);
             this.addRemote(remote);
         }
@@ -194,7 +195,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         }
     };
 
-    this.updateRemotes = function(remotesData) {  
+    this.updateRemotes = function(remotesData) {
         if(remotesData != null) {
             var toKeep = new Array();
             for(i = 0; i < this.remotes.length; i++) {
@@ -205,16 +206,16 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             for(i = 0; i < remotesData.length; i++) {
                 this.updateRemote(remotesData[i]);
             }
-    
+
             for(i = 0; i < this.remotes.length; i++) {
                 var current = this.remotes[i];
                 if(!current.toKeep()) {
                     this.removeRemote(current);
                 }
             }
-        }else{
+        } else {
             this.remotes = new Array();
-        } 
+        }
 
         console.log('DisplayPresentation:updateRemotes('+this.remotes+')');
         console.log(this.remotes);
@@ -276,7 +277,6 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
 };
 
 /* Others */
-
 function getElementPath(element)
 {
     return "//" + jQuery(element).parents().andSelf().map(function() {
