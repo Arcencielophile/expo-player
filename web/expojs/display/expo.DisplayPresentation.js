@@ -115,12 +115,13 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             event.preventDefault();
             presentation.toggleRemote($(this).attr('href'));
         });
-		jQuery('.join-live input[name="username"]').change(function(event){
-			var name = jQuery('.join-live input[name="username"]').val();
-			console.log('change username('+name+')');
-			presentation.getFollower().name = name;
-			presentation.socket.emit('update_follower', { project_id: presentation.getProjectId(), user: presentation.getFollower()});
-		}); 
+
+        jQuery('.join-live input[name="username"]').change(function(event){
+            var name = jQuery('.join-live input[name="username"]').val();
+            console.log('change username('+name+')');
+            presentation.getFollower().name = name;
+            presentation.socket.emit('update_follower', { project_id: presentation.getProjectId(), user: presentation.getFollower()});
+        });
     };
 
     /* Remote Listeners */
@@ -172,10 +173,13 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
     this.toggleRemote = function(roomName) {
         console.log('DisplayManager:toggleRemote('+roomName+')');
         remote = this.getRemoteByRoomName(roomName);
+        console.log('#'+roomName);
         if (remote.isActive()) {
             remote.disabled();
+            jQuery('#'+roomName).removeClass('active');
         } else {
             remote.enabled(this.socket);
+            jQuery('#'+roomName).addClass('active');
         }
     };
 
@@ -230,11 +234,11 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         remoteList.empty();
         for(i=0; i < this.remotes.length; i++) {
             var remote = this.remotes[i];
-			var username = '';
-			if(remote.owner) {
-				username = remote.owner.name;
-			}
-            remoteList.append('<li id="'+remote.getRoomName()+'"><a href="'+remote.getRoomName()+'" title="Join '+remote.getRoomName()+'">Join '+username+'#'+remote.getId()+'</a></li>');
+            var username = '';
+            if(remote.owner) {
+                username = remote.owner.name;
+            }
+            remoteList.append('<li id="'+remote.getRoomName()+'"><a href="'+remote.getRoomName()+'" title="Join '+username+'#'+remote.getId()+'">Join '+username+'#'+remote.getId()+'</a></li>');
         }
     };
 

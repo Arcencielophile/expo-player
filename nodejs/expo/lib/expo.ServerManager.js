@@ -25,7 +25,7 @@ var User = require('./expo.ServerUser');
 var ServerManager = module.exports = function() {
     this.remotes = new Array();
     this.followers = new Array();
-    
+
     this.getRemotesForProject = function (projectId) {
         console.log('ServerManager:getRemotesForProject('+projectId+')');
         
@@ -34,7 +34,7 @@ var ServerManager = module.exports = function() {
 
     this.getRemoteByRoomName = function (roomName) {
         console.log('ServerManager:getRemoteByRoomName('+roomName+')');
-        var projectId = roomName.split('#')[0];
+        var projectId = roomName.split('_')[0];
         var goodRemote = null;
         var i = 0;
         while(i < this.remotes[projectId].length && goodRemote == null) {
@@ -52,10 +52,10 @@ var ServerManager = module.exports = function() {
         var user = new User(socketId, remoteData.owner.ip, remoteData.owner.email, remoteData.owner.name);
         var remote = new Remote(this.generateRemoteId(remoteData.projectId), remoteData.projectId, user);
         this.addRemote(remote);
-    
+
         return remote;
     };
-    
+
     this.addRemote = function(remote) {
         console.log('ServerManager:addRemote('+remote+')');
         console.log(remote);
@@ -72,7 +72,7 @@ var ServerManager = module.exports = function() {
             this.remotes[remote.getProjectId()].splice(this.remotes[remote.getProjectId()].indexOf(remote), 1);
         }
     };
-    
+
     this.generateRemoteId = function(projectId) {
         console.log('ServerManager:generateRemoteId('+projectId+')');
         var remoteId = 1;
@@ -89,7 +89,7 @@ var ServerManager = module.exports = function() {
         console.log('ServerManager:createFollower('+roomName+', '+followerId+')');
         var follower = new User(followerId);
         this.addFollower(roomName, follower);
-    
+
         return follower;
     };
 
@@ -111,27 +111,27 @@ var ServerManager = module.exports = function() {
 
     this.getFollowersForRoomName = function (roomName) {
         console.log('ServerManager:getFollowersForRoomName('+roomName+')');
-        
+
         return this.followers[roomName];
     };
 
     this.getFollowerForRoomNameById = function (roomName, followerId) {
         console.log('ServerManager:getFollowersForRoomName('+roomName+')');
-        
-		var i = 0;
+
+        var i = 0;
         while(i < this.followers[roomName].length) {
-			var follower = this.followers[roomName];
-			if(follower.id == followerId) {
-				return follower;
-			}
-		}
-		
+            var follower = this.followers[roomName];
+            if(follower.id == followerId) {
+                return follower;
+            }
+        }
+
         return null;
     };
 
-	this.updateFollower = function (follower, followerData) {
-		follower.email = followerData.email;
-		follower.ip = followerData.ip;
-		follower.name = followerData.name;
-	}
-};  
+    this.updateFollower = function (follower, followerData) {
+        follower.email = followerData.email;
+        follower.ip = followerData.ip;
+        follower.name = followerData.name;
+    }
+};

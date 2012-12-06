@@ -336,7 +336,7 @@ body > nav > ul > li a {
 }
 
 #sync+.content > div > div {
-  padding: 10px;
+  padding: 5px 10px;
 }
 
 #sync+.content > div > div p {
@@ -358,6 +358,23 @@ body > nav > ul > li a {
 
 #sync+.content > div > .join-live > ul {
   overflow: auto;
+  margin-bottom: 10px;
+}
+
+#sync+.content > div > .join-live > ul > li {
+  margin: 0 5px;
+}
+
+#sync+.content > div > .join-live > ul > li > a {
+  display: block;
+  text-indent: -9999px;
+  width: 15px;
+  height: 35px;
+  background: url('../images/remotes.png') -15px 0 no-repeat;
+}
+
+#sync+.content > div > .join-live > ul > li.active > a {
+  background: url('../images/remotes.png') 0 0 no-repeat;
 }
 
 #sync+.content > div > .join-live input {
