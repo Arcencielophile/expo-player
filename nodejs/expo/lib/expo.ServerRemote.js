@@ -31,9 +31,9 @@ var ServerRemote = module.exports = function (id, projectId, user) {
     this.getProjectId   = function() { return this.projectId; };
     this.getRoomName    = function() { return this.roomName; };
     this.getPosition    = function() { return this.position; };
-    this.getUserName    = function() { return this.userName; };
+    this.getOwner    = function() { return this.owner; };
     
     /* Setters */
     this.setPosition    = function(position) { this.position = position; };
-    this.setUserName    = function(userName) { this.userName = userName; };
+    this.setOwner    = function(owner) { this.owner = owner; };
 };
