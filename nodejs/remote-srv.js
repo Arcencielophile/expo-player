@@ -40,12 +40,32 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
         expoSockets.in(remote.getRoomName()).emit('goto', {position: remote.getPosition()});
     });
 
-    socket.on('update_user', function (data) {
-        console.log('remote-srv:update_user('+data+')');
+    socket.on('update_owner', function (data) {
+        console.log('remote-srv:update_owner('+data+')');
         console.log(data);
         var remote = expoServer.getRemoteByRoomName(data.roomName);
         remote.setOwner(data.user);
         expoSockets.in(remote.getProjectId()).emit('remote_list', expoServer.getRemotesForProject(remote.getProjectId()));
+    });
+
+	socket.on('update_follower', function (data) {
+        console.log('remote-srv:update_follower('+data+')');
+        console.log(data);
+        var remotes = expoServer.getRemotesForProject(data.project_id);
+		var i = 0;
+		if(remotes) {
+			while(i < remotes.length) {
+				var remote = remotes[i];
+				console.log(remote);
+				var follower = expoServer.getFollowerForRoomNameById(remote.roomName, socket.id);
+				if(follower) {
+					console.log(follower);
+					expoServer.updateFollower(follower, data.user);
+					console.log('send to '+remote.roomName);
+					expoSockets.in(remote.roomName).emit('update_followers', expoServer.getFollowersForRoomName(remote.roomName));
+				}
+			}
+		}
     });
 
     socket.on('new_follower', function (data) {
@@ -53,6 +73,7 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
         console.log(data);
         socket.join(data.roomName);
         var follower = expoServer.createFollower(data.roomName, socket.id);
+		expoServer.updateFollower(follower, data.follower);
         expoSockets.in(data.roomName).emit('update_followers', expoServer.getFollowersForRoomName(data.roomName));
         
         var remote = expoServer.getRemoteByRoomName(data.roomName);

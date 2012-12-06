@@ -115,6 +115,12 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             event.preventDefault();
             presentation.toggleRemote($(this).attr('href'));
         });
+		jQuery('.join-live input[name="username"]').change(function(event){
+			var name = jQuery('.join-live input[name="username"]').val();
+			console.log('change username('+name+')');
+			presentation.getFollower().name = name;
+			presentation.socket.emit('update_follower', { project_id: presentation.getProjectId(), user: presentation.getFollower()});
+		}); 
     };
 
     /* Remote Listeners */

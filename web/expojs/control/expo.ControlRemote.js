@@ -143,7 +143,7 @@ var ControlRemote = function (socket, position, status) {
 
 	this.updateUser = function() {
 		console.log('ControlRemote:updateUser');
-        this.socket.emit('update_user', {roomName:this.getRoomName(), user: this.getOwner()});
+        this.socket.emit('update_owner', {roomName:this.getRoomName(), user: this.getOwner()});
 	}
 
 	this.updateUserNameLabel = function() {
@@ -178,5 +178,13 @@ var ControlRemote = function (socket, position, status) {
         console.log('ControlRemote:updateFollowers('+this.followers+')');
         console.log(this.followers);
         $('a[href="#followers"] .ui-btn-text').empty().append(this.followers.length);
+		
+		var list = '';
+		for(i=0; i < this.followers.length; i++) {
+			var follower = this.followers[i];
+			list += '<li><h3 class="ui-li-heading">'+follower.name+'</h3><p class="ui-li-desc">'+follower.ip+'</p></li>';
+		}
+		$('#followersList').html(list);
+		
     }
 }

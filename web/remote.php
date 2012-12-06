@@ -83,7 +83,7 @@
 
             <div data-role="footer" data-position="fixed">
                 <a href="#info" data-role="button" data-icon="info">info</a>
-                <a href="#followers" data-role="button" data-icon="star">0</a>
+                <a href="#followers" data-role="button" data-icon="star" data-transition="slideup">0</a>
                 <a href="#user" id="nameButton" data-role="button" data-icon="gear" data-transition="slideup">#0</a>
             </div>
 
@@ -105,6 +105,21 @@
                     </div>
                     <div class="ui-block-b">
                         <a href="#" data-role="button" data-transition="slidedown" id="saveName">Save</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div data-role="page" id="followers">
+            <div data-role="header" data-position="fixed">
+                <h1>They follow you</h1>
+            </div>
+            <div data-role="content">
+                <ul id="followersList" data-role="listview">
+				</ul>
+				<br/>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a href="#home" data-role="button" data-transition="slidedown">Back</a>
                     </div>
                 </div>
             </div>
