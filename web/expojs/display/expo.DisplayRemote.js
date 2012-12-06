@@ -30,7 +30,6 @@ var DisplayRemote = function(presentation, remoteData) {
     this.position = remoteData.position;
     this.owner = new User(remoteData.owner.ip, remoteData.owner.email, remoteData.owner.name);
 
-
     /* Getters */
     this.getId            = function() { return this.id; };
     this.getPresentation  = function() { return this.presentation; };
@@ -79,7 +78,7 @@ var DisplayRemote = function(presentation, remoteData) {
         this.addRemoteListeners();
         this.socket.emit('new_follower', {roomName: this.getRoomName(), follower: this.getFollower()});
     };
-  
+
     this.disabled = function() {
         console.log('DisplayRemote:disabled()');
         if(this.isActive()) {
@@ -103,11 +102,6 @@ var DisplayRemote = function(presentation, remoteData) {
         console.log('DisplayRemote:goto('+position+')');
         this.position = position;
         this.presentation.goto(position);
-    };
-
-    this.updateStatus = function(status) {
-        console.log('DisplayRemote:updateStatus('+status+')');
-        this.status = status;
     };
 
     /* Other */
