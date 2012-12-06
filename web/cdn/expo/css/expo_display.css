@@ -360,6 +360,10 @@ body > nav > ul > li a {
   overflow: auto;
 }
 
+#sync+.content > div > .join-live input {
+  width: 186px;
+}
+
 /* Buttons images */
 
 /* next button */

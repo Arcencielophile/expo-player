@@ -155,9 +155,11 @@
                 <a href="http://<?php echo $expo_srv ?>/remote.php?<?php echo $projectPlayer->getRemoteParameters(); ?>" target="_blank" id="qrcode"></a>
               </div>
               <div class="join-live">
-                <label>Join a live presentation</label>
+                <label>Join presentation</label>
                 <ul>
                 </ul>
+                <label>As username</label>
+                <input type="text" name="username" placeholder="anonymous" />
               </div>
             </div>
           </div>
