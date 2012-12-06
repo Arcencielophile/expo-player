@@ -232,6 +232,20 @@ a:focus {
   font-size: 10px;
 }
 
+#project-information > .content > .tags > ul {
+  margin: 0;
+}
+
+#project-information > .content > .tags > ul > li {
+  list-style-type: none;
+  float: left;
+  margin: 0 8px 0 0;
+}
+
+#project-information > .content > .tags > ul > li > a {
+  font-size: 10px;
+}
+
 #project-information > .content > .actions {
   background: none;
   border: none;
@@ -305,7 +319,6 @@ body > nav > ul > li a {
 }
 
 /* Current page content */
-
 #current-page+.content {
   right: -64px;
   width: 226px;
@@ -313,7 +326,6 @@ body > nav > ul > li a {
 }
 
 /* Sync content */
-
 #sync+.content {
   right: -80px;
   width: 220px;
@@ -348,8 +360,27 @@ body > nav > ul > li a {
   overflow: auto;
 }
 
-/* Container */
+/* Buttons images */
 
+/* next button */
+#next-page {
+  background-image: url('../images/next.svg');
+  text-indent: -9999px;
+}
+
+/* previous button */
+#previous-page {
+  background-image: url('../images/previous.svg');
+  text-indent: -9999px;
+}
+
+/* sync button */
+#sync {
+  background-image: url('../images/sync.svg');
+  text-indent: -9999px;
+}
+
+/* Container */
 #container {}
 
 #container section {
