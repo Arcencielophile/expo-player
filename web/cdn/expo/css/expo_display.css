@@ -366,22 +366,106 @@ body > nav > ul > li a {
 
 /* Buttons images */
 
-/* next button */
-#next-page {
-  background-image: url('../images/next.svg');
-  text-indent: -9999px;
-}
-
 /* previous button */
 #previous-page {
-  background-image: url('../images/previous.svg');
+  background-image: url('../images/glyphicons.png');
   text-indent: -9999px;
+}
+.init #previous-page,
+.pending  *:hover > #previous-page {
+  background-position: 0 0;
+}
+.pending #previous-page,
+.init  *:hover > #previous-page {
+  background-position: 0 -84px;
+}
+
+/* next button */
+#next-page {
+  background-image: url('../images/glyphicons.png');
+  text-indent: -9999px;
+}
+.init #next-page,
+.pending *:hover > #next-page {
+  background-position: -84px 0;
+}
+.pending #next-page,
+.init *:hover > #next-page {
+  background-position: -84px -84px;
 }
 
 /* sync button */
 #sync {
-  background-image: url('../images/sync.svg');
+  background-image: url('../images/glyphicons.png');
   text-indent: -9999px;
+}
+.init #sync,
+.pending .visible > #sync,
+.pending *:hover > #sync {
+  background-position: -168px 0;
+}
+.pending #sync,
+.init .visible > #sync,
+.init *:hover > #sync {
+  background-position: -168px -84px;
+}
+
+/* more */
+#more {
+  background-image: url('../images/glyphicons.png');
+  text-indent: -9999px;
+}
+.init #more,
+.pending .visible > #more,
+.pending *:hover > #more {
+  background-position: -504px 0;
+}
+.pending #more,
+.init .visible > #more,
+.init *:hover > #more {
+  background-position: -504px -84px;
+}
+
+/* help */
+#help {
+  background-image: url('../images/glyphicons.png');
+  text-indent: -9999px;
+}
+.init #help,
+.pending *:hover > #help {
+  background-position: -252px 0;
+}
+.pending #help,
+.init *:hover > #help {
+  background-position: -252px -84px;
+}
+
+/* home */
+#home {
+  background-image: url('../images/glyphicons.png');
+  text-indent: -9999px;
+}
+.init #home,
+.pending *:hover > #home {
+  background-position: -336px 0;
+}
+.pending #home,
+.init *:hover > #home {
+  background-position: -336px -84px;
+}
+
+/* share */
+#share {
+  background-image: url('../images/glyphicons.png');
+  text-indent: -9999px;
+}
+.init #share,
+.pending *:hover > #share {
+  background-position: -420px 0;
+}
+.pending #share,
+.init *:hover > #share {
+  background-position: -420px -84px;
 }
 
 /* Container */

@@ -84,7 +84,7 @@
     </div>
 
     <div id="project-information">
-      <a href="#project-information" class="button more" title="Project Information">+</a>
+      <a id="more" href="#project-information" class="button" title="Project Information">+</a>
       <div class="content">
         <div class="title">
           <h1><?php echo $projectPlayer->getProject()->getName(); ?></h1>
