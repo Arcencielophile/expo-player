@@ -16,7 +16,7 @@ class ImpressjsPlayer extends ProjectPlayer
         return array();
     }
 
-    public function getJs($position = null)
+    public function getJs()
     {
         return array();
     }
