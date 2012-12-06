@@ -114,4 +114,24 @@ var ServerManager = module.exports = function() {
         
         return this.followers[roomName];
     };
+
+    this.getFollowerForRoomNameById = function (roomName, followerId) {
+        console.log('ServerManager:getFollowersForRoomName('+roomName+')');
+        
+		var i = 0;
+        while(i < this.followers[roomName].length) {
+			var follower = this.followers[roomName];
+			if(follower.id == followerId) {
+				return follower;
+			}
+		}
+		
+        return null;
+    };
+
+	this.updateFollower = function (follower, followerData) {
+		follower.email = followerData.email;
+		follower.ip = followerData.ip;
+		follower.name = followerData.name;
+	}
 };  
