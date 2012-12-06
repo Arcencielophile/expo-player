@@ -1,5 +1,4 @@
 <?php require_once '../lib/expo/loader.php'; ?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,33 +28,13 @@
             );
 
             $(document).ready(function(){ 
-                
-                
                 manager.init();
-                
-                $('a[href="#name"] .ui-btn-text').click(function(){
-                    
-                });
-                
-                $('#saveName').bind('click', function(event, data) {
-                    alert('save');
-                });
-            });
-            
-            var test = 0;
-            $(document).bind('pagechange', function(event, data) {
-                if(data.toPage[0].id == 'name') {
-                    console.log('name');
-                    $('#inputUserName').attr('value', manager.remote.userName);
-                }
             });
         </script>
     </head>
 
     <body>
-
         <div data-role="page" id="home">
-
             <div data-role="header" data-position="fixed">
                 <h1><?php echo $_GET['project_name'] ?></h1>
             </div>
@@ -105,11 +84,11 @@
             <div data-role="footer" data-position="fixed">
                 <a href="#info" data-role="button" data-icon="info">info</a>
                 <a href="#followers" data-role="button" data-icon="star">0</a>
-                <a href="#name" data-role="button" data-icon="gear" data-transition="slideup">#0</a>
+                <a href="#user" id="nameButton" data-role="button" data-icon="gear" data-transition="slideup">#0</a>
             </div>
 
         </div>
-        <div data-role="page" id="name">
+        <div data-role="page" id="user">
             <div data-role="header" data-position="fixed">
                 <h1>Enter your name</h1>
             </div>
@@ -117,7 +96,7 @@
                 <form>
                     <div data-role="fieldcontain" class="ui-hide-label">
                         <label for="username">Username:</label>
-                        <input type="text" name="username" id="username" value="" placeholder="#0"/>
+                        <input type="text" name="username" id="username" value="" placeholder="#0" maxlength="16"/>
                     </div>
                 </form>
                 <div class="ui-grid-a">
@@ -125,7 +104,7 @@
                         <a href="#home" data-role="button" data-transition="slidedown">Cancel</a>
                     </div>
                     <div class="ui-block-b">
-                        <a href="#home" data-role="button" data-transition="slidedown" id="saveName">Save</a>
+                        <a href="#" data-role="button" data-transition="slidedown" id="saveName">Save</a>
                     </div>
                 </div>
             </div>

@@ -26,7 +26,12 @@ var User = function(ip, email, name) {
 
     /* Getters */
     this.getEmail = function() { return this.email; };
-    this.getIp = function() { return this.ip; };
-    this.getName = function() { return this.name; };
+    this.getIp    = function() { return this.ip; };
+    this.getName  = function() { return this.name; };
+
+	/* Setters */
+	this.setEmail = function(email) { this.email = email; };
+	this.setIp = function(ip) { this.ip = ip; };
+	this.setName = function(name) { this.name = name; };
 };
 

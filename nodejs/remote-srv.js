@@ -40,11 +40,11 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
         expoSockets.in(remote.getRoomName()).emit('goto', {position: remote.getPosition()});
     });
 
-    socket.on('change_user_name', function (data) {
-        console.log('remote-srv:change_user_name('+data+')');
+    socket.on('update_user', function (data) {
+        console.log('remote-srv:update_user('+data+')');
         console.log(data);
         var remote = expoServer.getRemoteByRoomName(data.roomName);
-        remote.setUserName(data.userName);
+        remote.setOwner(data.user);
         expoSockets.in(remote.getProjectId()).emit('remote_list', expoServer.getRemotesForProject(remote.getProjectId()));
     });
 

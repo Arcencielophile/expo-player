@@ -27,7 +27,7 @@ var ControlRemote = function (socket, position, status) {
     if(!status) { this.status = {'showInfo': 0} } 
     else { this.status = status; }
     
-    this.owner = null;
+    this.owner = new User();
     this.presentation = null;
     this.followers = new Array();
     this.socket = socket;
@@ -37,7 +37,7 @@ var ControlRemote = function (socket, position, status) {
         this.eventListeners();
         this.remoteListeners();
     }
-    
+
     /* Event Listeners */
     this.eventListeners = function() {
         var remote = this;
@@ -56,9 +56,18 @@ var ControlRemote = function (socket, position, status) {
             event.preventDefault();
             remote.next();
         });
+		$('#saveName').bind('click', function(event) {
+			remote.changeUserName($('#username').val());
+			$.mobile.changePage('#home');
+        });
         $(document).bind('swipeleft', function(event) {
             event.preventDefault();
             remote.next();
+        });
+		$(document).bind('pagechange', function(event, data) {
+            if(data.toPage[0].id == 'user' || data.toPage[0].id == 'home') {
+				remote.updateUserNameLabel();   
+            }
         });
     }
     
@@ -71,7 +80,7 @@ var ControlRemote = function (socket, position, status) {
             console.log(data);
             remote.setId(data.id);
             remote.setRoomName(data.roomName);
-            $('a[href="#name"] .ui-btn-text').empty().append('#'+remote.getId());
+            remote.updateUserNameLabel();
         });
         
         this.socket.on('update_followers', function (data) {
@@ -90,7 +99,6 @@ var ControlRemote = function (socket, position, status) {
     this.getOwner           = function() { return this.owner; }
     this.getPresentation    = function() { return this.presentation; }
     this.getFollowers       = function() { return this.followers; }
-    this.getUserName        = function() { return this.userName; }
 
     /* Setters */
     this.setId              = function(id) { this.id = id; }
@@ -100,7 +108,6 @@ var ControlRemote = function (socket, position, status) {
     this.setOwner           = function(owner) { this.owner = owner; }
     this.setPresentation    = function(presentation) { this.presentation = presentation; }
     this.setFollowers       = function(followers) { this.followers = followers; }
-    this.setUserName        = function(userName) { this.userName = userName; }
 
     // Methodes
     this.next = function() {
@@ -128,10 +135,27 @@ var ControlRemote = function (socket, position, status) {
 
     this.changeUserName = function(userName) {
         if(this.getRoomName() != null) {
-            this.setUserName(userName);
-            this.socket.emit('change_user_name', {roomName:this.getRoomName(), userName: this.getUserName()});
+			console.log('ControlRemote:changeUserName');
+            this.getOwner().setName(userName);
+			this.updateUser();
         }
     }
+
+	this.updateUser = function() {
+		console.log('ControlRemote:updateUser');
+        this.socket.emit('update_user', {roomName:this.getRoomName(), user: this.getOwner()});
+	}
+
+	this.updateUserNameLabel = function() {
+		console.log('ControlRemote:updateUserNameLabel');
+		if($('#username')) {
+			$('#username').attr('value', remote.getOwner().getName());
+			$('#username').attr('placeholder', '#'+remote.getId());
+		}
+		if($('a[href="#user"] .ui-btn-text')) {
+			$('a[href="#user"] .ui-btn-text').empty().append(manager.remote.getOwner().getName()+'#'+manager.remote.getId());
+		}
+	}
     
     /*
     this.updateStatus = function(status) {  

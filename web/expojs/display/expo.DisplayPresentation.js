@@ -223,7 +223,11 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         remoteList.empty();
         for(i=0; i < this.remotes.length; i++) {
             var remote = this.remotes[i];
-            remoteList.append('<li id="'+remote.getRoomName()+'"><a href="'+remote.getRoomName()+'" title="Join '+remote.getRoomName()+'">Join #'+remote.getId()+'</a></li>');
+			var username = '';
+			if(remote.owner) {
+				username = remote.owner.name;
+			}
+            remoteList.append('<li id="'+remote.getRoomName()+'"><a href="'+remote.getRoomName()+'" title="Join '+remote.getRoomName()+'">Join '+username+'#'+remote.getId()+'</a></li>');
         }
     };
 
