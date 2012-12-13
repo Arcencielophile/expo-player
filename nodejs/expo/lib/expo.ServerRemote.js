@@ -22,17 +22,17 @@
 var ServerRemote = module.exports = function (id, projectId, user) {
     this.id = id;
     this.projectId = projectId;
-    this.roomName = this.projectId + '_' + this.id;
+    this.roomName = this.projectId + '#' + this.id;
     this.position = 1;
     this.owner = user;
-
+    
     /* Getters */
     this.getId          = function() { return this.id; };
     this.getProjectId   = function() { return this.projectId; };
     this.getRoomName    = function() { return this.roomName; };
     this.getPosition    = function() { return this.position; };
     this.getOwner    = function() { return this.owner; };
-
+    
     /* Setters */
     this.setPosition    = function(position) { this.position = position; };
     this.setOwner    = function(owner) { this.owner = owner; };

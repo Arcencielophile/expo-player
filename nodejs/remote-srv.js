@@ -48,32 +48,35 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
         expoSockets.in(remote.getProjectId()).emit('remote_list', expoServer.getRemotesForProject(remote.getProjectId()));
     });
 
-	socket.on('update_follower', function (data) {
+    socket.on('update_follower', function (data) {
         console.log('remote-srv:update_follower('+data+')');
         console.log(data);
         var remotes = expoServer.getRemotesForProject(data.project_id);
-		var i = 0;
-		if(remotes) {
-			while(i < remotes.length) {
-				var remote = remotes[i];
-				console.log(remote);
-				var follower = expoServer.getFollowerForRoomNameById(remote.roomName, socket.id);
-				if(follower) {
-					console.log(follower);
-					expoServer.updateFollower(follower, data.user);
-					console.log('send to '+remote.roomName);
-					expoSockets.in(remote.roomName).emit('update_followers', expoServer.getFollowersForRoomName(remote.roomName));
-				}
-			}
-		}
+        var i = 0;
+        if(remotes) {
+            while(i < remotes.length) {
+                var remote = remotes[i];
+                console.log(remote);
+                var follower = expoServer.getFollowerForRoomNameById(remote.roomName, socket.id);
+                if(follower) {
+                    console.log(follower);
+                    expoServer.updateFollower(follower, data.user);
+                    follower.ip = socket.handshake.address.address;
+                    console.log('send to '+remote.roomName);
+                    expoSockets.in(remote.roomName).emit('update_followers', expoServer.getFollowersForRoomName(remote.roomName));
+                }
+                i++
+            }
+        }
     });
 
     socket.on('new_follower', function (data) {
         console.log('remote-srv:new_follower('+data+')');
         console.log(data);
         socket.join(data.roomName);
-        var follower = expoServer.createFollower(data.roomName, socket.id);
-		expoServer.updateFollower(follower, data.follower);
+        var follower = expoServer.createFollower(data.roomName, socket.id, socket.handshake.address.address);
+        data.follower.ip = socket.handshake.address.address;
+        expoServer.updateFollower(follower, data.follower);
         expoSockets.in(data.roomName).emit('update_followers', expoServer.getFollowersForRoomName(data.roomName));
         
         var remote = expoServer.getRemoteByRoomName(data.roomName);
@@ -92,6 +95,7 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
 
     socket.on('disconnect', function () {
         console.log('remote-srv:disconnect()');
+        //If was a remote
         socket.get('roomName', function(err, roomName) {
             console.log('remote-srv:disconnect() get roomName('+roomName+')');
             if(roomName != null) {
@@ -101,7 +105,16 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
                     expoSockets.in(remote.getProjectId()).emit('remote_list', expoServer.getRemotesForProject(remote.getProjectId()));
                 }
             }
-        })
+        });
+        //If was a display
+        var roomNames = expoServer.getRoomNamesForFollowerId(socket.id);
+        var i = 0;
+        while(i < roomNames.length) {
+            currentRoomName = roomNames[i];
+            var follower = expoServer.removeFollower(currentRoomName, socket.id);
+            expoSockets.in(currentRoomName).emit('update_followers', expoServer.getFollowersForRoomName(currentRoomName));
+            i++;
+        }
     });
 
 /*
