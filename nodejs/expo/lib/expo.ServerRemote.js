@@ -22,7 +22,7 @@
 var ServerRemote = module.exports = function (id, projectId, user) {
     this.id = id;
     this.projectId = projectId;
-    this.roomName = this.projectId + '#' + this.id;
+    this.roomName = this.projectId + '_' + this.id;
     this.position = 1;
     this.owner = user;
     
