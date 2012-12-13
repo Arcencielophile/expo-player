@@ -34,7 +34,7 @@ var ServerManager = module.exports = function() {
 
     this.getRemoteByRoomName = function (roomName) {
         console.log('ServerManager:getRemoteByRoomName('+roomName+')');
-        var projectId = roomName.split('#')[0];
+        var projectId = roomName.split('_')[0];
         var goodRemote = null;
         var i = 0;
         while(i < this.remotes[projectId].length && goodRemote == null) {
