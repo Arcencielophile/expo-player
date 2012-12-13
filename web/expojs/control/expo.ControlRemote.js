@@ -19,19 +19,16 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ========================================================== */
 
-var ControlRemote = function (socket, position, status) {
+var ControlRemote = function (socket, position) {
     this.id = 0;
     this.roomName = null;
     this.position = position;
-    
-    if(!status) { this.status = {'showInfo': 0} } 
-    else { this.status = status; }
-    
+
     this.owner = new User();
     this.presentation = null;
     this.followers = new Array();
     this.socket = socket;
-    
+
     this.init = function() {
         console.log('ControlRemote:init()');
         this.eventListeners();
@@ -56,21 +53,24 @@ var ControlRemote = function (socket, position, status) {
             event.preventDefault();
             remote.next();
         });
-		$('#saveName').bind('click', function(event) {
-			remote.changeUserName($('#username').val());
-			$.mobile.changePage('#home');
+
+        $('#saveName').bind('click', function(event) {
+            remote.changeUserName($('#username').val());
+            $.mobile.changePage('#home');
         });
+
         $(document).bind('swipeleft', function(event) {
             event.preventDefault();
             remote.next();
         });
-		$(document).bind('pagechange', function(event, data) {
+
+        $(document).bind('pagechange', function(event, data) {
             if(data.toPage[0].id == 'user' || data.toPage[0].id == 'home') {
-				remote.updateUserNameLabel();   
+                remote.updateUserNameLabel();   
             }
         });
     }
-    
+
     this.remoteListeners = function() {
         console.log('ControlRemote:remoteListeners()');
         remote = this;
@@ -86,11 +86,11 @@ var ControlRemote = function (socket, position, status) {
         this.socket.on('update_followers', function (data) {
             remote.updateFollowers(data);
         });
-        
+
         this.socket.emit('new_remote', {projectId: this.getPresentation().getId(), owner: this.getOwner()});
     }
-    
-      /* Getters */
+
+    /* Getters */
     this.getId              = function() { return this.id; }
     this.getRoomName        = function() { return this.roomName; }
     this.getPosition        = function() { return this.position; }
@@ -122,41 +122,41 @@ var ControlRemote = function (socket, position, status) {
         if(this.getRoomName() != null) {
             if(position < 1) position = 1;
             if(position > this.presentation.getPagesNumber()) position = this.presentation.getPagesNumber();
-            
+
             this.position = position;
             console.log('ControlRemote:goto position: '+this.position+' for roomName: '+this.getRoomName());
             this.socket.emit('goto', {roomName:this.getRoomName(), position: this.position});
-            
+
             $('#current_page').html(this.position);
-        }else {
+        } else {
             console.log('Missing id');
         }
     }
 
     this.changeUserName = function(userName) {
         if(this.getRoomName() != null) {
-			console.log('ControlRemote:changeUserName');
+            console.log('ControlRemote:changeUserName');
             this.getOwner().setName(userName);
-			this.updateUser();
+            this.updateUser();
         }
     }
 
-	this.updateUser = function() {
-		console.log('ControlRemote:updateUser');
+    this.updateUser = function() {
+        console.log('ControlRemote:updateUser');
         this.socket.emit('update_owner', {roomName:this.getRoomName(), user: this.getOwner()});
-	}
+    }
 
-	this.updateUserNameLabel = function() {
-		console.log('ControlRemote:updateUserNameLabel');
-		if($('#username')) {
-			$('#username').attr('value', remote.getOwner().getName());
-			$('#username').attr('placeholder', '#'+remote.getId());
-		}
-		if($('a[href="#user"] .ui-btn-text')) {
-			$('a[href="#user"] .ui-btn-text').empty().append(manager.remote.getOwner().getName()+'#'+manager.remote.getId());
-		}
-	}
-    
+    this.updateUserNameLabel = function() {
+        console.log('ControlRemote:updateUserNameLabel');
+        if($('#username')) {
+            $('#username').attr('value', remote.getOwner().getName());
+            $('#username').attr('placeholder', '#'+remote.getId());
+        }
+        if($('a[href="#user"] .ui-btn-text')) {
+            $('a[href="#user"] .ui-btn-text').empty().append(manager.remote.getOwner().getName()+'#'+manager.remote.getId());
+        }
+    }
+
     /*
     this.updateStatus = function(status) {  
         console.log('ControlRemote:updateStatus('+status+')');
@@ -167,24 +167,23 @@ var ControlRemote = function (socket, position, status) {
         }
     }
     */
-    
+
     this.updateStatusWithKey = function(key, value) {
         this.status[key] = value;
         this.updateStatus(this.status);
     }
-    
+
     this.updateFollowers = function(followers) {
         this.followers = followers;
         console.log('ControlRemote:updateFollowers('+this.followers+')');
         console.log(this.followers);
         $('a[href="#followers"] .ui-btn-text').empty().append(this.followers.length);
-		
-		var list = '';
-		for(i=0; i < this.followers.length; i++) {
-			var follower = this.followers[i];
-			list += '<li><h3 class="ui-li-heading">'+follower.name+'</h3><p class="ui-li-desc">'+follower.ip+'</p></li>';
-		}
-		$('#followersList').html(list);
-		
+
+        var list = '';
+        for(i=0; i < this.followers.length; i++) {
+            var follower = this.followers[i];
+            list += '<li><h3 class="ui-li-heading">'+follower.name+'</h3><p class="ui-li-desc">'+follower.ip+'</p></li>';
+        }
+        $('#followersList').html(list);
     }
 }

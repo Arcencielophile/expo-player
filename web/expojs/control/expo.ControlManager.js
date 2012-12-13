@@ -19,22 +19,21 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ========================================================== */
 
-var ControlManager = function (socket, presentationId, position, pagesNumber, owner) {  
+var ControlManager = function (socket, presentationId, position, pagesNumber, owner) {
     this.presentation = new ControledPresentation(presentationId, pagesNumber);
     this.remote = new ControlRemote(socket, position, null);
-    
     this.remote.owner = owner ? owner : new User();
-    
     this.remote.setPresentation(this.presentation);
-    
+
     this.init = function () {
         this.remote.init();
     }
-    
+
     /* Actions */
     this.next = function () {
         if(!this.remote) {
             console.log('No remote initialize');
+
             return false;
         }
         this.remote.next();
@@ -43,21 +42,23 @@ var ControlManager = function (socket, presentationId, position, pagesNumber, ow
     this.previous = function () {
         if(!this.remote) {
             console.log('No remote initialize');
+
             return false;
         }
         this.remote.previous();
     }
-    
+
     this.toggleInfo = function () {
         if(!this.remote) {
             console.log('No remote initialize');
+
             return false;
         }
         //{'showInfo': 0}
         var showInfo = this.remote.getStatusWithKey("showInfo");
         if(showInfo == 0) {
             showInfo = 1;
-        }else {
+        } else {
             showInfo = 0;
         }
         this.remote.updateStatusWithKey("showInfo", showInfo);
