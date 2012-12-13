@@ -159,7 +159,7 @@
                 <ul>
                 </ul>
                 <label>As username</label>
-                <input type="text" name="username" placeholder="anonymous" />
+                <input id="usernameInput" type="text" name="username" placeholder="anonymous" />
               </div>
             </div>
           </div>

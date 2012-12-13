@@ -33,6 +33,11 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         console.log('DisplayPresentation:init()');
         if(!this.follower) {
             this.follower = new User();
+            var username = $('#usernameInput').attr('value');
+            if(!username) {
+                username = $('#usernameInput').attr('placeholder');
+            }
+            this.follower.name = username;
         }
         this.player.init();
         this.eventListeners();
