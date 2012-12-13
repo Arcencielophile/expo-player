@@ -238,7 +238,8 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             if(remote.owner) {
                 username = remote.owner.name;
             }
-            remoteList.append('<li id="'+remote.getRoomName()+'"><a href="'+remote.getRoomName()+'" title="Join '+username+'#'+remote.getId()+'">Join '+username+'#'+remote.getId()+'</a></li>');
+            var active = remote.isActive() ? ' class="active"' : '';
+            remoteList.append('<li id="'+remote.getRoomName()+'"'+active+'><a href="'+remote.getRoomName()+'" title="Join '+username+'#'+remote.getId()+'">Join '+username+'#'+remote.getId()+'</a></li>');
         }
     };
 
