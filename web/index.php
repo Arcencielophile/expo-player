@@ -36,6 +36,7 @@
 
   <body>
 
+  <?php /*
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -61,6 +62,7 @@
         </div>
       </div>
     </div>
+  */ ?>
 
     <div id="player-information">
       <div class="row-fluid">
@@ -101,8 +103,10 @@
             </a>
             <ul class="social_networks">
               <?php foreach($author->getSocialLinks() as $sl): ?>
-              <li>
-                <a href="<?php echo $sl ?>" target="_blank"><?php echo $sl ?></a>
+              <li class="<?php echo $sl->guessSocialNetworkName(); ?>">
+                <a href="<?php echo $sl->getUri() ?>" target="_blank">
+                  <?php echo $sl->guessSocialNetworkName() ?>
+                </a>
               </li>
               <?php endforeach; ?>
             </ul>
@@ -190,7 +194,7 @@
     <article id="container" class="row-fluid">
 
       <?php foreach($projectPlayer->getPages() as $page): ?>
-        <section class="slide span12 fx-vertical" id="<?php echo $page->getId() ?>">
+        <section class="slide span12 fx-horizontal" id="<?php echo $page->getId() ?>">
           <h2><?php echo $page->getTitle() ?></h2>
           <?php if($page->getDescription()): ?>
           <div class="description"><?php echo $page->getDescription() ?></div>
