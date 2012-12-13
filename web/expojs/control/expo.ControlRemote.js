@@ -29,6 +29,8 @@ var ControlRemote = function (socket, position) {
     this.followers = new Array();
     this.socket = socket;
 
+    this.showInfo = false;
+
     this.init = function() {
         console.log('ControlRemote:init()');
         this.eventListeners();
@@ -47,7 +49,7 @@ var ControlRemote = function (socket, position) {
             remote.previous();
         });
 
-        $('a[href="#info"]').click(function(event) { manager.toggleInfo(); });
+        $('a[href="#info"]').click(function(event) { remote.toggleInfo(); });
 
         $('a[href="#next"]').click(function(event) {
             event.preventDefault();
@@ -99,6 +101,7 @@ var ControlRemote = function (socket, position) {
     this.getOwner           = function() { return this.owner; }
     this.getPresentation    = function() { return this.presentation; }
     this.getFollowers       = function() { return this.followers; }
+    this.isShowInfo         = function() { return this.showInfo; }
 
     /* Setters */
     this.setId              = function(id) { this.id = id; }
@@ -108,6 +111,7 @@ var ControlRemote = function (socket, position) {
     this.setOwner           = function(owner) { this.owner = owner; }
     this.setPresentation    = function(presentation) { this.presentation = presentation; }
     this.setFollowers       = function(followers) { this.followers = followers; }
+    this.setShowInfo        = function(showInfo) { this.showInfo = showInfo; }
 
     // Methodes
     this.next = function() {
@@ -132,6 +136,12 @@ var ControlRemote = function (socket, position) {
             console.log('Missing id');
         }
     }
+    
+    this.toggleInfo = function() {
+        console.log('ControlRemote:toggleInfo');
+        this.setShowInfo(!this.isShowInfo());
+        this.socket.emit('update_show_info', {roomName:this.getRoomName(), showInfo:this.isShowInfo()});
+    }
 
     this.changeUserName = function(userName) {
         if(this.getRoomName() != null) {
@@ -155,22 +165,6 @@ var ControlRemote = function (socket, position) {
         if($('a[href="#user"] .ui-btn-text')) {
             $('a[href="#user"] .ui-btn-text').empty().append(manager.remote.getOwner().getName()+'#'+manager.remote.getId());
         }
-    }
-
-    /*
-    this.updateStatus = function(status) {  
-        console.log('ControlRemote:updateStatus('+status+')');
-        console.log(status);
-        this.status = status;
-        if(this.getId() != -1) {
-            this.socket.emit('update_status', {project_id: this.presentation.getId(), remote_id: this.getId(), status: this.status});
-        }
-    }
-    */
-
-    this.updateStatusWithKey = function(key, value) {
-        this.status[key] = value;
-        this.updateStatus(this.status);
     }
 
     this.updateFollowers = function(followers) {

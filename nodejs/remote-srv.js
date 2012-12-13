@@ -40,6 +40,14 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
         expoSockets.in(remote.getRoomName()).emit('goto', {position: remote.getPosition()});
     });
 
+    socket.on('update_show_info', function (data) {
+        console.log('remote-srv:update_show_info('+data+')');
+        console.log(data);
+        var remote = expoServer.getRemoteByRoomName(data.roomName);
+        remote.setShowInfo(data.showInfo);
+        expoSockets.in(remote.getRoomName()).emit('update_show_info', {showInfo: remote.isShowInfo()});
+    });
+
     socket.on('update_owner', function (data) {
         console.log('remote-srv:update_owner('+data+')');
         console.log(data);
@@ -82,6 +90,7 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
         var remote = expoServer.getRemoteByRoomName(data.roomName);
         if(remote != null) {
             socket.emit('goto', {position: remote.getPosition()});
+			socket.emit('update_show_info', {showInfo: remote.isShowInfo()});
         }
     });
 
@@ -116,13 +125,4 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
             i++;
         }
     });
-
-/*
-  // Ajouter fonction update_status
-  socket.on('update_status', function (data) {
-    console.log('remote-srv:update_status :');
-    console.log(data);
-        display.emit('updateStatus['+data.project_id+'#'+data.remote_id+']', data.status);
-    });
-*/
 });

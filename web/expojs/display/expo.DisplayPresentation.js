@@ -134,9 +134,8 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         console.log('DisplayPresentation:remoteListeners()');
         var presentation = this;
 
-        this.socket.on('remote_list', function(remotes) {
-            presentation.updateRemotes(remotes);
-        });
+        this.socket.on('remote_list',               function(remotes) { presentation.updateRemotes(remotes); });
+        this.socket.on('update_show_info',          function(data) { presentation.showInfo(data.showInfo); });
 
         this.socket.emit('list_remote', { project_id: this.getProjectId() });
     };

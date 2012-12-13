@@ -24,9 +24,9 @@ var ControledPresentation = function (id, pagesNumber) {
     this.pagesNumber = pagesNumber;
     
     /* Getters */
-    this.getId = function() { return this.id; }
-    this.getPagesNumber = function() { return this.pagesNumber; }
+    this.getId = function() { return this.id; };
+    this.getPagesNumber = function() { return this.pagesNumber; };
     
     /* Setters */
-    this.setPagesNumber = function(pagesNumber) { this.pagesNumber = pagesNumber; }
+    this.setPagesNumber = function(pagesNumber) { this.pagesNumber = pagesNumber; };
 }
