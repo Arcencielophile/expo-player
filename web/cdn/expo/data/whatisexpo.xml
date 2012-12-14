@@ -7,7 +7,7 @@
   ]]>
   </summary>
   <date>2012</date>
-  <logo>http://www.expo-project.org</logo>
+  <logo>cdn/expo/favicon.png</logo>
 
   <tag>Internet</tag>
   <tag>WEB</tag>
@@ -40,13 +40,14 @@
     <name>Vincent SAISSET</name>
     <email>vincent.saisset@gmail.com</email>
     <social_link uri="https://twitter.com/vaince" />
+    <social_link uri="https://github.com/Vaince" />
   </author>
   <author>
     <name>Gabriel BONDAZ</name>
     <email>gabriel.bondaz@idci-consulting.fr</email>
     <website>http://www.idci-consulting.fr</website>
-    <social_link uri="https://www.facebook.com/gabriel.bondaz" />
     <social_link uri="http://twitter.com/idciconsulting" />
+    <social_link uri="https://github.com/IDCI-Consulting" />
   </author>
 
   <target>
@@ -55,6 +56,8 @@
   </target>
 
   <page>
+    <title></title>
+    <description></description>
     <content>
       <![CDATA[
           <img src="cdn/expo/images/logo.png" alt="expo" title="expo" style="margin-top:100px;" />

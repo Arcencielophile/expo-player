@@ -61,17 +61,6 @@ abstract class ThemeLoader
             $theme->addRemoteJs(html_entity_decode($attrs['path'], ENT_NOQUOTES, 'UTF-8'));
         }
 
-        $menuAttrs = $xmlTheme->menu->attributes();
-        $theme->setMenuName(html_entity_decode($menuAttrs['name'], ENT_NOQUOTES, 'UTF-8'));
-
-        foreach($xmlTheme->menu->item as $item) {
-            $itemAttrs = $item->attributes();
-            $theme->addMenuItem(
-                html_entity_decode($itemAttrs['name'], ENT_NOQUOTES, 'UTF-8'),
-                html_entity_decode($itemAttrs['src'], ENT_NOQUOTES, 'UTF-8')
-            );
-        }
-
         return $theme;
     }
 }

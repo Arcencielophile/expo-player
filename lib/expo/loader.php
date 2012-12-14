@@ -12,10 +12,8 @@
 
   $theme = ThemeLoader::load($expo_theme_src);
 
-  $data = isset($_GET['data']) ? urldecode($_GET['data']) : $theme->getDefaultData();
-
   $projectPlayer = ProjectPlayerFactory::createPlayer(
-      ProjectFactory::initProject($data),
+      ProjectFactory::initProject($expo_data_src),
       $theme
   );
 

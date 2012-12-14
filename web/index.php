@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title><?php echo $projectPlayer->getProject()->getName(); ?> - expo</title>
 
+    <link rel="icon" type="image/png" href="<?php echo $projectPlayer->getProject()->getLogo(); ?>" />
     <link rel="stylesheet" type="text/css" href="/bootstrap/docs/assets/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/bootstrap/docs/assets/css/bootstrap-responsive.css" />
     <?php $projectPlayer->loadCss() ?>
@@ -35,34 +36,6 @@
   </head>
 
   <body>
-
-  <?php /*
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <!-- Be sure to leave the brand out there if you want it shown -->
-          <a class="brand" href="#"><span class="logo"></span><?php echo $projectPlayer->getTheme()->getMenuName() ?></a>
-          <!-- Everything you want hidden at 940px or less, place within here -->
-          <div class="nav-collapse collapse">
-            <ul class="nav nav-pills">
-              <?php foreach($projectPlayer->getTheme()->getMenuItems() as $name => $data): ?>
-              <li class="active">
-                <a href="?data=<?php echo urlencode($data) ?>" title="<?php echo $name ?>"><?php echo $name ?></a>
-              </li>
-              <?php endforeach; ?>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  */ ?>
 
     <div id="player-information">
       <div class="row-fluid">

@@ -31,10 +31,6 @@ class Theme
 
     protected $remote_js;
 
-    protected $menu_name;
-
-    protected $menu_items;
-
     public function __construct($data)
     {
         $this->setData($data);
@@ -42,7 +38,6 @@ class Theme
         $this->setDisplayJs(array());
         $this->setRemoteCss(array());
         $this->setRemoteJs(array());
-        $this->setMenuItems(array());
     }
 
     /***********
@@ -137,26 +132,6 @@ class Theme
     public function getRemoteJs()
     {
         return $this->remote_js;
-    }
-
-    /**
-     * Get theme menu name
-     *
-     * @return string
-     */
-    public function getMenuName()
-    {
-        return $this->menu_name;
-    }
-
-    /**
-     * Get theme menu items
-     *
-     * @return array
-     */
-    public function getMenuItems()
-    {
-        return $this->menu_items;
     }
 
     /***********
@@ -281,32 +256,6 @@ class Theme
     }
 
     /**
-     * Get theme menu name
-     *
-     * @param string $menu_name
-     * @return Theme
-     */
-    public function setMenuName($menu_name)
-    {
-        $this->menu_name = $menu_name;
-
-        return $this;
-    }
-
-    /**
-     * Get theme menu items
-     *
-     * @param array $menu_items
-     * @return Theme
-     */
-    public function setMenuItems($menu_items)
-    {
-        $this->menu_items = $menu_items;
-
-        return $this;
-    }
-
-    /**
      * Add display css
      *
      * @param string $src
@@ -347,17 +296,6 @@ class Theme
     }
 
     /**
-     * Add menu items
-     *
-     * @param string $name
-     * @param string $src
-     */
-    public function addMenuItem($name, $src)
-    {
-        $this->menu_items[$name] = $this->getAssetAbsolutePath($src);
-    }
-
-    /**
      * Get theme path
      *
      * @return string
@@ -381,18 +319,5 @@ class Theme
     public function getAssetAbsolutePath($asset)
     {
         return sprintf('%s/%s', $this->getThemePath(), $asset);
-    }
-
-    /**
-     * Get default data
-     *
-     * @param string $src
-     */
-    public function getDefaultData()
-    {
-        $items = $this->getMenuItems();
-        $values = array_values($items);
-
-        return $values[0];
     }
 }
