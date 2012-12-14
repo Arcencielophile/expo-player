@@ -61,7 +61,6 @@ var ServerManager = module.exports = function() {
     
     this.addRemote = function(remote) {
         console.log('ServerManager:addRemote('+remote+')');
-        console.log(remote);
         if(this.remotes[remote.getProjectId()] == undefined) {
             this.remotes[remote.getProjectId()] = new Array();
         }
@@ -70,10 +69,11 @@ var ServerManager = module.exports = function() {
 
     this.removeRemote = function(remote) {
         console.log('ServerManager:removeRemote('+remote+')');
-        console.log(remote);
         if(this.remotes[remote.getProjectId()] != undefined) {
             this.remotes[remote.getProjectId()].splice(this.remotes[remote.getProjectId()].indexOf(remote), 1);
         }
+		
+		delete this.followers[remote.getRoomName()];
     };
     
     this.generateRemoteId = function(projectId) {
@@ -84,7 +84,6 @@ var ServerManager = module.exports = function() {
             remoteId = this.remotes[projectId][this.remotes[projectId].length - 1].getId();
             remoteId++;
         }
-        console.log(this.remotes);
 
         return remoteId;
     };
@@ -99,7 +98,6 @@ var ServerManager = module.exports = function() {
 
     this.addFollower = function(roomName, follower) {
         console.log('ServerManager:addFollower('+roomName+', '+follower+')');
-        console.log(follower);
         if(this.followers[roomName] == undefined) {
             this.followers[roomName] = new Array();
         }
@@ -142,8 +140,6 @@ var ServerManager = module.exports = function() {
         
         var roomNames = new Array();
         for(roomName in this.followers) {
-            console.log('ServerManager:roomName : '+roomName);
-            
             var i = 0;
 			if(this.followers[roomName] != undefined) {
 				while(i < this.followers[roomName].length) {
@@ -158,8 +154,6 @@ var ServerManager = module.exports = function() {
 			}
         }
         
-        console.log('ServerManager:END getRoomNamesForFollowerId('+followerId+')');
-        console.log(roomNames);
         return roomNames;
     }
 

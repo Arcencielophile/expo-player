@@ -33,54 +33,10 @@ var ControlRemote = function (socket, position) {
 
     this.init = function() {
         console.log('ControlRemote:init()');
-        this.eventListeners();
         this.remoteListeners();
     }
 
     /* Event Listeners */
-    this.eventListeners = function() {
-        var remote = this;
-        $('a[href="#previous"]').click(function(event) {
-            event.preventDefault();
-            remote.previous();
-        });
-        $(document).bind('swiperight', function(event) {
-            event.preventDefault();
-            remote.previous();
-        });
-
-        $('a[href="#info"]').click(function(event) { remote.toggleInfo(); });
-
-        $('a[href="#next"]').click(function(event) {
-            event.preventDefault();
-            remote.next();
-        });
-		
-		$('#username').bind('keypress', function(event) {
-			if(event.keyCode == 13) {
-				event.preventDefault();
-				remote.changeUserName($('#username').val());
-	            $.mobile.changePage('#home');	
-			}
-		});
-		
-        $('#saveName').bind('click', function(event) {
-            remote.changeUserName($('#username').val());
-            $.mobile.changePage('#home');
-        });
-
-        $(document).bind('swipeleft', function(event) {
-            event.preventDefault();
-            remote.next();
-        });
-
-        $(document).bind('pagechange', function(event, data) {
-            if(data.toPage[0].id == 'user' || data.toPage[0].id == 'home') {
-                remote.updateUserNameLabel();   
-            }
-        });
-    }
-
     this.remoteListeners = function() {
         console.log('ControlRemote:remoteListeners()');
         remote = this;
@@ -180,7 +136,8 @@ var ControlRemote = function (socket, position) {
         console.log('ControlRemote:updateFollowers('+this.followers+')');
         console.log(this.followers);
         $('a[href="#followers"] .ui-btn-text').empty().append(this.followers.length);
-
+		
+		$('#followersList').empty();
         var list = '';
         for(i=0; i < this.followers.length; i++) {
             var follower = this.followers[i];

@@ -92,7 +92,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
 
         jQuery('#current-page + .content > ul > li > a').click(function(event) {
             event.preventDefault();
-            presentation.goto(jQuery(this).html() - 1);
+            presentation.goto(jQuery(this).html());
         });
 
         jQuery('#project-information > a').click(function(event) {

@@ -150,7 +150,7 @@
             <ul>
               <?php foreach($projectPlayer->getPages() as $k => $page): ?>
               <li>
-                <a class="button" href="#<?php echo $page->getId() ?>" title="<?php echo $page->getTitle() ?>">
+                <a class="button" href="#<?php echo $page->getId()?>" title="<?php echo $page->getTitle() ?>">
                   <?php echo $k+1 ?>
                 </a>
               </li>
