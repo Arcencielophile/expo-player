@@ -55,7 +55,15 @@ var ControlRemote = function (socket, position) {
             event.preventDefault();
             remote.next();
         });
-
+		
+		$('#username').bind('keypress', function(event) {
+			if(event.keyCode == 13) {
+				event.preventDefault();
+				remote.changeUserName($('#username').val());
+	            $.mobile.changePage('#home');	
+			}
+		});
+		
         $('#saveName').bind('click', function(event) {
             remote.changeUserName($('#username').val());
             $.mobile.changePage('#home');

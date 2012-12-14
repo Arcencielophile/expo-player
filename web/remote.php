@@ -54,31 +54,6 @@
                         <a href="#next" data-role="button" data-icon="arrow-r">Next</a>
                     </div>
                 </div>
-
-                <hr />
-
-                <div class="main">
-                    <h2>Device Motion</h2>
-                    <table>
-                        <tr>
-                            <td>Event Supported</td>
-                            <td id="dmEvent"></td>
-                        </tr>
-                        <tr>
-                            <td>accelerationIncludingGravity</td>
-                            <td id="moAccel"></td>
-                        </tr>
-                        <tr>
-                            <td>Calculated Left-Right Tilt</td>
-                            <td id="moCalcTiltLR"></td>
-                        </tr>
-                        <tr>
-                            <td>Calculated Front-Back Tilt</td>
-                            <td id="moCalcTiltFB"></td>
-                        </tr>
-                    </table>
-                </div>
-
             </div>
 
             <div data-role="footer" data-position="fixed">
