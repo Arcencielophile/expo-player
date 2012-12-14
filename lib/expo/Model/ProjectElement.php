@@ -46,7 +46,7 @@ class ProjectElement
      */
     public function getDescription()
     {
-        return $this->description;
+        return trim($this->description);
     }
 
     /**

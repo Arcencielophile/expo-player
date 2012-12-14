@@ -6,11 +6,11 @@ html, body, article {
 body {
   position: relative;
   padding: 0;
+  background: radial-gradient(circle farthest-corner at center center , #555A5F 0%, #1C1E20 100%) repeat scroll 0 0 #2B2B2B;
 }
 
 .slide {
   height: 100%;
-  background: #FFF;
   margin: 0 !important;
 }
 
@@ -207,6 +207,10 @@ a:focus {
   overflow: auto;
 }
 
+#project-information > .content > div ul {
+  margin: 0;
+}
+
 #project-information > .content > .title {
 }
 
@@ -228,9 +232,125 @@ a:focus {
 #project-information > .content > .authors {
 }
 
+#project-information > .content > .authors > div {
+  clear: both;
+  overflow: auto;
+  padding: 4px;
+}
+
+#project-information > .content > .authors > div > a {
+  color: #000;
+  font-size: 11px;
+}
+
+#project-information > .content > .authors > div:hover {
+  background: #000;
+}
+
+#project-information > .content > .authors > div:hover > a {
+  color: #DDD;
+  text-decoration: none;
+}
+
+#project-information > .content > .authors > div > * {
+  float: left;
+  line-height: 24px;
+}
+
 #project-information > .content > .authors .social_networks {
   font-size: 10px;
+  list-style-type: none;
+  margin: 0;
+  float: right;
 }
+
+#project-information > .content > .authors .social_networks > li {
+  float: left;
+  margin: 0 0 0 6px;
+}
+
+#project-information > .content > .authors .social_networks > li > a {
+  display: block;
+  width: 24px;
+  height: 24px;
+  text-indent: -9999px;
+  background: url('../images/social_glyphicons.png') no-repeat;
+}
+
+/* Social Network icons */
+#project-information > .content > .authors .social_networks > li.aol a { background-position: -48px 0; }
+#project-information > .content > .authors .social_networks > li.apple a { background-position:  -96px 0; }
+#project-information > .content > .authors .social_networks > li.behance a { background-position: -144px 0; }
+#project-information > .content > .authors .social_networks > li.blogger a { background-position: -192px 0; }
+#project-information > .content > .authors .social_networks > li.delicious a { background-position: -240px 0; }
+#project-information > .content > .authors .social_networks > li.deviantart a { background-position: -288px 0; }
+#project-information > .content > .authors .social_networks > li.digg a { background-position: -336px 0; }
+#project-information > .content > .authors .social_networks > li.dribbble a { background-position: -384px 0; }
+#project-information > .content > .authors .social_networks > li.facebook a { background-position: -432px 0; }
+#project-information > .content > .authors .social_networks > li.flicker a { background-position: -480px 0; }
+#project-information > .content > .authors .social_networks > li.forrst a { background-position: -528px 0; }
+#project-information > .content > .authors .social_networks > li.friend_feed a { background-position: -576px 0; }
+#project-information > .content > .authors .social_networks > li.google+ a { background-position: -624px 0; }
+#project-information > .content > .authors .social_networks > li.heart a { background-position: -672px 0; }
+#project-information > .content > .authors .social_networks > li.lastfm a { background-position: -720px 0; }
+#project-information > .content > .authors .social_networks > li.linkedin a { background-position: -768px 0; }
+#project-information > .content > .authors .social_networks > li.microsoft a { background-position: -816px 0; }
+#project-information > .content > .authors .social_networks > li.netvibes a { background-position: -864px 0; }
+#project-information > .content > .authors .social_networks > li.newsvine a { background-position: -912px 0; }
+#project-information > .content > .authors .social_networks > li.orkut a { background-position: -960px 0; }
+#project-information > .content > .authors .social_networks > li.paypal a { background-position: -1008px 0; }
+#project-information > .content > .authors .social_networks > li.picasa a { background-position: -1056px 0; }
+#project-information > .content > .authors .social_networks > li.pinterest a { background-position: -1104px 0; }
+#project-information > .content > .authors .social_networks > li.reddit a { background-position: -1152px 0; }
+#project-information > .content > .authors .social_networks > li.rss a { background-position: -1200px 0; }
+#project-information > .content > .authors .social_networks > li.sharethis a { background-position: -1248px 0; }
+#project-information > .content > .authors .social_networks > li.skype a { background-position: -1298px 0; }
+#project-information > .content > .authors .social_networks > li.star a { background-position: -1344px 0; }
+#project-information > .content > .authors .social_networks > li.stumbleupon a { background-position: -1392px 0; }
+#project-information > .content > .authors .social_networks > li.technorati a { background-position: -1440px 0; }
+#project-information > .content > .authors .social_networks > li.tumblr a { background-position: -1488px 0; }
+#project-information > .content > .authors .social_networks > li.twitter a { background-position: -1536px 0; }
+#project-information > .content > .authors .social_networks > li.vimeo a { background-position: -1584px 0; }
+#project-information > .content > .authors .social_networks > li.wordpress a { background-position: -1632px 0; }
+#project-information > .content > .authors .social_networks > li.yahoo a { background-position: -1680px 0; }
+#project-information > .content > .authors .social_networks > li.youtube a { background-position: -1728px 0; }
+
+#project-information > .content > .authors .social_networks > li.aol:hover a { background-position: -48px -48px; }
+#project-information > .content > .authors .social_networks > li.apple:hover a { background-position:  -96px -48px; }
+#project-information > .content > .authors .social_networks > li.behance:hover a { background-position: -144px -48px; }
+#project-information > .content > .authors .social_networks > li.blogger:hover a { background-position: -192px -48px; }
+#project-information > .content > .authors .social_networks > li.delicious:hover a { background-position: -240px -48px; }
+#project-information > .content > .authors .social_networks > li.deviantart:hover a { background-position: -288px -48px; }
+#project-information > .content > .authors .social_networks > li.digg:hover a { background-position: -336px -48px; }
+#project-information > .content > .authors .social_networks > li.dribbble:hover a { background-position: -384px -48px; }
+#project-information > .content > .authors .social_networks > li.facebook:hover a { background-position: -432px -48px; }
+#project-information > .content > .authors .social_networks > li.flicker:hover a { background-position: -480px -48px; }
+#project-information > .content > .authors .social_networks > li.forrst:hover a { background-position: -528px -48px; }
+#project-information > .content > .authors .social_networks > li.friend_feed:hover a { background-position: -576px -48px; }
+#project-information > .content > .authors .social_networks > li.google+:hover a { background-position: -624px -48px; }
+#project-information > .content > .authors .social_networks > li.heart:hover a { background-position: -672px -48px; }
+#project-information > .content > .authors .social_networks > li.lastfm:hover a { background-position: -720px -48px; }
+#project-information > .content > .authors .social_networks > li.linkedin:hover a { background-position: -768px -48px; }
+#project-information > .content > .authors .social_networks > li.microsoft:hover a { background-position: -816px -48px; }
+#project-information > .content > .authors .social_networks > li.netvibes:hover a { background-position: -864px -48px; }
+#project-information > .content > .authors .social_networks > li.newsvine:hover a { background-position: -912px -48px; }
+#project-information > .content > .authors .social_networks > li.orkut:hover a { background-position: -960px -48px; }
+#project-information > .content > .authors .social_networks > li.paypal:hover a { background-position: -1008px -48px; }
+#project-information > .content > .authors .social_networks > li.picasa:hover a { background-position: -1056px -48px; }
+#project-information > .content > .authors .social_networks > li.pinterest:hover a { background-position: -1104px -48px; }
+#project-information > .content > .authors .social_networks > li.reddit:hover a { background-position: -1152px -48px; }
+#project-information > .content > .authors .social_networks > li.rss:hover a { background-position: -1200px -48px; }
+#project-information > .content > .authors .social_networks > li.sharethis:hover a { background-position: -1248px -48px; }
+#project-information > .content > .authors .social_networks > li.skype:hover a { background-position: -1298px -48px; }
+#project-information > .content > .authors .social_networks > li.star:hover a { background-position: -1344px -48px; }
+#project-information > .content > .authors .social_networks > li.stumbleupon:hover a { background-position: -1392px -48px; }
+#project-information > .content > .authors .social_networks > li.technorati:hover a { background-position: -1440px -48px; }
+#project-information > .content > .authors .social_networks > li.tumblr:hover a { background-position: -1488px -48px; }
+#project-information > .content > .authors .social_networks > li.twitter:hover a { background-position: -1536px -48px; }
+#project-information > .content > .authors .social_networks > li.vimeo:hover a { background-position: -1584px -48px; }
+#project-information > .content > .authors .social_networks > li.wordpress:hover a { background-position: -1632px -48px; }
+#project-information > .content > .authors .social_networks > li.yahoo:hover a { background-position: -1680px -48px; }
+#project-information > .content > .authors .social_networks > li.youtube:hover a { background-position: -1728px -48px; }x
 
 #project-information > .content > .tags > ul {
   margin: 0;
@@ -291,7 +411,7 @@ body > nav > ul li {
   position: relative;
 }
 
-body > nav > ul > li a {
+body > nav > ul li > a {
   -moz-border-radius: 42px;
   -webkit-border-radius: 42px;
   border-radius: 42px;
@@ -494,6 +614,22 @@ body > nav > ul > li a {
 #container section h2 {
   font-size: 4em;
   line-height: 1em;
+  text-shadow: 
+      0 1px 0 #CCCCCC,
+      0 2px 0 #C9C9C9,
+      0 3px 0 #BBBBBB,
+      0 4px 0 #B9B9B9,
+      0 5px 0 #AAAAAA,
+      0 6px 1px rgba(0, 0, 0, 0.1),
+      0 0 5px rgba(0, 0, 0, 0.1),
+      0 1px 3px rgba(0, 0, 0, 0.3),
+      0 3px 5px rgba(0, 0, 0, 0.2),
+      0 5px 10px rgba(0, 0, 0, 0.25),
+      0 20px 20px rgba(0, 0, 0, 0.15)
+  ;
+  border: none;
+  text-align: center;
+  color: #FFF;
 }
 
 #container section .description {

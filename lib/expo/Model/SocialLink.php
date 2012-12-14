@@ -54,4 +54,18 @@ class SocialLink
 
         return $this;
     }
+
+    /**
+     * guessSocialNetworkName
+     *
+     * @return string
+     */
+    public function guessSocialNetworkName()
+    {
+        $matches = array();
+        $domain = parse_url($this->getUri(), PHP_URL_HOST);
+        preg_match ('#(www\.)?([^\.]+)\.#', $domain, $matches);
+
+        return strtolower($matches[2]);
+    }
 }
