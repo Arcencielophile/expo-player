@@ -26,53 +26,53 @@
                 <?php echo $_GET['project_count_slides']; ?>,
                 owner
             );
-			
-			
-			
+            
+            
+            
             $(document).ready(function(){ 
                 manager.init();
 
-				/* Event listeners */
-				$('a[href="#previous"]').click(function(event) {
-		            event.preventDefault();
-		            manager.remote.previous();
-		        });
-		        $(document).bind('swiperight', function(event) {
-		            event.preventDefault();
-		            manager.remote.previous();
-		        });
+                /* Event listeners */
+                $('a[href="#previous"]').click(function(event) {
+                    event.preventDefault();
+                    manager.remote.previous();
+                });
+                $(document).bind('swiperight', function(event) {
+                    event.preventDefault();
+                    manager.remote.previous();
+                });
 
-		        $('a[href="#info"]').click(function(event) { remote.toggleInfo(); });
+                $('a[href="#info"]').click(function(event) { remote.toggleInfo(); });
 
-		        $('a[href="#next"]').click(function(event) {
-		            event.preventDefault();
-		            manager.remote.next();
-		        });
+                $('a[href="#next"]').click(function(event) {
+                    event.preventDefault();
+                    manager.remote.next();
+                });
 
-				$('#username').bind('keypress', function(event) {
-					if(event.keyCode == 13) {
-						event.preventDefault();
-						manager.remote.changeUserName($('#username').val());
-			            $.mobile.changePage('#home');	
-					}
-				});
+                $('#username').bind('keypress', function(event) {
+                    if(event.keyCode == 13) {
+                        event.preventDefault();
+                        manager.remote.changeUserName($('#username').val());
+                        $.mobile.changePage('#home');   
+                    }
+                });
 
-		        $('#saveName').bind('click', function(event) {
-		            manager.remote.changeUserName($('#username').val());
-		            $.mobile.changePage('#home');
-		        });
+                $('#saveName').bind('click', function(event) {
+                    manager.remote.changeUserName($('#username').val());
+                    $.mobile.changePage('#home');
+                });
 
-		        $(document).bind('swipeleft', function(event) {
-		            event.preventDefault();
-		            manager.remote.next();
-		        });
+                $(document).bind('swipeleft', function(event) {
+                    event.preventDefault();
+                    manager.remote.next();
+                });
 
-		        $(document).bind('pagechange', function(event, data) {
-		            if(data.toPage[0].id == 'user' || data.toPage[0].id == 'home') {
-		                manager.remote.updateUserNameLabel();
-						manager.remote.updateFollowers(manager.remote.getFollowers());
-		            }
-		        });
+                $(document).bind('pagechange', function(event, data) {
+                    if(data.toPage[0].id == 'user' || data.toPage[0].id == 'home') {
+                        manager.remote.updateUserNameLabel();
+                        manager.remote.updateFollowers(manager.remote.getFollowers());
+                    }
+                });
             });
         </script>
     </head>
@@ -128,14 +128,14 @@
                 </div>
             </div>
         </div>
-		<div data-role="page" id="followers">
+        <div data-role="page" id="followers">
             <div data-role="header" data-position="fixed">
                 <h1>They follow you</h1>
             </div>
             <div data-role="content">
                 <ul id="followersList" data-role="listview">
-				</ul>
-				<br/>
+                </ul>
+                <br/>
                 <div class="ui-grid-a">
                     <div class="ui-block-a">
                         <a href="#home" data-role="button" data-transition="slidedown">Back</a>
