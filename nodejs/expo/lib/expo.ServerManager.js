@@ -37,16 +37,16 @@ var ServerManager = module.exports = function() {
         var projectId = roomName.split('_')[0];
         var goodRemote = null;
         var i = 0;
-		if(this.remotes[projectId] != undefined) {
-			while(i < this.remotes[projectId].length && goodRemote == null) {
-	            var currentRemote = this.remotes[projectId][i];
-	            if(currentRemote.getRoomName() == roomName) {
-	                goodRemote = currentRemote;
-	            }
-	            i++;
-	        }
-		}
-		
+        if(this.remotes[projectId] != undefined) {
+            while(i < this.remotes[projectId].length && goodRemote == null) {
+                var currentRemote = this.remotes[projectId][i];
+                if(currentRemote.getRoomName() == roomName) {
+                    goodRemote = currentRemote;
+                }
+                i++;
+            }
+        }
+        
         return goodRemote;
     };
 
@@ -72,8 +72,8 @@ var ServerManager = module.exports = function() {
         if(this.remotes[remote.getProjectId()] != undefined) {
             this.remotes[remote.getProjectId()].splice(this.remotes[remote.getProjectId()].indexOf(remote), 1);
         }
-		
-		delete this.followers[remote.getRoomName()];
+        
+        delete this.followers[remote.getRoomName()];
     };
     
     this.generateRemoteId = function(projectId) {
@@ -122,15 +122,15 @@ var ServerManager = module.exports = function() {
         console.log('ServerManager:getFollowersForRoomName('+roomName+')');
         
         var i = 0;
-		if(this.followers[roomName] != undefined) {
-			 while(i < this.followers[roomName].length) {
-	            var follower = this.followers[roomName][i];
-	            if(follower.id == followerId) {
-	                return follower;
-	            }
-	            i++;
-	        }
-		}
+        if(this.followers[roomName] != undefined) {
+             while(i < this.followers[roomName].length) {
+                var follower = this.followers[roomName][i];
+                if(follower.id == followerId) {
+                    return follower;
+                }
+                i++;
+            }
+        }
         
         return null;
     };
@@ -141,17 +141,17 @@ var ServerManager = module.exports = function() {
         var roomNames = new Array();
         for(roomName in this.followers) {
             var i = 0;
-			if(this.followers[roomName] != undefined) {
-				while(i < this.followers[roomName].length) {
-	                var follower = this.followers[roomName][i];
-	                console.log('ServerManager:follower.id : '+follower.id);
-	                if(follower.id == followerId) {
-	                    console.log('ServerManager:match !');
-	                    roomNames[roomNames.length] = roomName;
-	                }
-	                i++;
-	            }	
-			}
+            if(this.followers[roomName] != undefined) {
+                while(i < this.followers[roomName].length) {
+                    var follower = this.followers[roomName][i];
+                    console.log('ServerManager:follower.id : '+follower.id);
+                    if(follower.id == followerId) {
+                        console.log('ServerManager:match !');
+                        roomNames[roomNames.length] = roomName;
+                    }
+                    i++;
+                }   
+            }
         }
         
         return roomNames;

@@ -90,7 +90,7 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
         var remote = expoServer.getRemoteByRoomName(data.roomName);
         if(remote != null) {
             socket.emit('goto', {position: remote.getPosition()});
-			socket.emit('update_show_info', {showInfo: remote.isShowInfo()});
+            socket.emit('update_show_info', {showInfo: remote.isShowInfo()});
         }
     });
 
