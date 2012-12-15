@@ -22,9 +22,15 @@
     <script type="text/javascript" src="/expojs/display/expo.DisplayRemote.js"></script>
     <script type="text/javascript" src="/expojs/display/expo.DisplayPresentation.js"></script>
     <script type="text/javascript" src="/expojs/user/expo.User.js"></script>
-    <script src="http://<?php echo $expo_srv ?>:2890/socket.io/socket.io.js"></script>
+    <?php if(isset($expo_remote_srv)): ?><script src="<?php echo $expo_remote_srv ?>/socket.io/socket.io.js"></script><?php endif; ?>
     <script>
-      var socket = io.connect('http://<?php echo $expo_srv ?>:2890/expo');
+
+      <?php if(isset($expo_remote_srv)): ?>
+      var socket = io.connect('<?php echo $expo_remote_srv; ?>');
+      <?php else: ?>
+      var socket = null;
+      <?php endif; ?>
+
       $(document).ready(function() {
         var projectId = '<?php echo $projectPlayer->getProject()->getIdentifier(); ?>';
         var player = <?php echo $projectPlayer->getJsPlayer(); ?>;

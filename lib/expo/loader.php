@@ -1,5 +1,4 @@
 <?php
-
   include_once '../config/config.inc.php';
 
   require_once '../lib/expo/Factory/ThemeLoader.php';

@@ -15,9 +15,13 @@
         <script src="expojs/control/expo.ControledPresentation.js"></script>
         <script src="expojs/control/expo.ControlRemote.js"></script>
         <script src="expojs/control/expo.ControlManager.js"></script>
-        <script src="http://<?php echo $expo_srv ?>:2890/socket.io/socket.io.js"></script>
+        <?php if(isset($expo_remote_srv)): ?><script src="<?php echo $expo_remote_srv ?>/socket.io/socket.io.js"></script><?php endif; ?>
         <script>
-            var socket = io.connect('http://<?php echo $expo_srv ?>:2890/expo');
+            <?php if(isset($expo_remote_srv)): ?>
+            var socket = io.connect('<?php echo $expo_remote_srv ?>/expo');
+            <?php else: ?>
+            var socket = null;
+            <?php endif; ?>
             var owner = new User();
             var manager = new ControlManager(
                 socket,
@@ -145,4 +149,3 @@
         </div>
     </body>
 </html>
-
