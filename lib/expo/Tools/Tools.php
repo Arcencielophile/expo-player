@@ -19,13 +19,4 @@ class Tools
     {
         return true;
     }
-
-    static public function http_build_url($params)
-    {
-        return sprintf('%s://%s%s',
-            $params['scheme'],
-            $params['host'],
-            implode('/', $params['path'])
-        );
-    }
 }

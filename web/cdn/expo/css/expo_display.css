@@ -6,7 +6,13 @@ html, body, article {
 body {
   position: relative;
   padding: 0;
-  background: radial-gradient(circle farthest-corner at center center , #555A5F 0%, #1C1E20 100%) repeat scroll 0 0 #2B2B2B;
+  background: #1C1E20;
+  background: -moz-radial-gradient(center, circle cover, #555A5F 0%, #1C1E20 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #555A5F), color-stop(100%, #1C1E20));
+  background: -webkit-radial-gradient(center, circle cover, #555A5F 0%, #1C1E20 100%);
+  background: -o-radial-gradient(center, circle cover, #555A5F 0%, #1C1E20 100%);
+  background: -ms-radial-gradient(center, circle cover, #555A5F 0%, #1C1E20 100%);
+  background: radial-gradient(center, circle cover, #555A5F 0%, #1C1E20 100%);
 }
 
 .slide {
@@ -613,7 +619,7 @@ body > nav > ul li > a {
 #container section {
 }
 
-#container section h2 {
+#container section > div > h2 {
   font-size: 4em;
   line-height: 1em;
   text-shadow: 

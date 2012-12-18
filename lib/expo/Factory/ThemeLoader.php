@@ -24,14 +24,14 @@ abstract class ThemeLoader
      */
     static public function load($src)
     {
-        $xml = null;
-        if(Tools::isValidURL($src))
-            $xml = file_get_contents($src);
+        if(!Tools::isValidURL($src)) {
+            throw new \Exception(sprintf('%s is not a valid url', $src));
+        }
 
-        if(empty($xml) || !Tools::isValidXML($xml))
-            return null;
+        if(!$xmlTheme = simplexml_load_string(file_get_contents($src))) {
+            throw new \Exception(sprintf('%s is not a valid xml', $src));
+        }
 
-        $xmlTheme = new \SimpleXMLElement($xml);
         $theme = new Theme($src);
 
         $theme->setName(html_entity_decode($xmlTheme->theme->name, ENT_NOQUOTES, 'UTF-8'));

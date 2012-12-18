@@ -32,14 +32,14 @@ abstract class ProjectFactory
      */
     static public function initProject($src)
     {
-        $xml = null;
-        if(Tools::isValidURL($src))
-            $xml = file_get_contents($src);
+        if(!Tools::isValidURL($src)) {
+            throw new \Exception(sprintf('%s is not a valid url', $src));
+        }
 
-        if(empty($xml) || !Tools::isValidXML($xml))
-            return null;
+        if(!$xmlProject = simplexml_load_string(file_get_contents($src))) {
+            throw new \Exception(sprintf('%s is not a valid xml', $src));
+        }
 
-        $xmlProject = new \SimpleXMLElement($xml);
         $project = new Project();
 
         $project->setName(html_entity_decode($xmlProject->name, ENT_NOQUOTES, 'UTF-8'));

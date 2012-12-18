@@ -26,7 +26,7 @@
     <script>
 
       <?php if(isset($expo_remote_srv)): ?>
-      var socket = io.connect('<?php echo $expo_remote_srv; ?>');
+      var socket = io.connect('<?php echo $expo_remote_srv; ?>/expo');
       <?php else: ?>
       var socket = null;
       <?php endif; ?>
@@ -135,7 +135,7 @@
               <div class="create-remote">
                 <label>Create a remote</label>
                 <p>Scan or click on the following QRCode</p>
-                <a href="http://<?php echo $expo_srv ?>/remote.php?<?php echo $projectPlayer->getRemoteParameters(); ?>" target="_blank" id="qrcode"></a>
+                <a href="<?php echo $expo_srv ?>/remote.php?<?php echo $projectPlayer->getRemoteParameters(); ?>" target="_blank" id="qrcode"></a>
               </div>
               <div class="join-live">
                 <label>Join presentation</label>

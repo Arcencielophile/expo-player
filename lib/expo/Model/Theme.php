@@ -305,9 +305,9 @@ class Theme
         $parseUrl = parse_url($this->getData());
         $path = explode('/', $parseUrl['path']);
         unset($path[count($path)-1]);
-        $parseUrl['path'] = $path;
+        $parseUrl['path'] = implode('/', $path);
 
-        return Tools::http_build_url($parseUrl);
+        return http_build_url('', $parseUrl);
     }
 
     /**
@@ -318,6 +318,10 @@ class Theme
      */
     public function getAssetAbsolutePath($asset)
     {
+        if (Tools::isValidURL($asset)) {
+            return $asset;
+        }
+
         return sprintf('%s/%s', $this->getThemePath(), $asset);
     }
 }
