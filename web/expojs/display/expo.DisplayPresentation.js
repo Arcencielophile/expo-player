@@ -261,14 +261,20 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
 
     this.next = function() {
         console.log('DisplayPresentation:next()');
-        this.setState('pending');
-        this.player.next();
+        if(this.getState() == 'init') {
+          this.play();
+        } else {
+          this.player.next();
+        }
     };
 
     this.previous = function() {
         console.log('DisplayPresentation:previous()');
-        this.setState('pending');
-        this.player.previous();
+        if(this.getState() == 'init') {
+          this.play();
+        } else {
+          this.player.previous();
+        }
     };
 
     this.goto = function(position) {
