@@ -81,6 +81,13 @@
               <?php echo $author; ?>
             </a>
             <ul class="social_networks">
+              <?php if($author->getWebsite()): ?>
+              <li class="rss">
+                <a href="<?php echo $author->getWebsite(); ?>" target="_blank">
+                  <?php echo $author->getWebsite(); ?>
+                </a>
+              </li>
+              <?php endif; ?>
               <?php foreach($author->getSocialLinks() as $sl): ?>
               <li class="<?php echo $sl->guessSocialNetworkName(); ?>">
                 <a href="<?php echo $sl->getUri() ?>" target="_blank">

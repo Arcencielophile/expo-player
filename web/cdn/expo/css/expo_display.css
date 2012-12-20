@@ -271,7 +271,7 @@ a:focus {
 }
 
 #project-information > .content > .authors .social_networks > li {
-  float: left;
+  float: right;
   margin: 0 0 0 6px;
 }
 
