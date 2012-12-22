@@ -75,4 +75,34 @@
     </content>
   </page>
 
+  <page>
+    <title>Why use expo ?</title>
+    <description></description>
+    <content>
+      <![CDATA[
+          
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Who use expo ?</title>
+    <description></description>
+    <content>
+      <![CDATA[
+          
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>How use expo ?</title>
+    <description></description>
+    <content>
+      <![CDATA[
+          
+      ]]>
+    </content>
+  </page>
+
 </project>
