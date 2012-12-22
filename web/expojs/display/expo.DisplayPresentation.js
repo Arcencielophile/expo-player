@@ -41,7 +41,11 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         }
         this.player.init();
         this.eventListeners();
-        this.remoteListeners();
+
+        if(this.socket != null) {
+          this.remoteListeners();
+        }
+
         this.setState('init');
     };
 

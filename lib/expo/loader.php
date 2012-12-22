@@ -15,7 +15,8 @@
   try {
     $projectPlayer = ProjectPlayerFactory::createPlayer(
         ProjectFactory::initProject($expo_data_src),
-        $theme
+        $theme,
+        $expo_remote_srv
     );
   } catch(\Exception $e) {
     die($e->getMessage());

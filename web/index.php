@@ -19,17 +19,10 @@
     <script type="text/javascript" src="/bootstrap/docs/assets/js/bootstrap.js"></script>
     <?php $projectPlayer->loadJs() ?>
 
-    <script type="text/javascript" src="/expojs/display/expo.DisplayRemote.js"></script>
-    <script type="text/javascript" src="/expojs/display/expo.DisplayPresentation.js"></script>
-    <script type="text/javascript" src="/expojs/user/expo.User.js"></script>
-    <?php if(isset($expo_remote_srv)): ?><script src="<?php echo $expo_remote_srv ?>/socket.io/socket.io.js"></script><?php endif; ?>
-    <script>
+    <?php $projectPlayer->loadExpoJs() ?>
 
-      <?php if(isset($expo_remote_srv)): ?>
-      var socket = io.connect('<?php echo $expo_remote_srv; ?>/expo');
-      <?php else: ?>
-      var socket = null;
-      <?php endif; ?>
+    <script type="text/javascript">
+      var socket = <?php echo $projectPlayer->initRemoteSocket(); ?>;
 
       $(document).ready(function() {
         var projectId = '<?php echo $projectPlayer->getProject()->getIdentifier(); ?>';
@@ -38,7 +31,6 @@
         displayPresentation.init();
       });
     </script>
-
   </head>
 
   <body>
@@ -135,6 +127,7 @@
 
     <nav>
       <ul>
+        <?php if($projectPlayer->isRemoteAlive()): ?>
         <li>
           <a href="#" class="button" id="sync" title="Synchronize the presentation">Sync</a>
           <div class="content visible-desktop">
@@ -154,6 +147,7 @@
             </div>
           </div>
         </li>
+        <?php endif; ?>
         <li class="hidden-phone">
           <a class="button" href="#" title="Previous" id="previous-page">&lt;</a>
         </li>
