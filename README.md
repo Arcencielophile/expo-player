@@ -13,6 +13,20 @@ Application web utilisant les standards du W3C
 pour partager, exposer, présenter
 des oeuvres artistiques, des projects culturels, des contenus pédagogiques ..
 
+requirements
+============
+
+For a basic hosting server:
+
+ * Web server
+ * PHP5.3 or +
+ * php-curl
+
+To use the remote:
+
+ * nodejs
+ * npm (express, socket.io, log4js)
+
 Installation
 ============
 
@@ -45,17 +59,11 @@ now run the node server
 Technology
 ==========
 
+ * PHP5
  * HTML5
  * CSS3
  * Javascript (jquery, jquery mobile)
  * nodejs (express, socket.io)
-
-Punch line
-==========
-
- * Hook Me Up !
- * Catchering The Eye !
- * What Are You Looking At ?
 
 Dependencies
 ============
