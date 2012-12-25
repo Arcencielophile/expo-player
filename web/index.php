@@ -130,7 +130,7 @@
         <?php if($projectPlayer->isRemoteAlive()): ?>
         <li>
           <a href="#" class="button" id="sync" title="Synchronize the presentation">Sync</a>
-          <div class="content visible-desktop">
+          <div class="content">
             <div>
               <div class="create-remote">
                 <label>Create a remote</label>

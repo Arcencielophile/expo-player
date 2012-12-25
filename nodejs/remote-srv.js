@@ -9,6 +9,14 @@ log4js.replaceConsole();
 
 server.listen(2890);
 
+io.set('transports', [
+    'xhr-polling'
+  , 'websocket'
+  , 'flashsocket'
+  , 'htmlfile'
+  , 'jsonp-polling'
+]);
+
 var expoSockets = io.of('/expo').on('connection', function (socket) {
     console.log('remote-srv: expo connection');
 
