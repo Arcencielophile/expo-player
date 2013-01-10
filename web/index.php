@@ -29,7 +29,10 @@
         var player = <?php echo $projectPlayer->getJsPlayer(); ?>;
         var displayPresentation = new DisplayPresentation(socket, projectId, player, null);
         displayPresentation.init();
+
+		window.onbeforeunload = displayPresentation.disconnect;
       });
+      
     </script>
   </head>
 

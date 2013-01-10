@@ -32,10 +32,9 @@
             );
             
             
-            
             $(document).ready(function(){ 
                 manager.init();
-
+                
                 /* Event listeners */
                 $('a[href="#previous"]').click(function(event) {
                     event.preventDefault();
@@ -77,6 +76,8 @@
                         manager.remote.updateFollowers(manager.remote.getFollowers());
                     }
                 });
+
+                window.onbeforeunload = manager.remote.disconnect;
             });
         </script>
     </head>

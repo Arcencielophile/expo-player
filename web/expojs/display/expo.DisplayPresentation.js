@@ -299,6 +299,11 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             info.removeClass('visible');
         }
     };
+
+	this.disconnect = function() {
+		console.log('DisplayPresentation:disconnect()');
+		this.socket.emit('byebye');
+	}
 };
 
 /* Others */

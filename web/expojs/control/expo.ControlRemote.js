@@ -145,4 +145,9 @@ var ControlRemote = function (socket, position) {
         }
         $('#followersList').html(list);
     }
+
+	this.disconnect = function() {
+		console.log('ControlRemote:disconnect()');
+		this.socket.emit('byebye');
+	}
 }
