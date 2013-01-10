@@ -27,10 +27,6 @@
                 owner
             );
             
-<<<<<<< HEAD
-            
-=======
->>>>>>> 52be41e468a47381fd952bdaaa286b8c0939d33f
             $(document).ready(function(){ 
                 manager.init();
                 
