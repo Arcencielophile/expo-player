@@ -300,10 +300,10 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         }
     };
 
-	this.disconnect = function() {
-		console.log('DisplayPresentation:disconnect()');
-		this.socket.emit('byebye');
-	}
+    this.disconnect = function() {
+        console.log('DisplayPresentation:disconnect()');
+        this.socket.emit('byebye');
+    }
 };
 
 /* Others */

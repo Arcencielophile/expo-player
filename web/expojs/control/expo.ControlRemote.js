@@ -21,6 +21,9 @@
 
 var ControlRemote = function (socket, position) {
     this.id = 0;
+
+    this.connected = false;
+
     this.roomName = null;
     this.position = position;
 
@@ -45,8 +48,11 @@ var ControlRemote = function (socket, position) {
             console.log('set_remote_id ('+data+')');
             console.log(data);
             remote.setId(data.id);
+            remote.connected = true;
             remote.setRoomName(data.roomName);
             remote.updateUserNameLabel();
+
+            $.mobile.changePage('#home');
         });
         
         this.socket.on('update_followers', function (data) {
@@ -66,6 +72,7 @@ var ControlRemote = function (socket, position) {
     this.getPresentation    = function() { return this.presentation; }
     this.getFollowers       = function() { return this.followers; }
     this.isShowInfo         = function() { return this.showInfo; }
+    this.isConnected        = function() { return this.connected; }
 
     /* Setters */
     this.setId              = function(id) { this.id = id; }
@@ -88,23 +95,27 @@ var ControlRemote = function (socket, position) {
 
     this.goto = function(position) {
         if(this.getRoomName() != null) {
-            if(position < 1) position = 1;
-            if(position > this.presentation.getPagesNumber()) position = this.presentation.getPagesNumber();
+            if(this.isConnected()) {
+                if(position < 1) position = 1;
+                if(position > this.presentation.getPagesNumber()) position = this.presentation.getPagesNumber();
 
-            this.position = position;
-            console.log('ControlRemote:goto position: '+this.position+' for roomName: '+this.getRoomName());
-            this.socket.emit('goto', {roomName:this.getRoomName(), position: this.position});
+                this.position = position;
+                console.log('ControlRemote:goto position: '+this.position+' for roomName: '+this.getRoomName());
+                this.socket.emit('goto', {roomName:this.getRoomName(), position: this.position});
 
-            $('#current_page').html(this.position);
+                $('#current_page').html(this.position);
+            }
         } else {
             console.log('Missing id');
         }
     }
     
     this.toggleInfo = function() {
-        console.log('ControlRemote:toggleInfo');
-        this.setShowInfo(!this.isShowInfo());
-        this.socket.emit('update_show_info', {roomName:this.getRoomName(), showInfo:this.isShowInfo()});
+        if(this.isConnected()) {
+            console.log('ControlRemote:toggleInfo');
+            this.setShowInfo(!this.isShowInfo());
+            this.socket.emit('update_show_info', {roomName:this.getRoomName(), showInfo:this.isShowInfo()});
+        }
     }
 
     this.changeUserName = function(userName) {
@@ -146,8 +157,8 @@ var ControlRemote = function (socket, position) {
         $('#followersList').html(list);
     }
 
-	this.disconnect = function() {
-		console.log('ControlRemote:disconnect()');
-		this.socket.emit('byebye');
-	}
+    this.disconnect = function() {
+        console.log('ControlRemote:disconnect()');
+        this.socket.emit('byebye');
+    }
 }
