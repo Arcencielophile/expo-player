@@ -15,13 +15,9 @@
         <script src="expojs/control/expo.ControledPresentation.js"></script>
         <script src="expojs/control/expo.ControlRemote.js"></script>
         <script src="expojs/control/expo.ControlManager.js"></script>
-        <?php if(isset($expo_remote_srv)): ?><script src="<?php echo $expo_remote_srv ?>/socket.io/socket.io.js"></script><?php endif; ?>
+        <script src="<?php echo $expo_remote_srv ?>/socket.io/socket.io.js"></script>
         <script>
-            <?php if(isset($expo_remote_srv)): ?>
             var socket = io.connect('<?php echo $expo_remote_srv ?>/expo');
-            <?php else: ?>
-            var socket = null;
-            <?php endif; ?>
             var owner = new User();
             var manager = new ControlManager(
                 socket,
@@ -30,8 +26,6 @@
                 <?php echo $_GET['project_count_slides']; ?>,
                 owner
             );
-            
-            
             
             $(document).ready(function(){ 
                 manager.init();
@@ -46,29 +40,31 @@
                     manager.remote.previous();
                 });
 
-                $('a[href="#info"]').click(function(event) { remote.toggleInfo(); });
+                $('a[href="#info"]').click(function(event) {
+                    event.preventDefault();
+                    manager.remote.toggleInfo();
+                });
 
                 $('a[href="#next"]').click(function(event) {
+                    event.preventDefault();
+                    manager.remote.next();
+                });
+                $(document).bind('swipeleft', function(event) {
                     event.preventDefault();
                     manager.remote.next();
                 });
 
                 $('#username').bind('keypress', function(event) {
                     if(event.keyCode == 13) {
-                        event.preventDefault();
                         manager.remote.changeUserName($('#username').val());
-                        $.mobile.changePage('#home');   
+                        $.mobile.changePage('#home');
                     }
                 });
 
                 $('#saveName').bind('click', function(event) {
+                    event.preventDefault();
                     manager.remote.changeUserName($('#username').val());
                     $.mobile.changePage('#home');
-                });
-
-                $(document).bind('swipeleft', function(event) {
-                    event.preventDefault();
-                    manager.remote.next();
                 });
 
                 $(document).bind('pagechange', function(event, data) {

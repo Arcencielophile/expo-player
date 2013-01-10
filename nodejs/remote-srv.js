@@ -10,8 +10,8 @@ log4js.replaceConsole();
 server.listen(2890);
 
 io.set('transports', [
+//    'websocket'
     'xhr-polling'
-  , 'websocket'
   , 'flashsocket'
   , 'htmlfile'
   , 'jsonp-polling'
