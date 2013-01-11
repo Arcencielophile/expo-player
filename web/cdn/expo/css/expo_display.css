@@ -20,6 +20,10 @@ body {
   margin: 0 !important;
 }
 
+/*******************************************************************************
+ Expo buttons
+********************************************************************************/
+
 .button {
   display: block;
   width: 42px;
@@ -35,7 +39,6 @@ body {
   -moz-transition: 0.6s;
   -webkit-transition: 0.6s;
   position: relative;
-  z-index: 500;
 }
 
 .init .button {
@@ -48,161 +51,44 @@ body {
   text-decoration: none;
 }
 
-.visible > .button,
-li:hover > .button,
+.button.pending,
 .button:hover {
   background: #FFF;
   color: #000;
   border-color: #000;
 }
 
-.pending .visible > .button,
-.pending *:hover > .button {
-  background: #000;
-  color: #FFF;
-  border-color: #FFF;
-}
+/*******************************************************************************
+ Buttons Interfaces
+ 
+  #project_information
+  #project_information
+  #project_information
+  #project_information
+  #project_information
 
-a:focus {
-  outline: none;
-}
+********************************************************************************/
 
-.content {
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.6s;
-  -moz-transition: 0.6s;
-  -webkit-transition: 0.6s;
-}
+/*******************************************************************************
+ #project_information
+********************************************************************************/
 
-.visible .content {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Player Information */
-#player-information {
-  position: absolute;
-  z-index: 100;
-  width: 100%;
-  height: 100%;
-  display: block;
-  background: url('../images/bg.png') repeat;
-  visibility: visible;
-  opacity: 0.99;
-  transition: 0.6s;
-  -moz-transition: 0.6s;
-  -webkit-transition: 0.6s;
-}
-
-.pending #player-information {
-  visibility: hidden;
-  opacity: 0;
-}
-
-#player-information > div {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-#player-information > div > div {
-  overflow: hidden;
-  height: 100%;
-}
-
-#player-information > div > div > * {
-  display: block;
-  width: 200px;
-  height: 200px;
-  padding: 42px;
-  margin: 30% auto 0;
-  background: #FFF;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  text-align: center;
-}
-
-#player-information > div > div > div > p {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 10px 0 30px 0;
-  color: #000;
-  text-decoration: none;
-}
-
-#player-information > div > .start > div > a {
-  font-size: 200px;
-  line-height: 52px;
-  color: #000;
-  text-indent: -9999px;
-  background: url('../images/play.svg') no-repeat;
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  margin-left: 12px;
-}
-
-#player-information > div > .controls > div > ul {
-  margin: 0;
-  list-style-type: none;
-}
-
-#player-information > div > .controls > div > ul > li {
-  margin: 8px 0 0 0;
-  clear: both;
-  overflow: auto;
-}
-
-#player-information > div > .controls > div > ul > li > label {
-  float: left;
-  font-size: 14px;
-  line-height: 16px;
-  margin: 0 8px 0 0;
-  width: 95px;
-  text-align: right;
-}
-#player-information > div > .controls > div > ul > li > label:after {
-  content: ':';
-}
-
-#player-information > div > .controls > div > ul > li > span {
-  display: block;
-  width: 22px;
-  height: 16px;
-  border: 1px solid #555;
-  float: left;
-  margin: 0 4px 0 0;
-  font-size: 10px;
-  line-height: 16px;
-  text-align: center;
-  border-radius: 6px;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-}
-
-/* Project Information */
 #project-information {
   position: absolute;
   bottom: 15px;
   left: 15px;
-  z-index: 500;
+  z-index: 2000;
 }
 
 #project-information > a {
-  float: left;
-  margin: 0 10px 0 0;
-  position: relative;
-  z-index: 999;
   font-size: 38px;
   line-height: 38px;
 }
 
 #project-information > .content {
   position: absolute;
-  bottom: -4px;
+  bottom: 44px;
+  left: 1px;
 }
 
 #project-information > .content > div {
@@ -398,12 +284,178 @@ a:focus {
   left: -54px;
 }
 
+/*******************************************************************************
+ Expo buttons
+********************************************************************************/
+
+.button {
+  display: block;
+  width: 42px;
+  height: 42px;
+  text-align: center;
+  line-height: 42px;
+  overflow: hidden;
+  font-size: 20px;
+  color: #000;
+  background: #FFF;
+  border: 1px solid #000;
+  transition: 0.6s;
+  -moz-transition: 0.6s;
+  -webkit-transition: 0.6s;
+  position: relative;
+}
+
+.init .button {
+  color: #FFF;
+  background: #000;
+  border-color: #FFF;
+}
+
+.button:hover {
+  text-decoration: none;
+}
+
+.visible > .button,
+li:hover > .button,
+.button:hover {
+  background: #FFF;
+  color: #000;
+  border-color: #000;
+}
+
+.pending .visible > .button,
+.pending *:hover > .button {
+  background: #000;
+  color: #FFF;
+  border-color: #FFF;
+}
+
+a:focus {
+  outline: none;
+}
+
+.content {
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.6s;
+  -moz-transition: 0.6s;
+  -webkit-transition: 0.6s;
+}
+
+.visible .content {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Player Information */
+#player-information {
+  position: absolute;
+  z-index: 500;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: url('../images/bg.png') repeat;
+  visibility: visible;
+  opacity: 0.99;
+  transition: 0.6s;
+  -moz-transition: 0.6s;
+  -webkit-transition: 0.6s;
+}
+
+.pending #player-information {
+  visibility: hidden;
+  opacity: 0;
+}
+
+#player-information > div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#player-information > div > div {
+  overflow: hidden;
+  height: 100%;
+}
+
+#player-information > div > div > * {
+  display: block;
+  width: 200px;
+  height: 200px;
+  padding: 42px;
+  margin: 30% auto 0;
+  background: #FFF;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  text-align: center;
+}
+
+#player-information > div > div > div > p {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0 30px 0;
+  color: #000;
+  text-decoration: none;
+}
+
+#player-information > div > .start > div > a {
+  font-size: 200px;
+  line-height: 52px;
+  color: #000;
+  text-indent: -9999px;
+  background: url('../images/play.svg') no-repeat;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  margin-left: 12px;
+}
+
+#player-information > div > .controls > div > ul {
+  margin: 0;
+  list-style-type: none;
+}
+
+#player-information > div > .controls > div > ul > li {
+  margin: 8px 0 0 0;
+  clear: both;
+  overflow: auto;
+}
+
+#player-information > div > .controls > div > ul > li > label {
+  float: left;
+  font-size: 14px;
+  line-height: 16px;
+  margin: 0 8px 0 0;
+  width: 95px;
+  text-align: right;
+}
+#player-information > div > .controls > div > ul > li > label:after {
+  content: ':';
+}
+
+#player-information > div > .controls > div > ul > li > span {
+  display: block;
+  width: 22px;
+  height: 16px;
+  border: 1px solid #555;
+  float: left;
+  margin: 0 4px 0 0;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+}
+
 /* Project Navigation */
 body > nav {
   position: absolute;
   bottom: 15px;
   right: 15px;
-  z-index: 500;
+  z-index: 2000;
 }
 
 body > nav ul {
@@ -425,18 +477,15 @@ body > nav > ul li > a {
   border-radius: 42px;
 }
 
-#current-page+.content,
-#sync+.content {
+#current-page+.content {
   position: absolute;
-  z-index: 300;
   bottom: 21px;
   padding-bottom: 30px;
   display: block;
   background: url('../images/content_bg.svg') no-repeat;
 }
 
-#current-page+.content > ul,
-#sync+.content > div {
+#current-page+.content > ul {
   overflow: auto;
   background: #000;
   color: #FFF;
@@ -453,25 +502,35 @@ body > nav > ul li > a {
   background-position: 94px bottom;
 }
 
-/* Sync content */
-#sync+.content {
-  right: -80px;
-  width: 220px;
-  background-position: 73px bottom;
+/* Project Sync */
+#project-sync {
+  z-index: 2000;
+  background: #FFF;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  left: 50%;
+  margin-left: -320px;
+  outline: medium none;
+  position: fixed;
+  top: 10%;
+  width: 640px;
+  z-index: 1050;
+  visibility: hidden;
 }
 
-#sync+.content > div {
+#project-sync > div {
 }
 
-#sync+.content > div > div {
+#project-sync > div > div {
   padding: 5px 10px;
 }
 
-#sync+.content > div > div p {
+#project-sync > div > div p {
   font-size: 11px;
 }
 
-#sync+.content > div > .create-remote > a {
+#project-sync > div > .create-remote > a {
   display: block;
   margin: 10px auto;
   width: 160px;
@@ -480,20 +539,20 @@ body > nav > ul li > a {
   background: #FFF;
 }
 
-#sync+.content > div > .join-live {
+#project-sync > div > .join-live {
   border-top: 1px solid #000;
 }
 
-#sync+.content > div > .join-live > ul {
+#project-sync > div > .join-live > ul {
   overflow: auto;
   margin-bottom: 10px;
 }
 
-#sync+.content > div > .join-live > ul > li {
+#project-sync > div > .join-live > ul > li {
   margin: 0 5px;
 }
 
-#sync+.content > div > .join-live > ul > li > a {
+#project-sync > div > .join-live > ul > li > a {
   display: block;
   text-indent: -9999px;
   width: 15px;
@@ -501,11 +560,11 @@ body > nav > ul li > a {
   background: url('../images/remotes.png') -15px 0 no-repeat;
 }
 
-#sync+.content > div > .join-live > ul > li.active > a {
+#project-sync > div > .join-live > ul > li.active > a {
   background: url('../images/remotes.png') 0 0 no-repeat;
 }
 
-#sync+.content > div > .join-live input {
+#project-sync > div > .join-live input {
   width: 186px;
 }
 
@@ -611,6 +670,17 @@ body > nav > ul li > a {
 .pending #share,
 .init *:hover > #share {
   background-position: -420px -84px;
+}
+
+/* Visible */
+.visible {
+  visibility: visible !important;
+  opacity: 1;
+}
+
+/* backdrop */
+.modal-backdrop {
+  background: url("../images/bg.png") repeat;
 }
 
 /* Container */

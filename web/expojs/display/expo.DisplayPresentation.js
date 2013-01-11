@@ -43,7 +43,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         this.eventListeners();
 
         if(this.socket != null) {
-          this.remoteListeners();
+            this.remoteListeners();
         }
 
         this.setState('init');
@@ -79,44 +79,46 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             presentation.play();
         });
 
-        jQuery('#help').click(function(event) {
+        jQuery('#expo-player-information').click(function(event) {
             event.preventDefault();
             presentation.help();
         });
 
-        jQuery('#previous-page').click(function(event) {
+        jQuery('#expo-navigation-previous-page').click(function(event) {
             event.preventDefault();
             presentation.previous();
         });
 
-        jQuery('#next-page').click(function(event) {
+        jQuery('#expo-navigation-next-page').click(function(event) {
             event.preventDefault();
             presentation.next();
         });
 
-        jQuery('#current-page + .content > ul > li > a').click(function(event) {
+        jQuery('#expo-navigation-current-page-content > ul > li > a').click(function(event) {
             event.preventDefault();
             presentation.goto(jQuery(this).html());
         });
 
-        jQuery('#project-information > a').click(function(event) {
+        jQuery('#expo-project-information').click(function(event) {
             event.preventDefault();
             presentation.showInfo(!presentation.isShowInfo());
         });
 
-        jQuery('#current-page').toggleContent({'text-visible': '°°°'});
+        jQuery('#expo-navigation-current-page').toggleContent({'text-visible': '°°°'});
 
-        jQuery('#sync').toggleContent({
-            'text-visible': '°°°',
-            'on-visible': function() {
+        jQuery('#expo-player-sync').click(function(event) {
+            event.preventDefault();
+            var visible = jQuery('#project-sync').hasClass('visible');
+            presentation.showSync(!visible);
+
+            if(visible) {
+                jQuery('#qrcode').empty();
+            } else {
                 jQuery('#qrcode').qrcode({
-                    width: 160,
-                    height: 160,
+                    width: 240,
+                    height: 240,
                     text : jQuery('#qrcode').attr('href')
                 });
-            },
-            'on-hide': function() {
-                jQuery('#qrcode').empty();
             }
         });
 
@@ -266,18 +268,18 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
     this.next = function() {
         console.log('DisplayPresentation:next()');
         if(this.getState() == 'init') {
-          this.play();
+            this.play();
         } else {
-          this.player.next();
+            this.player.next();
         }
     };
 
     this.previous = function() {
         console.log('DisplayPresentation:previous()');
         if(this.getState() == 'init') {
-          this.play();
+            this.play();
         } else {
-          this.player.previous();
+            this.player.previous();
         }
     };
 
@@ -290,7 +292,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
     this.showInfo = function(show) {
         console.log('DisplayPresentation:showInfo('+show+')');
         var info = jQuery('#project-information');
-        
+
         if(show) {
             this.setShowInfo(true);
             info.addClass('visible');
@@ -298,6 +300,28 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             this.setShowInfo(false);
             info.removeClass('visible');
         }
+    };
+
+    this.showSync = function(show) {
+        console.log('DisplayPresentation:showSync('+show+')');
+        var sync = jQuery('#project-sync');
+
+        if(show) {
+            this.backdrop();
+            sync.addClass('visible');
+        } else {
+            this.removeBackdrop();
+            sync.removeClass('visible');
+        }
+    };
+
+    this.backdrop = function() {
+        this.$backdrop = $('<div class="modal-backdrop fade in" />').appendTo(document.body);
+    };
+
+    this.removeBackdrop = function() {
+        this.$backdrop.remove();
+        this.$backdrop = null;
     };
 };
 
