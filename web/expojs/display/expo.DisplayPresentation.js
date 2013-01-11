@@ -74,7 +74,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             }
         });
 
-        jQuery('#play').click(function(event) {
+        jQuery('#expo-player-play').click(function(event) {
             event.preventDefault();
             presentation.play();
         });
@@ -108,7 +108,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
 
         jQuery('#expo-player-sync').click(function(event) {
             event.preventDefault();
-            var visible = jQuery('#project-sync').hasClass('visible');
+            var visible = jQuery('#expo-player-sync-content').hasClass('visible');
             presentation.showSync(!visible);
 
             if(visible) {

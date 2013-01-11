@@ -94,7 +94,7 @@
       <div class="row-fluid">
         <div class="span6 start">
           <div>
-            <a href="#" id="play" title="Play">Play</a>
+            <a href="#" id="expo-player-play" title="Play">Play</a>
           </div>
         </div>
         <div class="span6 controls">
@@ -137,7 +137,7 @@
 
     <a href="#expo-navigation-previous-page" id="expo-navigation-previous-page" class="button hidden-phone" title="Previous">&lt;</a>
 
-    <a href="#expo-navigation-current-page-content" id="expo-navigation-previous-page" class="button" title="Current"></a>
+    <a href="#expo-navigation-current-page-content" id="expo-navigation-current-page" class="button" title="Current"></a>
     <div id="expo-navigation-current-page-content">
       <ul>
         <?php foreach($projectPlayer->getPages() as $k => $page): ?>
