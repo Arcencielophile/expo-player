@@ -36,7 +36,7 @@ var DeckjsPlayer = function() {
 
       selectors: {
         container: '#container',
-        statusCurrent: '#current-page'
+        statusCurrent: '#expo-navigation-current-page'
       },
 
       keys: {

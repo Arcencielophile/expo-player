@@ -27,7 +27,10 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
     this.follower = follower;
     this.remotes = new Array();
     this.state = null;
-    this.show = false;
+    this.isPlayerInformationVisible  = false;
+    this.isProjectInformationVisible = false;
+    this.isShareContentVisible = false;
+    this.isPagesMenuVisible = false;
 
     this.init = function() {
         console.log('DisplayPresentation:init()');
@@ -46,7 +49,11 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             this.remoteListeners();
         }
 
-        this.setState('init');
+        this.initQRCode();
+        this.showPlayerInformation(true);
+        this.showProjectInformation(false);
+        this.showPagesMenu(false);
+        this.showSync(true);
     };
 
     /* Event Listeners */
@@ -79,9 +86,19 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             presentation.play();
         });
 
+        jQuery('#expo-project-information').click(function(event) {
+            event.preventDefault();
+            presentation.showProjectInformation(!presentation.isShowProjectInformation());
+        });
+
         jQuery('#expo-player-information').click(function(event) {
             event.preventDefault();
-            presentation.help();
+            presentation.showPlayerInformation(!presentation.isShowPlayerInformation());
+        });
+
+        jQuery('#expo-player-share').click(function(event) {
+            event.preventDefault();
+            presentation.showShareContent(!presentation.isShowShareContent());
         });
 
         jQuery('#expo-navigation-previous-page').click(function(event) {
@@ -94,32 +111,25 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             presentation.next();
         });
 
+        jQuery('#expo-navigation-current-page').click(function(event) {
+            event.preventDefault();
+            presentation.showPagesMenu(!presentation.isShowPagesMenu());
+        });
+
         jQuery('#expo-navigation-current-page-content > ul > li > a').click(function(event) {
             event.preventDefault();
             presentation.goto(jQuery(this).html());
         });
 
-        jQuery('#expo-project-information').click(function(event) {
-            event.preventDefault();
-            presentation.showInfo(!presentation.isShowInfo());
-        });
-
-        jQuery('#expo-navigation-current-page').toggleContent({'text-visible': '°°°'});
-
         jQuery('#expo-player-sync').click(function(event) {
             event.preventDefault();
             var visible = jQuery('#expo-player-sync-content').hasClass('visible');
             presentation.showSync(!visible);
+        });
 
-            if(visible) {
-                jQuery('#qrcode').empty();
-            } else {
-                jQuery('#qrcode').qrcode({
-                    width: 240,
-                    height: 240,
-                    text : jQuery('#qrcode').attr('href')
-                });
-            }
+        jQuery('#expo-player-sync-content a[href="#expo-player-sync-content"]').click(function(event) {
+            event.preventDefault();
+            presentation.showSync(false);
         });
 
         jQuery('.join-live ul li a').live('click', function(event) {
@@ -140,18 +150,24 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         console.log('DisplayPresentation:remoteListeners()');
         var presentation = this;
 
-        this.socket.on('remote_list',               function(remotes) { presentation.updateRemotes(remotes); });
-        this.socket.on('update_show_info',          function(data) { presentation.showInfo(data.showInfo); });
+        this.socket.on('remote_list',                     function(remotes) { presentation.updateRemotes(remotes); });
+        this.socket.on('update_show_player_information',  function(data)    { presentation.showPlayerInformation(data.show); });
+        this.socket.on('update_show_project_information', function(data)    { presentation.showProjectInformation(data.show); });
+        this.socket.on('update_show_share_content',       function(data)    { presentation.showShareContent(data.show); });
+        this.socket.on('update_show_pages_menu',          function(data)    { presentation.showPagesMenu(data.show); });
 
         this.socket.emit('list_remote', { project_id: this.getProjectId() });
     };
 
     /* Getters */
-    this.getProjectId        = function() { return this.projectId; };
-    this.getRemotes          = function() { return this.remotes; };
-    this.getFollower         = function() { return this.follower; };
-    this.getState            = function() { return this.state; };
-    this.isShowInfo          = function() { return this.show; };
+    this.getProjectId             = function() { return this.projectId; };
+    this.getRemotes               = function() { return this.remotes; };
+    this.getFollower              = function() { return this.follower; };
+    this.getState                 = function() { return this.state; };
+    this.isShowPlayerInformation  = function() { return this.isPlayerInformationVisible; };
+    this.isShowProjectInformation = function() { return this.isProjectInformationVisible; };
+    this.isShowShareContent       = function() { return this.isShareContentVisible; };
+    this.isShowPagesMenu          = function() { return this.isPagesMenuVisible; };
     this.getRemoteByRoomName = function(roomName) {
         console.log('Display')
         var i = 0;
@@ -168,10 +184,13 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
     };
 
     /* Setters */
-    this.setShowInfo  = function(show) { this.show = show; };
-    this.setFollower  = function(follower) { this.follower = follower; };
+    this.setShowPlayerInformation   = function(show)      { this.isPlayerInformationVisible = show; };
+    this.setShowProjectInformation  = function(show)      { this.isProjectInformationVisible = show; };
+    this.setShowShareContent        = function(show)      { this.isShareContentVisible = show; };
+    this.setShowPagesMenu           = function(show)      { this.isPagesMenuVisible = show; };
+    this.setFollower                = function(follower)  { this.follower = follower; };
 
-    this.setState     = function(state) {
+    this.setState = function(state) {
         if (this.state != state) {
             jQuery('body').removeClass(this.state);
             this.state = state;
@@ -249,20 +268,22 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
                 username = remote.owner.name;
             }
             var active = remote.isActive() ? ' class="active"' : '';
-            remoteList.append('<li id="'+remote.getRoomName()+'"'+active+'><a href="'+remote.getRoomName()+'" title="Join '+username+'#'+remote.getId()+'">Join '+username+'#'+remote.getId()+'</a></li>');
+            remoteList.append('<li id="'+remote.getRoomName()+'"'+active+'><a href="'+remote.getRoomName()+'" title="Join '+username+'#'+remote.getId()+'">'+username+'#'+remote.getId()+'</a></li>');
         }
+    };
+
+    this.initQRCode = function() {
+        console.log('DisplayPresentation:initQRCode()');
+        jQuery('#qrcode').qrcode({
+            width: 280,
+            height: 280,
+            text : jQuery('#qrcode').attr('href')
+        });
     };
 
     this.play = function() {
         console.log('DisplayPresentation:play()');
-        this.setState('pending');
-        //this.player.play();
-    };
-
-    this.help = function() {
-        console.log('DisplayPresentation:help()');
-        this.setState('init');
-        //this.player.help();
+        this.showPlayerInformation(false);
     };
 
     this.next = function() {
@@ -289,22 +310,47 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         this.player.goto(position);
     };
 
-    this.showInfo = function(show) {
-        console.log('DisplayPresentation:showInfo('+show+')');
-        var info = jQuery('#project-information');
+    this.showPlayerInformation = function(show) {
+        console.log('DisplayPresentation:showPlayerInformation('+show+')');
+        var info = jQuery('#expo-player-information-content');
 
+        this.setShowPlayerInformation(show);
         if(show) {
-            this.setShowInfo(true);
+            this.setState('init');
             info.addClass('visible');
         } else {
-            this.setShowInfo(false);
+            this.setState('pending');
             info.removeClass('visible');
+        }
+    };
+
+    this.showProjectInformation = function(show) {
+        console.log('DisplayPresentation:showProjectInformation('+show+')');
+        var info = jQuery('#expo-project-information-content');
+
+        this.setShowProjectInformation(show);
+        if(show) {
+            info.addClass('visible');
+        } else {
+            info.removeClass('visible');
+        }
+    };
+
+    this.showShareContent = function(show) {
+        console.log('DisplayPresentation:showShareContent('+show+')');
+        var content = jQuery('#expo-player-share-content');
+
+        this.setShowShareContent(show);
+        if(show) {
+            content.addClass('visible');
+        } else {
+            content.removeClass('visible');
         }
     };
 
     this.showSync = function(show) {
         console.log('DisplayPresentation:showSync('+show+')');
-        var sync = jQuery('#project-sync');
+        var sync = jQuery('#expo-player-sync-content');
 
         if(show) {
             this.backdrop();
@@ -312,6 +358,18 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         } else {
             this.removeBackdrop();
             sync.removeClass('visible');
+        }
+    };
+
+    this.showPagesMenu = function(show) {
+        console.log('DisplayPresentation:showPagesMenu('+show+')');
+        var content = jQuery('#expo-navigation-current-page-content');
+
+        this.setShowPagesMenu(show);
+        if(show) {
+            content.addClass('visible');
+        } else {
+            content.removeClass('visible');
         }
     };
 
@@ -323,50 +381,4 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         this.$backdrop.remove();
         this.$backdrop = null;
     };
-};
-
-/* Others */
-function getElementPath(element)
-{
-    return "//" + jQuery(element).parents().andSelf().map(function() {
-        var $this = jQuery(this);
-        var tagName = this.nodeName;
-        if ($this.siblings(tagName).length > 0) {
-            tagName += "[" + $this.prevAll(tagName).length + "]";
-        }
-        return tagName;
-    }).get().join("/").toUpperCase();
-}
-
-$.fn.toggleContent = function(options) {
-
-    options = $.extend({}, {
-        'text-visible': false,
-        'on-visible': function(){},
-        'on-hide': function(){},
-    }, options);
-
-    var contents = new Array();
-    jQuery(this).click(function(event) {
-        event.preventDefault();
-        elemId = getElementPath(this);
-        parent = jQuery(this).parent();
-        if (contents[elemId] != "undefined" &&
-            (contents[elemId] || contents[elemId] == jQuery(this).html())) {
-            parent.removeClass('visible');
-            if (options['text-visible']) {
-                jQuery(this).empty().append(contents[elemId]);
-            }
-            options['on-hide'].call();
-            contents[elemId] = false;
-        } else {
-            parent.addClass('visible');
-            contents[elemId] = true;
-            if (options['text-visible']) {
-                contents[elemId] = jQuery(this).html();
-                jQuery(this).empty().append(options['text-visible']);
-            }
-            options['on-visible'].call();
-        }
-    });
 };

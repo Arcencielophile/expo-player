@@ -89,7 +89,7 @@
       </div>
     </div>
 
-    <a href="#expo-player-information-content" id="expo-player-information" class="button hidden-phone" title="Show help">i</a>
+    <a href="#expo-player-information-content" id="expo-player-information" class="button" title="Show help">i</a>
     <div id="expo-player-information-content">
       <div class="row-fluid">
         <div class="span6 start">
@@ -120,6 +120,7 @@
     <?php if($projectPlayer->isRemoteAlive()): ?>
     <a href="#expo-player-sync-content" id="expo-player-sync" class="button" title="Synchronize the presentation">Sync</a>
     <div id="expo-player-sync-content">
+      <a href="#expo-player-sync-content" title="Close">x</a>
       <div class="create-remote">
         <label>Create a remote</label>
         <p>Scan or click on the following QRCode</p>
@@ -127,10 +128,9 @@
       </div>
       <div class="join-live">
         <label>Join presentation</label>
+        <input id="usernameInput" type="text" name="username" placeholder="As username" />
         <ul>
         </ul>
-        <label>As username</label>
-        <input id="usernameInput" type="text" name="username" placeholder="anonymous" />
       </div>
     </div>
     <?php endif; ?>
