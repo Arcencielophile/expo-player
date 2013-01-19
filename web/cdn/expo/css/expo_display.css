@@ -20,6 +20,10 @@ body {
   margin: 0 !important;
 }
 
+a:focus {
+  outline: none;
+}
+
 /*******************************************************************************
  Expo buttons
 ********************************************************************************/
@@ -42,7 +46,8 @@ body {
 }
 
 .init .button,
-.pending .button:hover
+.pending .button:hover,
+.pending .button.active
 {
   color: #FFF;
   background: #000;
@@ -53,7 +58,7 @@ body {
   text-decoration: none;
 }
 
-.button.pending,
+.button.active,
 .button:hover {
   background: #FFF;
   color: #000;
@@ -89,35 +94,44 @@ body {
 }
 
 #expo-project-information,
-.pending #expo-project-information:hover
+.pending #expo-project-information:hover,
+.pending #expo-project-information.active
 { background-position: -504px 0; }
 #expo-project-information:hover,
+#expo-project-information.active,
 .pending #expo-project-information
 { background-position: -504px -84px; }
 
 #expo-player-information,
-.pending #expo-player-information:hover
+.pending #expo-player-information:hover,
+.pending #expo-player-information.active
 { background-position: -252px 0; }
 #expo-player-information:hover,
+#expo-player-information.active,
 .pending #expo-player-information
 { background-position: -252px -84px; }
 
 #expo-navigation-home,
-.pending #expo-navigation-home:hover
+.pending #expo-navigation-home:hover,
+.pending #expo-navigation-home.active
 { background-position: -336px 0; }
-.pending #expo-navigation-home,
-#expo-navigation-home:hover
+#expo-navigation-home:hover,
+#expo-navigation-home.active,
+.pending #expo-navigation-home
 { background-position: -336px -84px; }
 
 #expo-player-share,
-.pending  #expo-player-share:hover
+.pending  #expo-player-share:hover,
+.pending  #expo-player-share.active
 { background-position: -420px 0; }
-.pending #expo-player-share,
-#expo-player-share:hover
+#expo-player-share:hover,
+#expo-player-share.active,
+.pending #expo-player-share
 { background-position: -420px -84px; }
 
 #expo-player-sync,
-.pending  #expo-player-sync:hover
+.pending #expo-player-sync:hover,
+.pending #expo-player-sync.active
 {
   background-position: -168px 0;
   -webkit-border-radius: 42px;
@@ -125,11 +139,13 @@ body {
           border-radius: 42px;
 }
 #expo-player-sync:hover,
+#expo-player-sync.active,
 .pending #expo-player-sync
 { background-position: -168px -84px; }
 
 #expo-navigation-previous-page,
-.pending #expo-navigation-previous-page:hover
+.pending #expo-navigation-previous-page:hover,
+.pending #expo-navigation-previous-page.active
 {
   background-position: 0 0;
   -webkit-border-radius: 42px;
@@ -137,6 +153,7 @@ body {
           border-radius: 42px;
 }
 #expo-navigation-previous-page:hover,
+#expo-navigation-previous-page.active,
 .pending #expo-navigation-previous-page
 { background-position: 0 -84px; }
 
@@ -147,7 +164,8 @@ body {
 }
 
 #expo-navigation-next-page,
-.pending #expo-navigation-next-page:hover
+.pending #expo-navigation-next-page:hover,
+.pending #expo-navigation-next-page.active
 {
   background-position: -84px 0;
   -webkit-border-radius: 42px;
@@ -155,6 +173,7 @@ body {
           border-radius: 42px;
 }
 #expo-navigation-next-page:hover,
+#expo-navigation-next-page.active,
 .pending #expo-navigation-next-page
 { background-position: -84px -84px; }
 

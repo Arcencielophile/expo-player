@@ -53,7 +53,6 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         this.showPlayerInformation(true);
         this.showProjectInformation(false);
         this.showPagesMenu(false);
-        this.showSync(true);
     };
 
     /* Event Listeners */
@@ -312,64 +311,79 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
 
     this.showPlayerInformation = function(show) {
         console.log('DisplayPresentation:showPlayerInformation('+show+')');
-        var info = jQuery('#expo-player-information-content');
+        var infoButton = jQuery('#expo-player-information');
+        var infoContent = jQuery('#expo-player-information-content');
 
         this.setShowPlayerInformation(show);
         if(show) {
             this.setState('init');
-            info.addClass('visible');
+            infoButton.addClass('active');
+            infoContent.addClass('visible');
         } else {
             this.setState('pending');
-            info.removeClass('visible');
+            infoButton.removeClass('active');
+            infoContent.removeClass('visible');
         }
     };
 
     this.showProjectInformation = function(show) {
         console.log('DisplayPresentation:showProjectInformation('+show+')');
-        var info = jQuery('#expo-project-information-content');
+        var infoButton = jQuery('#expo-project-information');
+        var infoContent = jQuery('#expo-project-information-content');
 
         this.setShowProjectInformation(show);
         if(show) {
-            info.addClass('visible');
+            infoButton.addClass('active');
+            infoContent.addClass('visible');
         } else {
-            info.removeClass('visible');
+            infoButton.removeClass('active');
+            infoContent.removeClass('visible');
         }
     };
 
     this.showShareContent = function(show) {
         console.log('DisplayPresentation:showShareContent('+show+')');
-        var content = jQuery('#expo-player-share-content');
+        var shareButton = jQuery('#expo-player-share');
+        var shareContent = jQuery('#expo-player-share-content');
 
         this.setShowShareContent(show);
         if(show) {
-            content.addClass('visible');
+            shareButton.addClass('active');
+            shareContent.addClass('visible');
         } else {
-            content.removeClass('visible');
+            shareButton.removeClass('active');
+            shareContent.removeClass('visible');
         }
     };
 
     this.showSync = function(show) {
         console.log('DisplayPresentation:showSync('+show+')');
-        var sync = jQuery('#expo-player-sync-content');
+        var syncButton = jQuery('#expo-player-sync');
+        var syncContent = jQuery('#expo-player-sync-content');
 
         if(show) {
             this.backdrop();
-            sync.addClass('visible');
+            syncButton.addClass('active');
+            syncContent.addClass('visible');
         } else {
             this.removeBackdrop();
-            sync.removeClass('visible');
+            syncButton.removeClass('active');
+            syncContent.removeClass('visible');
         }
     };
 
     this.showPagesMenu = function(show) {
-        console.log('DisplayPresentation:showPagesMenu('+show+')');
-        var content = jQuery('#expo-navigation-current-page-content');
+        console.log('DisplayPresentation:showPagesMenu('+show+')'); 
+        var pagesButton = jQuery('#expo-navigation-current-page');
+        var pagesContent = jQuery('#expo-navigation-current-page-content');
 
         this.setShowPagesMenu(show);
         if(show) {
-            content.addClass('visible');
+            pagesButton.addClass('active');
+            pagesContent.addClass('visible');
         } else {
-            content.removeClass('visible');
+            pagesButton.removeClass('active');
+            pagesContent.removeClass('visible');
         }
     };
 
