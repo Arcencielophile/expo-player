@@ -114,7 +114,7 @@ var ControlRemote = function (socket, position) {
         if(this.isConnected()) {
             console.log('ControlRemote:toggleInfo');
             this.setShowInfo(!this.isShowInfo());
-            this.socket.emit('update_show_info', {roomName:this.getRoomName(), showInfo:this.isShowInfo()});
+            this.socket.emit('update_show_project_information', {roomName:this.getRoomName(), show:this.isShowInfo()});
         }
     }
 

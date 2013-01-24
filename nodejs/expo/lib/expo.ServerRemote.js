@@ -25,18 +25,27 @@ var ServerRemote = module.exports = function (id, projectId, user) {
     this.roomName = this.projectId + '_' + this.id;
     this.position = 1;
     this.owner = user;
-    this.showInfo = false;
+    this.showProjectInformation = false;
+    this.showPlayerInformation = false;
+    this.showShareContent = false;
+    this.showPagesMenu = false;
     
     /* Getters */
-    this.getId          = function() { return this.id; };
-    this.getProjectId   = function() { return this.projectId; };
-    this.getRoomName    = function() { return this.roomName; };
-    this.getPosition    = function() { return this.position; };
-    this.getOwner    = function() { return this.owner; };
-    this.isShowInfo    = function() { return this.showInfo; };
+    this.getId                     = function() { return this.id; };
+    this.getProjectId              = function() { return this.projectId; };
+    this.getRoomName               = function() { return this.roomName; };
+    this.getPosition               = function() { return this.position; };
+    this.getOwner                  = function() { return this.owner; };
+    this.isShowProjectInformation  = function() { return this.showProjectInformation; };
+    this.isShowPlayerInformation   = function() { return this.showPlayerInformation; };
+    this.isShowShareContent        = function() { return this.showShareContent; };
+    this.isShowPagesMenu           = function() { return this.showPagesMenu; };
     
     /* Setters */
-    this.setPosition    = function(position) { this.position = position; };
-    this.setOwner    = function(owner) { this.owner = owner; };
-    this.setShowInfo    = function(showInfo) { this.showInfo = showInfo; };
+    this.setPosition               = function(position) { this.position = position; };
+    this.setOwner                  = function(owner) { this.owner = owner; };
+    this.setShowProjectInformation = function(showProjectInformation) { this.showProjectInformation = showProjectInformation; };
+    this.setShowPlayerInformation  = function(showPlayerInformation) { this.showPlayerInformation = showPlayerInformation; };
+    this.setShowShareContent       = function(showShareContent) { this.showShareContent = showShareContent; };
+    this.setShowPagesMenu          = function(showPagesMenu) { this.showPagesMenu = showPagesMenu; };
 };
