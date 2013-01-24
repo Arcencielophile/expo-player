@@ -110,6 +110,11 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
         expoSockets.in(data.roomName).emit('update_followers', expoServer.getFollowersForRoomName(data.roomName));
     });
 
+    socket.on('byebye', function () {
+        console.log('remote-srv:byebye()');
+        socket.disconnect();
+    });
+
     socket.on('disconnect', function () {
         console.log('remote-srv:disconnect()');
         //If was a remote

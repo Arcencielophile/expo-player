@@ -29,7 +29,7 @@
             
             $(document).ready(function(){ 
                 manager.init();
-
+                
                 /* Event listeners */
                 $('a[href="#previous"]').click(function(event) {
                     event.preventDefault();
@@ -73,11 +73,23 @@
                         manager.remote.updateFollowers(manager.remote.getFollowers());
                     }
                 });
+
+                window.onbeforeunload = manager.remote.disconnect;
             });
         </script>
     </head>
 
     <body>
+        <div data-role="page" id="loading">
+            <div data-role="content">
+                <div class="ui-grid-solo">
+                    <div class="ui-block-a">
+                        <h1>Connecting to server...</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
         <div data-role="page" id="home">
             <div data-role="header" data-position="fixed">
                 <h1><?php echo $_GET['project_name'] ?></h1>
@@ -105,8 +117,8 @@
                 <a href="#followers" data-role="button" data-icon="star" data-transition="slideup">0</a>
                 <a href="#user" id="nameButton" data-role="button" data-icon="gear" data-transition="slideup">#0</a>
             </div>
-
         </div>
+
         <div data-role="page" id="user">
             <div data-role="header" data-position="fixed">
                 <h1>Enter your name</h1>

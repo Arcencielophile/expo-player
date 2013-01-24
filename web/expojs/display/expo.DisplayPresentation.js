@@ -326,6 +326,11 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         }
     };
 
+    this.disconnect = function() {
+        console.log('DisplayPresentation:disconnect()');
+        this.socket.emit('byebye');
+    };
+
     this.showProjectInformation = function(show) {
         console.log('DisplayPresentation:showProjectInformation('+show+')');
         var infoButton = jQuery('#expo-project-information');
