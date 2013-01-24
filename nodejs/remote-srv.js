@@ -67,7 +67,7 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
         console.log(data);
         var remote = expoServer.getRemoteByRoomName(data.roomName);
         remote.setShowShareContent(data.show);
-        expoSockets.in(remote.getRoomName()).emit('update_show_project_information', {show: remote.isShowShareContent()});
+        expoSockets.in(remote.getRoomName()).emit('update_show_share_content', {show: remote.isShowShareContent()});
     });
 
     socket.on('update_show_pages_menu', function (data) {
