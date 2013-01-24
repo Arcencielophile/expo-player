@@ -211,7 +211,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         console.log('DisplayPresentation:updateRemote('+remoteData+')');
         var remote = this.getRemoteByRoomName(remoteData.roomName)
         if(remote) {
-            remote.update(remoteData);
+            remote.synchronize(remoteData);
         } else {
             remote = new DisplayRemote(this, remoteData);
             this.addRemote(remote);
