@@ -144,16 +144,12 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         });
     };
 
-    /* Remote Listeners */
+    /* Remote Listeners which are not dependante of a remote (inactive remote case) */
     this.remoteListeners = function() {
         console.log('DisplayPresentation:remoteListeners()');
         var presentation = this;
 
         this.socket.on('remote_list',                     function(remotes) { presentation.updateRemotes(remotes); });
-        this.socket.on('update_show_player_information',  function(data)    { presentation.showPlayerInformation(data.show); });
-        this.socket.on('update_show_project_information', function(data)    { presentation.showProjectInformation(data.show); });
-        this.socket.on('update_show_share_content',       function(data)    { presentation.showShareContent(data.show); });
-        this.socket.on('update_show_pages_menu',          function(data)    { presentation.showPagesMenu(data.show); });
 
         this.socket.emit('list_remote', { project_id: this.getProjectId() });
     };
@@ -199,7 +195,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
 
     /* Actions */
     this.toggleRemote = function(roomName) {
-        console.log('DisplayManager:toggleRemote('+roomName+')');
+        console.log('DisplayPresentation:toggleRemote('+roomName+')');
         remote = this.getRemoteByRoomName(roomName);
         console.log('#'+roomName);
         if (remote.isActive()) {
@@ -212,6 +208,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
     };
 
     this.updateRemote = function(remoteData) {
+        console.log('DisplayPresentation:updateRemote('+remoteData+')');
         var remote = this.getRemoteByRoomName(remoteData.roomName)
         if(remote) {
             remote.update(remoteData);
@@ -223,6 +220,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
     }
 
     this.addRemote = function(remote) {
+        console.log('DisplayPresentation:addRemote('+remote+')');
         this.remotes.push(remote);
     }
 
@@ -234,6 +232,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
     };
 
     this.updateRemotes = function(remotesData) {
+        console.log('DisplayPresentation:updateRemotes('+remotesData+')');
         if(remotesData != null) {
             var toKeep = new Array();
             for(i = 0; i < this.remotes.length; i++) {
@@ -255,9 +254,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             this.remotes = new Array();
         }
 
-        console.log('DisplayPresentation:updateRemotes('+this.remotes+')');
         console.log(this.remotes);
-
         var remoteList = jQuery('.join-live ul');
         remoteList.empty();
         for(i=0; i < this.remotes.length; i++) {

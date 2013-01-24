@@ -28,7 +28,7 @@ var ServerManager = module.exports = function() {
     
     this.getRemotesForProject = function (projectId) {
         console.log('ServerManager:getRemotesForProject('+projectId+')');
-        
+
         return this.remotes[projectId];
     };
 
