@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="fr-FR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> </title>
+	<link href="remotestyle.css" rel="stylesheet" media="screen">
+	<link href="bootstrap/docs/assets/css/bootstrap.css" rel="stylesheet" media="screen">
+	<link href="bootstrap/docs/assets/css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript" src="bootstrap/docs/assets/js/bootstrap.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span6" id="expo-remote-base-control">
+				<h1 class="span12">Name project</h1>
+				<a id="expo-remote-previous">PREVIOUS</a>
+				<a id="expo-remote-current">CURRENT</a>
+				<a id="expo-remote-next">NEXT</a>
+				<input id="expo-remote-name" type="text" placeholder="REMOTE NAME" />
+				<div id="expo-remote-followers-counter">25</div>
+			</div>
+
+			<div class="span6" id="expo-remote-advanced-control">
+				<div id="expo-remote-goto">
+					<ul>
+						<li><a href="#" data-goto="x">x</a></li>
+						<li><a href="#" data-goto="x">x</a></li>
+						<li><a href="#" data-goto="x">x</a></li>
+						<li><a href="#" data-goto="x">x</a></li>
+						<li><a href="#" data-goto="x">x</a></li>
+						<li><a href="#" data-goto="x">x</a></li>
+						<li><a href="#" data-goto="x">x</a></li>
+						<li><a href="#" data-goto="x">x</a></li>
+						<li><a href="#" data-goto="x">x</a></li>
+					</ul>
+				</div>
+				<a id="expo-remote-project-information" href="">+</a>
+				<a id="expo-remote-player-information" href="">i</a>
+				<a id="expo-remote-share" href="">s</a>
+			</div>
+		</div>
+	</div>
+
+	<footer class="visible-phone">
+		<a id="toggle-advanced-control" href="#expo-remote-advanced-control"></a>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var init = false;
+
+				function initAdvancedControlPosition(){
+					console.log("fonction");
+					if (init){
+						return true;
+					}
+
+					init = true;
+					$("#expo-remote-advanced-control").css("position","absolute").css("top",$(window).height());
+				}
+
+				$("#toggle-advanced-control").click(function(event){
+					event.preventDefault();
+					initAdvancedControlPosition();
+					if ($(this).hasClass("active")) {
+						$(this).removeClass("active");
+						$("#expo-remote-advanced-control").removeClass("visible");
+					} else {
+						$(this).addClass("active");
+						$("#expo-remote-advanced-control").addClass("visible");
+					}
+				});
+			});
+		</script>
+	</footer>
+</body>
+</html>

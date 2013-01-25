@@ -1,0 +1,50 @@
+html, body {
+	height: 100%;
+	overflow: hidden;
+}
+
+
+.container-fluid, .row-fluid {
+	height: 100%;
+}
+
+#expo-remote-base-control {
+	height: 100%;
+	background-color: #222;
+}
+
+#expo-remote-advanced-control {
+	height: 100%;
+	background-color: #000;
+	-webkit-transition:all 1.0s ease-in-out;
+	-moz-transition:all 1.0s ease-in-out;
+	-o-transition:all 1.0s ease-in-out;
+	transition:all 1.0s ease-in-out;
+}
+
+#expo-remote-advanced-control.visible {
+	top:0 !important;
+}
+
+
+footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background: #000;
+}
+
+footer #toggle-advanced-control {
+	display: block;
+	height: 16px;
+	text-align: center;
+}
+
+footer #toggle-advanced-control:before {
+	content: '^';
+}
+
+footer #toggle-advanced-control.active:before {
+	content: 'v';
+}
