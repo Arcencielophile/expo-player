@@ -50,9 +50,10 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         }
 
         this.initQRCode();
-        this.showPlayerInformation(true);
+        this.showPlayerInformation(false);
         this.showProjectInformation(false);
         this.showPagesMenu(false);
+        this.showSync(true);
     };
 
     /* Event Listeners */
@@ -131,9 +132,9 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             presentation.showSync(false);
         });
 
-        jQuery('.join-live ul li a').live('click', function(event) {
+        jQuery('.join-live ul li').live('click', function(event) {
             event.preventDefault();
-            presentation.toggleRemote($(this).attr('href'));
+            presentation.toggleRemote($(this).attr('id'));
         });
 
         jQuery('.join-live input[name="username"]').change(function(event){
