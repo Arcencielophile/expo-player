@@ -612,6 +612,9 @@ a:focus {
   font-weight: bold;
   font-size: 30px;
   margin-bottom: 15px;
+  background: url('../images/remote_create.png') no-repeat 0 0;
+  line-height: 40px;
+  padding-left: 30px;
 }
 
 #expo-player-sync-content > .create-remote > p {
@@ -628,7 +631,11 @@ a:focus {
 }
 
 #expo-player-sync-content > .join-live > label {
-  margin-top: 70px;
+  margin: 95px 0 15px;
+  background: url('../images/remote_join.png') no-repeat 0 0;
+  line-height: 20px;
+  padding-left: 22px;
+  font-size: 20px;
 }
 
 #expo-player-sync-content > .join-live > ul {
@@ -658,16 +665,17 @@ a:focus {
 
 #expo-player-sync-content > .join-live > ul > li > a {
   display: block;
-  width: 52px;
-  height: 20px;
+  height: 57px;
   line-height: 20px;
-  padding-top: 80px;
-  background: #000 url('../images/remotes.png') no-repeat;
+  padding: 27px 4px 12px;
+  width: 32px;
+  background: url('../images/remote.png') no-repeat;
   font-size: x-small;
+  text-align: center;
 }
 
 #expo-player-sync-content > .join-live > ul > li.active > a {
-  background: url('../images/remotes.png') 0 0 no-repeat;
+  background: #0F0 url('../images/remote.png') 0 0 no-repeat;
 }
 
 #expo-player-sync-content > .join-live input {
