@@ -32,7 +32,10 @@ var ControlRemote = function (socket, position) {
     this.followers = new Array();
     this.socket = socket;
 
-    this.showInfo = false;
+    this.showProjectInformation = false;
+    this.showPlayerInformation = false;
+    this.showShareContent = false;
+    this.showPagesMenu = false;
 
     this.init = function() {
         console.log('ControlRemote:init()');
@@ -71,8 +74,11 @@ var ControlRemote = function (socket, position) {
     this.getOwner           = function() { return this.owner; }
     this.getPresentation    = function() { return this.presentation; }
     this.getFollowers       = function() { return this.followers; }
-    this.isShowInfo         = function() { return this.showInfo; }
     this.isConnected        = function() { return this.connected; }
+    this.isShowProjectInformation  = function() { return this.showProjectInformation; };
+    this.isShowPlayerInformation   = function() { return this.showPlayerInformation; };
+    this.isShowShareContent        = function() { return this.showShareContent; };
+    this.isShowPagesMenu           = function() { return this.showPagesMenu; };
 
     /* Setters */
     this.setId              = function(id) { this.id = id; }
@@ -82,7 +88,10 @@ var ControlRemote = function (socket, position) {
     this.setOwner           = function(owner) { this.owner = owner; }
     this.setPresentation    = function(presentation) { this.presentation = presentation; }
     this.setFollowers       = function(followers) { this.followers = followers; }
-    this.setShowInfo        = function(showInfo) { this.showInfo = showInfo; }
+    this.setShowProjectInformation = function(showProjectInformation) { this.showProjectInformation = showProjectInformation; };
+    this.setShowPlayerInformation  = function(showPlayerInformation) { this.showPlayerInformation = showPlayerInformation; };
+    this.setShowShareContent       = function(showShareContent) { this.showShareContent = showShareContent; };
+    this.setShowPagesMenu          = function(showPagesMenu) { this.showPagesMenu = showPagesMenu; };
 
     // Methodes
     this.next = function() {
@@ -110,11 +119,35 @@ var ControlRemote = function (socket, position) {
         }
     }
     
-    this.toggleInfo = function() {
+    this.toggleProjectInformation = function() {
         if(this.isConnected()) {
-            console.log('ControlRemote:toggleInfo');
-            this.setShowInfo(!this.isShowInfo());
-            this.socket.emit('update_show_info', {roomName:this.getRoomName(), showInfo:this.isShowInfo()});
+            console.log('ControlRemote:toggleProjectInformation');
+            this.setShowProjectInformation(!this.isShowProjectInformation());
+            this.socket.emit('update_show_project_information', {roomName:this.getRoomName(), show:this.isShowProjectInformation()});
+        }
+    }
+
+    this.togglePlayerInformation = function() {
+        if(this.isConnected()) {
+            console.log('ControlRemote:togglePlayerInformation');
+            this.setShowPlayerInformation(!this.isShowPlayerInformation());
+            this.socket.emit('update_show_player_information', {roomName:this.getRoomName(), show:this.isShowPlayerInformation()});
+        }
+    }
+
+    this.toggleShareContent = function() {
+        if(this.isConnected()) {
+            console.log('ControlRemote:toggleShareContent');
+            this.setShowShareContent(!this.isShowShareContent());
+            this.socket.emit('update_show_share_content', {roomName:this.getRoomName(), show:this.isShowShareContent()});
+        }
+    }
+
+    this.togglePagesMenu = function() {
+        if(this.isConnected()) {
+            console.log('ControlRemote:togglePagesMenu');
+            this.setShowPagesMenu(!this.isShowPagesMenu());
+            this.socket.emit('update_show_pages_menu', {roomName:this.getRoomName(), show:this.isShowPagesMenu()});
         }
     }
 

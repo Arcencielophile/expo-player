@@ -40,9 +40,24 @@
                     manager.remote.previous();
                 });
 
-                $('a[href="#info"]').click(function(event) {
+                $('a[href="#project-information"]').click(function(event) {
                     event.preventDefault();
-                    manager.remote.toggleInfo();
+                    manager.remote.toggleProjectInformation();
+                });
+
+                $('a[href="#player-information"]').click(function(event) {
+                    event.preventDefault();
+                    manager.remote.togglePlayerInformation();
+                });
+
+                $('a[href="#share"]').click(function(event) {
+                    event.preventDefault();
+                    manager.remote.toggleShareContent();
+                });
+
+                $('a[href="#pages"]').click(function(event) {
+                    event.preventDefault();
+                    manager.remote.togglePagesMenu();
                 });
 
                 $('a[href="#next"]').click(function(event) {
@@ -113,7 +128,10 @@
             </div>
 
             <div data-role="footer" data-position="fixed">
-                <a href="#info" data-role="button" data-icon="info">info</a>
+                <a href="#project-information" data-role="button" data-icon="info">project info</a>
+                <a href="#player-information" data-role="button" data-icon="info">player info</a>
+                <a href="#share" data-role="button">share</a>
+                <a href="#pages" data-role="button">pages</a>
                 <a href="#followers" data-role="button" data-icon="star" data-transition="slideup">0</a>
                 <a href="#user" id="nameButton" data-role="button" data-icon="gear" data-transition="slideup">#0</a>
             </div>

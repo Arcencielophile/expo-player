@@ -38,11 +38,66 @@
 
   <body>
 
-    <div id="player-information">
+    <a href="#expo-project-information-content" id="expo-project-information" class="button" title="Project Information">+</a>
+    <div id="expo-project-information-content">
+      <div class="title">
+        <h1><?php echo $projectPlayer->getProject()->getName(); ?></h1>
+        <p class="date"><?php echo $projectPlayer->getProject()->getDate() ?></p>
+      </div>
+      <div class="summary">
+        <?php echo $projectPlayer->getProject()->getSummary(); ?>
+      </div>
+      <div class="authors">
+        <?php foreach($projectPlayer->getProject()->getAuthors() as $author): ?>
+        <div>
+          <a href="mailto:<?php echo $author->getEmail(); ?>" title="<?php echo $author; ?>">
+            <?php echo $author; ?>
+          </a>
+          <ul class="social_networks">
+            <?php if($author->getWebsite()): ?>
+            <li class="rss">
+              <a href="<?php echo $author->getWebsite(); ?>" target="_blank">
+                <?php echo $author->getWebsite(); ?>
+              </a>
+            </li>
+            <?php endif; ?>
+            <?php foreach($author->getSocialLinks() as $sl): ?>
+            <li class="<?php echo $sl->guessSocialNetworkName(); ?>">
+              <a href="<?php echo $sl->getUri() ?>" target="_blank">
+                <?php echo $sl->guessSocialNetworkName() ?>
+              </a>
+            </li>
+            <?php endforeach; ?>
+          </ul>
+        </div>
+        <?php endforeach; ?>
+      </div>
+      <div class="targets">
+        <?php foreach($projectPlayer->getProject()->getTargets() as $target): ?>
+        <a href="<?php echo $target->getWebsite(); ?>" title="<?php echo $target; ?>" target="_blank">
+          <?php echo $target; ?>
+        </a>
+        <?php endforeach; ?>
+      </div>
+      <div class="tags">
+        <ul>
+          <?php foreach($projectPlayer->getProject()->getTags() as $tag): ?>
+          <li>
+            <a href="#<?php echo $tag; ?>" title="<?php echo $tag; ?>" target="_blank">
+              <?php echo $tag; ?>
+            </a>
+          </li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+    </div>
+
+    <a href="#expo-player-information-content" id="expo-player-information" class="button" title="Show help">i</a>
+    <div id="expo-player-information-content">
       <div class="row-fluid">
         <div class="span6 start">
           <div>
-            <a href="#" id="play" title="Play">Play</a>
+            <a href="#" id="expo-player-play" title="Play">Play</a>
           </div>
         </div>
         <div class="span6 controls">
@@ -59,120 +114,49 @@
       </div>
     </div>
 
-    <div id="project-information">
-      <a id="more" href="#project-information" class="button" title="Project Information">+</a>
-      <div class="content">
-        <div class="title">
-          <h1><?php echo $projectPlayer->getProject()->getName(); ?></h1>
-          <p class="date"><?php echo $projectPlayer->getProject()->getDate() ?></p>
-        </div>
-        <div class="summary">
-          <?php echo $projectPlayer->getProject()->getSummary(); ?>
-        </div>
-        <div class="authors">
-          <?php foreach($projectPlayer->getProject()->getAuthors() as $author): ?>
-          <div>
-            <a href="mailto:<?php echo $author->getEmail(); ?>" title="<?php echo $author; ?>">
-              <?php echo $author; ?>
-            </a>
-            <ul class="social_networks">
-              <?php if($author->getWebsite()): ?>
-              <li class="rss">
-                <a href="<?php echo $author->getWebsite(); ?>" target="_blank">
-                  <?php echo $author->getWebsite(); ?>
-                </a>
-              </li>
-              <?php endif; ?>
-              <?php foreach($author->getSocialLinks() as $sl): ?>
-              <li class="<?php echo $sl->guessSocialNetworkName(); ?>">
-                <a href="<?php echo $sl->getUri() ?>" target="_blank">
-                  <?php echo $sl->guessSocialNetworkName() ?>
-                </a>
-              </li>
-              <?php endforeach; ?>
-            </ul>
-          </div>
-          <?php endforeach; ?>
-        </div>
-        <div class="targets">
-          <?php foreach($projectPlayer->getProject()->getTargets() as $target): ?>
-          <a href="<?php echo $target->getWebsite(); ?>" title="<?php echo $target; ?>" target="_blank">
-            <?php echo $target; ?>
-          </a>
-          <?php endforeach; ?>
-        </div>
-        <div class="tags">
-          <ul>
-            <?php foreach($projectPlayer->getProject()->getTags() as $tag): ?>
-            <li>
-              <a href="#<?php echo $tag; ?>" title="<?php echo $tag; ?>" target="_blank">
-                <?php echo $tag; ?>
-              </a>
-            </li>
-            <?php endforeach; ?>
-          </ul>
-        </div>
-        <div class="actions">
-          <ul>
-            <li>
-              <a href="#" class="button" id="help" title="Show help">i</a>
-            </li>
-            <li>
-              <a href="#" class="button" id="home" title="Go back home">H</a>
-            </li>
-            <li>
-              <a href="#" class="button" id="share" title="Share">*S*</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <a href="" id="expo-navigation-home" class="button" title="Go back home">H</a>
+
+    <a href="#expo-player-share-content" id="expo-player-share" class="button" title="Share">*S*</a>
+    <div id="expo-player-share-content">
     </div>
 
-    <nav>
+    <?php if($projectPlayer->isRemoteAlive()): ?>
+    <a href="#expo-player-sync-content" id="expo-player-sync" class="button" title="Synchronize the presentation">Sync</a>
+    <div id="expo-player-sync-content">
+      <a href="#expo-player-sync-content" title="Close">x</a>
+      <div class="create-remote">
+        <label>Create a remote</label>
+        <p>Scan or click on the following QRCode</p>
+        <a href="<?php echo $expo_srv ?>/remote.php?<?php echo $projectPlayer->getRemoteParameters(); ?>" target="_blank" id="qrcode"></a>
+      </div>
+      <div class="join-live">
+        <label>Join presentation</label>
+        <input id="usernameInput" type="text" name="username" placeholder="As username" />
+        <ul>
+        </ul>
+      </div>
+    </div>
+    <?php endif; ?>
+
+    <a href="#expo-navigation-previous-page" id="expo-navigation-previous-page" class="button hidden-phone" title="Previous">&lt;</a>
+
+    <a href="#expo-navigation-current-page-content" id="expo-navigation-current-page" class="button" title="Current"></a>
+    <div id="expo-navigation-current-page-content">
       <ul>
-        <?php if($projectPlayer->isRemoteAlive()): ?>
+        <?php foreach($projectPlayer->getPages() as $k => $page): ?>
         <li>
-          <a href="#" class="button" id="sync" title="Synchronize the presentation">Sync</a>
-          <div class="content">
-            <div>
-              <div class="create-remote">
-                <label>Create a remote</label>
-                <p>Scan or click on the following QRCode</p>
-                <a href="<?php echo $expo_srv ?>/remote.php?<?php echo $projectPlayer->getRemoteParameters(); ?>" target="_blank" id="qrcode"></a>
-              </div>
-              <div class="join-live">
-                <label>Join presentation</label>
-                <ul>
-                </ul>
-                <label>As username</label>
-                <input id="usernameInput" type="text" name="username" placeholder="anonymous" />
-              </div>
-            </div>
-          </div>
+          <a href="#<?php echo $page->getId()?>" class="button" title="<?php echo $page->getTitle() ?>">
+            <?php echo $k+1 ?>
+          </a>
         </li>
-        <?php endif; ?>
-        <li class="hidden-phone">
-          <a class="button" href="#" title="Previous" id="previous-page">&lt;</a>
-        </li>
-        <li>
-          <a class="button" href="#" title="Current" id="current-page"></a>
-          <div class="content visible-desktop">
-            <ul>
-              <?php foreach($projectPlayer->getPages() as $k => $page): ?>
-              <li>
-                <a class="button" href="#<?php echo $page->getId()?>" title="<?php echo $page->getTitle() ?>">
-                  <?php echo $k+1 ?>
-                </a>
-              </li>
-              <?php endforeach; ?>
-            </ul>
-          </div>
-        </li>
-        <li class="hidden-phone">
-          <a class="button" href="#" title="Next" id="next-page">&gt;</a>
-        </li>
+        <?php endforeach; ?>
       </ul>
-    </nav>
+    </div>
+
+    <a href="#expo-navigation-next-page" id="expo-navigation-next-page" class="button hidden-phone" title="Next">&gt;</a>
+
+
+
 
     <article id="container" class="row-fluid">
 

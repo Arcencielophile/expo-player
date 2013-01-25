@@ -39,16 +39,25 @@ var DisplayRemote = function(presentation, remoteData) {
     this.getOwner         = function() { return this.getOwner(); };
     this.isActive         = function() { return this.socket != null; };
 
-    this.toKeep           = function(value) {
+    this.toKeep = function(value) {
         if(value == null) {
             return this.keep;
-        }else {
+        } else {
             this.keep = value;
         }
     };
 
     /* Proxies */
-    this.getFollower      = function() { return this.getPresentation().getFollower(); };
+    this.getFollower = function() { 
+        return this.getPresentation().getFollower();
+    };
+
+    /* Synchronization */
+    this.synchronize = function(remoteData) {
+        console.log('DisplayRemote:synchronize('+remoteData+')');
+        // Update owner data
+        this.owner = new User(remoteData.owner.ip, remoteData.owner.email, remoteData.owner.name);
+    };
 
     /* Listener */
     this.addRemoteListeners = function() {
@@ -56,25 +65,50 @@ var DisplayRemote = function(presentation, remoteData) {
         var remote = this;
         var id = remote.getRoomName();
 
-        socket.on('next',          function(data) { remote.next(); });
-        socket.on('previous',      function(data) { remote.previous(); });
-        socket.on('goto',          function(data) { remote.goto(data.position); });
-        socket.on('updateStatus',  function(data) { remote.updateStatus(data); });
+        socket.on('next', function(data) {
+            remote.getPresentation().next();
+        });
+
+        socket.on('previous', function(data) {
+            remote.getPresentation().previous(); 
+        });
+
+        socket.on('goto', function(data) { 
+            remote.getPresentation().goto(data.position);
+        });
+
+        socket.on('update_show_player_information', function(data) {
+            remote.getPresentation().showPlayerInformation(data.show);
+        });
+
+        socket.on('update_show_project_information', function(data) {
+            remote.getPresentation().showProjectInformation(data.show);
+        });
+
+        socket.on('update_show_share_content', function(data) {
+            remote.getPresentation().showShareContent(data.show);
+        });
+
+        socket.on('update_show_pages_menu', function(data) { 
+            remote.getPresentation().showPagesMenu(data.show);
+        });
     };
 
     this.removeRemoteListeners = function() {
         console.log('DisplayRemote:removeRemoteListeners()');
-
         socket.removeAllListeners('next');
         socket.removeAllListeners('previous');
         socket.removeAllListeners('goto');
-        socket.removeAllListeners('updateStatus');
+        socket.removeAllListeners('update_show_player_information');
+        socket.removeAllListeners('update_show_project_information');
+        socket.removeAllListeners('update_show_share_content');
+        socket.removeAllListeners('update_show_pages_menu');
     };
 
     /* Actions */
     this.enabled = function(socket) {
-        this.socket = socket;
         console.log('DisplayRemote:enabled()');
+        this.socket = socket;
         this.addRemoteListeners();
         this.socket.emit('new_follower', {roomName: this.getRoomName(), follower: this.getFollower()});
     };
@@ -87,25 +121,4 @@ var DisplayRemote = function(presentation, remoteData) {
             this.socket = null;
         }
     };
-
-    this.next = function() {
-        console.log('DisplayRemote:next()');
-        this.presentation.next();
-    };
-
-    this.previous = function() {
-        console.log('DisplayRemote:previous()');
-        this.presentation.previous();
-    };
-
-    this.goto = function(position) {
-        console.log('DisplayRemote:goto('+position+')');
-        this.position = position;
-        this.presentation.goto(position);
-    };
-
-    /* Other */
-    this.update = function(remoteData) {
-        this.owner = new User(remoteData.owner.ip, remoteData.owner.email, remoteData.owner.name);
-    }
 };

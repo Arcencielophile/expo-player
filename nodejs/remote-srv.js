@@ -31,8 +31,6 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
         console.log('remote-srv:new_remote('+data+')');
         //Add remote to project
         var remote = expoServer.createRemote(socket.id, data);
-        console.log("DEBUG");
-        console.log(remote);
         socket.set('roomName', remote.getRoomName(), function () {
             socket.emit('set_remote_id', remote);
             socket.join(remote.getRoomName());
@@ -48,12 +46,36 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
         expoSockets.in(remote.getRoomName()).emit('goto', {position: remote.getPosition()});
     });
 
-    socket.on('update_show_info', function (data) {
-        console.log('remote-srv:update_show_info('+data+')');
+    socket.on('update_show_project_information', function (data) {
+        console.log('remote-srv:update_show_project_information('+data+')');
         console.log(data);
         var remote = expoServer.getRemoteByRoomName(data.roomName);
-        remote.setShowInfo(data.showInfo);
-        expoSockets.in(remote.getRoomName()).emit('update_show_info', {showInfo: remote.isShowInfo()});
+        remote.setShowProjectInformation(data.show);
+        expoSockets.in(remote.getRoomName()).emit('update_show_project_information', {show: remote.isShowProjectInformation()});
+    });
+
+    socket.on('update_show_player_information', function (data) {
+        console.log('remote-srv:update_show_player_information('+data+')');
+        console.log(data);
+        var remote = expoServer.getRemoteByRoomName(data.roomName);
+        remote.setShowPlayerInformation(data.show);
+        expoSockets.in(remote.getRoomName()).emit('update_show_player_information', {show: remote.isShowPlayerInformation()});
+    });
+
+    socket.on('update_show_share_content', function (data) {
+        console.log('remote-srv:update_show_share_content('+data+')');
+        console.log(data);
+        var remote = expoServer.getRemoteByRoomName(data.roomName);
+        remote.setShowShareContent(data.show);
+        expoSockets.in(remote.getRoomName()).emit('update_show_share_content', {show: remote.isShowShareContent()});
+    });
+
+    socket.on('update_show_pages_menu', function (data) {
+        console.log('remote-srv:update_show_pages_menu('+data+')');
+        console.log(data);
+        var remote = expoServer.getRemoteByRoomName(data.roomName);
+        remote.setShowPagesMenu(data.show);
+        expoSockets.in(remote.getRoomName()).emit('update_show_pages_menu', {show: remote.isShowPagesMenu()});
     });
 
     socket.on('update_owner', function (data) {
@@ -98,7 +120,10 @@ var expoSockets = io.of('/expo').on('connection', function (socket) {
         var remote = expoServer.getRemoteByRoomName(data.roomName);
         if(remote != null) {
             socket.emit('goto', {position: remote.getPosition()});
-            socket.emit('update_show_info', {showInfo: remote.isShowInfo()});
+            socket.emit('update_show_project_information', {show: remote.isShowProjectInformation()});
+            socket.emit('update_show_player_information', {show: remote.isShowPlayerInformation()});
+            socket.emit('update_show_share_content', {show: remote.isShowShareContent()});
+            socket.emit('update_show_pages_menu', {show: remote.isShowPagesMenu()});
         }
     });
 

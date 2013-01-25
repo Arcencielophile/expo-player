@@ -28,11 +28,11 @@ var TurnjsPlayer = function() {
       acceleration: true
     });
 
-    jQuery('#current-page').append(1);
+    jQuery('#expo-navigation-current-page').append(1);
 
     jQuery('#container').bind('turning', function(event, page, view) {
-      jQuery('#current-page').empty();
-      jQuery('#current-page').append(page);
+      jQuery('#expo-navigation-current-page').empty();
+      jQuery('#expo-navigation-current-page').append(page);
     });
   };
 

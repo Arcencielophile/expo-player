@@ -20,6 +20,14 @@ body {
   margin: 0 !important;
 }
 
+a:focus {
+  outline: none;
+}
+
+/*******************************************************************************
+ Expo buttons
+********************************************************************************/
+
 .button {
   display: block;
   width: 42px;
@@ -35,10 +43,12 @@ body {
   -moz-transition: 0.6s;
   -webkit-transition: 0.6s;
   position: relative;
-  z-index: 500;
 }
 
-.init .button {
+.init .button,
+.pending .button:hover,
+.pending .button.active
+{
   color: #FFF;
   background: #000;
   border-color: #FFF;
@@ -48,70 +58,377 @@ body {
   text-decoration: none;
 }
 
-.visible > .button,
-li:hover > .button,
+.button.active,
 .button:hover {
   background: #FFF;
   color: #000;
   border-color: #000;
 }
 
-.pending .visible > .button,
-.pending *:hover > .button {
-  background: #000;
-  color: #FFF;
-  border-color: #FFF;
+
+#expo-project-information,
+#expo-player-information,
+#expo-navigation-home,
+#expo-player-share,
+#expo-player-sync,
+#expo-navigation-previous-page,
+#expo-navigation-current-page,
+#expo-navigation-next-page {
+  z-index: 2000;
 }
 
-a:focus {
-  outline: none;
+/*******************************************************************************
+ Expo buttons display (images)
+********************************************************************************/
+
+#expo-project-information,
+#expo-player-information,
+#expo-navigation-home,
+#expo-player-share,
+#expo-player-sync,
+#expo-navigation-previous-page,
+#expo-navigation-next-page
+{
+  background-image: url('../images/glyphicons.png');
+  text-indent: -9999px;
 }
 
-.content {
-  opacity: 0;
+#expo-project-information,
+.pending #expo-project-information:hover,
+.pending #expo-project-information.active
+{ background-position: -504px 0; }
+#expo-project-information:hover,
+#expo-project-information.active,
+.pending #expo-project-information
+{ background-position: -504px -84px; }
+
+#expo-player-information,
+.pending #expo-player-information:hover,
+.pending #expo-player-information.active
+{ background-position: -252px 0; }
+#expo-player-information:hover,
+#expo-player-information.active,
+.pending #expo-player-information
+{ background-position: -252px -84px; }
+
+#expo-navigation-home,
+.pending #expo-navigation-home:hover,
+.pending #expo-navigation-home.active
+{ background-position: -336px 0; }
+#expo-navigation-home:hover,
+#expo-navigation-home.active,
+.pending #expo-navigation-home
+{ background-position: -336px -84px; }
+
+#expo-player-share,
+.pending  #expo-player-share:hover,
+.pending  #expo-player-share.active
+{ background-position: -420px 0; }
+#expo-player-share:hover,
+#expo-player-share.active,
+.pending #expo-player-share
+{ background-position: -420px -84px; }
+
+#expo-player-sync,
+.pending #expo-player-sync:hover,
+.pending #expo-player-sync.active
+{
+  background-position: -168px 0;
+  -webkit-border-radius: 42px;
+     -moz-border-radius: 42px;
+          border-radius: 42px;
+}
+#expo-player-sync:hover,
+#expo-player-sync.active,
+.pending #expo-player-sync
+{ background-position: -168px -84px; }
+
+#expo-navigation-previous-page,
+.pending #expo-navigation-previous-page:hover,
+.pending #expo-navigation-previous-page.active
+{
+  background-position: 0 0;
+  -webkit-border-radius: 42px;
+     -moz-border-radius: 42px;
+          border-radius: 42px;
+}
+#expo-navigation-previous-page:hover,
+#expo-navigation-previous-page.active,
+.pending #expo-navigation-previous-page
+{ background-position: 0 -84px; }
+
+#expo-navigation-current-page {
+  -webkit-border-radius: 42px;
+     -moz-border-radius: 42px;
+          border-radius: 42px;
+}
+
+#expo-navigation-next-page,
+.pending #expo-navigation-next-page:hover,
+.pending #expo-navigation-next-page.active
+{
+  background-position: -84px 0;
+  -webkit-border-radius: 42px;
+     -moz-border-radius: 42px;
+          border-radius: 42px;
+}
+#expo-navigation-next-page:hover,
+#expo-navigation-next-page.active,
+.pending #expo-navigation-next-page
+{ background-position: -84px -84px; }
+
+
+/*******************************************************************************
+ Expo buttons position
+********************************************************************************/
+
+#expo-project-information,
+#expo-player-information,
+#expo-navigation-home,
+#expo-player-share,
+#expo-player-sync,
+#expo-navigation-previous-page,
+#expo-navigation-current-page,
+#expo-navigation-next-page {
+  position: absolute;
+  bottom: 15px;
+}
+
+#expo-project-information { left: 15px; }
+#expo-player-information { left: 67px; }
+#expo-navigation-home { left: 119px; }
+#expo-player-share { left: 171px; }
+#expo-player-sync { right: 171px; }
+#expo-navigation-previous-page { right: 119px; }
+#expo-navigation-current-page { right: 67px; }
+#expo-navigation-next-page { right: 15px; }
+
+
+/*******************************************************************************
+ expo-project-information-content
+********************************************************************************/
+
+#expo-project-information-content {
+  position: absolute;
+  bottom: 59px;
+  left: 15px;
+  z-index: 1999;
   visibility: hidden;
+  opacity: 0;
   transition: 0.6s;
   -moz-transition: 0.6s;
   -webkit-transition: 0.6s;
 }
 
-.visible .content {
-  opacity: 1;
+#expo-project-information-content.visible {
   visibility: visible;
+  opacity: 0.99;
 }
 
-/* Player Information */
-#player-information {
+#expo-project-information-content > div {
+  background: #DDD;
+  padding: 8px;
+  margin: 0 0 4px 0;
+  min-width: 230px;
+  overflow: auto;
+}
+
+#expo-project-information-content > div ul {
+  margin: 0;
+}
+
+#expo-project-information-content > .title {
+}
+
+#expo-project-information-content > .title > h1 {
+  font-size: 2.5em;
+  font-weight: normal;
+}
+
+#expo-project-information-content > .title .date {
+  float: right;
+  margin: 0;
+  font-weight: bold;
+}
+
+#expo-project-information-content > .summary {
+  font-size: 12px;
+}
+
+#expo-project-information-content > .authors {
+}
+
+#expo-project-information-content > .authors > div {
+  clear: both;
+  overflow: auto;
+  padding: 4px;
+}
+
+#expo-project-information-content > .authors > div > a {
+  color: #000;
+  font-size: 11px;
+}
+
+#expo-project-information-content > .authors > div:hover {
+  background: #000;
+}
+
+#expo-project-information-content > .authors > div:hover > a {
+  color: #DDD;
+  text-decoration: none;
+}
+
+#expo-project-information-content > .authors > div > * {
+  float: left;
+  line-height: 24px;
+}
+
+#expo-project-information-content > .authors .social_networks {
+  font-size: 10px;
+  list-style-type: none;
+  margin: 0;
+  float: right;
+}
+
+#expo-project-information-content > .authors .social_networks > li {
+  float: right;
+  margin: 0 0 0 6px;
+}
+
+#expo-project-information-content > .authors .social_networks > li > a {
+  display: block;
+  width: 24px;
+  height: 24px;
+  text-indent: -9999px;
+  background: url('../images/social_glyphicons.png') no-repeat;
+}
+
+/* Social Network icons */
+#expo-project-information-content > .authors .social_networks > li.aol a { background-position: -48px 0; }
+#expo-project-information-content > .authors .social_networks > li.apple a { background-position:  -96px 0; }
+#expo-project-information-content > .authors .social_networks > li.behance a { background-position: -144px 0; }
+#expo-project-information-content > .authors .social_networks > li.blogger a { background-position: -192px 0; }
+#expo-project-information-content > .authors .social_networks > li.delicious a { background-position: -240px 0; }
+#expo-project-information-content > .authors .social_networks > li.deviantart a { background-position: -288px 0; }
+#expo-project-information-content > .authors .social_networks > li.digg a { background-position: -336px 0; }
+#expo-project-information-content > .authors .social_networks > li.dribbble a { background-position: -384px 0; }
+#expo-project-information-content > .authors .social_networks > li.facebook a { background-position: -432px 0; }
+#expo-project-information-content > .authors .social_networks > li.flicker a { background-position: -480px 0; }
+#expo-project-information-content > .authors .social_networks > li.forrst a { background-position: -528px 0; }
+#expo-project-information-content > .authors .social_networks > li.friend_feed a { background-position: -576px 0; }
+#expo-project-information-content > .authors .social_networks > li.github a { background-position: -624px 0; }
+#expo-project-information-content > .authors .social_networks > li.google a { background-position: -672px 0; }
+#expo-project-information-content > .authors .social_networks > li.heart a { background-position: -720px 0; }
+#expo-project-information-content > .authors .social_networks > li.lastfm a { background-position: -768px 0; }
+#expo-project-information-content > .authors .social_networks > li.linkedin a { background-position: -816px 0; }
+#expo-project-information-content > .authors .social_networks > li.microsoft a { background-position: -864px 0; }
+#expo-project-information-content > .authors .social_networks > li.netvibes a { background-position: -912px 0; }
+#expo-project-information-content > .authors .social_networks > li.newsvine a { background-position: -960px 0; }
+#expo-project-information-content > .authors .social_networks > li.orkut a { background-position: -1008px 0; }
+#expo-project-information-content > .authors .social_networks > li.paypal a { background-position: -1056px 0; }
+#expo-project-information-content > .authors .social_networks > li.picasa a { background-position: -1104px 0; }
+#expo-project-information-content > .authors .social_networks > li.pinterest a { background-position: -1152px 0; }
+#expo-project-information-content > .authors .social_networks > li.reddit a { background-position: -1200px 0; }
+#expo-project-information-content > .authors .social_networks > li.rss a { background-position: -1248px 0; }
+#expo-project-information-content > .authors .social_networks > li.sharethis a { background-position: -1298px 0; }
+#expo-project-information-content > .authors .social_networks > li.skype a { background-position: -1344px 0; }
+#expo-project-information-content > .authors .social_networks > li.star a { background-position: -1392px 0; }
+#expo-project-information-content > .authors .social_networks > li.stumbleupon a { background-position: -1440px 0; }
+#expo-project-information-content > .authors .social_networks > li.technorati a { background-position: -1488px 0; }
+#expo-project-information-content > .authors .social_networks > li.tumblr a { background-position: -1536px 0; }
+#expo-project-information-content > .authors .social_networks > li.twitter a { background-position: -1584px 0; }
+#expo-project-information-content > .authors .social_networks > li.vimeo a { background-position: -1632px 0; }
+#expo-project-information-content > .authors .social_networks > li.wordpress a { background-position: -1680px 0; }
+#expo-project-information-content > .authors .social_networks > li.yahoo a { background-position: -1728px 0; }
+#expo-project-information-content > .authors .social_networks > li.youtube a { background-position: -1776px 0; }
+
+#expo-project-information-content > .authors .social_networks > li.aol:hover a { background-position: -48px -48px; }
+#expo-project-information-content > .authors .social_networks > li.apple:hover a { background-position:  -96px -48px; }
+#expo-project-information-content > .authors .social_networks > li.behance:hover a { background-position: -144px -48px; }
+#expo-project-information-content > .authors .social_networks > li.blogger:hover a { background-position: -192px -48px; }
+#expo-project-information-content > .authors .social_networks > li.delicious:hover a { background-position: -240px -48px; }
+#expo-project-information-content > .authors .social_networks > li.deviantart:hover a { background-position: -288px -48px; }
+#expo-project-information-content > .authors .social_networks > li.digg:hover a { background-position: -336px -48px; }
+#expo-project-information-content > .authors .social_networks > li.dribbble:hover a { background-position: -384px -48px; }
+#expo-project-information-content > .authors .social_networks > li.facebook:hover a { background-position: -432px -48px; }
+#expo-project-information-content > .authors .social_networks > li.flicker:hover a { background-position: -480px -48px; }
+#expo-project-information-content > .authors .social_networks > li.forrst:hover a { background-position: -528px -48px; }
+#expo-project-information-content > .authors .social_networks > li.friend_feed:hover a { background-position: -576px -48px; }
+#expo-project-information-content > .authors .social_networks > li.github:hover a { background-position: -624px -48px; }
+#expo-project-information-content > .authors .social_networks > li.google:hover a { background-position: -672px -48px; }
+#expo-project-information-content > .authors .social_networks > li.heart:hover a { background-position: -720px -48px; }
+#expo-project-information-content > .authors .social_networks > li.lastfm:hover a { background-position: -768px -48px; }
+#expo-project-information-content > .authors .social_networks > li.linkedin:hover a { background-position: -816px -48px; }
+#expo-project-information-content > .authors .social_networks > li.microsoft:hover a { background-position: -864px -48px; }
+#expo-project-information-content > .authors .social_networks > li.netvibes:hover a { background-position: -912px -48px; }
+#expo-project-information-content > .authors .social_networks > li.newsvine:hover a { background-position: -960px -48px; }
+#expo-project-information-content > .authors .social_networks > li.orkut:hover a { background-position: -1008px -48px; }
+#expo-project-information-content > .authors .social_networks > li.paypal:hover a { background-position: -1056px -48px; }
+#expo-project-information-content > .authors .social_networks > li.picasa:hover a { background-position: -1104px -48px; }
+#expo-project-information-content > .authors .social_networks > li.pinterest:hover a { background-position: -1152px -48px; }
+#expo-project-information-content > .authors .social_networks > li.reddit:hover a { background-position: -1200px -48px; }
+#expo-project-information-content > .authors .social_networks > li.rss:hover a { background-position: -1248px -48px; }
+#expo-project-information-content > .authors .social_networks > li.sharethis:hover a { background-position: -1298px -48px; }
+#expo-project-information-content > .authors .social_networks > li.skype:hover a { background-position: -1344px -48px; }
+#expo-project-information-content > .authors .social_networks > li.star:hover a { background-position: -1392px -48px; }
+#expo-project-information-content > .authors .social_networks > li.stumbleupon:hover a { background-position: -1440px -48px; }
+#expo-project-information-content > .authors .social_networks > li.technorati:hover a { background-position: -1488px -48px; }
+#expo-project-information-content > .authors .social_networks > li.tumblr:hover a { background-position: -1536px -48px; }
+#expo-project-information-content > .authors .social_networks > li.twitter:hover a { background-position: -1584px -48px; }
+#expo-project-information-content > .authors .social_networks > li.vimeo:hover a { background-position: -1632px -48px; }
+#expo-project-information-content > .authors .social_networks > li.wordpress:hover a { background-position: -1680px -48px; }
+#expo-project-information-content > .authors .social_networks > li.yahoo:hover a { background-position: -1728px -48px; }
+#expo-project-information-content > .authors .social_networks > li.youtube:hover a { background-position: -1776px -48px; }
+
+#expo-project-information-content > .tags > ul {
+  margin: 0;
+}
+
+#expo-project-information-content > .tags > ul > li {
+  list-style-type: none;
+  float: left;
+  margin: 0 8px 0 0;
+}
+
+#expo-project-information-content > .tags > ul > li > a {
+  font-size: 10px;
+}
+
+/*******************************************************************************
+ expo-player-information-content
+********************************************************************************/
+
+#expo-player-information-content {
   position: absolute;
-  z-index: 100;
+  z-index: 500;
   width: 100%;
   height: 100%;
   display: block;
   background: url('../images/bg.png') repeat;
-  visibility: visible;
-  opacity: 0.99;
+  visibility: hidden;
+  opacity: 0;
   transition: 0.6s;
   -moz-transition: 0.6s;
   -webkit-transition: 0.6s;
 }
 
-.pending #player-information {
-  visibility: hidden;
-  opacity: 0;
+#expo-player-information-content.visible {
+  visibility: visible;
+  opacity: 0.99;
 }
 
-#player-information > div {
+#expo-player-information-content > div {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-#player-information > div > div {
+#expo-player-information-content > div > div {
   overflow: hidden;
   height: 100%;
 }
 
-#player-information > div > div > * {
+#expo-player-information-content > div > div > * {
   display: block;
   width: 200px;
   height: 200px;
@@ -124,7 +441,7 @@ a:focus {
   text-align: center;
 }
 
-#player-information > div > div > div > p {
+#expo-player-information-content > div > div > div > p {
   font-size: 18px;
   font-weight: bold;
   margin: 10px 0 30px 0;
@@ -132,7 +449,7 @@ a:focus {
   text-decoration: none;
 }
 
-#player-information > div > .start > div > a {
+#expo-player-information-content > div > .start > div > a {
   font-size: 200px;
   line-height: 52px;
   color: #000;
@@ -145,18 +462,18 @@ a:focus {
   margin-left: 12px;
 }
 
-#player-information > div > .controls > div > ul {
+#expo-player-information-content > div > .controls > div > ul {
   margin: 0;
   list-style-type: none;
 }
 
-#player-information > div > .controls > div > ul > li {
+#expo-player-information-content > div > .controls > div > ul > li {
   margin: 8px 0 0 0;
   clear: both;
   overflow: auto;
 }
 
-#player-information > div > .controls > div > ul > li > label {
+#expo-player-information-content > div > .controls > div > ul > li > label {
   float: left;
   font-size: 14px;
   line-height: 16px;
@@ -164,11 +481,11 @@ a:focus {
   width: 95px;
   text-align: right;
 }
-#player-information > div > .controls > div > ul > li > label:after {
+#expo-player-information-content > div > .controls > div > ul > li > label:after {
   content: ':';
 }
 
-#player-information > div > .controls > div > ul > li > span {
+#expo-player-information-content > div > .controls > div > ul > li > span {
   display: block;
   width: 22px;
   height: 16px;
@@ -183,434 +500,183 @@ a:focus {
   -webkit-border-radius: 6px;
 }
 
-/* Project Information */
-#project-information {
+/*******************************************************************************
+ expo-navigation-current-page-content
+********************************************************************************/
+
+#expo-navigation-current-page-content {
   position: absolute;
-  bottom: 15px;
-  left: 15px;
-  z-index: 500;
-}
-
-#project-information > a {
-  float: left;
-  margin: 0 10px 0 0;
-  position: relative;
-  z-index: 999;
-  font-size: 38px;
-  line-height: 38px;
-}
-
-#project-information > .content {
-  position: absolute;
-  bottom: -4px;
-}
-
-#project-information > .content > div {
-  background: #DDD;
-  padding: 8px;
-  margin: 0 0 4px 0;
-  min-width: 230px;
-  overflow: auto;
-}
-
-#project-information > .content > div ul {
-  margin: 0;
-}
-
-#project-information > .content > .title {
-}
-
-#project-information > .content > .title > h1 {
-  font-size: 2.5em;
-  font-weight: normal;
-}
-
-#project-information > .content > .title .date {
-  float: right;
-  margin: 0;
-  font-weight: bold;
-}
-
-#project-information > .content > .summary {
-  font-size: 12px;
-}
-
-#project-information > .content > .authors {
-}
-
-#project-information > .content > .authors > div {
-  clear: both;
-  overflow: auto;
-  padding: 4px;
-}
-
-#project-information > .content > .authors > div > a {
-  color: #000;
-  font-size: 11px;
-}
-
-#project-information > .content > .authors > div:hover {
-  background: #000;
-}
-
-#project-information > .content > .authors > div:hover > a {
-  color: #DDD;
-  text-decoration: none;
-}
-
-#project-information > .content > .authors > div > * {
-  float: left;
-  line-height: 24px;
-}
-
-#project-information > .content > .authors .social_networks {
-  font-size: 10px;
-  list-style-type: none;
-  margin: 0;
-  float: right;
-}
-
-#project-information > .content > .authors .social_networks > li {
-  float: right;
-  margin: 0 0 0 6px;
-}
-
-#project-information > .content > .authors .social_networks > li > a {
-  display: block;
-  width: 24px;
-  height: 24px;
-  text-indent: -9999px;
-  background: url('../images/social_glyphicons.png') no-repeat;
-}
-
-/* Social Network icons */
-#project-information > .content > .authors .social_networks > li.aol a { background-position: -48px 0; }
-#project-information > .content > .authors .social_networks > li.apple a { background-position:  -96px 0; }
-#project-information > .content > .authors .social_networks > li.behance a { background-position: -144px 0; }
-#project-information > .content > .authors .social_networks > li.blogger a { background-position: -192px 0; }
-#project-information > .content > .authors .social_networks > li.delicious a { background-position: -240px 0; }
-#project-information > .content > .authors .social_networks > li.deviantart a { background-position: -288px 0; }
-#project-information > .content > .authors .social_networks > li.digg a { background-position: -336px 0; }
-#project-information > .content > .authors .social_networks > li.dribbble a { background-position: -384px 0; }
-#project-information > .content > .authors .social_networks > li.facebook a { background-position: -432px 0; }
-#project-information > .content > .authors .social_networks > li.flicker a { background-position: -480px 0; }
-#project-information > .content > .authors .social_networks > li.forrst a { background-position: -528px 0; }
-#project-information > .content > .authors .social_networks > li.friend_feed a { background-position: -576px 0; }
-#project-information > .content > .authors .social_networks > li.github a { background-position: -624px 0; }
-#project-information > .content > .authors .social_networks > li.google a { background-position: -672px 0; }
-#project-information > .content > .authors .social_networks > li.heart a { background-position: -720px 0; }
-#project-information > .content > .authors .social_networks > li.lastfm a { background-position: -768px 0; }
-#project-information > .content > .authors .social_networks > li.linkedin a { background-position: -816px 0; }
-#project-information > .content > .authors .social_networks > li.microsoft a { background-position: -864px 0; }
-#project-information > .content > .authors .social_networks > li.netvibes a { background-position: -912px 0; }
-#project-information > .content > .authors .social_networks > li.newsvine a { background-position: -960px 0; }
-#project-information > .content > .authors .social_networks > li.orkut a { background-position: -1008px 0; }
-#project-information > .content > .authors .social_networks > li.paypal a { background-position: -1056px 0; }
-#project-information > .content > .authors .social_networks > li.picasa a { background-position: -1104px 0; }
-#project-information > .content > .authors .social_networks > li.pinterest a { background-position: -1152px 0; }
-#project-information > .content > .authors .social_networks > li.reddit a { background-position: -1200px 0; }
-#project-information > .content > .authors .social_networks > li.rss a { background-position: -1248px 0; }
-#project-information > .content > .authors .social_networks > li.sharethis a { background-position: -1298px 0; }
-#project-information > .content > .authors .social_networks > li.skype a { background-position: -1344px 0; }
-#project-information > .content > .authors .social_networks > li.star a { background-position: -1392px 0; }
-#project-information > .content > .authors .social_networks > li.stumbleupon a { background-position: -1440px 0; }
-#project-information > .content > .authors .social_networks > li.technorati a { background-position: -1488px 0; }
-#project-information > .content > .authors .social_networks > li.tumblr a { background-position: -1536px 0; }
-#project-information > .content > .authors .social_networks > li.twitter a { background-position: -1584px 0; }
-#project-information > .content > .authors .social_networks > li.vimeo a { background-position: -1632px 0; }
-#project-information > .content > .authors .social_networks > li.wordpress a { background-position: -1680px 0; }
-#project-information > .content > .authors .social_networks > li.yahoo a { background-position: -1728px 0; }
-#project-information > .content > .authors .social_networks > li.youtube a { background-position: -1776px 0; }
-
-#project-information > .content > .authors .social_networks > li.aol:hover a { background-position: -48px -48px; }
-#project-information > .content > .authors .social_networks > li.apple:hover a { background-position:  -96px -48px; }
-#project-information > .content > .authors .social_networks > li.behance:hover a { background-position: -144px -48px; }
-#project-information > .content > .authors .social_networks > li.blogger:hover a { background-position: -192px -48px; }
-#project-information > .content > .authors .social_networks > li.delicious:hover a { background-position: -240px -48px; }
-#project-information > .content > .authors .social_networks > li.deviantart:hover a { background-position: -288px -48px; }
-#project-information > .content > .authors .social_networks > li.digg:hover a { background-position: -336px -48px; }
-#project-information > .content > .authors .social_networks > li.dribbble:hover a { background-position: -384px -48px; }
-#project-information > .content > .authors .social_networks > li.facebook:hover a { background-position: -432px -48px; }
-#project-information > .content > .authors .social_networks > li.flicker:hover a { background-position: -480px -48px; }
-#project-information > .content > .authors .social_networks > li.forrst:hover a { background-position: -528px -48px; }
-#project-information > .content > .authors .social_networks > li.friend_feed:hover a { background-position: -576px -48px; }
-#project-information > .content > .authors .social_networks > li.github:hover a { background-position: -624px -48px; }
-#project-information > .content > .authors .social_networks > li.google:hover a { background-position: -672px -48px; }
-#project-information > .content > .authors .social_networks > li.heart:hover a { background-position: -720px -48px; }
-#project-information > .content > .authors .social_networks > li.lastfm:hover a { background-position: -768px -48px; }
-#project-information > .content > .authors .social_networks > li.linkedin:hover a { background-position: -816px -48px; }
-#project-information > .content > .authors .social_networks > li.microsoft:hover a { background-position: -864px -48px; }
-#project-information > .content > .authors .social_networks > li.netvibes:hover a { background-position: -912px -48px; }
-#project-information > .content > .authors .social_networks > li.newsvine:hover a { background-position: -960px -48px; }
-#project-information > .content > .authors .social_networks > li.orkut:hover a { background-position: -1008px -48px; }
-#project-information > .content > .authors .social_networks > li.paypal:hover a { background-position: -1056px -48px; }
-#project-information > .content > .authors .social_networks > li.picasa:hover a { background-position: -1104px -48px; }
-#project-information > .content > .authors .social_networks > li.pinterest:hover a { background-position: -1152px -48px; }
-#project-information > .content > .authors .social_networks > li.reddit:hover a { background-position: -1200px -48px; }
-#project-information > .content > .authors .social_networks > li.rss:hover a { background-position: -1248px -48px; }
-#project-information > .content > .authors .social_networks > li.sharethis:hover a { background-position: -1298px -48px; }
-#project-information > .content > .authors .social_networks > li.skype:hover a { background-position: -1344px -48px; }
-#project-information > .content > .authors .social_networks > li.star:hover a { background-position: -1392px -48px; }
-#project-information > .content > .authors .social_networks > li.stumbleupon:hover a { background-position: -1440px -48px; }
-#project-information > .content > .authors .social_networks > li.technorati:hover a { background-position: -1488px -48px; }
-#project-information > .content > .authors .social_networks > li.tumblr:hover a { background-position: -1536px -48px; }
-#project-information > .content > .authors .social_networks > li.twitter:hover a { background-position: -1584px -48px; }
-#project-information > .content > .authors .social_networks > li.vimeo:hover a { background-position: -1632px -48px; }
-#project-information > .content > .authors .social_networks > li.wordpress:hover a { background-position: -1680px -48px; }
-#project-information > .content > .authors .social_networks > li.yahoo:hover a { background-position: -1728px -48px; }
-#project-information > .content > .authors .social_networks > li.youtube:hover a { background-position: -1776px -48px; }
-
-#project-information > .content > .tags > ul {
-  margin: 0;
-}
-
-#project-information > .content > .tags > ul > li {
-  list-style-type: none;
-  float: left;
-  margin: 0 8px 0 0;
-}
-
-#project-information > .content > .tags > ul > li > a {
-  font-size: 10px;
-}
-
-#project-information > .content > .actions {
-  background: none;
-  border: none;
-  padding: 0 0 0 54px;
-  margin-top: 10px;
-}
-
-#project-information > .content > .actions > ul {
-  margin: 0;
-  list-style-type: none;
-}
-
-#project-information > .content > .actions > ul > li {
-  float: left;
-  margin: 0 10px 0 0;
-  position: relative;
-}
-
-#project-information > .content > .actions > ul > li .content {
-  position: absolute;
-  bottom: 44px;
-  left: -54px;
-}
-
-/* Project Navigation */
-body > nav {
-  position: absolute;
-  bottom: 15px;
+  bottom: 36px;
   right: 15px;
-  z-index: 500;
-}
-
-body > nav ul {
-  position: relative;
-  margin: 0;
-  padding: 0;
-}
-
-body > nav > ul li {
-  float: left;
-  list-style-type: none;
-  margin: 10px 0 0 10px;
-  position: relative;
-}
-
-body > nav > ul li > a {
-  -moz-border-radius: 42px;
-  -webkit-border-radius: 42px;
-  border-radius: 42px;
-}
-
-#current-page+.content,
-#sync+.content {
-  position: absolute;
-  z-index: 300;
-  bottom: 21px;
+  width: 200px;
   padding-bottom: 30px;
   display: block;
-  background: url('../images/content_bg.svg') no-repeat;
+  background: url('../images/content_bg.svg') no-repeat 80px bottom;
+  z-index: 1999;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.6s;
+  -moz-transition: 0.6s;
+  -webkit-transition: 0.6s;
 }
 
-#current-page+.content > ul,
-#sync+.content > div {
+#expo-navigation-current-page-content.visible {
+  visibility: visible;
+  opacity: 0.99;
+}
+
+#expo-navigation-current-page-content > ul {
   overflow: auto;
   background: #000;
   color: #FFF;
   -moz-border-radius: 16px;
   -webkit-border-radius: 16px;
   border-radius: 16px;
-  padding-bottom: 10px;
+  margin: 0;
 }
 
-/* Current page content */
-#current-page+.content {
-  right: -64px;
-  width: 226px;
-  background-position: 94px bottom;
+
+#expo-navigation-current-page-content > ul > li {
+  float: left;
+  margin: 8px 8px 0 0;
 }
 
-/* Sync content */
-#sync+.content {
-  right: -80px;
-  width: 220px;
-  background-position: 73px bottom;
+#expo-navigation-current-page-content > ul > li:nth-child(1),
+#expo-navigation-current-page-content > ul > li:nth-child(2),
+#expo-navigation-current-page-content > ul > li:nth-child(3),
+#expo-navigation-current-page-content > ul > li:nth-child(4) {
+  margin-top: 0;
+}
+#expo-navigation-current-page-content > ul > li:nth-child(4n+4) {
+  margin-right: 0;
 }
 
-#sync+.content > div {
+/*******************************************************************************
+ expo-player-sync-content
+********************************************************************************/
+
+/* Project Sync */
+#expo-player-sync-content {
+  z-index: 2000;
+  background: #FFF;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  left: 50%;
+  margin-left: -320px;
+  outline: medium none;
+  position: fixed;
+  top: 10%;
+  width: 640px;
+  z-index: 1050;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.6s;
+  -moz-transition: 0.6s;
+  -webkit-transition: 0.6s;
 }
 
-#sync+.content > div > div {
-  padding: 5px 10px;
+#expo-player-sync-content.visible {
+  visibility: visible;
+  opacity: 0.99;
 }
 
-#sync+.content > div > div p {
+#expo-player-sync-content > a {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: #888;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+#expo-player-sync-content > a:hover {
+  color: #000;
+}
+
+#expo-player-sync-content > div {
+  padding: 20px;
+}
+
+#expo-player-sync-content > div p {
   font-size: 11px;
 }
 
-#sync+.content > div > .create-remote > a {
+#expo-player-sync-content > .create-remote {
+  float: left;
+  width: 280px;
+}
+
+#expo-player-sync-content > .create-remote > label {
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+#expo-player-sync-content > .create-remote > p {
+}
+
+#expo-player-sync-content > .create-remote > a {
   display: block;
-  margin: 10px auto;
-  width: 160px;
-  height: 160px;
-  padding: 20px;
-  background: #FFF;
+  margin: 20px 0 0 0;
 }
 
-#sync+.content > div > .join-live {
-  border-top: 1px solid #000;
+#expo-player-sync-content > .join-live {
+  float: right;
+  width: 280px;
 }
 
-#sync+.content > div > .join-live > ul {
+#expo-player-sync-content > .join-live > label {
+  margin-top: 70px;
+}
+
+#expo-player-sync-content > .join-live > ul {
+  margin: 0;
+  width: 293px;
+  height: 205px;
   overflow: auto;
-  margin-bottom: 10px;
+  list-style-type: none
 }
 
-#sync+.content > div > .join-live > ul > li {
-  margin: 0 5px;
+#expo-player-sync-content > .join-live > ul > li {
+  margin: 5px 5px 0 0;
+  float: left;
 }
 
-#sync+.content > div > .join-live > ul > li > a {
+#expo-player-sync-content > .join-live > ul > li:nth-child(5n+5) {
+  margin-right: 0;
+}
+
+#expo-player-sync-content > .join-live > ul > li:nth-child(1),
+#expo-player-sync-content > .join-live > ul > li:nth-child(2),
+#expo-player-sync-content > .join-live > ul > li:nth-child(3),
+#expo-player-sync-content > .join-live > ul > li:nth-child(4),
+#expo-player-sync-content > .join-live > ul > li:nth-child(5) {
+  margin-top: 0;
+}
+
+#expo-player-sync-content > .join-live > ul > li > a {
   display: block;
-  text-indent: -9999px;
-  width: 15px;
-  height: 35px;
-  background: url('../images/remotes.png') -15px 0 no-repeat;
+  width: 52px;
+  height: 20px;
+  line-height: 20px;
+  padding-top: 80px;
+  background: #000 url('../images/remotes.png') no-repeat;
+  font-size: x-small;
 }
 
-#sync+.content > div > .join-live > ul > li.active > a {
+#expo-player-sync-content > .join-live > ul > li.active > a {
   background: url('../images/remotes.png') 0 0 no-repeat;
 }
 
-#sync+.content > div > .join-live input {
-  width: 186px;
+#expo-player-sync-content > .join-live input {
+  width: 266px;
 }
 
-/* Buttons images */
-
-/* previous button */
-#previous-page {
-  background-image: url('../images/glyphicons.png');
-  text-indent: -9999px;
-}
-.init #previous-page,
-.pending  *:hover > #previous-page {
-  background-position: 0 0;
-}
-.pending #previous-page,
-.init  *:hover > #previous-page {
-  background-position: 0 -84px;
-}
-
-/* next button */
-#next-page {
-  background-image: url('../images/glyphicons.png');
-  text-indent: -9999px;
-}
-.init #next-page,
-.pending *:hover > #next-page {
-  background-position: -84px 0;
-}
-.pending #next-page,
-.init *:hover > #next-page {
-  background-position: -84px -84px;
-}
-
-/* sync button */
-#sync {
-  background-image: url('../images/glyphicons.png');
-  text-indent: -9999px;
-}
-.init #sync,
-.pending .visible > #sync,
-.pending *:hover > #sync {
-  background-position: -168px 0;
-}
-.pending #sync,
-.init .visible > #sync,
-.init *:hover > #sync {
-  background-position: -168px -84px;
-}
-
-/* more */
-#more {
-  background-image: url('../images/glyphicons.png');
-  text-indent: -9999px;
-}
-.init #more,
-.pending .visible > #more,
-.pending *:hover > #more {
-  background-position: -504px 0;
-}
-.pending #more,
-.init .visible > #more,
-.init *:hover > #more {
-  background-position: -504px -84px;
-}
-
-/* help */
-#help {
-  background-image: url('../images/glyphicons.png');
-  text-indent: -9999px;
-}
-.init #help,
-.pending *:hover > #help {
-  background-position: -252px 0;
-}
-.pending #help,
-.init *:hover > #help {
-  background-position: -252px -84px;
-}
-
-/* home */
-#home {
-  background-image: url('../images/glyphicons.png');
-  text-indent: -9999px;
-}
-.init #home,
-.pending *:hover > #home {
-  background-position: -336px 0;
-}
-.pending #home,
-.init *:hover > #home {
-  background-position: -336px -84px;
-}
-
-/* share */
-#share {
-  background-image: url('../images/glyphicons.png');
-  text-indent: -9999px;
-}
-.init #share,
-.pending *:hover > #share {
-  background-position: -420px 0;
-}
-.pending #share,
-.init *:hover > #share {
-  background-position: -420px -84px;
+/* backdrop */
+.modal-backdrop {
+  background: url("../images/bg.png") repeat;
 }
 
 /* Container */
