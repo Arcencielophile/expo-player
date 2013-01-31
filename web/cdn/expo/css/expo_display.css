@@ -666,11 +666,15 @@ a:focus {
 
 #expo-player-sync-content > .join-live > ul > li {
   display: block;
-  background: url('../images/remote.png') no-repeat;
+  background: url('../images/remote.png') no-repeat -40px 0;
   width: 40px;
   height: 95px;
   position: relative;
   overflow: hidden;
+}
+
+#expo-player-sync-content > .join-live > ul > li.active {
+  background-position: 0 0;
 }
 
 #expo-player-sync-content > .join-live > ul > li > a {
