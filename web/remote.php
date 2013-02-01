@@ -1,177 +1,101 @@
 <?php require_once '../lib/expo/loader.php'; ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE HTML>
+<html lang="fr-FR">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expo REMOTE</title>
+  <link href="bootstrap/docs/assets/css/bootstrap.css" rel="stylesheet" media="screen">
+  <link href="bootstrap/docs/assets/css/bootstrap-responsive.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" type="text/css" href="/cdn/expo/css/expo_remote.css" />
 
-        <title>Expo REMOTE</title>
-        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-        <link rel="stylesheet" type="text/css" href="/expojs/themes/<?php echo $_GET['theme'] ?>/remote/style.css" />
-        <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript" src="bootstrap/docs/assets/js/bootstrap.js"></script>
 
-        <script src="expojs/user/expo.User.js"></script>
-        <script src="expojs/control/expo.ControledPresentation.js"></script>
-        <script src="expojs/control/expo.ControlRemote.js"></script>
-        <script src="expojs/control/expo.ControlManager.js"></script>
-        <script src="<?php echo $expo_remote_srv ?>/socket.io/socket.io.js"></script>
-        <script>
-            var socket = io.connect('<?php echo $expo_remote_srv ?>/expo');
-            var owner = new User();
-            var manager = new ControlManager(
-                socket,
-                '<?php echo $_GET['project_id']; ?>',
-                1,
-                <?php echo $_GET['project_count_slides']; ?>,
-                owner
-            );
-            
-            $(document).ready(function(){ 
-                manager.init();
-                
-                /* Event listeners */
-                $('a[href="#previous"]').click(function(event) {
-                    event.preventDefault();
-                    manager.remote.previous();
-                });
-                $(document).bind('swiperight', function(event) {
-                    event.preventDefault();
-                    manager.remote.previous();
-                });
-
-                $('a[href="#project-information"]').click(function(event) {
-                    event.preventDefault();
-                    manager.remote.toggleProjectInformation();
-                });
-
-                $('a[href="#player-information"]').click(function(event) {
-                    event.preventDefault();
-                    manager.remote.togglePlayerInformation();
-                });
-
-                $('a[href="#share"]').click(function(event) {
-                    event.preventDefault();
-                    manager.remote.toggleShareContent();
-                });
-
-                $('a[href="#pages"]').click(function(event) {
-                    event.preventDefault();
-                    manager.remote.togglePagesMenu();
-                });
-
-                $('a[href="#next"]').click(function(event) {
-                    event.preventDefault();
-                    manager.remote.next();
-                });
-                $(document).bind('swipeleft', function(event) {
-                    event.preventDefault();
-                    manager.remote.next();
-                });
-
-                $('#username').bind('keypress', function(event) {
-                    if(event.keyCode == 13) {
-                        manager.remote.changeUserName($('#username').val());
-                        $.mobile.changePage('#home');
-                    }
-                });
-
-                $('#saveName').bind('click', function(event) {
-                    event.preventDefault();
-                    manager.remote.changeUserName($('#username').val());
-                    $.mobile.changePage('#home');
-                });
-
-                $(document).bind('pagechange', function(event, data) {
-                    if(data.toPage[0].id == 'user' || data.toPage[0].id == 'home') {
-                        manager.remote.updateUserNameLabel();
-                        manager.remote.updateFollowers(manager.remote.getFollowers());
-                    }
-                });
-
-                window.onbeforeunload = manager.remote.disconnect;
-            });
-        </script>
-    </head>
-
-    <body>
-        <div data-role="page" id="loading">
-            <div data-role="content">
-                <div class="ui-grid-solo">
-                    <div class="ui-block-a">
-                        <h1>Connecting to server...</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <script src="expojs/user/expo.User.js"></script>
+  <script src="expojs/control/expo.ControledPresentation.js"></script>
+  <script src="expojs/control/expo.ControlRemote.js"></script>
+  <script src="expojs/control/expo.ControlManager.js"></script>
+  <script src="<?php echo $expo_remote_srv ?>/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+    var socket = io.connect('<?php echo $expo_remote_srv ?>/expo');
+    var owner = new User();
+    var manager = new ControlManager(
+      socket,
+      '<?php echo $_GET['project_id']; ?>',
+      0,
+      <?php echo $_GET['project_count_slides']; ?>,
+      owner
+    );
     
-        <div data-role="page" id="home">
-            <div data-role="header" data-position="fixed">
-                <h1><?php echo $_GET['project_name'] ?></h1>
-            </div>
+    $(document).ready(function(){ 
+      manager.init();
+    });
+  </script>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span6" id="expo-remote-base-control">
+        <h1 class="span12">Name project</h1>
+        <a id="expo-remote-previous"><span>PREVIOUS</span></a>
+        <a id="expo-remote-current"><span>0</span></a>
+        <a id="expo-remote-next"><span>NEXT</span></a>
+        <input id="expo-remote-name" type="text" placeholder="#0" />
+        <div id="expo-remote-followers-counter">0</div>
+      </div>
 
-            <div data-role="content">
-
-                <div class="ui-grid-b">
-                    <div class="ui-block-a">
-                        <a href="#previous" data-role="button" data-icon="arrow-l">Previous</a>
-                    </div>
-                    <div class="ui-block-b">
-                        <div class="pager">
-                            <span id="current_page">1</span> / <span id="total_page"><?php echo $_GET['project_count_slides']; ?></span>
-                        </div>
-                    </div>
-                    <div class="ui-block-c">
-                        <a href="#next" data-role="button" data-icon="arrow-r">Next</a>
-                    </div>
-                </div>
-            </div>
-
-            <div data-role="footer" data-position="fixed">
-                <a href="#project-information" data-role="button" data-icon="info">project info</a>
-                <a href="#player-information" data-role="button" data-icon="info">player info</a>
-                <a href="#share" data-role="button">share</a>
-                <a href="#pages" data-role="button">pages</a>
-                <a href="#followers" data-role="button" data-icon="star" data-transition="slideup">0</a>
-                <a href="#user" id="nameButton" data-role="button" data-icon="gear" data-transition="slideup">#0</a>
-            </div>
+      <div class="span6" id="expo-remote-advanced-control">
+        <div id="expo-remote-goto">
+          <ul>
+            <li><a href="#" data-goto="x">x</a></li>
+            <li><a href="#" data-goto="x">x</a></li>
+            <li><a href="#" data-goto="x">x</a></li>
+            <li><a href="#" data-goto="x">x</a></li>
+            <li><a href="#" data-goto="x">x</a></li>
+            <li><a href="#" data-goto="x">x</a></li>
+            <li><a href="#" data-goto="x">x</a></li>
+            <li><a href="#" data-goto="x">x</a></li>
+            <li><a href="#" data-goto="x">x</a></li>
+          </ul>
         </div>
+        <a id="expo-remote-project-information" href="">+</a>
+        <a id="expo-remote-player-information" href="">i</a>
+        <a id="expo-remote-share" href="">s</a>
+        <a id="expo-remote-pages" href="">p</a>
+      </div>
+    </div>
+  </div>
 
-        <div data-role="page" id="user">
-            <div data-role="header" data-position="fixed">
-                <h1>Enter your name</h1>
-            </div>
-            <div data-role="content">
-                <form>
-                    <div data-role="fieldcontain" class="ui-hide-label">
-                        <label for="username">Username:</label>
-                        <input type="text" name="username" id="username" value="" placeholder="#0" maxlength="16"/>
-                    </div>
-                </form>
-                <div class="ui-grid-a">
-                    <div class="ui-block-a">
-                        <a href="#home" data-role="button" data-transition="slidedown">Cancel</a>
-                    </div>
-                    <div class="ui-block-b">
-                        <a href="#" data-role="button" data-transition="slidedown" id="saveName">Save</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div data-role="page" id="followers">
-            <div data-role="header" data-position="fixed">
-                <h1>They follow you</h1>
-            </div>
-            <div data-role="content">
-                <ul id="followersList" data-role="listview">
-                </ul>
-                <br/>
-                <div class="ui-grid-a">
-                    <div class="ui-block-a">
-                        <a href="#home" data-role="button" data-transition="slidedown">Back</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
+  <footer class="visible-phone">
+    <a id="toggle-advanced-control" href="#expo-remote-advanced-control"></a>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var init = false;
+
+        function initAdvancedControlPosition(){
+          console.log("fonction");
+          if (init){
+            return true;
+          }
+
+          init = true;
+          $("#expo-remote-advanced-control").css("position","absolute").css("top",$(window).height());
+        }
+
+        $("#toggle-advanced-control").click(function(event){
+          event.preventDefault();
+          initAdvancedControlPosition();
+          if ($(this).hasClass("active")) {
+            $(this).removeClass("active");
+            $("#expo-remote-advanced-control").removeClass("visible");
+          } else {
+            $(this).addClass("active");
+            $("#expo-remote-advanced-control").addClass("visible");
+          }
+        });
+      });
+    </script>
+  </footer>
+</body>
 </html>

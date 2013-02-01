@@ -40,9 +40,10 @@ var ControlRemote = function (socket, position) {
     this.init = function() {
         console.log('ControlRemote:init()');
         this.remoteListeners();
+        this.eventListeners();
     }
 
-    /* Event Listeners */
+    /* Remote Listeners */
     this.remoteListeners = function() {
         console.log('ControlRemote:remoteListeners()');
         remote = this;
@@ -54,8 +55,6 @@ var ControlRemote = function (socket, position) {
             remote.connected = true;
             remote.setRoomName(data.roomName);
             remote.updateUserNameLabel();
-
-            $.mobile.changePage('#home');
         });
         
         this.socket.on('update_followers', function (data) {
@@ -63,6 +62,72 @@ var ControlRemote = function (socket, position) {
         });
 
         this.socket.emit('new_remote', {projectId: this.getPresentation().getId(), owner: this.getOwner()});
+    }
+
+    /* Event Listeners */
+    this.eventListeners = function() {
+        console.log('ControlRemote:eventListeners()');
+        remote = this;
+
+        $('#expo-remote-previous').click(function(event) {
+            event.preventDefault();
+            remote.previous();
+        });
+        /*$(document).on('swiperight', function(event) {
+            event.preventDefault();
+            remote.previous();
+        });*/
+
+        $('#expo-remote-project-information').click(function(event) {
+            event.preventDefault();
+            remote.toggleProjectInformation();
+        });
+
+        $('#expo-remote-player-information').click(function(event) {
+            event.preventDefault();
+            remote.togglePlayerInformation();
+        });
+
+        $('#expo-remote-share').click(function(event) {
+            event.preventDefault();
+            remote.toggleShareContent();
+        });
+
+        $('#expo-remote-pages').click(function(event) {
+            event.preventDefault();
+            remote.togglePagesMenu();
+        });
+
+        $('#expo-remote-next').click(function(event) {
+            event.preventDefault();
+            remote.next();
+        });
+        /*$(document).on('swipeleft', function(event) {
+            event.preventDefault();
+            remote.next();
+        });*/
+
+        $('#expo-remote-name').on('keypress', function(event) {
+            if(event.keyCode == 13) {
+                remote.changeUserName($('#expo-remote-name').val());
+            }
+        });
+
+        $('#expo-remote-name').on('click', function(event) {
+            event.preventDefault();
+            remote.changeUserName($('#expo-remote-name').val());
+        });
+
+        /*$(document).on('pagechange', function(event, data) {
+            if(data.toPage[0].id == 'user' || data.toPage[0].id == 'home') {
+                remote.updateUserNameLabel();
+                remote.updateFollowers(remote.getFollowers());
+            }
+        });*/
+
+        window.onbeforeunload = this.disconnect;
+
+        this.updateUserNameLabel();
     }
 
     /* Getters */
@@ -112,7 +177,7 @@ var ControlRemote = function (socket, position) {
                 console.log('ControlRemote:goto position: '+this.position+' for roomName: '+this.getRoomName());
                 this.socket.emit('goto', {roomName:this.getRoomName(), position: this.position});
 
-                $('#current_page').html(this.position);
+                $('#expo-remote-current').html('<span>'+this.position+'</span>');
             }
         } else {
             console.log('Missing id');
@@ -166,32 +231,35 @@ var ControlRemote = function (socket, position) {
 
     this.updateUserNameLabel = function() {
         console.log('ControlRemote:updateUserNameLabel');
-        if($('#username')) {
-            $('#username').attr('value', remote.getOwner().getName());
-            $('#username').attr('placeholder', '#'+remote.getId());
+        if($('#expo-remote-name')) {
+            $('#expo-remote-name').val('');
+            $('#expo-remote-name').val(remote.getOwner().getName());
+            
+            $('#expo-remote-name').attr('placeholder', '#'+remote.getId());
         }
-        if($('a[href="#user"] .ui-btn-text')) {
+        /*if($('a[href="#user"] .ui-btn-text')) {
             $('a[href="#user"] .ui-btn-text').empty().append(manager.remote.getOwner().getName()+'#'+manager.remote.getId());
-        }
+        }*/
     }
 
     this.updateFollowers = function(followers) {
         this.followers = followers;
         console.log('ControlRemote:updateFollowers('+this.followers+')');
         console.log(this.followers);
-        $('a[href="#followers"] .ui-btn-text').empty().append(this.followers.length);
+        $('#expo-remote-followers-counter').empty().append(this.followers.length);
         
-        $('#followersList').empty();
+        /*$('#followersList').empty();
         var list = '';
         for(i=0; i < this.followers.length; i++) {
             var follower = this.followers[i];
             list += '<li><h3 class="ui-li-heading">'+follower.name+'</h3><p class="ui-li-desc">'+follower.ip+'</p></li>';
         }
-        $('#followersList').html(list);
+        $('#followersList').html(list);*/
     }
 
     this.disconnect = function() {
         console.log('ControlRemote:disconnect()');
+        $('#expo-remote-name').removeAttr('value');
         this.socket.emit('byebye');
     }
 }

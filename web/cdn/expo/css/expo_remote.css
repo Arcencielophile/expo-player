@@ -1,5 +1,227 @@
-.pager {
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.container-fluid, .row-fluid {
+  height: 100%;
+}
+
+/*******************************************************************************
+ Expo Remote Base Control
+********************************************************************************/
+
+#expo-remote-base-control {
+  height: 100%;
+  border-left: 1px dotted #888;
+  border-right: 1px dotted #888;
+  position: relative;
+}
+
+/* Project Title */
+#expo-remote-base-control > h1 {
   text-align: center;
-  font-weight: bold;
-  font-size: 24px;
+  padding: 10px 0;
+  margin: 0;
+}
+
+/* Previous */
+#expo-remote-previous {
+  display: block;
+  background: #CCC;
+  width: 30%;
+  position: absolute;
+  top: 25%;
+  left: 3%;
+}
+
+#expo-remote-previous > span {
+  display: block;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Current */
+#expo-remote-current {
+  display: block;
+  background: #CCC;
+  width: 30%;
+  position: absolute;
+  top: 25%;
+  left: 35%;
+}
+
+#expo-remote-current > span {
+  display: block;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Next */
+#expo-remote-next {
+  display: block;
+  background: #CCC;
+  width: 30%;
+  position: absolute;
+  top: 25%;
+  right: 3%;
+}
+
+#expo-remote-next > span {
+  display: block;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Remote name */
+#expo-remote-name {
+  position: absolute;
+  top: 50%;
+  width: 60%;
+  left: 20%;
+}
+
+/* Follower counter */
+#expo-remote-followers-counter {
+  position: absolute;
+  top: 75%;
+  width: 40%;
+  left: 30%;
+  font-size: 45px;
+  text-align: center;
+}
+
+/*******************************************************************************
+ Expo Remote Advanced Control
+********************************************************************************/
+
+#expo-remote-advanced-control {
+  position: relative;
+  height: 100%;
+  background: #FFF;
+  border-left: 1px dotted #888;
+  border-right: 1px dotted #888;
+  -webkit-transition:all 1.0s ease-in-out;
+  -moz-transition:all 1.0s ease-in-out;
+  -o-transition:all 1.0s ease-in-out;
+  transition:all 1.0s ease-in-out;
+}
+
+#expo-remote-advanced-control.visible {
+  top:0 !important;
+}
+
+/* Remote goto */
+#expo-remote-goto {
+  padding: 0 4%;
+  height: 80%;
+  overflow: auto;
+}
+
+#expo-remote-goto > ul {
+  list-style-type: none;
+  width: 100%;
+  display: block;
+  margin: 0;
+  overflow: auto;
+  padding: 20px 0 40px;
+}
+
+#expo-remote-goto > ul > li {
+  display: block;
+  float: left;
+  width: 30%;
+  margin-right: 5%;
+  margin: 3% 5% 0 0;
+}
+
+#expo-remote-goto > ul > li:nth-child(1),
+#expo-remote-goto > ul > li:nth-child(2),
+#expo-remote-goto > ul > li:nth-child(3) {
+  margin-top: 0;
+}
+
+#expo-remote-goto > ul > li:nth-child(3n+3) {
+  margin-right: 0;
+}
+
+#expo-remote-goto > ul > li > a {
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  border: 1px solid #000;
+  text-align: center;
+  line-height: 100px;
+  text-decoration: none;
+  font-size: 32px;
+  -webkit-border-radius: 50%;
+     -moz-border-radius: 50%;
+          border-radius: 50%;
+}
+
+#expo-remote-goto > ul > li:hover > a {
+  background: #08C;
+  color: #FFF;
+}
+
+#expo-remote-project-information,
+#expo-remote-player-information,
+#expo-remote-share,
+#expo-remote-pages {
+  position: absolute;
+  bottom: 0px;
+  display: block;
+  width: 25%;
+  height: 100px;
+  margin: 0 auto;
+  border: 1px solid #000;
+  text-align: center;
+  line-height: 100px;
+  text-decoration: none;
+  font-size: 32px;
+  background: #000;
+  color: #FFF;
+}
+
+#expo-remote-project-information {
+  left: 0;
+}
+
+#expo-remote-player-information {
+  left: 25%;
+}
+
+#expo-remote-share {
+  left: 50%;
+}
+
+#expo-remote-pages {
+  left: 75%;
+}
+
+/*******************************************************************************
+ Expo Remote Footer
+********************************************************************************/
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #000;
+}
+
+footer #toggle-advanced-control {
+  display: block;
+  height: 16px;
+  text-align: center;
+}
+
+footer #toggle-advanced-control:before {
+  content: '^';
+}
+
+footer #toggle-advanced-control.active:before {
+  content: 'v';
 }
