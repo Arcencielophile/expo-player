@@ -53,7 +53,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         this.showPlayerInformation(false);
         this.showProjectInformation(false);
         this.showPagesMenu(false);
-        this.showSync(true);
+        this.showSync(false);
     };
 
     /* Event Listeners */
