@@ -37,6 +37,12 @@
     <social_link uri="https://twitter.com/sayatnowa" />
   </author>
   <author>
+    <name>Sofiane SADI</name>
+    <email>sofiane.sadi@gmail.com</email>
+    <social_link uri="https://twitter.com/sadisofiane" />
+    <social_link uri="https://github.com/supsoso" />
+  </author>
+  <author>
     <name>Vincent SAISSET</name>
     <email>vincent.saisset@gmail.com</email>
     <social_link uri="https://twitter.com/vaince" />
@@ -56,7 +62,7 @@
   </target>
 
   <page>
-    <title></title>
+    <title>intro</title>
     <description></description>
     <content>
       <![CDATA[
@@ -66,37 +72,47 @@
   </page>
 
   <page>
-    <title>What is expo ?</title>
+    <title>Attention Please</title>
     <description></description>
     <content>
       <![CDATA[
-          
+          <p>Are you looking for a <strong>fresh online presenter</strong></p>
+          <p>entirely <strong>customizable</strong></p>
+          <p>Designed with <strong>recent web technologies</strong></p>
+          <p><strong class="blue">Expo</strong> can help you to spread <strong>your creativity</strong></p>
       ]]>
     </content>
   </page>
 
   <page>
-    <title>Why use expo ?</title>
+    <title>What You Need ?</title>
     <description></description>
     <content>
       <![CDATA[
-          
+          <p>Your <strong>brain</strong></p>
+          <p>Your <strong>style</strong></p>
+          <p>Your <strong>imagination</strong></p>
+          <p>A little bit ok knowledge in <strong>CSS 3</strong></p>
+          <p>And <strong>XML</strong></p>
       ]]>
     </content>
   </page>
 
   <page>
-    <title>Who use expo ?</title>
+    <title>What You'll Get</title>
     <description></description>
     <content>
       <![CDATA[
-          
+          <p>A <strong>web animated</strong> presentation</p>
+          <p><strong>Multi-platform</strong></p>
+          <p><strong>Remote controlled</strong></p>
+          <p>Really <strong>easy to share</strong></p>
       ]]>
     </content>
   </page>
 
   <page>
-    <title>How use expo ?</title>
+    <title>Get Started</title>
     <description></description>
     <content>
       <![CDATA[
