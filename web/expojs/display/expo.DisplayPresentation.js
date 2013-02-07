@@ -395,7 +395,9 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
     };
 
     this.removeBackdrop = function() {
-        this.$backdrop.remove();
-        this.$backdrop = null;
+        if(this.$backdrop !== undefined) {
+            this.$backdrop.remove();
+            this.$backdrop = null;
+        }
     };
 };
