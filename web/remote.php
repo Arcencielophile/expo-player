@@ -23,7 +23,7 @@
     var manager = new ControlManager(
       socket,
       '<?php echo $_GET['project_id']; ?>',
-      0,
+      1,
       <?php echo $_GET['project_count_slides']; ?>,
       owner
     );
@@ -48,15 +48,9 @@
       <div class="span6" id="expo-remote-advanced-control">
         <div id="expo-remote-goto">
           <ul>
-            <li><a href="#" data-goto="x">x</a></li>
-            <li><a href="#" data-goto="x">x</a></li>
-            <li><a href="#" data-goto="x">x</a></li>
-            <li><a href="#" data-goto="x">x</a></li>
-            <li><a href="#" data-goto="x">x</a></li>
-            <li><a href="#" data-goto="x">x</a></li>
-            <li><a href="#" data-goto="x">x</a></li>
-            <li><a href="#" data-goto="x">x</a></li>
-            <li><a href="#" data-goto="x">x</a></li>
+            <?php for ($i = 1; $i <= $_GET['project_count_slides']; $i++): ?>
+              <li><a href="#" data-goto="<?php echo $i; ?>"><?php echo $i; ?></a></li>
+            <?php endfor ?>
           </ul>
         </div>
         <a id="expo-remote-project-information" href="">+</a>

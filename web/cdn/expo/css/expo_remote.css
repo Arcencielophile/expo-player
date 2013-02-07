@@ -3,6 +3,10 @@ html, body {
   overflow: hidden;
 }
 
+a:focus {
+  outline: none;
+}
+
 .container-fluid, .row-fluid {
   height: 100%;
 }

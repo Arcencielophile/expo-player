@@ -118,6 +118,11 @@ var ControlRemote = function (socket, position) {
             remote.changeUserName($('#expo-remote-name').val());
         });
 
+        $('#expo-remote-goto a').on('click', function(event) {
+            event.preventDefault();
+            remote.goto($(this).attr('data-goto'));
+        });
+
         /*$(document).on('pagechange', function(event, data) {
             if(data.toPage[0].id == 'user' || data.toPage[0].id == 'home') {
                 remote.updateUserNameLabel();
