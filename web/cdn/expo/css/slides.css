@@ -1,3 +1,19 @@
+.deco {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Tout les elements freres de deco ont un z-index plus important que .deco */
+.deco + * { 
+  position: relative;
+  z-index: 1001;
+}
+
 #intro {
   background: #fefefe; /* Old browsers */
   background: -moz-linear-gradient(top, #fefefe 0%, #d0d0d0 100%); /* FF3.6+ */
@@ -14,27 +30,64 @@
 }
 
 #attention-please {
-  background: #E2E2E2 url('/cdn/expo/images/slides/expo1.png') no-repeat 90% top;
+  background: #E2E2E2;
 }
 
+#attention-please .deco {
+  background: url('/cdn/expo/images/slides/expo1.png') no-repeat 90% top;
+}
+
+
 #what-you-need {
-  background: #A8EDFD url('/cdn/expo/images/slides/expo2.png') no-repeat 90% top;
+  background: #A8EDFD;
+}
+
+#what-you-need .deco {
+  background: url('/cdn/expo/images/slides/expo2.png') no-repeat 90% top;
 }
 
 #what-you-ll-get {
-  background: #00CDFF url('/cdn/expo/images/slides/expo3.png') no-repeat 90% top;;
+  background: #00CDFF;
 }
 
 #what-you-ll-get strong {
   color: #FFF;
 }
 
+#what-you-ll-get .deco {
+  background: url('/cdn/expo/images/slides/expo3.png') no-repeat 90% top;
+}
+
 #get-started {
   background: #0286CA;
 }
 
-#get-started h2 {
-  display: none;
+#get-started .gsb {
+  border: #FFF 2px solid; 
+  text-align: center;
+  padding: 10px;
+  font-size: 26px;
+  color: #FFFFFF;
+  font-weight: bold;
+  background: rgba(229, 229, 229, 0.5);
+}
+
+#get-started .gsb:hover { 
+  background: rgba(229, 229, 229, 0.7);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#get-started .deco {
+  background: url('/cdn/expo/images/slides/expo4.png') no-repeat 90% top;
+}
+
+#get-started .row-fluid {
+  margin-left: 10%;
+  text-align: right;
+  width: 60%;
+  padding-right: 10%;
+  color: #FFFFFF;
 }
 
 .slide h2 {
@@ -48,7 +101,7 @@
   padding-right: 10%;
 }
 
-.slide p {
+.slide > div > p {
   margin-left: 10%;
   text-align: right;
   width: 60%;
@@ -64,4 +117,5 @@ strong {
 strong.blue {
   color: #04C2F1;
 }
+
 

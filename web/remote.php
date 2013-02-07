@@ -43,9 +43,15 @@
         <a id="expo-remote-next"><span>NEXT</span></a>
         <input id="expo-remote-name" type="text" placeholder="#0" />
         <div id="expo-remote-followers-counter">0</div>
+        <div class="footer visible-phone">
+          <a id="show-advanced-control">^</a>
+        </div>
       </div>
 
       <div class="span6" id="expo-remote-advanced-control">
+        <div class="header visible-phone">
+          <a id="hide-advanced-control">v</a>
+        </div>
         <div id="expo-remote-goto">
           <ul>
             <?php for ($i = 1; $i <= $_GET['project_count_slides']; $i++): ?>
@@ -61,35 +67,19 @@
     </div>
   </div>
 
-  <footer class="visible-phone">
-    <a id="toggle-advanced-control" href="#expo-remote-advanced-control"></a>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        var init = false;
-
-        function initAdvancedControlPosition(){
-          console.log("fonction");
-          if (init){
-            return true;
-          }
-
-          init = true;
-          $("#expo-remote-advanced-control").css("position","absolute").css("top",$(window).height());
-        }
-
-        $("#toggle-advanced-control").click(function(event){
-          event.preventDefault();
-          initAdvancedControlPosition();
-          if ($(this).hasClass("active")) {
-            $(this).removeClass("active");
-            $("#expo-remote-advanced-control").removeClass("visible");
-          } else {
-            $(this).addClass("active");
-            $("#expo-remote-advanced-control").addClass("visible");
-          }
-        });
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#show-advanced-control").click(function(event){
+        event.preventDefault();
+        $("#expo-remote-advanced-control").addClass("visible");
       });
-    </script>
-  </footer>
+
+      $("#hide-advanced-control").click(function(event){
+        event.preventDefault();
+        $("#expo-remote-advanced-control").removeClass("visible");
+      });
+    });
+  </script>
+
 </body>
 </html>
