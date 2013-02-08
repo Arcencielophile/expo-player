@@ -552,11 +552,11 @@ a:focus {
 }
 
 /*******************************************************************************
- expo-player-sync-content
+ expo-player popin
 ********************************************************************************/
 
-/* Project Sync */
-#expo-player-sync-content {
+#expo-player-sync-content,
+#expo-player-share-content {
   z-index: 2000;
   background: #FFF;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -576,12 +576,14 @@ a:focus {
           transition: 0.6s;
 }
 
-#expo-player-sync-content.visible {
+#expo-player-sync-content.visible,
+#expo-player-share-content.visible {
   visibility: visible;
   opacity: 0.99;
 }
 
-#expo-player-sync-content > a {
+#expo-player-sync-content > a,
+#expo-player-share-content > a {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -591,17 +593,25 @@ a:focus {
   text-decoration: none;
 }
 
-#expo-player-sync-content > a:hover {
+
+#expo-player-sync-content > a:hover,
+#expo-player-share-content > a:hover {
   color: #000;
 }
 
-#expo-player-sync-content > div {
+#expo-player-sync-content > div,
+#expo-player-share-content > div {
   padding: 20px;
 }
 
-#expo-player-sync-content > div p {
+#expo-player-sync-content > div p,
+#expo-player-share-content > div p {
   font-size: 11px;
 }
+
+/*******************************************************************************
+ expo-player-sync-content
+********************************************************************************/
 
 #expo-player-sync-content > .create-remote {
   float: left;
@@ -710,6 +720,111 @@ a:focus {
 
 #expo-player-sync-content > .join-live input {
   width: 266px;
+}
+
+
+/*******************************************************************************
+ expo-player-share-content
+********************************************************************************/
+
+#expo-player-share-content > .share > label {
+  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 15px;
+  background: url('../images/share.png') no-repeat 0 0;
+  line-height: 40px;
+  padding-left: 48px;
+}
+
+#expo-player-share-content > .share > form {
+  display: block;
+  width: 100%;
+  margin: 20px 0;
+  overflow: auto;
+}
+
+#expo-player-share-content > .share > form > textarea {
+  display: block;
+  width: 96%;
+  max-width: 96%;
+  min-width: 96%;
+  padding: 2% 1.5%;
+}
+
+#expo-player-share-content > .share > form > ul {
+  list-style-type: none;
+  float: left;
+  overflow: auto;
+}
+
+#expo-player-share-content > .share > form > ul > li {
+  float: left;
+  margin: 0 24px 0 0;
+  display: block;
+  position: relative;
+}
+
+#expo-player-share-content > .share > form > ul > li > input {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#expo-player-share-content > .share > form > ul > li > label {
+  display: block;
+  width: 24px;
+  height: 24px;
+  text-indent: -9999px;
+  background: #000 url('../images/social_glyphicons.png') no-repeat;
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+}
+
+#expo-player-share-content > .share > form > ul > li > label:hover {
+  cursor: pointer;
+}
+
+#expo-player-share-content > .share > form > ul > li > label[for="social-network-linkedin"] {
+  background-position: -816px 0;
+}
+#expo-player-share-content > .share > form > ul > li > label[for="social-network-twitter"] {
+  background-position: -1584px 0;
+}
+#expo-player-share-content > .share > form > ul > li > label[for="social-network-facebook"] {
+  background-position: -432px 0;
+}
+#expo-player-share-content > .share > form > ul > li > label[for="social-network-googleplus"] {
+  background-position: -672px 0;
+}
+
+#expo-player-share-content > .share > form > ul > li > input:checked + label[for="social-network-linkedin"] {
+  background-position: -816px -48px;
+}
+#expo-player-share-content > .share > form > ul > li > input:checked + label[for="social-network-twitter"] {
+  background-position: -1584px -48px;
+}
+#expo-player-share-content > .share > form > ul > li > input:checked + label[for="social-network-facebook"] {
+  background-position: -432px -48px;
+}
+#expo-player-share-content > .share > form > ul > li > input:checked + label[for="social-network-googleplus"] {
+  background-position: -672px -48px;
+}
+
+#expo-player-share-content > .share > form input[type="submit"] {
+  background: #FFF;
+  color: #000;
+  text-transform: uppercase;
+  padding: 5px 30px;
+  border: 1px solid #CCC;
+  float: right;
+  font-weight: bold;
+}
+
+#expo-player-share-content > .share > form input[type="submit"]:hover {
+  background: #000;
+  color: #FFF;
 }
 
 /* backdrop */

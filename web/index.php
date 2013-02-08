@@ -118,6 +118,39 @@
 
     <a href="#expo-player-share-content" id="expo-player-share" class="button" title="Share">*S*</a>
     <div id="expo-player-share-content">
+      <a href="#expo-player-share-content" title="Close">x</a>
+      <div class="share">
+        <label>Share with your network</label>
+        <p>You can share this presentation with your network</p>
+        <form action="#" method="get">
+          <textarea name="message" placeholder="Write your comment here"></textarea>
+          <div class="note">
+            <p>
+              <?php echo $projectPlayer->getProject()->getSummary(); ?>
+            </p>
+          </div>
+          <ul>
+            <li>
+              <input type="radio" value="linkedin" name="social-network" id="social-network-linkedin" />
+              <label for="social-network-linkedin">Linkedin</label>
+            </li>
+            <li>
+              <input type="radio" value="twitter" name="social-network" id="social-network-twitter" />
+              <label for="social-network-twitter">Twitter</label>
+            </li>
+            <li>
+              <input type="radio" value="facebook" name="social-network" id="social-network-facebook" />
+              <label for="social-network-facebook">Facebook</label>
+            </li>
+            <li>
+              <input type="radio" value="googleplus" name="social-network" id="social-network-googleplus" />
+              <label for="social-network-googleplus">GooglePlus</label>
+            </li>
+          </ul>
+          <input type="hidden" value="<?php echo $projectPlayer->getProject()->getIdentifier(); ?>" name="project-id">
+          <input type="submit" value="share" />
+        </form>
+      </div>
     </div>
 
     <?php if($projectPlayer->isRemoteAlive()): ?>

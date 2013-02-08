@@ -54,6 +54,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         this.showProjectInformation(false);
         this.showPagesMenu(false);
         this.showSync(false);
+        this.showShareContent(false);
     };
 
     /* Event Listeners */
@@ -130,6 +131,11 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         jQuery('#expo-player-sync-content a[href="#expo-player-sync-content"]').click(function(event) {
             event.preventDefault();
             presentation.showSync(false);
+        });
+
+        jQuery('#expo-player-share-content a[href="#expo-player-share-content"]').click(function(event) {
+            event.preventDefault();
+            presentation.showShareContent(false);
         });
 
         jQuery('.join-live ul li').live('click', function(event) {
@@ -351,9 +357,11 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
 
         this.setShowShareContent(show);
         if(show) {
+            this.backdrop();
             shareButton.addClass('active');
             shareContent.addClass('visible');
         } else {
+            this.removeBackdrop();
             shareButton.removeClass('active');
             shareContent.removeClass('visible');
         }
@@ -391,13 +399,15 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
     };
 
     this.backdrop = function() {
-        this.$backdrop = $('<div class="modal-backdrop fade in" />').appendTo(document.body);
+        if(this.$backdrop === undefined) {
+            this.$backdrop = $('<div class="modal-backdrop fade in" />').appendTo(document.body);
+        }
     };
 
     this.removeBackdrop = function() {
         if(this.$backdrop !== undefined) {
             this.$backdrop.remove();
-            this.$backdrop = null;
+            this.$backdrop = undefined;
         }
     };
 };
