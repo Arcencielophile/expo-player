@@ -1,5 +1,6 @@
 /* Smartphone */
 @media (max-width: 767px) {
+    #expo-player-sync { right: 5px; }
 }
 
 /* Tablette */
