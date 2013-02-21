@@ -40,13 +40,20 @@ var ControlRemote = function (socket, position) {
     this.init = function() {
         console.log('ControlRemote:init()');
         this.remoteListeners();
-        this.eventListeners();
+        window.onbeforeunload = this.disconnect;
     }
 
     /* Remote Listeners */
     this.remoteListeners = function() {
         console.log('ControlRemote:remoteListeners()');
         remote = this;
+
+        this.socket.on('connect', function(){
+            // waiting for connect send by server-side.
+            console.log('Remote connected');
+            remote.socket.emit('new_remote', {projectId: remote.getPresentation().getId(), owner: remote.getOwner()});
+
+        });
 
         this.socket.on('set_remote_id', function (data) {
             console.log('set_remote_id ('+data+')');
@@ -60,8 +67,6 @@ var ControlRemote = function (socket, position) {
         this.socket.on('update_followers', function (data) {
             remote.updateFollowers(data);
         });
-
-        this.socket.emit('new_remote', {projectId: this.getPresentation().getId(), owner: this.getOwner()});
     }
 
     /* Event Listeners */
@@ -69,7 +74,7 @@ var ControlRemote = function (socket, position) {
         console.log('ControlRemote:eventListeners()');
         remote = this;
 
-        $('#expo-remote-previous').click(function(event) {
+        $('#expo-remote-previous').on('click', function(event) {
             event.preventDefault();
             remote.previous();
         });
@@ -78,27 +83,8 @@ var ControlRemote = function (socket, position) {
             remote.previous();
         });*/
 
-        $('#expo-remote-project-information').click(function(event) {
-            event.preventDefault();
-            remote.toggleProjectInformation();
-        });
-
-        $('#expo-remote-player-information').click(function(event) {
-            event.preventDefault();
-            remote.togglePlayerInformation();
-        });
-
-        $('#expo-remote-share').click(function(event) {
-            event.preventDefault();
-            remote.toggleShareContent();
-        });
-
-        $('#expo-remote-pages').click(function(event) {
-            event.preventDefault();
-            remote.togglePagesMenu();
-        });
-
-        $('#expo-remote-next').click(function(event) {
+        $('#expo-remote-next').on('click', function(event) {
+            console.log('next');
             event.preventDefault();
             remote.next();
         });
@@ -106,6 +92,26 @@ var ControlRemote = function (socket, position) {
             event.preventDefault();
             remote.next();
         });*/
+
+        $('#expo-remote-project-information').on('click', function(event) {
+            event.preventDefault();
+            remote.toggleProjectInformation();
+        });
+
+        $('#expo-remote-player-information').on('click', function(event) {
+            event.preventDefault();
+            remote.togglePlayerInformation();
+        });
+
+        $('#expo-remote-share').on('click', function(event) {
+            event.preventDefault();
+            remote.toggleShareContent();
+        });
+
+        $('#expo-remote-pages').on('click', function(event) {
+            event.preventDefault();
+            remote.togglePagesMenu();
+        });
 
         $('#expo-remote-name').on('keypress', function(event) {
             if(event.keyCode == 13) {
@@ -129,8 +135,6 @@ var ControlRemote = function (socket, position) {
                 remote.updateFollowers(remote.getFollowers());
             }
         });*/
-
-        window.onbeforeunload = this.disconnect;
 
         this.updateUserNameLabel();
     }
@@ -262,9 +266,8 @@ var ControlRemote = function (socket, position) {
         $('#followersList').html(list);*/
     }
 
-    this.disconnect = function() {
-        console.log('ControlRemote:disconnect()');
-        $('#expo-remote-name').removeAttr('value');
+    this.disconnect = function() { 
+        console.log('ControlRemote:disconnect() : '+this.socket);
         this.socket.emit('byebye');
     }
 }
