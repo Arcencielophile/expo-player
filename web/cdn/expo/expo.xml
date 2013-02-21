@@ -6,11 +6,14 @@
     <url>http://www.expo-project.org</url>
     <display player="deckjs">
       <css path="css/expo_display.css" />
+      <css path="css/expo_display-responsive.css" />
       <css path="css/slides.css" />
+      <css path="css/slides-responsive.css" />
 <!--      <js path="js/expo_display.js" /> -->
     </display>
     <remote>
       <css path="css/expo_remote.css" />
+      <css path="css/expo_remote-responsive.css" />
 <!--      <js path="js/expo_remote.js" /> -->
     </remote>
   </theme>

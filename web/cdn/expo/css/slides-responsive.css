@@ -1,0 +1,28 @@
+/* Smartphone */
+@media (max-width: 767px) {
+    #attention-please {
+      background: #E2E2E2;
+    }
+
+    #what-you-need {
+      background: #A8EDFD;
+    }
+
+    #what-you-ll-get {
+      background: #00CDFF;
+    }
+
+    #get-started {
+      background: #478FB2;
+    }
+}
+
+/* Tablette */
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+
+/* Large screen */
+@media (min-width: 1200px) {
+
+}

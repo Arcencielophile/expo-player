@@ -1,0 +1,11 @@
+/* Smartphone */
+@media (max-width: 767px) {
+}
+
+/* Tablette */
+@media (min-width: 768px) and (max-width: 979px) {
+}
+
+/* Large screen */
+@media (min-width: 1200px) {
+}
