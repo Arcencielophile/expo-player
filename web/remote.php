@@ -10,6 +10,7 @@
   <link rel="stylesheet" type="text/css" href="/cdn/expo/css/expo_remote.css" />
 
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.js"></script>
   <script type="text/javascript" src="bootstrap/docs/assets/js/bootstrap.js"></script>
 
   <script src="expojs/user/expo.User.js"></script>
@@ -32,6 +33,7 @@
     $(document).ready(function(){ 
       manager.bindWithView();
     });
+
   </script>
 </head>
 <body>
