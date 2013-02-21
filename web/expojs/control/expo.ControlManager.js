@@ -29,6 +29,10 @@ var ControlManager = function (socket, presentationId, position, pagesNumber, ow
         this.remote.init();
     }
 
+    this.bindWithView = function () {
+        this.remote.eventListeners();
+    }
+
     /* Actions */
     this.next = function () {
         if(!this.remote) {

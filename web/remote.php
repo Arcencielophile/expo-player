@@ -27,9 +27,10 @@
       <?php echo $_GET['project_count_slides']; ?>,
       owner
     );
+    manager.init();
     
     $(document).ready(function(){ 
-      manager.init();
+      manager.bindWithView();
     });
   </script>
 </head>
