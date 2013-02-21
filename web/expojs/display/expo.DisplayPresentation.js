@@ -34,6 +34,13 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
 
     this.init = function() {
         console.log('DisplayPresentation:init()');
+        if(this.socket != null) {
+            this.remoteListeners();
+        }
+    };
+
+    this.bindWithView = function() {
+        console.log('DisplayPresentation:bindWithView()');
         if(!this.follower) {
             this.follower = new User();
             var username = $('#usernameInput').attr('value');
@@ -42,12 +49,9 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             }
             this.follower.name = username;
         }
+
         this.player.init();
         this.eventListeners();
-
-        if(this.socket != null) {
-            this.remoteListeners();
-        }
 
         this.initQRCode();
         this.showPlayerInformation(false);
@@ -55,7 +59,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         this.showPagesMenu(false);
         this.showSync(false);
         this.showShareContent(false);
-    };
+    }
 
     /* Event Listeners */
     this.eventListeners = function() {

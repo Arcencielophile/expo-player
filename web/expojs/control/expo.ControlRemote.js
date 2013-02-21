@@ -78,20 +78,20 @@ var ControlRemote = function (socket, position) {
             event.preventDefault();
             remote.previous();
         });
-        /*$(document).on('swiperight', function(event) {
+        $(document).on('swiperight', function(event) {
             event.preventDefault();
             remote.previous();
-        });*/
+        });
 
         $('#expo-remote-next').on('click', function(event) {
             console.log('next');
             event.preventDefault();
             remote.next();
         });
-        /*$(document).on('swipeleft', function(event) {
+        $(document).on('swipeleft', function(event) {
             event.preventDefault();
             remote.next();
-        });*/
+        });
 
         $('#expo-remote-project-information').on('click', function(event) {
             event.preventDefault();

@@ -1,5 +1,10 @@
 /* Smartphone */
 @media (max-width: 767px) {
+    #expo-player-sync { right: 5px; }
+    #expo-project-information-content > div.tags { display: none; }
+    #expo-project-information-content > div.targets { display: none; }
+    #expo-project-information-content > div.summary { display: none; }
+    #expo-project-information-content > .authors > div { padding: 2px 4px; }
 }
 
 /* Tablette */

@@ -24,13 +24,15 @@
     <script type="text/javascript">
       var socket = <?php echo $projectPlayer->initRemoteSocket(); ?>;
 
-      $(document).ready(function() {
-        var projectId = '<?php echo $projectPlayer->getProject()->getIdentifier(); ?>';
-        var player = <?php echo $projectPlayer->getJsPlayer(); ?>;
-        var displayPresentation = new DisplayPresentation(socket, projectId, player, null);
-        displayPresentation.init();
+      var projectId = '<?php echo $projectPlayer->getProject()->getIdentifier(); ?>';
+      var player = <?php echo $projectPlayer->getJsPlayer(); ?>;
+      var displayPresentation = new DisplayPresentation(socket, projectId, player, null);
+      displayPresentation.init();
 
-        window.onbeforeunload = displayPresentation.disconnect;
+      window.onbeforeunload = displayPresentation.disconnect;
+
+      $(document).ready(function() {
+        displayPresentation.bindWithView();
       });
       
     </script>
