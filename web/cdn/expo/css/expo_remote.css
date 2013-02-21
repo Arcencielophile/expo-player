@@ -30,23 +30,28 @@ a:focus {
 /* Previous */
 #expo-remote-previous {
   display: block;
-  background: #CCC;
   width: 30%;
+  height: 100px;
   position: absolute;
   top: 25%;
   left: 3%;
 }
 
 #expo-remote-previous > span {
-  display: block;
-  padding: 42px 10px;
-  text-align: center;
+  position: absolute;
+  right: 0px;
+  background-size:100% 100%;
+  background-image: url("/cdn/expo/images/arrow_left.png");
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  width: 50%;
+  height: 100%;
 }
 
 /* Current */
 #expo-remote-current {
   display: block;
-  background: #CCC;
+  font-size: 600%;
   width: 30%;
   position: absolute;
   top: 25%;
@@ -62,17 +67,22 @@ a:focus {
 /* Next */
 #expo-remote-next {
   display: block;
-  background: #CCC;
   width: 30%;
+  height: 100px;
   position: absolute;
   top: 25%;
   right: 3%;
 }
 
 #expo-remote-next > span {
-  display: block;
-  padding: 42px 10px;
-  text-align: center;
+  background-size:100% 100%;
+  background-image: url("/cdn/expo/images/arrow_right.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  margin: 0 auto;
 }
 
 /* Remote name */
@@ -86,11 +96,16 @@ a:focus {
 /* Follower counter */
 #expo-remote-followers-counter {
   position: absolute;
-  top: 75%;
+  top: 60%;
   width: 40%;
+  height: 51px;
+  line-height: 51px;
   left: 30%;
+  padding-left: 40px;
   font-size: 45px;
-  text-align: center;
+  text-align: left;
+  background: url("/cdn/expo/images/followers.png") no-repeat left top;
+
 }
 
 /* Follower counter */
@@ -99,7 +114,7 @@ a:focus {
   bottom: 0px;
   display: block;
   width: 100%;
-  height: 20px;
+  height: 10px;
   margin: 0;
   text-align: center;
   line-height: 100px;
@@ -207,8 +222,23 @@ a:focus {
   line-height: 100px;
   text-decoration: none;
   font-size: 32px;
-  background: #000;
   color: #FFF;
+}
+
+#expo-remote-project-information > span,
+#expo-remote-player-information > span,
+#expo-remote-share > span,
+#expo-remote-pages > span {
+  display: block;
+  margin: 0 auto;
+  background-image: url("/cdn/expo/images/glyphicons.svg");
+  height: 42px;
+  width: 42px;
+  -webkit-transition: all 0.6s ease 0s;
+  -moz-transition: all 0.6s ease 0s;
+  -o-transition: all 0.6s ease 0s;
+  -ms-transition: all 0.6s ease 0s;
+  transition: all 0.6s ease 0s;
 }
 
 #expo-remote-pages {
@@ -219,12 +249,37 @@ a:focus {
   left: 0;
 }
 
+#expo-remote-project-information > span {
+  padding: -50%;
+  background-position: -504px 0;
+}
+
+#expo-remote-project-information > span:hover {
+  background-position: -504px -84px;
+}
+
 #expo-remote-player-information {
   left: 26%;
 }
 
+#expo-remote-player-information > span {
+  background-position: -252px 0;
+}
+
+#expo-remote-player-information > span:hover {
+  background-position: -252px -84px;
+}
+
 #expo-remote-share {
   left: 52%;
+}
+
+#expo-remote-share > span {
+  background-position: -420px 0;
+}
+
+#expo-remote-share > span:hover {
+  background-position: -420px -84px;
 }
 
 #expo-remote-pages {
