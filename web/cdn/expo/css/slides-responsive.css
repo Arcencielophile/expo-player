@@ -15,6 +15,43 @@
     #get-started {
       background: #478FB2;
     }
+
+	.slide h2 {
+	  font-size: 18px;
+	  line-height: 35px;
+	  height: 24px;
+	  margin: 42px 20% 40px 10%;
+	  text-align: right;
+	  /*padding-right: 10%;*/
+	}
+	strong {
+  font-size: 18px;
+}
+	.slide > div > p {
+      margin-left: 10%;
+      padding-right: 10%;
+      font-size: 18px;
+   
+}
+
+	#get-started .gsb {
+    padding: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    background: rgba(229, 229, 229, 0.5);
+    clear:both; 
+    display:block;
+    line-height:28px;
+}
+	#get-started .theme_start {
+    display:none;
+}
+	#get-started .interface_start {
+    display:none;
+}
+	#get-started .code_start {
+    display:none;
+}
 }
 
 /* Tablette */
