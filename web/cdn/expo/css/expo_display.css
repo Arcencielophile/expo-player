@@ -210,8 +210,8 @@ a:focus {
 
 #expo-project-information-content {
   position: absolute;
-  bottom: 59px;
-  left: 15px;
+  bottom: 50px;
+  left: 5px;
   z-index: 1999;
   visibility: hidden;
   opacity: 0;
@@ -531,7 +531,7 @@ a:focus {
   color: #FFF;
   -webkit-border-radius: 21px;
      -moz-border-radius: 21px;
-          border-radius: 21px;
+          border-radius: 21spx;
   margin: 0;
 }
 
