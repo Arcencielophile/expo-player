@@ -1,6 +1,4 @@
-var app = require('express')()
-  , server = require('http').createServer(app)
-  , io = require('socket.io').listen(server)
+var io = require('socket.io').listen(server)
   , expoServer = require('expo').createInstance()
   , log4js = require('log4js');
 
