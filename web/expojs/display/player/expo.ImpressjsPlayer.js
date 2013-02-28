@@ -19,22 +19,26 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * ========================================================== */
 
-var DefaultPlayer = function() {
+var ImpressjsPlayer = function() {
 
   this.init = function() {
     jQuery('#expo-navigation-current-page').append(1);
+    impress().init();
   };
 
   this.next = function() {
-    console.log('DefaultPlayer:next()');
+    console.log('ImpressjsPlayer:next()');
+    impress().next();
   };
 
   this.previous = function() {
-    console.log('DefaultPlayer:previous()');
+    console.log('ImpressjsPlayer:previous()');
+    impress().prev();
   };
 
   this.goto = function(position) {
-    console.log('DefaultPlayer:goto('+position+')');
+    console.log('ImpressjsPlayer:goto('+position+')');
+    impress().goto(position-1);
   };
 
 };

@@ -10,3 +10,6 @@
 [submodule "web/bootstrap"]
 	path = web/bootstrap
 	url = https://github.com/twitter/bootstrap.git
+[submodule "web/impressjs"]
+	path = web/impressjs
+	url = https://github.com/bartaz/impress.js.git

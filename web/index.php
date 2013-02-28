@@ -192,20 +192,21 @@
 
 
 
+    <div id="impress">
+      <article id="container" class="row-fluid">
 
-    <article id="container" class="row-fluid">
+        <?php foreach($projectPlayer->getPages() as $k => $page): ?>
+          <section class="slide span12 fx-horizontal step" id="<?php echo $page->getId() ?>" data-x="<?php echo 1000 * $k ?>" data-y="<?php echo -1000 * $k ?>">
+            <h2><?php echo $page->getTitle() ?></h2>
+            <?php if($page->getDescription()): ?>
+            <div class="description"><?php echo $page->getDescription() ?></div>
+            <?php endif; ?>
+            <?php echo $page->getContent() ?>
+          </section>
+        <?php endforeach; ?>
 
-      <?php foreach($projectPlayer->getPages() as $page): ?>
-        <section class="slide span12 fx-horizontal" id="<?php echo $page->getId() ?>">
-          <h2><?php echo $page->getTitle() ?></h2>
-          <?php if($page->getDescription()): ?>
-          <div class="description"><?php echo $page->getDescription() ?></div>
-          <?php endif; ?>
-          <?php echo $page->getContent() ?>
-        </section>
-      <?php endforeach; ?>
-
-    </article>
+      </article>
+    </div>
 
   </body>
 </html>
