@@ -1,0 +1,14 @@
+{
+"name": "expo-remote-server",
+  "author": "Expo Team <team@expo-project.org>",
+  "version": "0.0.1",
+  "description": "A remote controller for web based presentation",
+  "keywords": ["remote", "controller", "socket.io"],
+  "main": "index",
+  "dependencies": {
+    "socket.io" : "0.9.11"
+  },
+  "engines": {
+    "node": "*"
+  }
+}
