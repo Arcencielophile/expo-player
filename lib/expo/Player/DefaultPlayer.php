@@ -6,13 +6,12 @@ require_once __DIR__.'/ProjectPlayer.php';
 use expo\Player\ProjectPlayer;
 
 /**
- * ImpressjsProjectPlayer
+ * DefaultPlayer
  *
- * @see http://bartaz.github.com/impress.js/
  * @author Gabriel BONDAZ <gabriel.bondaz@idci-consulting.fr>
  * @copyright GNU GPLv3
  */
-class ImpressjsPlayer extends ProjectPlayer
+class DefaultPlayer extends ProjectPlayer
 {
     public function getCss()
     {
@@ -21,6 +20,6 @@ class ImpressjsPlayer extends ProjectPlayer
 
     public function getJs()
     {
-        return array();
+        return array("expojs/display/player/expo.DefaultPlayer.js");
     }
 }

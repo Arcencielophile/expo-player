@@ -2,12 +2,10 @@
 
 namespace expo\Factory;
 
+require_once __DIR__.'/../Player/DefaultPlayer.php';
 require_once __DIR__.'/../Player/DeckjsPlayer.php';
-use expo\Player\DeckjsProjectPlayer;
 require_once __DIR__.'/../Player/ImpressjsPlayer.php';
-use expo\Player\ImpressjsProjectPlayer;
 require_once __DIR__.'/../Player/TurnjsPlayer.php';
-use expo\Player\TurnjsProjectPlayer;
 
 /**
  * ProjectPlayerFactory

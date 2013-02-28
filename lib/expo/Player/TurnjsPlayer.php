@@ -2,6 +2,9 @@
 
 namespace expo\Player;
 
+require_once __DIR__.'/ProjectPlayer.php';
+use expo\Player\ProjectPlayer;
+
 /**
  * TurnjsProjectPlayer
  *

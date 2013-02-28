@@ -91,7 +91,7 @@ class Theme
      */
     public function getDisplayPlayerName()
     {
-        return $this->display_player_name;
+        return $this->display_player_name ? $this->display_player_name : 'Default';
     }
 
     /**

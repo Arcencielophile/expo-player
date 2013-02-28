@@ -5,6 +5,35 @@
     #expo-project-information-content > div.targets { display: none; }
     #expo-project-information-content > div.summary { display: none; }
     #expo-project-information-content > .authors > div { padding: 2px 4px; }
+
+    #expo-player-sync-content,
+    #expo-player-share-content {
+        z-index: 2000;
+        background: #FFF;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        left: 0;
+        top: 0;
+        margin: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
+
+    #expo-player-sync-content > .join-live,
+    #expo-player-sync-content > .create-remote {
+        float: none;
+        margin: 0 auto;
+    }
+
+    #expo-player-sync-content > .join-live > label {
+        margin: 0;
+    }
+
+
+    #expo-player-share-content > .share > label {
+        font-size: 25px;
+    }
 }
 
 /* Tablette */

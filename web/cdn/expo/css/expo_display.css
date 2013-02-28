@@ -91,6 +91,7 @@ a:focus {
 {
   background-image: url('../images/glyphicons.png');
   text-indent: -9999px;
+  z-index: 5000;
 }
 
 #expo-project-information,
@@ -190,7 +191,7 @@ a:focus {
 #expo-navigation-previous-page,
 #expo-navigation-current-page,
 #expo-navigation-next-page {
-  position: absolute;
+  position: fixed;
   bottom: 5px;
 }
 
@@ -209,7 +210,7 @@ a:focus {
 ********************************************************************************/
 
 #expo-project-information-content {
-  position: absolute;
+  position: fixed;
   bottom: 50px;
   left: 5px;
   z-index: 1999;
@@ -505,7 +506,7 @@ a:focus {
 ********************************************************************************/
 
 #expo-navigation-current-page-content {
-  position: absolute;
+  position: fixed;
   bottom: 24px;
   right: 1px;
   width: 200px;
