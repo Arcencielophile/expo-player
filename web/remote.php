@@ -41,11 +41,12 @@
     <div class="row-fluid">
       <div class="span6" id="expo-remote-base-control">
         <h1 class="span12">Name project</h1>
-        <a id="expo-remote-previous"><span>PREVIOUS</span></a>
+        <hr class="span12"/>
+        <a id="expo-remote-previous"><span></span></a>
         <a id="expo-remote-current"><span>0</span></a>
-        <a id="expo-remote-next"><span>NEXT</span></a>
+        <a id="expo-remote-next"><span></span></a>
         <input id="expo-remote-name" type="text" placeholder="#0" />
-        <div id="expo-remote-followers-counter">0</div>
+        <div id="expo-remote-followers-counter" class="span6 offset4"><span></span>0</div>
         <div class="footer visible-phone">
           <a id="show-advanced-control">^</a>
         </div>
@@ -62,10 +63,10 @@
             <?php endfor ?>
           </ul>
         </div>
-        <a id="expo-remote-project-information" href="">+</a>
-        <a id="expo-remote-player-information" href="">i</a>
-        <a id="expo-remote-share" href="">s</a>
-        <a id="expo-remote-pages" href="">p</a>
+        <a id="expo-remote-project-information" href=""><span></span></a>
+        <a id="expo-remote-player-information" href=""><span></span></a>
+        <a id="expo-remote-share" href=""><span></span></a>
+        <a id="expo-remote-pages" href=""><span></span></a>
       </div>
     </div>
   </div>

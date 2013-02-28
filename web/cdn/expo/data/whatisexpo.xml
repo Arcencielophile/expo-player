@@ -118,17 +118,23 @@
       <![CDATA[
         <div class="row-fluid">
           <div class="span4">
-            <p><strong>Interface</strong></p>
-            <a class="gsb">GET STARTED</a>
+             <p><strong>Interface</strong></p>
+	     <div class="interface_start">
+             </div>
+             <a class="gsb">GET STARTED</a>
           </div>
 
           <div class="span4">
             <p><strong>Theme</strong></p>
+	    <div class="theme_start">
+            </div>
             <a class="gsb">GET STARTED</a>
           </div>
 
           <div class="span4">
             <p><strong>Code</strong></p>
+	    <div class="code_start">
+            </div>
             <a class="gsb">GET STARTED</a>
           </div>
         </div>
