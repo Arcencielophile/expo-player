@@ -1,11 +1,9 @@
-var io = require('socket.io').listen(server)
+var io = require('socket.io').listen(2890)
   , expoServer = require('expo').createInstance()
   , log4js = require('log4js');
 
 // set up logger
 log4js.replaceConsole();
-
-server.listen(2890);
 
 io.set('transports', [
 //    'websocket'

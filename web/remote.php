@@ -43,7 +43,7 @@
         <h1 class="span12">Name project</h1>
         <hr class="span12"/>
         <a id="expo-remote-previous"><span></span></a>
-        <a id="expo-remote-current"><span>0</span></a>
+        <a id="expo-remote-current"><span>1</span></a>
         <a id="expo-remote-next"><span></span></a>
         <input id="expo-remote-name" type="text" placeholder="#0" />
         <div id="expo-remote-followers-counter" class="span6 offset4"><span></span>0</div>
