@@ -196,7 +196,7 @@
       <article id="container" class="row-fluid">
 
         <?php foreach($projectPlayer->getPages() as $k => $page): ?>
-          <section class="slide span12 fx-horizontal step" id="<?php echo $page->getId() ?>" data-rotate="<?php echo 20 * $k ?>" data-x="<?php echo 1000 * $k ?>" data-y="<?php echo -1000 * $k ?>">
+          <section class="slide span12 fx-horizontal step" id="<?php echo $page->getId() ?>" data-z="<?php echo -10 * $k ?>" data-rotate-x="<?php echo 10 * $k ?>" data-rotate-y="<?php echo -10 * $k ?>" data-scale="<?php echo 5 * $k ?>" data-x="<?php echo 3000 * $k ?>" data-y="<?php echo -1000 * $k ?>">
             <h2><?php echo $page->getTitle() ?></h2>
             <?php if($page->getDescription()): ?>
             <div class="description"><?php echo $page->getDescription() ?></div>
