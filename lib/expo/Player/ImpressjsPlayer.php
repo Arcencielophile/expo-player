@@ -14,9 +14,16 @@ use expo\Player\ProjectPlayer;
  */
 class ImpressjsPlayer extends ProjectPlayer
 {
+    public function getName()
+    {
+        return "Impressjs";
+    }
+
     public function getCss()
     {
-        return array();
+        return array(
+            "impressjs/css/impress-demo.css",
+        );
     }
 
     public function getJs()

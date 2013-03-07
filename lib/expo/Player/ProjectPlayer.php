@@ -231,6 +231,13 @@ abstract class ProjectPlayer
     }
 
     /**
+     * Get the player name
+     *
+     * @return mixed
+     */
+    abstract public function getName();
+
+    /**
      * Get the player needed css
      *
      * @return mixed

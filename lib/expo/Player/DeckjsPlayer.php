@@ -14,6 +14,11 @@ use expo\Player\ProjectPlayer;
  */
 class DeckjsPlayer extends ProjectPlayer
 {
+    public function getName()
+    {
+        return "Deckjs";
+    }
+
     public function getCss()
     {
         return array(

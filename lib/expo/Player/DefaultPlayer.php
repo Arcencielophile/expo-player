@@ -13,6 +13,11 @@ use expo\Player\ProjectPlayer;
  */
 class DefaultPlayer extends ProjectPlayer
 {
+    public function getName()
+    {
+        return "Default";
+    }
+
     public function getCss()
     {
         return array();

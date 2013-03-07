@@ -13,6 +13,11 @@ use expo\Player\ProjectPlayer;
  */
 class TurnjsPlayer extends ProjectPlayer
 {
+    public function getName()
+    {
+        return "Turnjs";
+    }
+
     public function getCss()
     {
         return array();

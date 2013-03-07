@@ -191,12 +191,13 @@
     <a href="#expo-navigation-next-page" id="expo-navigation-next-page" class="button hidden-phone" title="Next">&gt;</a>
 
 
-
+    <?php if ($projectPlayer->getName() == 'Impressjs'): ?>
     <div id="impress">
+    <?php endif; ?>
       <article id="container" class="row-fluid">
 
         <?php foreach($projectPlayer->getPages() as $k => $page): ?>
-          <section class="slide span12 fx-horizontal step" id="<?php echo $page->getId() ?>" data-z="<?php echo -10 * $k ?>" data-rotate-x="<?php echo 10 * $k ?>" data-rotate-y="<?php echo -10 * $k ?>" data-scale="<?php echo 5 * $k ?>" data-x="<?php echo 3000 * $k ?>" data-y="<?php echo -1000 * $k ?>">
+          <section class="slide span12 fx-horizontal step" id="<?php echo $page->getId() ?>" data-z="<?php echo rand(-10, 10) * $k ?>" data-rotate="<?php echo rand(-30, 30) * $k ?>" data-x="<?php echo rand(-2000, 2000) * $k ?>" data-y="<?php echo rand(-1000, 1000) * $k ?>">
             <h2><?php echo $page->getTitle() ?></h2>
             <?php if($page->getDescription()): ?>
             <div class="description"><?php echo $page->getDescription() ?></div>
@@ -206,7 +207,9 @@
         <?php endforeach; ?>
 
       </article>
+    <?php if ($projectPlayer->getName() == 'Impressjs'): ?>
     </div>
+    <?php endif; ?>
 
   </body>
 </html>
