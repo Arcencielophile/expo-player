@@ -77,20 +77,18 @@ var DisplayRemote = function(presentation, remoteData) {
             remote.getPresentation().goto(data.position);
         });
 
-        socket.on('update_show_player_information', function(data) {
-            remote.getPresentation().showPlayerInformation(data.show);
-        });
-
-        socket.on('update_show_project_information', function(data) {
-            remote.getPresentation().showProjectInformation(data.show);
-        });
-
-        socket.on('update_show_share_content', function(data) {
-            remote.getPresentation().showShareContent(data.show);
-        });
-
-        socket.on('update_show_pages_menu', function(data) { 
-            remote.getPresentation().showPagesMenu(data.show);
+        socket.on('update_option', function(data) {
+            console.log('update_option');
+            console.log(data);
+            if(data.option == 'player-information') {
+                remote.getPresentation().showPlayerInformation(data.show);
+            } else if(data.option == 'project-information') {
+                remote.getPresentation().showProjectInformation(data.show);
+            } else if(data.option == 'share') {
+                remote.getPresentation().showShareContent(data.show);
+            } else if(data.option == 'pages') {
+                remote.getPresentation().showPagesMenu(data.show);
+            }
         });
     };
 

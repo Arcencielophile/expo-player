@@ -25,10 +25,9 @@ var ServerRemote = module.exports = function (id, projectId, user) {
     this.roomName = this.projectId + '_' + this.id;
     this.position = 1;
     this.owner = user;
-    this.showProjectInformation = false;
-    this.showPlayerInformation = false;
-    this.showShareContent = false;
-    this.showPagesMenu = false;
+
+
+    this.options = new Array();
     
     /* Getters */
     this.getId                     = function() { return this.id; };
@@ -36,16 +35,23 @@ var ServerRemote = module.exports = function (id, projectId, user) {
     this.getRoomName               = function() { return this.roomName; };
     this.getPosition               = function() { return this.position; };
     this.getOwner                  = function() { return this.owner; };
-    this.isShowProjectInformation  = function() { return this.showProjectInformation; };
-    this.isShowPlayerInformation   = function() { return this.showPlayerInformation; };
-    this.isShowShareContent        = function() { return this.showShareContent; };
-    this.isShowPagesMenu           = function() { return this.showPagesMenu; };
+    this.getOptions                = function() { return this.options };
     
     /* Setters */
     this.setPosition               = function(position) { this.position = position; };
     this.setOwner                  = function(owner) { this.owner = owner; };
-    this.setShowProjectInformation = function(showProjectInformation) { this.showProjectInformation = showProjectInformation; };
-    this.setShowPlayerInformation  = function(showPlayerInformation) { this.showPlayerInformation = showPlayerInformation; };
-    this.setShowShareContent       = function(showShareContent) { this.showShareContent = showShareContent; };
-    this.setShowPagesMenu          = function(showPagesMenu) { this.showPagesMenu = showPagesMenu; };
+    this.setOptions                = function(options) {this.options = options };
+
+    /* Options */
+    this.hasOption                 = function(option) { return this.options[option] == true; };
+    this.addOption                 = function(option) { this.options[option] = true; }
+    this.removeOption              = function(option) { delete this.options[option]; }
+
+    this.setOption                 = function(option, value) {
+        if(value == true) {
+            this.addOption(option);
+        } else {
+            this.removeOption(option);
+        }
+    }
 };
