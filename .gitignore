@@ -3,3 +3,4 @@
 
 # NodeJS
 nodejs/node_modules/*
+config/config.inc.php
