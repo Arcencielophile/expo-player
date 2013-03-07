@@ -22,7 +22,7 @@ class ImpressjsPlayer extends ProjectPlayer
     public function getCss()
     {
         return array(
-            "impressjs/css/impress-demo.css",
+            //"impressjs/css/impress-demo.css",
         );
     }
 
