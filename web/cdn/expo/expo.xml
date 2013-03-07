@@ -17,5 +17,6 @@
 <!--      <js path="js/expo_remote.js" /> -->
     </remote>
   </theme>
+  <data path="data/whatisexpo.xml"></data>
 </expo>
 

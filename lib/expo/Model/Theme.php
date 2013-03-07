@@ -13,7 +13,7 @@ use expo\Tools\Tools;
  */
 class Theme
 {
-    protected $data;
+    protected $path;
 
     protected $name;
 
@@ -31,9 +31,9 @@ class Theme
 
     protected $remote_js;
 
-    public function __construct($data)
+    public function __construct($path)
     {
-        $this->setData($data);
+        $this->setPath($path);
         $this->setDisplayCss(array());
         $this->setDisplayJs(array());
         $this->setRemoteCss(array());
@@ -45,13 +45,13 @@ class Theme
      ***********/
 
     /**
-     * Get theme data
+     * Get theme path
      *
      * @return string
      */
-    public function getData()
+    public function getPath()
     {
-        return $this->data;
+        return $this->path;
     }
 
     /**
@@ -139,14 +139,14 @@ class Theme
      ***********/
 
     /**
-     * Set theme data
+     * Set theme path
      *
-     * @param string $data
+     * @param string $path
      * @return Theme
      */
-    public function setData($data)
+    public function setPath($path)
     {
-        $this->data = $data;
+        $this->path = $path;
 
         return $this;
     }
@@ -296,21 +296,6 @@ class Theme
     }
 
     /**
-     * Get theme path
-     *
-     * @return string
-     */
-    public function getThemePath()
-    {
-        $parseUrl = parse_url($this->getData());
-        $path = explode('/', $parseUrl['path']);
-        unset($path[count($path)-1]);
-        $parseUrl['path'] = implode('/', $path);
-
-        return http_build_url('', $parseUrl);
-    }
-
-    /**
      * Get theme asset absolute path
      *
      * @param $asset
@@ -322,6 +307,6 @@ class Theme
             return $asset;
         }
 
-        return sprintf('%s/%s', $this->getThemePath(), $asset);
+        return sprintf('%s/%s', $this->getPath(), $asset);
     }
 }

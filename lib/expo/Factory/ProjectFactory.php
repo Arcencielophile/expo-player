@@ -24,13 +24,13 @@ use expo\Model\ProjectPage;
 abstract class ProjectFactory
 {
     /**
-     * Initiate a Project
+     * Create a Project
      * Return a created project based on a src (url, or xml string)
      *
      * @param string $src
      * @return Project
      */
-    static public function initProject($src)
+    static public function getInstance($src)
     {
         if(!Tools::isValidURL($src)) {
             throw new \Exception(sprintf('%s is not a valid url', $src));
@@ -47,8 +47,9 @@ abstract class ProjectFactory
         $project->setDate(html_entity_decode($xmlProject->date, ENT_NOQUOTES, 'UTF-8'));
         $project->setLogo(html_entity_decode($xmlProject->logo, ENT_NOQUOTES, 'UTF-8'));
 
-        foreach($xmlProject->tag as $xmlTag)
+        foreach($xmlProject->tag as $xmlTag) {
             $project->addTag(html_entity_decode($xmlTag, ENT_NOQUOTES, 'UTF-8'));
+        }
 
         foreach($xmlProject->author as $xmlAuthor) {
             $author = new Author();
