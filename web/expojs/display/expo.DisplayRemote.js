@@ -21,6 +21,7 @@
 
 var DisplayRemote = function(presentation, remoteData) {
     this.socket = null;
+    this.active = false;
     this.presentation = presentation;
     this.keep = true;
 
@@ -36,8 +37,8 @@ var DisplayRemote = function(presentation, remoteData) {
     this.getRoomName      = function() { return this.roomName; };
     this.getProjectId     = function() { return this.projectId; };
     this.getPosition      = function() { return this.position; };
-    this.getOwner         = function() { return this.getOwner(); };
-    this.isActive         = function() { return this.socket != null; };
+    this.getOwner         = function() { return this.getOwner; };
+    this.isActive         = function() { return this.active; };
 
     this.toKeep = function(value) {
         if(value == null) {
@@ -65,44 +66,47 @@ var DisplayRemote = function(presentation, remoteData) {
         var remote = this;
         var id = remote.getRoomName();
 
-        socket.on('next', function(data) {
-            remote.getPresentation().next();
-        });
-
-        socket.on('previous', function(data) {
-            remote.getPresentation().previous(); 
-        });
-
-        socket.on('goto', function(data) { 
-            remote.getPresentation().goto(data.position);
-        });
-
-        socket.on('update_show_player_information', function(data) {
-            remote.getPresentation().showPlayerInformation(data.show);
-        });
-
-        socket.on('update_show_project_information', function(data) {
-            remote.getPresentation().showProjectInformation(data.show);
-        });
-
-        socket.on('update_show_share_content', function(data) {
-            remote.getPresentation().showShareContent(data.show);
-        });
-
-        socket.on('update_show_pages_menu', function(data) { 
-            remote.getPresentation().showPagesMenu(data.show);
-        });
+        socket.on('next', this.nextFromServer);
+        socket.on('previous', this.previousFromServer);
+        socket.on('goto', this.gotoFromServer);
+        socket.on('update_show_player_information', this.showPlayerInformationFromServer);
+        socket.on('update_show_project_information', this.showProjectInformationFromServer);
+        socket.on('update_show_share_content', this.showShareContentFromServer);
+        socket.on('update_show_pages_menu', this.showPagesMenuFromServer);
     };
+
+    this.nextFromServer = function (data) {
+        remote.getPresentation().next();
+    }
+    this.previousFromServer = function (data) {
+        remote.getPresentation().previous();
+    }
+    this.gotoFromServer = function(data) {
+        remote.getPresentation().goto(data.position);
+    }
+    this.showPlayerInformationFromServer = function(data) {
+        remote.getPresentation().showPlayerInformation(data.show);
+    }
+    this.showProjectInformationFromServer = function(data) {
+        remote.getPresentation().showProjectInformation(data.show);
+    }
+    this.showShareContentFromServer = function(data) {
+        remote.getPresentation().showShareContent(data.show);
+    }
+    this.showPagesMenuFromServer = function(data) {
+        remote.getPresentation().showPagesMenu(data.show);
+    }
 
     this.removeRemoteListeners = function() {
         console.log('DisplayRemote:removeRemoteListeners()');
-        socket.removeAllListeners('next');
-        socket.removeAllListeners('previous');
-        socket.removeAllListeners('goto');
-        socket.removeAllListeners('update_show_player_information');
-        socket.removeAllListeners('update_show_project_information');
-        socket.removeAllListeners('update_show_share_content');
-        socket.removeAllListeners('update_show_pages_menu');
+
+        socket.removeListener('next', this.nextFromServer);
+        socket.removeListener('previous', this.previousFromServer);
+        socket.removeListener('goto', this.gotoFromServer);
+        socket.removeListener('update_show_player_information', this.showPlayerInformationFromServer);
+        socket.removeListener('update_show_project_information', this.showProjectInformationFromServer);
+        socket.removeListener('update_show_share_content', this.showShareContentFromServer);
+        socket.removeListener('update_show_pages_menu', this.showPagesMenuFromServer);
     };
 
     /* Actions */
@@ -111,6 +115,7 @@ var DisplayRemote = function(presentation, remoteData) {
         this.socket = socket;
         this.addRemoteListeners();
         this.socket.emit('new_follower', {roomName: this.getRoomName(), follower: this.getFollower()});
+        this.active = true;
     };
 
     this.disabled = function() {
@@ -118,7 +123,7 @@ var DisplayRemote = function(presentation, remoteData) {
         if(this.isActive()) {
             this.removeRemoteListeners();
             this.socket.emit('remove_follower', {roomName: this.getRoomName()});
-            this.socket = null;
+            this.active = false;
         }
     };
 };
