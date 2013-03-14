@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Editor - expo</title>
+
+    <link rel="stylesheet" type="text/css" href="/bootstrap/docs/assets/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/docs/assets/css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/editor.css" />
+
+    <script type="text/javascript" src="/deckjs/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/docs/assets/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/impressjs/js/impress.js"></script>
+  </head>
+
+  <body>
+    <div class="row-fluid">
+      <div class="span6" id="editor">
+        <a class="btn btn-primary" id="expo-new-project" href="#new-project-form"><i class="icon-plus-sign icon-white"></i> Create a project</a>
+        <a class="btn btn-primary" id="expo-new-step" href="#new-step-form"><i class="icon-plus-sign icon-white"></i> Create a slide</a>
+        <a class="btn btn-primary" id="expo-init-demo" href="#"><i class="icon-plus-sign icon-white"></i> Lunch</a>
+        <div id="output"></div>
+      </div>
+
+      <div class="span6" id="show">
+        <div id="impress">
+        </div>
+      </div>
+    </div>
+
+    <div id="expo-editor-forms">
+      <div id="new-project-form">
+        <form method="post" action="#">
+          <div class="input-prepend">
+            <span class="add-on">Name</span>
+            <input class="span4" type="text" name="name" />
+          </div>
+          <div class="input-prepend">
+            <span class="add-on">Version</span>
+            <input class="span4" type="text" name="version" />
+          </div>
+          <div class="input-prepend">
+            <span class="add-on">Date</span>
+            <input class="span4" type="text" name="date" />
+          </div>
+          <div class="input-prepend">
+            <span class="add-on">Description</span>
+            <textarea class="span4" name="description"></textarea>
+          </div>
+          <div class="input-prepend">
+            <span class="add-on">Author</span>
+            <input class="span4" type="text" name="author" />
+          </div>
+          <div class="input-prepend">
+            <span class="add-on">Target</span>
+            <input class="span4" type="text" name="target" />
+          </div>
+          <div class="input-prepend">
+            <span class="add-on">Tags</span>
+            <input class="span4" type="text" name="tags" />
+          </div>
+          <input type="submit" value="Create" class="btn btn-large btn-primary" />  
+        </form>
+      </div>
+      <div id="new-step-form">
+        <form method="post" action="#">
+          <div class="input-prepend">
+            <span class="add-on">Id</span>
+            <input class="span4" type="text" name="id" />
+          </div>
+          <div class="input-prepend">
+            <span class="add-on">data-x</span>
+            <input class="span4" type="text" name="datax" />
+          </div>
+          <div class="input-prepend">
+            <span class="add-on">data-y</span>
+            <input class="span4" type="text" name="datay" />
+          </div>
+          <div class="input-prepend">
+            <span class="add-on">rotate-x</span>
+            <input class="span4" type="text" name="rotatex" />
+          </div>
+          <div class="input-prepend">
+            <span class="add-on">rotate-y</span>
+            <input class="span4" type="text" name="rotatey" />
+          </div>
+          <div class="input-prepend">
+            <span class="add-on">Content</span>
+            <textarea class="span4" name="content"></textarea>
+          </div>
+          <input type="submit" value="Create" class="btn btn-large btn-primary" />  
+        </form>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      var project = {data: null, slides: new Array()};
+
+      function output() {
+        $('#output').empty();
+        console.log(project);
+        $('#output').append(JSON.stringify(project));
+        $('#show > #impress').empty();
+        var htmlSlides = '';
+        $.each(project.slides, function() {
+          htmlSlides += createSlide(this);
+        });
+        $('#show > #impress').append(htmlSlides);
+        impress();
+      }
+
+      function createSlide(slide) {
+        return '<div class="step" data-x="'+slide.datax+'" data-y="'+slide.datay+'">\
+          '+slide.content+'\
+          </div>\
+        ';
+      }
+
+      function createModal(title, content) {
+        var modal = $('\
+          <div id="modal-form" class="modal hide fade" tabindex="-1" role="dialog">\
+            <div class="modal-header">\
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>\
+              <h3 id="myModalLabel">'+title+'</h3>\
+            </div>\
+            <div class="modal-body">'+content.html()+'</div>\
+          </div>\
+        ');
+
+        modal.on('hidden', function () {
+          $(this).remove();
+        });
+
+        return modal;
+      }
+
+      (function($) {
+        $.fn.serializeFormJSON = function() {
+          var o = {};
+          var a = this.serializeArray();
+          $.each(a, function() {
+              if (o[this.name] !== undefined ) {
+                  if (!o[this.name].push) {
+                      o[this.name] = [o[this.name]];
+                  }
+                  o[this.name].push(this.value || '');
+              } else {
+                  o[this.name] = this.value || '';
+              } 
+          });
+          return o;
+        };
+      })(jQuery);
+
+      $(document).ready(function() {
+        $("#expo-new-project").on('click', function(event) {
+          event.preventDefault();
+          var formContainer = $($(this).attr('href'));
+          var modal = createModal('Create a new project', formContainer);
+          modal.modal('show');
+          var form = modal.find('form');
+          form.on('submit', function(event) {
+            event.preventDefault();
+            modal.modal('hide');
+            var data = $(this).serializeFormJSON();
+            project.data = data;
+            output();
+          });
+        });
+        $("#expo-new-step").on('click', function(event) {
+          event.preventDefault();
+          var formContainer = $($(this).attr('href'));
+          var modal = createModal('Create a new slide', formContainer);
+          modal.modal('show');
+          var form = modal.find('form');
+          form.on('submit', function(event) {
+            event.preventDefault();
+            modal.modal('hide');
+            var data = $(this).serializeFormJSON();
+            project.slides.push(data);
+            output();
+          });
+        });
+        $('#expo-init-demo').on('click', function(event) {
+          event.preventDefault();
+          impress();
+        });
+
+        impress().init();
+      });
+
+      $(document).keydown(function(event) {
+        // page down, right arrow, down arrow
+        var next = [34,39,40];
+        // page up, left arrow, up arrow
+        var previous = [33,37,38];
+
+        if($.inArray(event.which, next) >= 0) {
+            event.preventDefault();
+            impress().next();
+        } else if($.inArray(event.which, previous) >= 0) {
+            event.preventDefault();
+            impress().prev();
+        }
+      });
+    </script>
+  </body>
+</html>
