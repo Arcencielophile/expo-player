@@ -1,11 +1,244 @@
-/* Smartphone */
+/* Common <767px styles */
 @media (max-width: 767px) {
+	#expo-remote-project-information > span, #expo-remote-player-information > span, #expo-remote-share > span, #expo-remote-pages > span {
+		display: inline-block;
+    	vertical-align: bottom;
+	}
+
+	#expo-remote-followers-counter {
+		background: url("/cdn/expo/images/followers.png") no-repeat scroll 40% center transparent;
+		width: 100%;
+		left: 0;
+		text-align: center;
+	}
+
+	#expo-remote-followers-counter {
+    	background-size: auto auto;
+	}
+}
+
+/* Small Smartphone */
+@media (max-width: 350px) {
+
+	body {
+		padding: 0;
+	}
+
+	/* Project Title */
+	#expo-remote-base-control > h1 {
+	  font-size: 15px;
+	}
+
+	hr {
+		margin: 0;
+	}
+
+	#show-advanced-control {
+		height: 21px;
+	    line-height: 19px;
+	    padding-bottom: 9px;
+	}
+
+	#hide-advanced-control {
+		height: 21px;
+	    line-height: 10px;
+	    padding-top: 9px;
+	}
+
+	/* Previous */
+	#expo-remote-previous {
+	  width: 20%;
+	  height: 70px;
+	}
+
+	#expo-remote-current > span {
+	  padding-top: 20px;
+	}
+
+	/* Next */
+	#expo-remote-next {
+	  width: 20%;
+	  height: 70px;
+	}
+
+	/* Name input */
+	#expo-remote-name > input {
+		width: 55px;
+	}
+
+	/* Advanced control */
+	#expo-remote-advanced-control .header {
+		margin: 0;
+	}
+
+	#expo-remote-goto {
+		padding-top: 10px;
+	}
+
+	#expo-remote-goto > ul > li > a {
+		width: 40px;
+		height: 40px;
+		line-height: 35px;
+	}
+
+	#expo-remote-followers-counter {
+		top: 65%;
+	}
+
+	#expo-remote-followers-counter {
+		background-size: auto auto;
+	}
+}
+
+/* Smartphone - portrait */
+@media (min-width: 350px) and (max-width: 767px) and (orientation:portrait) {
+	/* Project Title */
+	#expo-remote-base-control > h1 {
+	  font-size: 20px;
+	}
+
+	/* Controls */
+	#expo-remote-advanced-control .header {
+	  height: 10px;
+	}
+
+	#show-advanced-control {
+		height: 21px;
+    	line-height: 19px;
+    	padding-bottom: 9px;
+	}
+
+	#hide-advanced-control {
+		height: 21px;
+	    line-height: 10px;
+	    padding-top: 9px;
+	}
+
+	/* Previous */
+	#expo-remote-previous {
+	  width: 20%;
+	  height: 70px;
+	}
+
+	/* Next */
+	#expo-remote-next {
+	  width: 20%;
+	  height: 70px;
+	}
+
+	/* Name input */
+	#expo-remote-name > input {
+		width: 50%;
+	}
+
+	#expo-remote-project-information > span {
+		vertical-align: bottom;
+	}
+}
+
+/* Smartphone - portrait */
+@media (min-width: 350px) and (max-width: 767px) and (orientation:landscape) {
+/* Project Title */
+
+	#expo-remote-current {
+		font-size: 400%;
+	}
+
+	#expo-remote-current > span {
+		padding-top: 30px;
+	}
+
+	#expo-remote-base-control > h1 {
+	  font-size: 20px;
+	}
+
+	/* Controls */
+	#expo-remote-advanced-control .header {
+		height: 10px;
+	}
+
+	#show-advanced-control {
+		height: 21px;
+	    line-height: 19px;
+	    padding-bottom: 9px;
+    }
+
+	#hide-advanced-control {
+		height: 21px;
+	    line-height: 10px;
+	    padding-top: 9px;
+	}
+
+	/* Previous */
+	#expo-remote-previous {
+	  width: 20%;
+	  height: 70px;
+	  left: 0;
+	}
+
+	/* Next */
+	#expo-remote-next {
+		top: 40%;
+		width: 20%;
+		height: 70px;
+		right: 0;
+	}
+
+	#expo-remote-next > span {
+		height: 120%;
+		width: 80%;
+	}
+
+	/* Next */
+	#expo-remote-previous {
+		top: 40%;
+		width: 20%;
+		height: 70px;
+	}
+
+	#expo-remote-previous > span {
+		height: 120%;
+		width: 80%;
+	}
+	/* Name input */
+
+	#expo-remote-name {
+	    left: 23%;
+	}
+	#expo-remote-name > input {
+		width: 50%;
+	}
+
+	#expo-remote-project-information > span {
+		vertical-align: bottom;
+	}
+
+	#expo-remote-advanced-control .header {
+    	margin: 0 0 10px 0;
+	}
 }
 
 /* Tablette */
 @media (min-width: 768px) and (max-width: 979px) {
+	#expo-remote-goto > ul > li > a {
+		width: 90px;
+		height: 90px;
+		line-height: 90px;
+	}
+
+	#expo-remote-name > input {
+		width: 50%;
+	}
 }
 
 /* Large screen */
 @media (min-width: 1200px) {
+	/* Name input */
+	#expo-remote-name > input {
+		width: 75%;
+	}
+
+	#expo-remote-goto {
+    	height: 95%;
+	}
 }

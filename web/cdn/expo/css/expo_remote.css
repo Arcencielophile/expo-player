@@ -133,9 +133,13 @@ a:focus {
   text-align: center;
   line-height: 100px;
   text-decoration: none;
-  font-size: 32px;
+  font-size: 25px;
   background: #000;
   color: #FFF;
+}
+
+#show-advanced-control:before {
+  content: "\2191";
 }
 
 /*******************************************************************************
@@ -157,7 +161,7 @@ a:focus {
 /* Remote goto */
 #expo-remote-goto {
   padding: 0 4%;
-  height: 80%;
+  height: 90%;
   overflow: auto;
 }
 
@@ -216,10 +220,10 @@ a:focus {
   bottom: 0px;
   display: block;
   width: 22%;
-  height: 100px;
+  height: 42px;
   margin: 0 4% 0 0;
   text-align: center;
-  line-height: 100px;
+  line-height: 42px;
   text-decoration: none;
   font-size: 32px;
   color: #FFF;
@@ -310,7 +314,19 @@ a:focus {
   text-align: center;
   line-height: 100px;
   text-decoration: none;
-  font-size: 32px;
+  font-size: 25px;
   background: #000;
   color: #FFF;
+}
+
+#hide-advanced-control:before {
+  content: "\2193";
+}
+
+#expo-remote-button {
+  background: none repeat scroll 0 0 #000000;
+  bottom: 0;
+  height: 42px;
+  position: absolute;
+  width: 100%;
 }
