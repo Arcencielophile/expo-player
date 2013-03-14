@@ -8,6 +8,7 @@
   <link href="bootstrap/docs/assets/css/bootstrap.css" rel="stylesheet" media="screen">
   <link href="bootstrap/docs/assets/css/bootstrap-responsive.css" rel="stylesheet" media="screen">
   <link rel="stylesheet" type="text/css" href="/cdn/expo/css/expo_remote.css" />
+  <link rel="stylesheet" type="text/css" href="/cdn/expo/css/expo_remote-responsive.css" />
 
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
   <script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.js"></script>
@@ -42,19 +43,25 @@
       <div class="span6" id="expo-remote-base-control">
         <h1 class="span12">Name project</h1>
         <hr class="span12"/>
-        <a id="expo-remote-previous"><span></span></a>
-        <a id="expo-remote-current"><span>1</span></a>
-        <a id="expo-remote-next"><span></span></a>
-        <input id="expo-remote-name" type="text" placeholder="#0" />
+        <div class="span12">
+          <a id="expo-remote-previous"><span></span></a>
+          <a id="expo-remote-current"><span>1</span></a>
+          <a id="expo-remote-next"><span></span></a>
+        </div>
+        <div id="expo-remote-name" class="input-prepend input-append">
+          <span class="add-on">name</span>
+          <input type="text" placeholder="#0"/>
+          <button class="btn" type="button">Ok</button>
+        </div>
         <div id="expo-remote-followers-counter" class="span6 offset4"><span></span>0</div>
         <div class="footer visible-phone">
-          <a id="show-advanced-control">^</a>
+          <a id="show-advanced-control"></a>
         </div>
       </div>
 
       <div class="span6" id="expo-remote-advanced-control">
         <div class="header visible-phone">
-          <a id="hide-advanced-control">v</a>
+          <a id="hide-advanced-control"></a>
         </div>
         <div id="expo-remote-goto">
           <ul>
@@ -63,10 +70,12 @@
             <?php endfor ?>
           </ul>
         </div>
-        <a id="expo-remote-project-information" href=""><span></span></a>
-        <a id="expo-remote-player-information" href=""><span></span></a>
-        <a id="expo-remote-share" href=""><span></span></a>
-        <a id="expo-remote-pages" href=""><span></span></a>
+        <div id="expo-remote-button">
+          <a id="expo-remote-project-information" href=""><span></span></a>
+          <a id="expo-remote-player-information" href=""><span></span></a>
+          <a id="expo-remote-share" href=""><span></span></a>
+          <a id="expo-remote-pages" href=""><span></span></a>
+        </div>
       </div>
     </div>
   </div>
