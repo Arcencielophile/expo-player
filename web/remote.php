@@ -48,12 +48,15 @@
           <a id="expo-remote-current"><span>1</span></a>
           <a id="expo-remote-next"><span></span></a>
         </div>
-        <div id="expo-remote-name" class="input-prepend input-append">
+        <div class="input-prepend input-append" id="expo-remote-name">
           <span class="add-on">name</span>
           <input type="text" placeholder="#0"/>
           <button class="btn" type="button">Ok</button>
         </div>
-        <div id="expo-remote-followers-counter" class="span6 offset4"><span></span>0</div>
+        <a href="#expo-remote-followers-content" id="expo-remote-followers-counter" class="span6 offset4">
+          <span></span>0
+        </a>
+        
         <div class="footer visible-phone">
           <a id="show-advanced-control"></a>
         </div>
@@ -80,6 +83,14 @@
     </div>
   </div>
 
+  <div id="expo-remote-followers-content">
+    <a href="#expo-remote-followers-content" title="Close">x</a>
+    <div class="followers">
+      <label>Here your follower</label>
+      <div class="accordion" id="followers-list">
+      </div>
+  </div>
+
   <script type="text/javascript">
     $(document).ready(function(){
       $("#show-advanced-control").click(function(event){
@@ -90,6 +101,14 @@
       $("#hide-advanced-control").click(function(event){
         event.preventDefault();
         $("#expo-remote-advanced-control").removeClass("visible");
+      });
+
+      $('a[href="#expo-remote-followers-content"]').on('click', function () {
+          if( $('#expo-remote-followers-content').hasClass('visible')) {
+            $('#expo-remote-followers-content').removeClass('visible')
+          } else {
+            $('#expo-remote-followers-content').addClass('visible')
+          }
       });
     });
   </script>

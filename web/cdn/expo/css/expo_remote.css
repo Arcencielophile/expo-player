@@ -95,6 +95,7 @@ a:focus {
 
 /* Follower counter */
 #expo-remote-followers-counter {
+  display: block;
   position: absolute;
   top: 60%;
   width: 40%;
@@ -329,4 +330,53 @@ a:focus {
   height: 42px;
   position: absolute;
   width: 100%;
+}
+
+/*******************************************************************************
+ expo-remote popin
+********************************************************************************/
+#expo-remote-followers-content {
+  z-index: 2000;
+  background: #FFF;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  left: 50%;
+  margin-left: -320px;
+  outline: medium none;
+  position: fixed;
+  top: 10%;
+  width: 640px;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: 0.6s;
+     -moz-transition: 0.6s;
+          transition: 0.6s;
+}
+
+#expo-remote-followers-content.visible {
+  visibility: visible;
+  opacity: 0.99;
+}
+
+#expo-remote-followers-content > a {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #888;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+#expo-remote-followers-content > a:hover {
+  color: #000;
+}
+
+#expo-remote-followers-content > div {
+  padding: 20px;
+}
+
+#expo-remote-followers-content > div p {
+  font-size: 11px;
 }

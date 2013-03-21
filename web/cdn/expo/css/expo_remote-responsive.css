@@ -88,7 +88,44 @@
 	#expo-remote-followers-counter {
 		background-size: auto auto;
 	}
+
+    #expo-remote-followers-content {
+        z-index: 2000;
+        background: #FFF;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        left: 0;
+        top: 0;
+        margin: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
+
+    #expo-remote-followers-content > .followers > label {
+        font-size: 25px;
+    }
 }
+
+@media (min-width: 350px) and (max-width: 767px) {
+    #expo-remote-followers-content {
+        z-index: 2000;
+        background: #FFF;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        left: 0;
+        top: 0;
+        margin: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
+
+    #expo-remote-followers-content > .followers > label {
+        font-size: 25px;
+    }
+}
+
 
 /* Smartphone - portrait */
 @media (min-width: 350px) and (max-width: 767px) and (orientation:portrait) {
@@ -136,7 +173,7 @@
 	}
 }
 
-/* Smartphone - portrait */
+/* Smartphone - landscape */
 @media (min-width: 350px) and (max-width: 767px) and (orientation:landscape) {
 /* Project Title */
 

@@ -115,13 +115,13 @@ var ControlRemote = function (socket, position) {
 
         $('#expo-remote-name').on('keypress', function(event) {
             if(event.keyCode == 13) {
-                remote.changeUserName($('#expo-remote-name').val());
+                remote.changeUserName($('#expo-remote-name > input').val());
             }
         });
 
-        $('#expo-remote-name').on('click', function(event) {
+        $('#expo-remote-name > button').on('click', function(event) {
             event.preventDefault();
-            remote.changeUserName($('#expo-remote-name').val());
+            remote.changeUserName($('#expo-remote-name > input').val());
         });
 
         $('#expo-remote-goto a').on('click', function(event) {
@@ -241,10 +241,10 @@ var ControlRemote = function (socket, position) {
     this.updateUserNameLabel = function() {
         console.log('ControlRemote:updateUserNameLabel');
         if($('#expo-remote-name')) {
-            $('#expo-remote-name').val('');
-            $('#expo-remote-name').val(remote.getOwner().getName());
+            $('#expo-remote-name > input').val('');
+            $('#expo-remote-name > input').val(remote.getOwner().getName());
             
-            $('#expo-remote-name').attr('placeholder', '#'+remote.getId());
+            $('#expo-remote-name > input').attr('placeholder', '#'+remote.getId());
         }
         /*if($('a[href="#user"] .ui-btn-text')) {
             $('a[href="#user"] .ui-btn-text').empty().append(manager.remote.getOwner().getName()+'#'+manager.remote.getId());
@@ -256,14 +256,44 @@ var ControlRemote = function (socket, position) {
         console.log('ControlRemote:updateFollowers('+this.followers+')');
         console.log(this.followers);
         $('#expo-remote-followers-counter').empty().append(this.followers.length);
-        
-        /*$('#followersList').empty();
+
+        var collapseInId = '';
+        if ($('div.in')) {
+            var id = $('div.in').attr('id');
+            if (id) {
+                collapseInId = id;
+            }
+        }
+        console.log('collapseInId: '+collapseInId);
+
         var list = '';
         for(i=0; i < this.followers.length; i++) {
             var follower = this.followers[i];
-            list += '<li><h3 class="ui-li-heading">'+follower.name+'</h3><p class="ui-li-desc">'+follower.ip+'</p></li>';
+            list += '<div class="accordion-group">';
+            list +=     '<div class="accordion-heading">';
+            list +=         '<a class="accordion-toggle" data-toggle="collapse" data-parent="#followers-list" href="#collapse'+follower.id+'">';
+            list +=         follower.name;
+            list +=         '</a>';
+            list +=     '</div>';
+            if (collapseInId == ('collapse'+follower.id)) {
+                list += '<div id="collapse'+follower.id+'" class="accordion-body collapse in">';
+            } else {
+                list += '<div id="collapse'+follower.id+'" class="accordion-body collapse">';
+            }
+            list +=         '<div class="accordion-inner">';
+            list +=             '<dl class="dl-horizontal">';
+            list +=                 '<dt>ip:</dt>';
+            list +=                 '<dd>'+follower.ip+'</dd>';
+            list +=                 '<dt>email:</dt>';
+            list +=                 '<dd>'+follower.email+'</dd>';
+            list +=                 '<dt>id:</dt>';
+            list +=                 '<dd>'+follower.id+'</dd>';
+            list +=             '</dl>';
+            list +=         '</div>';
+            list +=     '</div>';
+            list += '</div>';
         }
-        $('#followersList').html(list);*/
+        $('#followers-list').html(list);
     }
 
     this.disconnect = function() { 

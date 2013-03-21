@@ -106,9 +106,10 @@ var ServerManager = module.exports = function() {
 
     this.removeFollower = function(roomName, followerId) {
         console.log('ServerManager:removeFollower('+roomName+', '+followerId+')');
-        var follower = new User(followerId);
         if(this.followers[roomName] != undefined) {
-            this.followers[roomName].splice(this.followers[roomName].indexOf(follower), 1);
+            var follower = this.getFollowerForRoomNameById(roomName, followerId);
+            var index = this.followers[roomName].indexOf(follower);
+            this.followers[roomName].splice(index, 1);
         }
     };
 
