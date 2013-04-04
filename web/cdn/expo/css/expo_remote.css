@@ -40,7 +40,6 @@ a:focus {
 #expo-remote-previous > span {
   position: absolute;
   right: 0px;
-  background-size:100% 100%;
   background-image: url("/cdn/expo/images/arrow_left.png");
   background-repeat: no-repeat;
   margin: 0 auto;
@@ -75,7 +74,6 @@ a:focus {
 }
 
 #expo-remote-next > span {
-  background-size:100% 100%;
   background-image: url("/cdn/expo/images/arrow_right.png");
   background-repeat: no-repeat;
   position: absolute;
@@ -325,7 +323,7 @@ a:focus {
 }
 
 #expo-remote-button {
-  background: none repeat scroll 0 0 #000000;
+  background: none repeat scroll 0 0 #FFF;
   bottom: 0;
   height: 42px;
   position: absolute;
