@@ -157,6 +157,9 @@
 
     <?php if($projectPlayer->isRemoteAlive()): ?>
     <a href="#expo-player-sync-content" id="expo-player-sync" class="button" title="Synchronize the presentation">Sync</a>
+    <div id="expo-player-sync-notify-container">
+        
+    </div>
     <div id="expo-player-sync-content">
       <a href="#expo-player-sync-content" title="Close">x</a>
       <div class="create-remote">
@@ -171,6 +174,7 @@
         </ul>
       </div>
     </div>
+
     <?php endif; ?>
 
     <a href="#expo-navigation-previous-page" id="expo-navigation-previous-page" class="button hidden-phone" title="Previous">&lt;</a>

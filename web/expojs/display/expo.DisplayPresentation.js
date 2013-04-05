@@ -34,17 +34,17 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
 
     this.init = function() {
         console.log('DisplayPresentation:init()');
-        if(this.socket != null) {
+        if (this.socket != null) {
             this.remoteListeners();
         }
     };
 
     this.bindWithView = function() {
         console.log('DisplayPresentation:bindWithView()');
-        if(!this.follower) {
+        if (!this.follower) {
             this.follower = new User();
             var username = $('#usernameInput').attr('value');
-            if(!username) {
+            if (!username) {
                 username = $('#usernameInput').attr('placeholder');
             }
             this.follower.name = username;
@@ -74,13 +74,13 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         var listen = [27];
 
         jQuery(document).keydown(function(event) {
-            if(jQuery.inArray(event.which, listen) >= 0) {
+            if (jQuery.inArray(event.which, listen) >= 0) {
                 event.preventDefault();
                 presentation.setState('pending');
-            } else if(jQuery.inArray(event.which, next) >= 0) {
+            } else if (jQuery.inArray(event.which, next) >= 0) {
                 event.preventDefault();
                 presentation.next();
-            } else if(jQuery.inArray(event.which, previous) >= 0) {
+            } else if (jQuery.inArray(event.which, previous) >= 0) {
                 event.preventDefault();
                 presentation.previous();
             }
@@ -155,12 +155,13 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         });
     };
 
+    var firstRemoteList = true;
     /* Remote Listeners which are not dependante of a remote (inactive remote case) */
     this.remoteListeners = function() {
         console.log('DisplayPresentation:remoteListeners()');
         var presentation = this;
 
-        this.socket.on('remote_list',                     function(remotes) { presentation.updateRemotes(remotes); });
+        this.socket.on('remote_list', function(remotes) { presentation.updateRemotes(remotes); firstRemoteList = false;});
 
         this.socket.emit('list_remote', { project_id: this.getProjectId() });
     };
@@ -180,7 +181,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         while(i < this.remotes.length) {
             var currentRemote = this.remotes[i];
             console.log(currentRemote);
-            if(currentRemote.getRoomName() == roomName) {
+            if (currentRemote.getRoomName() == roomName) {
                 return currentRemote;
             }
             i++;
@@ -221,11 +222,14 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
     this.updateRemote = function(remoteData) {
         console.log('DisplayPresentation:updateRemote('+remoteData+')');
         var remote = this.getRemoteByRoomName(remoteData.roomName)
-        if(remote) {
+        if (remote) {
             remote.synchronize(remoteData);
         } else {
             remote = new DisplayRemote(this, remoteData);
             this.addRemote(remote);
+
+            //Push animation for annonce new remote
+            this.annonceNewRemote(remote);
         }
         remote.toKeep(true);
     }
@@ -237,14 +241,14 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
 
     this.removeRemote = function(remote) {
         console.log('DisplayPresentation:removeRemote('+remote+')');
-        if(this.remotes != undefined) {
+        if (this.remotes != undefined) {
             this.remotes.splice(this.remotes.indexOf(remote), 1);
         }
     };
 
     this.updateRemotes = function(remotesData) {
         console.log('DisplayPresentation:updateRemotes('+remotesData+')');
-        if(remotesData != null) {
+        if (remotesData != null) {
             var toKeep = new Array();
             for(i = 0; i < this.remotes.length; i++) {
                 var current = this.remotes[i];
@@ -257,8 +261,11 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
 
             for(i = 0; i < this.remotes.length; i++) {
                 var current = this.remotes[i];
-                if(!current.toKeep()) {
+                if (!current.toKeep()) {
                     this.removeRemote(current);
+
+                    // Push animation to annonce remote exit
+                    this.annonceRemoteExit(current);
                 }
             }
         } else {
@@ -271,7 +278,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         for(i=0; i < this.remotes.length; i++) {
             var remote = this.remotes[i];
             var username = '';
-            if(remote.owner) {
+            if (remote.owner) {
                 username = remote.owner.name;
             }
             var active = remote.isActive() ? ' class="active"' : '';
@@ -295,7 +302,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
 
     this.next = function() {
         console.log('DisplayPresentation:next()');
-        if(this.getState() == 'init') {
+        if (this.getState() == 'init') {
             this.play();
         } else {
             this.player.next();
@@ -304,7 +311,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
 
     this.previous = function() {
         console.log('DisplayPresentation:previous()');
-        if(this.getState() == 'init') {
+        if (this.getState() == 'init') {
             this.play();
         } else {
             this.player.previous();
@@ -323,7 +330,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         var infoContent = jQuery('#expo-player-information-content');
 
         this.setShowPlayerInformation(show);
-        if(show) {
+        if (show) {
             this.setState('init');
             infoButton.addClass('active');
             infoContent.addClass('visible');
@@ -345,7 +352,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         var infoContent = jQuery('#expo-project-information-content');
 
         this.setShowProjectInformation(show);
-        if(show) {
+        if (show) {
             infoButton.addClass('active');
             infoContent.addClass('visible');
         } else {
@@ -360,7 +367,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         var shareContent = jQuery('#expo-player-share-content');
 
         this.setShowShareContent(show);
-        if(show) {
+        if (show) {
             this.backdrop();
             shareButton.addClass('active');
             shareContent.addClass('visible');
@@ -376,7 +383,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         var syncButton = jQuery('#expo-player-sync');
         var syncContent = jQuery('#expo-player-sync-content');
 
-        if(show) {
+        if (show) {
             this.backdrop();
             syncButton.addClass('active');
             syncContent.addClass('visible');
@@ -393,7 +400,7 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
         var pagesContent = jQuery('#expo-navigation-current-page-content');
 
         this.setShowPagesMenu(show);
-        if(show) {
+        if (show) {
             pagesButton.addClass('active');
             pagesContent.addClass('visible');
         } else {
@@ -403,15 +410,41 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
     };
 
     this.backdrop = function() {
-        if(this.$backdrop === undefined) {
+        if (this.$backdrop === undefined) {
             this.$backdrop = $('<div class="modal-backdrop fade in" />').appendTo(document.body);
         }
     };
 
     this.removeBackdrop = function() {
-        if(this.$backdrop !== undefined) {
+        if (this.$backdrop !== undefined) {
             this.$backdrop.remove();
             this.$backdrop = undefined;
         }
     };
+
+    this.getNotifierStyle = function () {
+        var pattern = jQuery('#expo-player-sync');
+        console.log('color');
+        console.log(pattern.css('color'));
+
+        var style = '';
+        if (pattern.css('color') == 'rgb(0, 0, 0)') {
+            style = 'background: #000; color: #FFF; border-color: #FFF;';
+        } else {
+            style = 'background: #FFF; color: #000; border-color: #000;';
+        }
+        return style;
+    }
+
+    this.annonceNewRemote = function(remote) {
+        if (!firstRemoteList) {
+            jQuery('#expo-player-sync-notify-container').append('<span class="expo-player-sync-notify" style="'+this.getNotifierStyle()+'">+1</span>');
+        }
+    }
+
+    this.annonceRemoteExit = function(remote) {
+        if (!firstRemoteList) {
+            jQuery('#expo-player-sync-notify-container').append('<span class="expo-player-sync-notify" style="'+this.getNotifierStyle()+'">-1</span>');
+        }
+    }
 };

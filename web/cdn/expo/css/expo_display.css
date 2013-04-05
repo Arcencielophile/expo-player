@@ -94,6 +94,11 @@ a:focus {
   z-index: 5000;
 }
 
+.expo-player-sync-notify
+{
+    z-index: 4999;
+}
+
 #expo-project-information,
 .pending #expo-project-information:hover,
 .pending #expo-project-information.active
@@ -143,6 +148,69 @@ a:focus {
 #expo-player-sync.active,
 .pending #expo-player-sync
 { background-position: -168px -84px; }
+
+@-webkit-keyframes expo-player-sync-show-notify /* Safari and Chrome */
+{
+  from {bottom:5px; opacity: 1;}
+  to {bottom:100px; opacity: 0;}
+}
+@-moz-keyframes expo-player-sync-show-notify /* Firefox */
+{
+  from {bottom:5px; opacity: 1;}
+  to {bottom:100px; opacity: 0;}
+}
+@keyframes expo-player-sync-show-notify
+{
+  from {bottom:5px; opacity: 1;}
+  to {bottom:100px; opacity: 0;}
+}
+
+.expo-player-sync-notify
+{
+  display: block;
+  width: 42px;
+  height: 42px;
+  text-align: center;
+  line-height: 42px;
+  overflow: hidden;
+  font-size: 20px;
+  color: #000;
+  background: #FFF;
+  border: 1px solid #000;
+
+  position: fixed;
+  right: 152px;
+  bottom:5px;
+
+  -webkit-border-radius: 42px; /* Safari and Chrome */
+     -moz-border-radius: 42px; /* Firefox */
+          border-radius: 42px;
+
+  -webkit-animation:expo-player-sync-show-notify 4s; /* Safari and Chrome */
+     -moz-animation:expo-player-sync-show-notify 4s; /* Firefox */
+          animation:expo-player-sync-show-notify 4s;
+}
+
+/*
+For avoid animation issue the notify style is define in js...
+
+.pending .expo-player-sync-notify,
+.init #expo-player-sync:hover + #expo-player-sync-notify-container > .expo-player-sync-notify,
+.init #expo-player-sync.active + #expo-player-sync-notify-container > .expo-player-sync-notify
+{
+  background: #000;
+  color: #FFF;
+  border-color: #FFF;
+}
+.init .expo-player-sync-notify,
+.pending #expo-player-sync:hover + #expo-player-sync-notify-container > .expo-player-sync-notify,
+.pending #expo-player-sync.active + #expo-player-sync-notify-container > .expo-player-sync-notify
+{
+  background: #FFF;
+  color: #000;
+  border-color: #000;
+}
+*/
 
 #expo-navigation-previous-page,
 .pending #expo-navigation-previous-page:hover,
