@@ -45,20 +45,8 @@
 	    padding-top: 9px;
 	}
 
-	/* Previous */
-	#expo-remote-previous {
-	  width: 20%;
-	  height: 70px;
-	}
-
 	#expo-remote-current > span {
 	  padding-top: 20px;
-	}
-
-	/* Next */
-	#expo-remote-next {
-	  width: 20%;
-	  height: 70px;
 	}
 
 	/* Name input */
@@ -278,4 +266,7 @@
 	#expo-remote-goto {
     	height: 95%;
 	}
+
+	#expo-remote-next > span { background-position: left center; }
+	#expo-remote-previous > span { background-position: right center; }
 }
