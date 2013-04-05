@@ -168,8 +168,13 @@
         <a href="<?php echo $expo_srv ?>/remote.php?<?php echo $projectPlayer->getRemoteParameters(); ?>" target="_blank" id="qrcode"></a>
       </div>
       <div class="join-live">
-        <label>Join presentation</label>
-        <input id="usernameInput" type="text" name="username" placeholder="As username" />
+        <label class="name">Name your presentation</label>
+        <div class="input-prepend input-append" id="expo-remote-name">
+          <span class="add-on">name</span>
+          <input id="usernameInput" type="text" name="username" class="span2" />
+          <button class="btn" type="button">Ok</button>
+        </div>
+        <label class="select">Select remotes to follow</label>
         <ul>
         </ul>
       </div>

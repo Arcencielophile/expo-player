@@ -1,15 +1,20 @@
 [submodule "web/deckjs"]
 	path = web/deckjs
 	url = https://github.com/imakewebthings/deck.js.git
+	ignore = dirty
 [submodule "web/jquery-qrcode"]
 	path = web/jquery-qrcode
 	url = https://github.com/jeromeetienne/jquery-qrcode.git
+	ignore = dirty
 [submodule "web/turnjs"]
 	path = web/turnjs
 	url = https://github.com/blasten/turn.js.git
+	ignore = dirty
 [submodule "web/bootstrap"]
 	path = web/bootstrap
 	url = https://github.com/twitter/bootstrap.git
+	ignore = dirty
 [submodule "web/impressjs"]
 	path = web/impressjs
 	url = https://github.com/bartaz/impress.js.git
+	ignore = dirty
