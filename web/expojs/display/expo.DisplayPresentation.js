@@ -86,58 +86,58 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
             }
         });
 
-        jQuery('#expo-player-play').click(function(event) {
+        jQuery('#expo-player-play').on('click', function(event) {
             event.preventDefault();
             presentation.play();
         });
 
-        jQuery('#expo-project-information').click(function(event) {
+        jQuery('#expo-project-information').on('click', function(event) {
             event.preventDefault();
             presentation.showProjectInformation(!presentation.isShowProjectInformation());
         });
 
-        jQuery('#expo-player-information').click(function(event) {
+        jQuery('#expo-player-information').on('click', function(event) {
             event.preventDefault();
             presentation.showPlayerInformation(!presentation.isShowPlayerInformation());
         });
 
-        jQuery('#expo-player-share').click(function(event) {
+        jQuery('#expo-player-share').on('click', function(event) {
             event.preventDefault();
             presentation.showShareContent(!presentation.isShowShareContent());
         });
 
-        jQuery('#expo-navigation-previous-page').click(function(event) {
+        jQuery('#expo-navigation-previous-page').on('click', function(event) {
             event.preventDefault();
             presentation.previous();
         });
 
-        jQuery('#expo-navigation-next-page').click(function(event) {
+        jQuery('#expo-navigation-next-page').on('click', function(event) {
             event.preventDefault();
             presentation.next();
         });
 
-        jQuery('#expo-navigation-current-page').click(function(event) {
+        jQuery('#expo-navigation-current-page').on('click', function(event) {
             event.preventDefault();
             presentation.showPagesMenu(!presentation.isShowPagesMenu());
         });
 
-        jQuery('#expo-navigation-current-page-content > ul > li > a').click(function(event) {
+        jQuery('#expo-navigation-current-page-content > ul > li > a').on('click', function(event) {
             event.preventDefault();
             presentation.goto(jQuery(this).html());
         });
 
-        jQuery('#expo-player-sync').click(function(event) {
+        jQuery('#expo-player-sync').on('click', function(event) {
             event.preventDefault();
             var visible = jQuery('#expo-player-sync-content').hasClass('visible');
             presentation.showSync(!visible);
         });
 
-        jQuery('#expo-player-sync-content a[href="#expo-player-sync-content"]').click(function(event) {
+        jQuery('#expo-player-sync-content a[href="#expo-player-sync-content"]').on('click', function(event) {
             event.preventDefault();
             presentation.showSync(false);
         });
 
-        jQuery('#expo-player-share-content a[href="#expo-player-share-content"]').click(function(event) {
+        jQuery('#expo-player-share-content a[href="#expo-player-share-content"]').on('click', function(event) {
             event.preventDefault();
             presentation.showShareContent(false);
         });
@@ -405,6 +405,12 @@ var DisplayPresentation = function(socket, projectId, player, follower) {
     this.backdrop = function() {
         if(this.$backdrop === undefined) {
             this.$backdrop = $('<div class="modal-backdrop fade in" />').appendTo(document.body);
+            var presentation = this;
+            this.$backdrop.on('click', function(event) {
+                /* Ugly Hack */
+                presentation.showShareContent(false);
+                presentation.showSync(false);
+            });
         }
     };
 
