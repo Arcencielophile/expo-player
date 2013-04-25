@@ -141,5 +141,181 @@
       ]]>
     </content>
   </page>
+<!--
+  <page>
+    <title>Interface</title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <img src="cdn/expo/images/logo.png" alt="expo" title="expo" style="margin-top:100px;" />
+        <h1>Interface</h1>
+        <div class="buttons">
+          <a title="Project Information" class="button">+</a>
+          <a title="Show help" class="button">i</a>
+          <a title="Go back home" class="button">H</a>
+          <a title="Share" class="button">*S*</a>
+          <a title="Synchronize the presentation" class="button">Sync</a>
+          <a title="Previous" class="button">&lt;</a>
+          <a title="Current" class="button">X</a>
+          <a title="Next" class="button">&gt;</a>
+        </div>
+      ]]>
+    </content>
+  </page>
 
+  <page>
+    <title>Previous</title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <div class="buttons">
+          <a title="Previous" class="button">&lt;</a>
+        </div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Next</title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <div class="buttons">
+          <a title="Next" class="button">&gt;</a>
+        </div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Current</title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <div class="buttons">
+          <a title="Current" class="button">X</a>
+        </div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Synchronize the presentation</title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <div class="buttons">
+          <a title="Synchronize the presentation" class="button">Sync</a>
+          <div>
+              + Screenshot de la 'popup' de la synchronisation:<br/>
+              1: Scan with your phone or click to create a remote<br/>
+              2: Here you can found the list of attached remote available for the presentation<br/>
+              3: Select/Unselect a remote to follow / unfollow<br/>
+              4: Choose a name to be identify<br/>
+          </div>
+        </div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Project Information</title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <div class="buttons">
+          <a title="Project Information" class="button">+</a>
+        </div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Show help</title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <div class="buttons">
+          <a title="Show help" class="button">i</a>
+        </div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Go back home</title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <div class="buttons">
+          <a title="Go back home" class="button">H</a>
+        </div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Share</title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <div class="buttons">
+          <a title="Share" class="button">*S*</a>
+        </div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Button resume</title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <div class="buttons">
+          <a title="Project Information" class="button">+</a>
+          <a title="Show help" class="button">i</a>
+          <a title="Go back home" class="button">H</a>
+          <a title="Share" class="button">*S*</a>
+          <a title="Synchronize the presentation" class="button">Sync</a>
+          <a title="Previous" class="button">&lt;</a>
+          <a title="Current" class="button">X</a>
+          <a title="Next" class="button">&gt;</a>
+        </div>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Create Content</title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <img src="cdn/expo/images/logo.png" alt="expo" title="expo" style="margin-top:100px;" />
+        <h1>Create content</h1>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Custom theme</title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <img src="cdn/expo/images/logo.png" alt="expo" title="expo" style="margin-top:100px;" />
+        <h1>Custom theme</h1>
+      ]]>
+    </content>
+  </page>
+
+  <page>
+    <title>Application architecture</title>
+    <description></description>
+    <content>
+      <![CDATA[
+        <img src="cdn/expo/images/logo.png" alt="expo" title="expo" style="margin-top:100px;" />
+        <h1>Application architecture</h1>
+      ]]>
+    </content>
+  </page>
+//-->
 </project>
