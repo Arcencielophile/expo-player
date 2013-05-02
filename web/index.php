@@ -34,7 +34,6 @@
       $(document).ready(function() {
         displayPresentation.bindWithView();
       });
-      
     </script>
   </head>
 
@@ -199,7 +198,6 @@
 
     <a href="#expo-navigation-next-page" id="expo-navigation-next-page" class="button hidden-phone" title="Next">&gt;</a>
 
-
     <?php if ($projectPlayer->getName() == 'Impressjs'): ?>
     <div id="impress">
     <?php endif; ?>
@@ -219,6 +217,21 @@
     <?php if ($projectPlayer->getName() == 'Impressjs'): ?>
     </div>
     <?php endif; ?>
+
+    <script type="text/javascript">
+    /*
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-37041173-1']);
+      _gaq.push(['_setDomainName', 'expo-project.org']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    */
+    </script>
 
   </body>
 </html>
