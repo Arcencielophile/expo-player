@@ -251,26 +251,26 @@ For avoid animation issue the notify style is define in js...
  Expo buttons position
 ********************************************************************************/
 
-.expo-project-information,
-.expo-player-information,
-.expo-navigation-home,
-.expo-player-share,
-.expo-player-sync,
-.expo-navigation-previous-page,
-.expo-navigation-current-page,
-.expo-navigation-next-page {
+#expo-project-information,
+#expo-player-information,
+#expo-navigation-home,
+#expo-player-share,
+#expo-player-sync,
+#expo-navigation-previous-page,
+#expo-navigation-current-page,
+#expo-navigation-next-page {
   position: fixed;
   bottom: 5px;
 }
 
-.expo-project-information { left: 5px; }
-.expo-player-information { left: 54px; }
-.expo-navigation-home { left: 103px; }
-.expo-player-share { left: 152px; }
-.expo-player-sync { right: 152px; }
-.expo-navigation-previous-page { right: 103px; }
-.expo-navigation-current-page { right: 54px; }
-.expo-navigation-next-page { right: 5px; }
+#expo-project-information { left: 5px; }
+#expo-player-information { left: 54px; }
+#expo-navigation-home { left: 103px; }
+#expo-player-share { left: 152px; }
+#expo-player-sync { right: 152px; }
+#expo-navigation-previous-page { right: 103px; }
+#expo-navigation-current-page { right: 54px; }
+#expo-navigation-next-page { right: 5px; }
 
 
 /*******************************************************************************

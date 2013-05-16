@@ -21,6 +21,11 @@
     <website>http://www.arcencielophile.fr</website>
   </author>
   <author>
+    <name>Stephanie KOWALSKI</name>
+    <email>stephanie.j.kowalski@gmail.com</email>
+    <website>http://skdsign.carbonmade.com</website>
+  </author>
+  <author>
     <name>Alexandre LOUYS</name>
     <email>alexandre.louys@gmail.com</email>
   </author>
@@ -117,31 +122,34 @@
     <content>
       <![CDATA[
         <div class="row-fluid">
-          <div class="span4">
-             <p><strong>Interface</strong></p>
-	     <div class="interface_start">
-             </div>
-             <a class="gsb">GET STARTED</a>
+          <div class="span3">
+            <strong>Interface</strong>
+            <div class="interface_start"></div>
+            <a class="nlpb" href="#">Now let's <div class="little-play">play</div></a>
           </div>
 
-          <div class="span4">
-            <p><strong>Theme</strong></p>
-	    <div class="theme_start">
-            </div>
-            <a class="gsb">GET STARTED</a>
+          <div class="span3">
+            <strong>Content</strong>
+            <div class="content_start"></div>
+            <a class="nlpb" href="#">Now let's <div class="little-play">play</div></a>
           </div>
 
-          <div class="span4">
-            <p><strong>Code</strong></p>
-	    <div class="code_start">
-            </div>
-            <a class="gsb">GET STARTED</a>
+          <div class="span3">
+            <strong>Theme</strong>
+            <div class="theme_start"></div>
+            <a class="nlpb" href="#">Now let's <div class="little-play">play</div></a>
+          </div>
+
+          <div class="span3">
+            <strong>Code</strong>
+            <div class="code_start"></div>
+            <a class="nlpb" href="#">Now let's <div class="little-play">play</div></a>
           </div>
         </div>
       ]]>
     </content>
   </page>
-<!--
+
   <page>
     <title>Interface</title>
     <description></description>
@@ -149,119 +157,36 @@
       <![CDATA[
         <img src="cdn/expo/images/logo.png" alt="expo" title="expo" style="margin-top:100px;" />
         <h1>Interface</h1>
-        <div class="buttons">
-          <a title="Project Information" class="button">+</a>
-          <a title="Show help" class="button">i</a>
-          <a title="Go back home" class="button">H</a>
-          <a title="Share" class="button">*S*</a>
-          <a title="Synchronize the presentation" class="button">Sync</a>
-          <a title="Previous" class="button">&lt;</a>
-          <a title="Current" class="button">X</a>
-          <a title="Next" class="button">&gt;</a>
-        </div>
       ]]>
     </content>
   </page>
 
   <page>
-    <title>Previous</title>
+    <title>Navigation buttons</title>
     <description></description>
     <content>
       <![CDATA[
-        <div class="buttons">
-          <a title="Previous" class="button">&lt;</a>
-        </div>
+        <ul class="buttons-info">
+          <li><a title="Next" class="button expo-navigation-next-page">&gt;</a><p><strong>Next</strong> go to the next slide</p></li>
+          <li><a title="Previous" class="button expo-navigation-previous-page">&lt;</a><p><strong>Previous</strong> go to the previous slide</p></li>
+          <li><a title="Current" class="button expo-navigation-current-page">X</a><p><strong>Current</strong> indicates the slide that you are viewing. If you click on, you will get a fast slides access</p></li>
+          <li><a title="Synchronize the presentation" class="button expo-player-sync">Sync</a><p><strong>Synchronization</strong> to create or follow a remote</p></li>
+        </ul>
       ]]>
     </content>
   </page>
 
   <page>
-    <title>Next</title>
+    <title>Others buttons</title>
     <description></description>
     <content>
       <![CDATA[
-        <div class="buttons">
-          <a title="Next" class="button">&gt;</a>
-        </div>
-      ]]>
-    </content>
-  </page>
-
-  <page>
-    <title>Current</title>
-    <description></description>
-    <content>
-      <![CDATA[
-        <div class="buttons">
-          <a title="Current" class="button">X</a>
-        </div>
-      ]]>
-    </content>
-  </page>
-
-  <page>
-    <title>Synchronize the presentation</title>
-    <description></description>
-    <content>
-      <![CDATA[
-        <div class="buttons">
-          <a title="Synchronize the presentation" class="button">Sync</a>
-          <div>
-              + Screenshot de la 'popup' de la synchronisation:<br/>
-              1: Scan with your phone or click to create a remote<br/>
-              2: Here you can found the list of attached remote available for the presentation<br/>
-              3: Select/Unselect a remote to follow / unfollow<br/>
-              4: Choose a name to be identify<br/>
-          </div>
-        </div>
-      ]]>
-    </content>
-  </page>
-
-  <page>
-    <title>Project Information</title>
-    <description></description>
-    <content>
-      <![CDATA[
-        <div class="buttons">
-          <a title="Project Information" class="button">+</a>
-        </div>
-      ]]>
-    </content>
-  </page>
-
-  <page>
-    <title>Show help</title>
-    <description></description>
-    <content>
-      <![CDATA[
-        <div class="buttons">
-          <a title="Show help" class="button">i</a>
-        </div>
-      ]]>
-    </content>
-  </page>
-
-  <page>
-    <title>Go back home</title>
-    <description></description>
-    <content>
-      <![CDATA[
-        <div class="buttons">
-          <a title="Go back home" class="button">H</a>
-        </div>
-      ]]>
-    </content>
-  </page>
-
-  <page>
-    <title>Share</title>
-    <description></description>
-    <content>
-      <![CDATA[
-        <div class="buttons">
-          <a title="Share" class="button">*S*</a>
-        </div>
+        <ul class="buttons-info">
+          <li><a title="Project Information" class="button expo-project-information">+</a><p><strong>Information</strong> to get more information about the viewing presentation</p></li>
+          <li><a title="Show help" class="button expo-player-information">i</a><p><strong>Help</strong> short one to get it on with expo</p></li>
+          <li><a title="Go back home" class="button expo-navigation-home">H</a><p><strong>Home</strong> to go back home</p></li>
+          <li><a title="Share" class="button expo-player-share">*S*</a><p><strong>Share</strong> with your network</li>
+        </ul>
       ]]>
     </content>
   </page>
@@ -271,16 +196,18 @@
     <description></description>
     <content>
       <![CDATA[
-        <div class="buttons">
-          <a title="Project Information" class="button">+</a>
-          <a title="Show help" class="button">i</a>
-          <a title="Go back home" class="button">H</a>
-          <a title="Share" class="button">*S*</a>
-          <a title="Synchronize the presentation" class="button">Sync</a>
-          <a title="Previous" class="button">&lt;</a>
-          <a title="Current" class="button">X</a>
-          <a title="Next" class="button">&gt;</a>
-        </div>
+        <ul class="buttons-info">
+          <li><a title="Next" class="button expo-navigation-next-page">&gt;</a><p><strong>Next</strong></p></li>
+          <li><a title="Previous" class="button expo-navigation-previous-page">&lt;</a><p><strong>Previous</strong></p></li>
+          <li><a title="Current" class="button expo-navigation-current-page">X</a><p><strong>Current</strong></p></li>
+          <li><a title="Synchronize the presentation" class="button expo-player-sync">Sync</a><p><strong>Synchronization</strong></p></li>
+        </ul>
+        <ul class="buttons-info">
+          <li><a title="Project Information" class="button expo-project-information">+</a><p><strong>Information</strong></p></li>
+          <li><a title="Show help" class="button expo-player-information">i</a><p><strong>Help</strong></p></li>
+          <li><a title="Go back home" class="button expo-navigation-home">H</a><p><strong>Home</strong></p></li>
+          <li><a title="Share" class="button expo-player-share">*S*</a><p><strong>Share</strong></li>
+        </ul>
       ]]>
     </content>
   </page>
@@ -317,5 +244,5 @@
       ]]>
     </content>
   </page>
-//-->
+
 </project>

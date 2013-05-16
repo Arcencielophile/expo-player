@@ -22,7 +22,7 @@
 var ImpressjsPlayer = function() {
 
   this.init = function() {
-    jQuery('#expo-navigation-current-page').append(1);
+    jQuery('.expo-navigation-current-page').append(1);
     impress().init();
   };
 
