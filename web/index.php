@@ -39,7 +39,7 @@
 
   <body>
 
-    <a href="#expo-project-information-content" id="expo-project-information" class="button" title="Project Information">+</a>
+    <a href="#expo-project-information-content" id="expo-project-information" class="button expo-project-information" title="Project Information">+</a>
     <div id="expo-project-information-content">
       <div class="title">
         <h1><?php echo $projectPlayer->getProject()->getName(); ?></h1>
@@ -93,7 +93,7 @@
       </div>
     </div>
 
-    <a href="#expo-player-information-content" id="expo-player-information" class="button" title="Show help">i</a>
+    <a href="#expo-player-information-content" id="expo-player-information" class="button expo-player-information" title="Show help">i</a>
     <div id="expo-player-information-content">
       <div class="row-fluid">
         <div class="span6 start">
@@ -115,9 +115,9 @@
       </div>
     </div>
 
-    <a href="" id="expo-navigation-home" class="button" title="Go back home">H</a>
+    <a href="" id="expo-navigation-home" class="button expo-navigation-home" title="Go back home">H</a>
 
-    <a href="#expo-player-share-content" id="expo-player-share" class="button" title="Share">*S*</a>
+    <a href="#expo-player-share-content" id="expo-player-share" class="button expo-player-share" title="Share">*S*</a>
     <div id="expo-player-share-content">
       <a href="#expo-player-share-content" title="Close">x</a>
       <div class="share">
@@ -155,7 +155,7 @@
     </div>
 
     <?php if($projectPlayer->isRemoteAlive()): ?>
-    <a href="#expo-player-sync-content" id="expo-player-sync" class="button" title="Synchronize the presentation">Sync</a>
+    <a href="#expo-player-sync-content" id="expo-player-sync" class="button expo-player-sync" title="Synchronize the presentation">Sync</a>
     <div id="expo-player-sync-notify-container">
         
     </div>
@@ -181,9 +181,9 @@
 
     <?php endif; ?>
 
-    <a href="#expo-navigation-previous-page" id="expo-navigation-previous-page" class="button hidden-phone" title="Previous">&lt;</a>
+    <a href="#expo-navigation-previous-page" id="expo-navigation-previous-page" class="button hidden-phone expo-navigation-previous-page" title="Previous">&lt;</a>
 
-    <a href="#expo-navigation-current-page-content" id="expo-navigation-current-page" class="button" title="Current"></a>
+    <a href="#expo-navigation-current-page-content" id="expo-navigation-current-page" class="button expo-navigation-current-page" title="Current"></a>
     <div id="expo-navigation-current-page-content">
       <ul>
         <?php foreach($projectPlayer->getPages() as $k => $page): ?>
@@ -196,7 +196,7 @@
       </ul>
     </div>
 
-    <a href="#expo-navigation-next-page" id="expo-navigation-next-page" class="button hidden-phone" title="Next">&gt;</a>
+    <a href="#expo-navigation-next-page" id="expo-navigation-next-page" class="button hidden-phone expo-navigation-next-page" title="Next">&gt;</a>
 
     <?php if ($projectPlayer->getName() == 'Impressjs'): ?>
     <div id="impress">

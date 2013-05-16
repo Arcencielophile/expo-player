@@ -37,7 +37,7 @@ a:focus {
   overflow: hidden;
   font-size: 20px;
   color: #000;
-  background: #FFF;
+  background-color: #FFF;
   border: 1px solid #000;
   -webkit-transition: 0.6s;
      -moz-transition: 0.6s;
@@ -50,7 +50,7 @@ a:focus {
 .pending .button.active
 {
   color: #FFF;
-  background: #000;
+  background-color: #000;
   border-color: #FFF;
 }
 
@@ -60,20 +60,20 @@ a:focus {
 
 .button.active,
 .button:hover {
-  background: #FFF;
+  background-color: #FFF;
   color: #000;
   border-color: #000;
 }
 
 
-#expo-project-information,
-#expo-player-information,
-#expo-navigation-home,
-#expo-player-share,
-#expo-player-sync,
-#expo-navigation-previous-page,
-#expo-navigation-current-page,
-#expo-navigation-next-page {
+.expo-project-information,
+.expo-player-information,
+.expo-navigation-home,
+.expo-player-share,
+.expo-player-sync,
+.expo-navigation-previous-page,
+.expo-navigation-current-page,
+.expo-navigation-next-page {
   z-index: 2000;
 }
 
@@ -81,13 +81,13 @@ a:focus {
  Expo buttons display (images)
 ********************************************************************************/
 
-#expo-project-information,
-#expo-player-information,
-#expo-navigation-home,
-#expo-player-share,
-#expo-player-sync,
-#expo-navigation-previous-page,
-#expo-navigation-next-page
+.expo-project-information,
+.expo-player-information,
+.expo-navigation-home,
+.expo-player-share,
+.expo-player-sync,
+.expo-navigation-previous-page,
+.expo-navigation-next-page
 {
   background-image: url('../images/glyphicons.png');
   text-indent: -9999px;
@@ -99,54 +99,54 @@ a:focus {
     z-index: 4999;
 }
 
-#expo-project-information,
-.pending #expo-project-information:hover,
-.pending #expo-project-information.active
+.expo-project-information,
+.pending .expo-project-information:hover,
+.pending .expo-project-information.active
 { background-position: -504px 0; }
-#expo-project-information:hover,
-#expo-project-information.active,
-.pending #expo-project-information
+.expo-project-information:hover,
+.expo-project-information.active,
+.pending .expo-project-information
 { background-position: -504px -84px; }
 
-#expo-player-information,
-.pending #expo-player-information:hover,
-.pending #expo-player-information.active
+.expo-player-information,
+.pending .expo-player-information:hover,
+.pending .expo-player-information.active
 { background-position: -252px 0; }
-#expo-player-information:hover,
-#expo-player-information.active,
-.pending #expo-player-information
+.expo-player-information:hover,
+.expo-player-information.active,
+.pending .expo-player-information
 { background-position: -252px -84px; }
 
-#expo-navigation-home,
-.pending #expo-navigation-home:hover,
-.pending #expo-navigation-home.active
+.expo-navigation-home,
+.pending .expo-navigation-home:hover,
+.pending .expo-navigation-home.active
 { background-position: -336px 0; }
-#expo-navigation-home:hover,
-#expo-navigation-home.active,
-.pending #expo-navigation-home
+.expo-navigation-home:hover,
+.expo-navigation-home.active,
+.pending .expo-navigation-home
 { background-position: -336px -84px; }
 
-#expo-player-share,
-.pending  #expo-player-share:hover,
-.pending  #expo-player-share.active
+.expo-player-share,
+.pending  .expo-player-share:hover,
+.pending  .expo-player-share.active
 { background-position: -420px 0; }
-#expo-player-share:hover,
-#expo-player-share.active,
-.pending #expo-player-share
+.expo-player-share:hover,
+.expo-player-share.active,
+.pending .expo-player-share
 { background-position: -420px -84px; }
 
-#expo-player-sync,
-.pending #expo-player-sync:hover,
-.pending #expo-player-sync.active
+.expo-player-sync,
+.pending .expo-player-sync:hover,
+.pending .expo-player-sync.active
 {
   background-position: -168px 0;
   -webkit-border-radius: 42px;
      -moz-border-radius: 42px;
           border-radius: 42px;
 }
-#expo-player-sync:hover,
-#expo-player-sync.active,
-.pending #expo-player-sync
+.expo-player-sync:hover,
+.expo-player-sync.active,
+.pending .expo-player-sync
 { background-position: -168px -84px; }
 
 @-webkit-keyframes expo-player-sync-show-notify /* Safari and Chrome */
@@ -212,38 +212,38 @@ For avoid animation issue the notify style is define in js...
 }
 */
 
-#expo-navigation-previous-page,
-.pending #expo-navigation-previous-page:hover,
-.pending #expo-navigation-previous-page.active
+.expo-navigation-previous-page,
+.pending .expo-navigation-previous-page:hover,
+.pending .expo-navigation-previous-page.active
 {
   background-position: 0 0;
   -webkit-border-radius: 42px;
      -moz-border-radius: 42px;
           border-radius: 42px;
 }
-#expo-navigation-previous-page:hover,
-#expo-navigation-previous-page.active,
-.pending #expo-navigation-previous-page
+.expo-navigation-previous-page:hover,
+.expo-navigation-previous-page.active,
+.pending .expo-navigation-previous-page
 { background-position: 0 -84px; }
 
-#expo-navigation-current-page {
+.expo-navigation-current-page {
   -webkit-border-radius: 42px;
      -moz-border-radius: 42px;
           border-radius: 42px;
 }
 
-#expo-navigation-next-page,
-.pending #expo-navigation-next-page:hover,
-.pending #expo-navigation-next-page.active
+.expo-navigation-next-page,
+.pending .expo-navigation-next-page:hover,
+.pending .expo-navigation-next-page.active
 {
   background-position: -84px 0;
   -webkit-border-radius: 42px;
      -moz-border-radius: 42px;
           border-radius: 42px;
 }
-#expo-navigation-next-page:hover,
-#expo-navigation-next-page.active,
-.pending #expo-navigation-next-page
+.expo-navigation-next-page:hover,
+.expo-navigation-next-page.active,
+.pending .expo-navigation-next-page
 { background-position: -84px -84px; }
 
 
@@ -251,26 +251,26 @@ For avoid animation issue the notify style is define in js...
  Expo buttons position
 ********************************************************************************/
 
-#expo-project-information,
-#expo-player-information,
-#expo-navigation-home,
-#expo-player-share,
-#expo-player-sync,
-#expo-navigation-previous-page,
-#expo-navigation-current-page,
-#expo-navigation-next-page {
+.expo-project-information,
+.expo-player-information,
+.expo-navigation-home,
+.expo-player-share,
+.expo-player-sync,
+.expo-navigation-previous-page,
+.expo-navigation-current-page,
+.expo-navigation-next-page {
   position: fixed;
   bottom: 5px;
 }
 
-#expo-project-information { left: 5px; }
-#expo-player-information { left: 54px; }
-#expo-navigation-home { left: 103px; }
-#expo-player-share { left: 152px; }
-#expo-player-sync { right: 152px; }
-#expo-navigation-previous-page { right: 103px; }
-#expo-navigation-current-page { right: 54px; }
-#expo-navigation-next-page { right: 5px; }
+.expo-project-information { left: 5px; }
+.expo-player-information { left: 54px; }
+.expo-navigation-home { left: 103px; }
+.expo-player-share { left: 152px; }
+.expo-player-sync { right: 152px; }
+.expo-navigation-previous-page { right: 103px; }
+.expo-navigation-current-page { right: 54px; }
+.expo-navigation-next-page { right: 5px; }
 
 
 /*******************************************************************************
