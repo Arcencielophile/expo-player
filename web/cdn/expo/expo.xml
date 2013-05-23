@@ -5,6 +5,7 @@
     <author>Expo Team</author>
     <url>http://www.expo-project.org</url>
     <display player="deckjs">
+      <css path="fonts/pacifico/stylesheet.css" />
       <css path="css/expo_display.css" />
       <css path="css/expo_display-responsive.css" />
       <css path="css/slides.css" />
