@@ -19,10 +19,11 @@
 .slide .expo-navigation-current-page.slide-pager {
   position: absolute;
   top: 345px;
-  right: 14%;
+  right: 10%;
   font-size: 34px;
   color: #FFF;
   font-family: pacificoregular;
+  margin-right: 35px;
 }
 
 /* Slide */
